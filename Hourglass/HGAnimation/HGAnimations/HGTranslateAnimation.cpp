@@ -72,7 +72,7 @@ void TranslateAnimation::update(SceneNode *node, float dt)
     
     if (fabsf(mCurrentY + stepY) >= fabsf(mTranslateY))
     {
-        stepX = mTranslateY - mCurrentY;
+        stepY = mTranslateY - mCurrentY;
         mIsFinishY = true;
     }
     
