@@ -9,8 +9,18 @@ Icon?
 ehthumbs.db
 Thumbs.db
 .obj
-.menifest
-.ncb
+*.manifest
+*.ncb
+*.cmd
+*.cfg
+*.obj
+*.idb
+*.pdb
+*.dep
+*.exe
+*.res
+*.ilk
+BuildLog.htm
 # directory #
 #############
 
