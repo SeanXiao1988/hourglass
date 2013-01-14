@@ -1,4 +1,4 @@
 hourglass
 =========
 
-crappy 2d game engine using glfw lua, etc
+simple 2d engine experiment using C++/openGL/lua, etc
