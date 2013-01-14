@@ -100,6 +100,22 @@ static int translateanimation_set_duration(lua_State* L)
     return 0;
 }
     
+static int translateanimation_set_type(lua_State* L)
+{
+    BREAK_START;
+    
+    TranslateAnimation* anim = translateanimation_check(L, 1);
+    if (anim == NULL)
+        break;
+    
+    ANIMATION_TYPE type = (ANIMATION_TYPE)luaL_checkinteger(L, 2);
+    anim->setType(type);
+    
+    BREAK_END;
+    
+    return 0;
+}
+    
 static int translateanimation_new(lua_State* L)
 {
     int ret = 0;
@@ -133,6 +149,7 @@ luaL_Reg sTranslateAnimationRegs[] =
 {
     { "setTranslate",   translateanimation_set_translate },
     { "setDuration",    translateanimation_set_duration },
+    { "setType",        translateanimation_set_type },
     { NULL, NULL }
 };
 

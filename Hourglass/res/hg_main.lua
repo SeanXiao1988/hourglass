@@ -31,7 +31,8 @@ function hg_init()
     icomp = shitNode:getEntity()
     print(HASH.stringForHash(icomp:getComponentName()))
     
-    trans = TranslateAnimation.new(200, 200, 0.03)
+    trans = TranslateAnimation.new(100, 100, 0.03)
+    trans:setType(ANIMATION_TYPE_PINGPONG)
     testAnimator:addAnimation(trans, "trans")
 
 end

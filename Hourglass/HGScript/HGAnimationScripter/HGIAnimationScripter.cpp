@@ -213,6 +213,15 @@ void ScriptRegisterIAnimation(lua_State* L)
     luaL_setfuncs(L, sIAnimationRegs, 0);
     
     lua_pop(L, 1);
+    
+    lua_pushinteger(L, ANIMATION_TYPE_DEFAULT);
+    lua_setglobal(L, "ANIMATION_TYPE_DEFAULT");
+    
+    lua_pushinteger(L, ANIMATION_TYPE_PINGPONG);
+    lua_setglobal(L, "ANIMATION_TYPE_PINGPONG");
+    
+    lua_pushinteger(L, ANIMATION_TYPE_RESET);
+    lua_setglobal(L, "ANIMATION_TYPE_RESET");
 }
 
 }

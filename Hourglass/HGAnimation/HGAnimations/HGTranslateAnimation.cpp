@@ -100,10 +100,6 @@ void TranslateAnimation::update(SceneNode *node, float dt)
         }
         else if (type == ANIMATION_TYPE_PINGPONG)
         {
-            float rx = node->getX() - mTranslateX;
-            float ry = node->getY() - mTranslateY;
-            node->setX(rx);
-            node->setY(ry);
             mCurrentX = 0.0f;
             mCurrentY = 0.0f;
             mTranslateX = -mTranslateX;
