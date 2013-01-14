@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<objectsfile>
+	<!-- object should not be in the first layer -->
+	<!-- so we need objects -->
+	<objects>
+		<object name="1stObject" description="desc">
+			<component name="PhysicalObject" description="desc">
+                <int name="PhysicalObjID">1</int>
+                <int name="MapColliderX">0</int>
+                <int name="MapColliderY">-30</int>
+                <int name="MapColliderH">60</int>
+                <int name="ObjectX">32</int>
+                <int name="ObjectY">30</int>
+				<!-- how many collision rectangle this object has -->
+                <int name="CollisionRectCount">3</int>
+				<!-- collisionRect%02d{Left,Right,Top,Bottom} -->
+                <int name="collisionRect00L">-20</int>
+                <int name="collisionRect00R">20</int>
+                <int name="collisionRect00T">-20</int>
+                <int name="collisionRect00B">20</int>
+                <int name="collisionRect01L">-25</int>
+                <int name="collisionRect01R">25</int>
+                <int name="collisionRect01T">-25</int>
+                <int name="collisionRect01B">25</int>
+                <int name="collisionRect02L">-15</int>
+                <int name="collisionRect02R">15</int>
+                <int name="collisionRect02T">-15</int>
+                <int name="collisionRect02B">15</int>
+			</component>
+		</object>
+        <object name="sn" description="scenenode test">
+            <component name="SceneNode">
+                <hash name="name">shitNode</hash>
+                <hash name="parent">root</hash>
+                <float name="x">400</float>
+                <float name="y">300</float>
+                <int name="alpha">255</int>
+                <float name="scalex">1.0</float>
+                <float name="scaley">1.0</float>
+                <float name="rotation">0.0</float>
+                <bool name="visibility">true</bool>
+            </component>
+            <component name="QuadEntity">
+                <string name="info">blablabla</string>
+            </component>
+        </object>
+	</objects>
+</objectsfile>

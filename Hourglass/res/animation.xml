@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<animationfile>
+    <animation name="1stAnimation" texture="map.png" type="reset">
+        <frame>
+            <float name="sourcex">0.0</float>
+            <float name="sourcey">0.0</float>
+            <float name="z">1.0</float>
+            <float name="width">32</float>
+            <float name="height">32</float>
+            <float name="offsetx">0</float>
+            <float name="offsety">0</float>
+            <float name="delta">1.0</float>
+        </frame>
+        <frame>
+            <float name="sourcex">32.0</float>
+            <float name="sourcey">0.0</float>
+            <float name="z">1.0</float>
+            <float name="width">32</float>
+            <float name="height">32</float>
+            <float name="offsetx">0</float>
+            <float name="offsety">0</float>
+            <float name="delta">1.0</float>
+        </frame>
+        <frame>
+            <float name="sourcex">64.0</float>
+            <float name="sourcey">0.0</float>
+            <float name="z">1.0</float>
+            <float name="width">32</float>
+            <float name="height">32</float>
+            <float name="offsetx">0</float>
+            <float name="offsety">0</float>
+            <float name="delta">1.0</float>
+        </frame>
+        <frame>
+            <float name="sourcex">96.0</float>
+            <float name="sourcey">0.0</float>
+            <float name="z">1.0</float>
+            <float name="width">32</float>
+            <float name="height">32</float>
+            <float name="offsetx">0</float>
+            <float name="offsety">0</float>
+            <float name="delta">1.0</float>
+        </frame>
+    </animation>
+</animationfile>
