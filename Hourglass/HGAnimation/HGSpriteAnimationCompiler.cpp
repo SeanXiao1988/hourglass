@@ -192,11 +192,11 @@ void SpriteAnimationCompiler::_parseAnimations(xml_node<> *pNode)
         animationType = animationTexture->next_attribute();
         if (animationType == NULL)
         {
-            _addAnimation(animationName->value(), textureFileHash, ANIMAITON_TYPE_DEFAULT);
+            _addAnimation(animationName->value(), textureFileHash, ANIMATION_TYPE_DEFAULT);
         }
         else
         {
-            ANIMATION_TYPE type = ANIMAITON_TYPE_DEFAULT;
+            ANIMATION_TYPE type = ANIMATION_TYPE_DEFAULT;
             std::string strType = animationType->value();
             if (Hash(strType) == Hash("reset"))
                 type = ANIMATION_TYPE_RESET;

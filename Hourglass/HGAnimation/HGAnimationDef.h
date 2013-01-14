@@ -39,7 +39,7 @@ typedef enum
 
 typedef enum 
 {
-    ANIMAITON_TYPE_DEFAULT  = 0,
+    ANIMATION_TYPE_DEFAULT  = 0,
     ANIMATION_TYPE_RESET,       // 123123123
     ANIMATION_TYPE_PINGPONG,    // 123212321
 

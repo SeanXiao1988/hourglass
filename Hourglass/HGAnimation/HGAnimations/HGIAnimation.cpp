@@ -30,7 +30,7 @@ IAnimation::IAnimation()
     , name(0)
     , host(NULL)
     , typeID(ANIMATION_ID_INVALID)
-    , type(ANIMATION_TYPE_RESET)
+    , type(ANIMATION_TYPE_DEFAULT)
 {
 }
     

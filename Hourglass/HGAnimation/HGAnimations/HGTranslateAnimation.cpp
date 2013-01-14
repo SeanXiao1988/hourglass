@@ -34,7 +34,7 @@ TranslateAnimation::TranslateAnimation(float x, float y, float duration)
     , mIsFinishY(false)
 {
     typeID = ANIMATION_ID_TRANSLATE;
-    type = ANIMATION_TYPE_RESET;
+    type = ANIMATION_TYPE_DEFAULT;
     name = 0;
     host = NULL;
 }
@@ -58,10 +58,6 @@ void TranslateAnimation::update(SceneNode *node, float dt)
     if (mDuration == 0.0f)
     {
         isFinished = true;
-        return;
-    }
-    
-    if (dt > 0.016) {
         return;
     }
     
@@ -91,7 +87,34 @@ void TranslateAnimation::update(SceneNode *node, float dt)
     
     if (mIsFinishX && mIsFinishY)
     {
-        isFinished = true;
+        if (type == ANIMATION_TYPE_RESET)
+        {
+            float rx = node->getX() - mTranslateX;
+            float ry = node->getY() - mTranslateY;
+            node->setX(rx);
+            node->setY(ry);
+            mCurrentX = 0.0f;
+            mCurrentY = 0.0f;
+            mIsFinishX = false;
+            mIsFinishY = false;
+        }
+        else if (type == ANIMATION_TYPE_PINGPONG)
+        {
+            float rx = node->getX() - mTranslateX;
+            float ry = node->getY() - mTranslateY;
+            node->setX(rx);
+            node->setY(ry);
+            mCurrentX = 0.0f;
+            mCurrentY = 0.0f;
+            mTranslateX = -mTranslateX;
+            mTranslateY = -mTranslateY;
+            mIsFinishX = false;
+            mIsFinishY = false;
+        }
+        else
+        {
+             isFinished = true;
+        }
     }
 }
 

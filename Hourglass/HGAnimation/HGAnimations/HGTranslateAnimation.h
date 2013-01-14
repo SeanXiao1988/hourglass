@@ -36,6 +36,7 @@ public:
 
     void setTranslate(float x, float y);
     void setDuration(float duration) { mDuration = duration; }
+    void setType(ANIMATION_TYPE t) { type = t; }
     
 private:
     float   mTranslateX;
