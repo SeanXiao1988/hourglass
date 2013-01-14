@@ -22,8 +22,8 @@
 #include "HGIAnimationScripter.h"
 #include "HGTranslateAnimation.h"
 
-#define TRANSLATEANIMATION_METATABLE "TranslateAnimationMetatable"
-#define TRANSLATEANIMATION_LUA_NAME "TranslateAnimation"
+#define TRANSLATEANIMATION_METATABLE    "TranslateAnimationMetatable"
+#define TRANSLATEANIMATION_LUA_NAME     "TranslateAnimation"
 
 namespace HG
 {
@@ -142,6 +142,7 @@ static int translateanimation_delete(lua_State* L)
     delete anim;
     
     BREAK_END;
+    
     return 0;
 }
     

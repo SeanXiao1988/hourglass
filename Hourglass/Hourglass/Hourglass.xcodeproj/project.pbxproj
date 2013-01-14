@@ -16,6 +16,8 @@
 		2E5653881653E4A2001C2A4D /* HGObjectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5653851653E49C001C2A4D /* HGObjectManager.cpp */; };
 		2E5E02E316A1C42A0067B1A0 /* HGTranslateAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E02E216A1C42A0067B1A0 /* HGTranslateAnimation.cpp */; };
 		2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E83B3F7167F7C2200F860F6 /* libftgl.a */; };
+		2E87B97916A43AB100F44F81 /* HGRotationAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */; };
+		2E87B98016A4429E00F44F81 /* HGRotationAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */; };
 		2EE40C9716A2AEE40033DFE2 /* HGIAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */; };
 		2EE40C9816A2AEE40033DFE2 /* HGCompositeScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7C16A2AEE40033DFE2 /* HGCompositeScripter.cpp */; };
 		2EE40C9916A2AEE40033DFE2 /* HGEventScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7E16A2AEE40033DFE2 /* HGEventScripter.cpp */; };
@@ -164,6 +166,10 @@
 		2E83B3F3167F7C0600F860F6 /* FTSimpleLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSimpleLayout.h; sourceTree = "<group>"; };
 		2E83B3F4167F7C0600F860F6 /* FTTextureGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTTextureGlyph.h; sourceTree = "<group>"; };
 		2E83B3F7167F7C2200F860F6 /* libftgl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libftgl.a; sourceTree = "<group>"; };
+		2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGRotationAnimation.cpp; sourceTree = "<group>"; };
+		2E87B97816A43AB100F44F81 /* HGRotationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGRotationAnimation.h; sourceTree = "<group>"; };
+		2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGRotationAnimationScripter.cpp; sourceTree = "<group>"; };
+		2E87B97F16A4429E00F44F81 /* HGRotationAnimationScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGRotationAnimationScripter.h; sourceTree = "<group>"; };
 		2EAAA423161E907F0079ECAC /* HGMapDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMapDef.h; sourceTree = "<group>"; };
 		2ECF1D57166276C600073108 /* HGRectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HGRectangle.hpp; sourceTree = "<group>"; };
 		2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGIAnimationScripter.cpp; sourceTree = "<group>"; };
@@ -746,6 +752,8 @@
 			children = (
 				2EE40C7A16A2AEE40033DFE2 /* HGIAnimationScripter.h */,
 				2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */,
+				2E87B97F16A4429E00F44F81 /* HGRotationAnimationScripter.h */,
+				2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */,
 				2EE40CA516A2C66B0033DFE2 /* HGTranslateAnimationScripter.h */,
 				2EE40CA416A2C66B0033DFE2 /* HGTranslateAnimationScripter.cpp */,
 			);
@@ -824,6 +832,8 @@
 				2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */,
 				2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */,
 				2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */,
+				2E87B97816A43AB100F44F81 /* HGRotationAnimation.h */,
+				2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */,
 				2E5E02E116A1C3540067B1A0 /* HGTranslateAnimation.h */,
 				2E5E02E216A1C42A0067B1A0 /* HGTranslateAnimation.cpp */,
 			);
@@ -1632,6 +1642,8 @@
 				2EE40CA316A2AEE40033DFE2 /* HGSpriteAnimationCompilerScripter.cpp in Sources */,
 				2EE40CA616A2C66B0033DFE2 /* HGTranslateAnimationScripter.cpp in Sources */,
 				D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */,
+				2E87B97916A43AB100F44F81 /* HGRotationAnimation.cpp in Sources */,
+				2E87B98016A4429E00F44F81 /* HGRotationAnimationScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

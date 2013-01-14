@@ -31,6 +31,7 @@
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 #include "HGIAnimationScripter.h"
+#include "HGRotationAnimationScripter.h"
 #include "HGTranslateAnimationScripter.h"
 
 namespace HG
@@ -158,6 +159,7 @@ void ScriptManager::_registerEngine()
     ScriptRegisterSceneNode(mState);
     ScriptRegisterQuadEntity(mState);
     ScriptRegisterIAnimation(mState);
+    ScriptRegisterRotationAnimation(mState);
     ScriptRegisterTranslateAnimation(mState);
 }
     

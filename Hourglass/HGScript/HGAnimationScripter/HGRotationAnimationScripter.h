@@ -1,11 +1,11 @@
 /**
- *  @file    HGTranslateAnimationScripter.h
- *  @brief   Translate Animation Script adapter
+ *  @file    HGRotationAnimationScripter.h
+ *  @brief   Rotation animation script adapter header
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2013/01/13
+ *  Created:  2013/01/14
  *  Company:  SNSTEAM.inc
  *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
@@ -18,22 +18,22 @@
  * =====================================================================================
  */
 
-#ifndef HGTRANSLATEANIMATIONSCRIPTER_H_
-#define HGTRANSLATEANIMATIONSCRIPTER_H_
+#ifndef HGROTATIONANIMATIONSCRIPTER_H_
+#define HGROTATIONANIMATIONSCRIPTER_H_
 
 #include "HGScriptDef.h"
 
 namespace HG
 {
+    
+class RotationAnimation;
 
-class TranslateAnimation;
+extern luaL_Reg sRotationAnimationRegs[];
 
-extern luaL_Reg sTranslateAnimationRegs[];
-
-extern TranslateAnimation* translateanimation_check(lua_State* L, int idx);
-extern int translateanimation_push(lua_State* L, TranslateAnimation* anim);
-extern void ScriptRegisterTranslateAnimation(lua_State* L);
-
+extern RotationAnimation* rotationanimation_check(lua_State* L, int idx);
+extern int rotationanimation_push(lua_State* L, RotationAnimation* anim);
+extern void ScriptRegisterRotationAnimation(lua_State* L);
+    
 }
 
-#endif // HGTRANSLATEANIMATIONSCRIPTER_H_
+#endif // HGROTATIONANIMATIONSCRIPTER_H_
