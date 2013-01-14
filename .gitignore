@@ -22,6 +22,7 @@ Thumbs.db
 *.ilk
 *.suo
 *.user
+*.DS_Store
 BuildLog.htm
 # directory #
 #############
