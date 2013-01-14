@@ -21,6 +21,8 @@
 #include "HGApplicationScripter.h"
 #include "HGApplication.h"
 
+#define APPLICATION_LUA_NAME    "APPLICATION"
+
 namespace HG
 {
     
@@ -34,7 +36,13 @@ static int application_set_titile(lua_State* L)
     
 void ScriptRegisterApplication(lua_State* L)
 {
-
+    lua_newtable(L);
+    
+    lua_pushstring(L, "setTitle");
+    lua_pushcfunction(L, application_set_titile);
+    lua_settable(L, -3);
+    
+    lua_setglobal(L, APPLICATION_LUA_NAME);
 }
     
 }

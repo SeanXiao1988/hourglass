@@ -39,6 +39,7 @@
 		D41DCAC71626CC6200541544 /* HGMapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41DCAC61626CC6200541544 /* HGMapData.cpp */; };
 		D422BF6B1655E0FD0064B8DE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = D422BF6A1655E0FD0064B8DE /* license.txt */; };
 		D43871A8164A5D3C00E2A521 /* HGInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43871A6164A5D3C00E2A521 /* HGInputManager.cpp */; };
+		D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */; };
 		D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D45001EC16804D9C004FF847 /* source_code_pro.ttf */; };
 		D464329716718DA7007B9142 /* animation.xml in Resources */ = {isa = PBXBuildFile; fileRef = D464329616718DA7007B9142 /* animation.xml */; };
 		D46C94CC1647B2AD005B98A4 /* distortion.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94C71647B285005B98A4 /* distortion.frag */; };
@@ -47,7 +48,6 @@
 		D46C94D31647BA93005B98A4 /* blur.vert in Resources */ = {isa = PBXBuildFile; fileRef = D46C94CF1647BA8A005B98A4 /* blur.vert */; };
 		D46C94D81647BC3D005B98A4 /* ripple.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94D41647BC35005B98A4 /* ripple.frag */; };
 		D46C94D91647BC3D005B98A4 /* ripple.vert in Resources */ = {isa = PBXBuildFile; fileRef = D46C94D51647BC35005B98A4 /* ripple.vert */; };
-		D46E90291649063E00F05687 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = D46E90281649063E00F05687 /* background.png */; };
 		D48614511651D7D600B5E746 /* c.xml in Resources */ = {isa = PBXBuildFile; fileRef = D48614501651D7D600B5E746 /* c.xml */; };
 		D4884BBC1643C9D3007E535D /* shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = D4884BB81643C9C2007E535D /* shader.frag */; };
 		D4884BBD1643C9D3007E535D /* shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = D4884BB91643C9C2007E535D /* shader.vert */; };
@@ -507,7 +507,6 @@
 		D46C94CF1647BA8A005B98A4 /* blur.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = blur.vert; path = ../res/blur.vert; sourceTree = "<group>"; };
 		D46C94D41647BC35005B98A4 /* ripple.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ripple.frag; path = ../res/ripple.frag; sourceTree = "<group>"; };
 		D46C94D51647BC35005B98A4 /* ripple.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ripple.vert; path = ../res/ripple.vert; sourceTree = "<group>"; };
-		D46E90281649063E00F05687 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = ../res/background.png; sourceTree = "<group>"; };
 		D4733F4915FF34570088D218 /* HGConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGConsole.cpp; sourceTree = "<group>"; };
 		D4733F4A15FF34570088D218 /* HGConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGConsole.h; sourceTree = "<group>"; };
 		D48614501651D7D600B5E746 /* c.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = c.xml; path = ../res/c.xml; sourceTree = "<group>"; };
@@ -1324,7 +1323,6 @@
 				D46C94CF1647BA8A005B98A4 /* blur.vert */,
 				D46C94D41647BC35005B98A4 /* ripple.frag */,
 				D46C94D51647BC35005B98A4 /* ripple.vert */,
-				D46E90281649063E00F05687 /* background.png */,
 				D4E8EFCE1637F36200C521A8 /* map.png */,
 				2EFD9BBF162DB4D70004DAA1 /* test.png */,
 				2EFD9BC0162DB4D70004DAA1 /* test2.png */,
@@ -1547,7 +1545,6 @@
 				2EFD9BC1162DB4D70004DAA1 /* test.png in Resources */,
 				2EFD9BC2162DB4D70004DAA1 /* test2.png in Resources */,
 				D4E8EFCF1637F36200C521A8 /* map.png in Resources */,
-				D46E90291649063E00F05687 /* background.png in Resources */,
 				D48614511651D7D600B5E746 /* c.xml in Resources */,
 				D422BF6B1655E0FD0064B8DE /* license.txt in Resources */,
 				D464329716718DA7007B9142 /* animation.xml in Resources */,
@@ -1634,6 +1631,7 @@
 				2EE40CA216A2AEE40033DFE2 /* HGSceneManagerScripter.cpp in Sources */,
 				2EE40CA316A2AEE40033DFE2 /* HGSpriteAnimationCompilerScripter.cpp in Sources */,
 				2EE40CA616A2C66B0033DFE2 /* HGTranslateAnimationScripter.cpp in Sources */,
+				D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

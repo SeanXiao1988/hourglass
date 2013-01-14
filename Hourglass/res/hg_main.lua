@@ -1,5 +1,7 @@
 function hg_init()
 
+    APPLICATION.setTitle("hourglass v0.1")
+
     RENDER.setClearColor(0x808080FF)
 
     anime = SPRITEANIMATIONCOMPILER.parseXML("animation.xml")
