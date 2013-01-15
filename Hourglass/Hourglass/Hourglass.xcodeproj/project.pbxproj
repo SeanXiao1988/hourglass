@@ -137,8 +137,8 @@
 		2E2668CE164FCB9E00E8E6EB /* HGComponentDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGComponentDef.h; sourceTree = "<group>"; };
 		2E2C8728161EF12F00308F93 /* HGMapEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMapEntity.h; sourceTree = "<group>"; };
 		2E2C872A161F0CB200308F93 /* HGMapEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMapEntity.cpp; sourceTree = "<group>"; };
-		2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HGSpriteAnimationCompiler.cpp; path = ../HGSpriteAnimationCompiler.cpp; sourceTree = "<group>"; };
-		2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HGSpriteAnimationCompiler.h; path = ../HGSpriteAnimationCompiler.h; sourceTree = "<group>"; };
+		2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSpriteAnimationCompiler.cpp; sourceTree = "<group>"; };
+		2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSpriteAnimationCompiler.h; sourceTree = "<group>"; };
 		2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGIAnimation.cpp; sourceTree = "<group>"; };
 		2E5653851653E49C001C2A4D /* HGObjectManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HGObjectManager.cpp; sourceTree = "<group>"; };
 		2E5653861653E49C001C2A4D /* HGObjectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGObjectManager.h; sourceTree = "<group>"; };
@@ -838,8 +838,6 @@
 			children = (
 				D4139DDD169FF23F000936CD /* HGIAnimation.h */,
 				2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */,
-				2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */,
-				2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */,
 				2E87B97816A43AB100F44F81 /* HGRotationAnimation.h */,
 				2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */,
 				D4669FB316A53458000D0256 /* HGScaleAnimation.h */,
@@ -925,8 +923,10 @@
 		D42B812B166C3AB2000EE2AA /* HGAnimation */ = {
 			isa = PBXGroup;
 			children = (
-				D4139DDC169FF23F000936CD /* HGAnimations */,
 				D42B812C166C3AB2000EE2AA /* HGAnimationDef.h */,
+				2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */,
+				2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */,
+				D4139DDC169FF23F000936CD /* HGAnimations */,
 			);
 			name = HGAnimation;
 			path = ../HGAnimation;

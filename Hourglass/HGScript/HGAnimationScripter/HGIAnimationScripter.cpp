@@ -21,6 +21,8 @@
 #include "HGIAnimationScripter.h"
 #include "HGIAnimation.h"
 
+#include "HGRotationAnimationScripter.h"
+#include "HGScaleAnimationScripter.h"
 #include "HGTranslateAnimationScripter.h"
 
 #define IANIMATION_METATABLE "IAnimationMetatable"
@@ -56,6 +58,14 @@ int ianimation_push(lua_State* L, IAnimation* anim)
     AnimationTypeID tid = anim->typeID;
     switch (tid)
     {
+        case ANIMATION_ID_ROTATE:
+            rotationanimation_push(L, (RotationAnimation *)anim);
+            break;
+        
+        case ANIMATION_ID_SCALE:
+            scaleanimation_push(L, (ScaleAnimation *)anim);
+            break;
+            
         case ANIMATION_ID_TRANSLATE:
             translateanimation_push(L, (TranslateAnimation *)anim);
             break;
@@ -193,6 +203,22 @@ static int ianimation_type(lua_State* L)
     return ret;
 }
     
+static int ianimation_set_type(lua_State* L)
+{
+    BREAK_START;
+    
+    IAnimation* anim = ianimation_check(L, 1);
+    if (anim == NULL)
+        break;
+    
+    ANIMATION_TYPE type = (ANIMATION_TYPE)luaL_checkinteger(L, 2);
+    anim->type = type;
+    
+    BREAK_END;
+    
+    return 0;
+}
+    
 luaL_Reg sIAnimationRegs[] =
 {
     { "isFinished",     ianimation_is_finished },
@@ -201,6 +227,7 @@ luaL_Reg sIAnimationRegs[] =
     { "name",           ianimation_name },
     { "typeID",         ianimation_type_id },
     { "type",           ianimation_type },
+    { "setType",        ianimation_set_type },
     { NULL, NULL}
 };
     

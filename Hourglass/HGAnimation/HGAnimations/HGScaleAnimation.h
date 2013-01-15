@@ -36,7 +36,6 @@ public:
     
     void setScale(float sx, float sy);
     void setDuration(float duration) { mDuration = duration; }
-    void setType(ANIMATION_TYPE t) { type = t; }
     
 private:
     float   mScaleX;

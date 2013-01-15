@@ -36,7 +36,6 @@ public:
     
     void setRotation(float rot);
     void setDuration(float duration) { mDuration = duration; }
-    void setType(ANIMATION_TYPE t) { type = t; }
     
 private:
     float   mRotation;

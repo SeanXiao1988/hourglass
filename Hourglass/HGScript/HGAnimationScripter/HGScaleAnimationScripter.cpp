@@ -100,22 +100,6 @@ static int scaleanimation_set_duration(lua_State* L)
     return 0;
 }
     
-static int scaleanimation_set_type(lua_State* L)
-{
-    BREAK_START;
-    
-    ScaleAnimation* anim = scaleanimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    ANIMATION_TYPE type = (ANIMATION_TYPE)luaL_checkinteger(L, 2);
-    anim->setType(type);
-    
-    BREAK_END;
-    
-    return 0;
-}
-    
 static int scaleanimation_new(lua_State* L)
 {
     int ret = 0;
@@ -150,7 +134,6 @@ luaL_Reg sScaleAnimationRegs[] =
 {
     { "setScale",       scaleanimation_set_scale },
     { "setDuration",    scaleanimation_set_duration },
-    { "setType",        scaleanimation_set_type },
     { NULL, NULL }
 };
     
