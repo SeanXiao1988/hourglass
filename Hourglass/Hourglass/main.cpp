@@ -26,6 +26,8 @@ void mainloop()
 
         SCENEMANAGER.render();
         
+        CONSOLE.render(0.016);
+        
         RENDER.endScene();
         
         running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );

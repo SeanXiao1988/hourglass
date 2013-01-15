@@ -120,7 +120,7 @@ void ConsoleImpl::render(float dt)
     mCursorFlash += dt;
     if (mCursorFlash < CONSOLE_CURSOR_BLINK_TIME)
         RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, mColorEdit, "%s_", mCursorLine.c_str());
-    else if (mCursorFlash > CONSOLE_CURSOR_BLINK_TIME)
+    else if (mCursorFlash > CONSOLE_CURSOR_BLINK_TIME * 2)
         mCursorFlash = 0.0f;
     
     RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, mColorEdit, ">%s", mCommandLine.c_str());
