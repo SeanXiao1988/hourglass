@@ -146,6 +146,7 @@ bool ConsoleImpl::handleInput(int key, int action)
     
     interception = true;
 
+    // is printable char
     if (' ' <= key && key <= '~')
     {
         passKey((char)key);
