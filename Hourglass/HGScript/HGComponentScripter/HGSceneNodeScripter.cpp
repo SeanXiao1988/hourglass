@@ -74,7 +74,7 @@ static int scenenode_set_alpha(lua_State* L)
     if (!lua_isnumber(L, 2))
         break;
     
-    alpha = luaL_checkunsigned(L, 2);
+    alpha = (float)luaL_checknumber(L, 2);
     node->setAlpha(alpha);
     
     BREAK_END;
@@ -342,7 +342,7 @@ static int scenenode_get_hashname(lua_State* L)
      
 static int scenenode_get_alpha(lua_State* L)
 {
-    int alpha = 0;
+    float alpha = 0;
     int ret = 1;
     
 	BREAK_START;
@@ -355,7 +355,7 @@ static int scenenode_get_alpha(lua_State* L)
     
     BREAK_END;
     
-    lua_pushinteger(L, alpha);
+    lua_pushnumber(L, alpha);
     
     return ret;
 }

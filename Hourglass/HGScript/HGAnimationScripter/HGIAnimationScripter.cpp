@@ -21,6 +21,7 @@
 #include "HGIAnimationScripter.h"
 #include "HGIAnimation.h"
 
+#include "HGAlphaAnimationScripter.h"
 #include "HGRotationAnimationScripter.h"
 #include "HGScaleAnimationScripter.h"
 #include "HGTranslateAnimationScripter.h"
@@ -58,6 +59,10 @@ int ianimation_push(lua_State* L, IAnimation* anim)
     AnimationTypeID tid = anim->typeID;
     switch (tid)
     {
+        case ANIMATION_ID_ALPHA:
+            alphaanimation_push(L, (AlphaAnimation *)anim);
+            break;
+            
         case ANIMATION_ID_ROTATE:
             rotationanimation_push(L, (RotationAnimation *)anim);
             break;

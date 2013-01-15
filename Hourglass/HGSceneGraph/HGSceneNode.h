@@ -52,7 +52,7 @@ public:
     void            update(const float dt);
     void            render();
 
-    void            setAlpha(int alpha) { mAlpha = alpha; }
+    void            setAlpha(float alpha) { mAlpha = alpha; }
     void            setZ(float z) { mZ = z; }
     void            setX(float x) { mX = x; }
     void            setY(float y) { mY = y; }
@@ -67,7 +67,7 @@ public:
 	void            setWorldY(float y);
     void            setWorldXY(float x, float y);
 
-    const int&      getAlpha() const { return mAlpha; }
+    const float&    getAlpha() const { return mAlpha; }
     const float&    getZ() const { return mZ; }
     const float&    getX() const { return mX; }
     const float&    getY() const { return mY; }
@@ -81,7 +81,7 @@ public:
 
     glm::mat4&      getMatrix() { return mMatrix; };
     
-    const int&      getRenderAlpha() const { return mRenderAlpha; }
+    const float&    getRenderAlpha() const { return mRenderAlpha; }
     
     // Animation
     void            updateAnimations(const float dt);
@@ -114,8 +114,8 @@ private:
     ~SceneNode();
 
     // graphical members
-    int     mAlpha;
-    int     mRenderAlpha;
+    float   mAlpha;
+    float   mRenderAlpha;
     float   mZ;
     float   mX;
     float   mY;

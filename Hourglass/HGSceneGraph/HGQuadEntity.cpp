@@ -384,30 +384,6 @@ void QuadEntity::setFrame(sprite_frame_node_t *frame)
     
     mCenterX = frame->offsetX;
     mCenterY = frame->offsetY;
-    /*
-    float u1,v1,u2,v2;
-    u1 = frame->sourceX;
-    u2 = frame->sourceX + frame->width;
-    v1 = frame->sourceY;
-    v2 = frame->sourceY + frame->height;
-    
-    mWidth      = frame->width;
-    mHeight     = frame->height;
-    
-    u1 /= mTexWidth;
-    u2 /= mTexWidth;
-    v1 /= mTexHeight;
-    v2 /= mTexHeight;
-    
-    mQuad.v[0].u = u1;
-    mQuad.v[0].v = v1;
-    mQuad.v[1].u = u2;
-    mQuad.v[1].v = v1;
-    mQuad.v[2].u = u2;
-    mQuad.v[2].v = v2;
-    mQuad.v[3].u = u1;
-    mQuad.v[3].v = v2;
-     */
 }
     
 void QuadEntity::stopSpriteAnimation(bool reset)

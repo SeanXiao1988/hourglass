@@ -30,7 +30,9 @@
 #include "HGCompositeScripter.h"
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
+
 #include "HGIAnimationScripter.h"
+#include "HGAlphaAnimationScripter.h"
 #include "HGRotationAnimationScripter.h"
 #include "HGScaleAnimationScripter.h"
 #include "HGTranslateAnimationScripter.h"
@@ -159,7 +161,9 @@ void ScriptManager::_registerEngine()
     ScriptRegisterComposite(mState);
     ScriptRegisterSceneNode(mState);
     ScriptRegisterQuadEntity(mState);
+    
     ScriptRegisterIAnimation(mState);
+    ScriptRegisterAlphaAnimation(mState);
     ScriptRegisterRotationAnimation(mState);
     ScriptRegisterScaleAnimation(mState);
     ScriptRegisterTranslateAnimation(mState);

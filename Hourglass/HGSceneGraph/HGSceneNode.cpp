@@ -54,7 +54,7 @@ uint32_t SceneNode::getComponentName()
     
 // Class
 SceneNode::SceneNode()
-    : mAlpha(255)
+    : mAlpha(255.0f)
     , mRenderAlpha(0)
     , mZ(0.0f)
     , mX(0.0f)

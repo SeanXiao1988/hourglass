@@ -42,11 +42,15 @@ function hg_init()
     rot = RotationAnimation.new(360, 3)
     rot:setType(ANIMATION_TYPE_PINGPONG)
     shitNode:addAnimation(rot, "rot")
-    shitNode:setAlpha(128)
-    
+
     scl = ScaleAnimation.new(1.5, 1.5, 1)
     scl:setType(ANIMATION_TYPE_PINGPONG)
     shitNode:addAnimation(scl, "scale")
+    
+    alp = AlphaAnimation.new(-200, 3)
+    alp:setType(ANIMATION_TYPE_PINGPONG)
+    shitNode:addAnimation(alp, "alp")
+
 
 end
 

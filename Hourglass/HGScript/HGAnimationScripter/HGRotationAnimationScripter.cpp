@@ -82,6 +82,7 @@ static int rotationanimation_set_rotation(lua_State* L)
     
     return 0;
 }
+    
 static int rotationanimation_set_duration(lua_State* L)
 {
     BREAK_START;
