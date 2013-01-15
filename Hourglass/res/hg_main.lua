@@ -43,6 +43,10 @@ function hg_init()
     rot:setType(ANIMATION_TYPE_PINGPONG)
     testAnimator:addAnimation(rot, "rot")
     shitNode:setAlpha(128)
+    
+    scl = ScaleAnimation.new(1.5, 1.5, 1)
+    scl:setType(ANIMATION_TYPE_PINGPONG)
+    testAnimator:addAnimation(scl, "scale")
 
 end
 

@@ -44,6 +44,8 @@
 		D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */; };
 		D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D45001EC16804D9C004FF847 /* source_code_pro.ttf */; };
 		D464329716718DA7007B9142 /* animation.xml in Resources */ = {isa = PBXBuildFile; fileRef = D464329616718DA7007B9142 /* animation.xml */; };
+		D4669FB516A53458000D0256 /* HGScaleAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4669FB416A53458000D0256 /* HGScaleAnimation.cpp */; };
+		D4669FB916A53711000D0256 /* HGScaleAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4669FB816A53711000D0256 /* HGScaleAnimationScripter.cpp */; };
 		D46C94CC1647B2AD005B98A4 /* distortion.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94C71647B285005B98A4 /* distortion.frag */; };
 		D46C94CD1647B2AD005B98A4 /* distortion.vert in Resources */ = {isa = PBXBuildFile; fileRef = D46C94C81647B285005B98A4 /* distortion.vert */; };
 		D46C94D21647BA93005B98A4 /* blur.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94CE1647BA8A005B98A4 /* blur.frag */; };
@@ -272,6 +274,10 @@
 		D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HGApplicationScripter.cpp; sourceTree = "<group>"; };
 		D45001EC16804D9C004FF847 /* source_code_pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = source_code_pro.ttf; path = ../res/source_code_pro.ttf; sourceTree = "<group>"; };
 		D464329616718DA7007B9142 /* animation.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = animation.xml; path = ../res/animation.xml; sourceTree = "<group>"; };
+		D4669FB316A53458000D0256 /* HGScaleAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGScaleAnimation.h; sourceTree = "<group>"; };
+		D4669FB416A53458000D0256 /* HGScaleAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGScaleAnimation.cpp; sourceTree = "<group>"; };
+		D4669FB716A53711000D0256 /* HGScaleAnimationScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGScaleAnimationScripter.h; sourceTree = "<group>"; };
+		D4669FB816A53711000D0256 /* HGScaleAnimationScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGScaleAnimationScripter.cpp; sourceTree = "<group>"; };
 		D4683E1E15D39845005EE6D6 /* Hourglass.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Hourglass.1; sourceTree = "<group>"; };
 		D4683E2515D398B0005EE6D6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D4683E2715D398B9005EE6D6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -754,6 +760,8 @@
 				2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */,
 				2E87B97F16A4429E00F44F81 /* HGRotationAnimationScripter.h */,
 				2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */,
+				D4669FB716A53711000D0256 /* HGScaleAnimationScripter.h */,
+				D4669FB816A53711000D0256 /* HGScaleAnimationScripter.cpp */,
 				2EE40CA516A2C66B0033DFE2 /* HGTranslateAnimationScripter.h */,
 				2EE40CA416A2C66B0033DFE2 /* HGTranslateAnimationScripter.cpp */,
 			);
@@ -834,6 +842,8 @@
 				2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */,
 				2E87B97816A43AB100F44F81 /* HGRotationAnimation.h */,
 				2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */,
+				D4669FB316A53458000D0256 /* HGScaleAnimation.h */,
+				D4669FB416A53458000D0256 /* HGScaleAnimation.cpp */,
 				2E5E02E116A1C3540067B1A0 /* HGTranslateAnimation.h */,
 				2E5E02E216A1C42A0067B1A0 /* HGTranslateAnimation.cpp */,
 			);
@@ -1644,6 +1654,8 @@
 				D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */,
 				2E87B97916A43AB100F44F81 /* HGRotationAnimation.cpp in Sources */,
 				2E87B98016A4429E00F44F81 /* HGRotationAnimationScripter.cpp in Sources */,
+				D4669FB516A53458000D0256 /* HGScaleAnimation.cpp in Sources */,
+				D4669FB916A53711000D0256 /* HGScaleAnimationScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
