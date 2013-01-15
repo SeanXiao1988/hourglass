@@ -11,6 +11,7 @@
 		2E2C872B161F0CB200308F93 /* HGMapEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C872A161F0CB200308F93 /* HGMapEntity.cpp */; };
 		2E3F2F7816A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */; };
 		2E3F2F7D16A1D7FB00A801D8 /* HGIAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */; };
+		2E4F28DE16A5ACAC00A90645 /* HGMapDataScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F28DC16A5ACAC00A90645 /* HGMapDataScripter.cpp */; };
 		2E501CAC164E1CCD007AC606 /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4683E2915D398E7005EE6D6 /* libglfw.a */; };
 		2E501CAD164E1D0C007AC606 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D7A559162D441100CD3DF9 /* libGLEW.a */; };
 		2E5653881653E4A2001C2A4D /* HGObjectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5653851653E49C001C2A4D /* HGObjectManager.cpp */; };
@@ -142,6 +143,8 @@
 		2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSpriteAnimationCompiler.cpp; sourceTree = "<group>"; };
 		2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSpriteAnimationCompiler.h; sourceTree = "<group>"; };
 		2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGIAnimation.cpp; sourceTree = "<group>"; };
+		2E4F28DC16A5ACAC00A90645 /* HGMapDataScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMapDataScripter.cpp; sourceTree = "<group>"; };
+		2E4F28DD16A5ACAC00A90645 /* HGMapDataScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMapDataScripter.h; sourceTree = "<group>"; };
 		2E5653851653E49C001C2A4D /* HGObjectManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HGObjectManager.cpp; sourceTree = "<group>"; };
 		2E5653861653E49C001C2A4D /* HGObjectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGObjectManager.h; sourceTree = "<group>"; };
 		2E5E02E116A1C3540067B1A0 /* HGTranslateAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGTranslateAnimation.h; sourceTree = "<group>"; };
@@ -665,6 +668,15 @@
 				D4D7A559162D441100CD3DF9 /* libGLEW.a */,
 			);
 			path = glew;
+			sourceTree = "<group>";
+		};
+		2E4F28DA16A5A86F00A90645 /* HGMapScripter */ = {
+			isa = PBXGroup;
+			children = (
+				2E4F28DD16A5ACAC00A90645 /* HGMapDataScripter.h */,
+				2E4F28DC16A5ACAC00A90645 /* HGMapDataScripter.cpp */,
+			);
+			path = HGMapScripter;
 			sourceTree = "<group>";
 		};
 		2E501CAE164E1D8B007AC606 /* HGEngine */ = {
@@ -1498,6 +1510,7 @@
 			children = (
 				2EE40C7816A2AEE40033DFE2 /* HGAnimationScripter */,
 				2EE40C7B16A2AEE40033DFE2 /* HGComponentScripter */,
+				2E4F28DA16A5A86F00A90645 /* HGMapScripter */,
 				2EE40C8616A2AEE40033DFE2 /* HGCoreScripter */,
 				2EE40C8C16A2AEE40033DFE2 /* HGServiceScripter */,
 			);
@@ -1668,6 +1681,7 @@
 				D4669FB916A53711000D0256 /* HGScaleAnimationScripter.cpp in Sources */,
 				D4669FBC16A55F91000D0256 /* HGAlphaAnimation.cpp in Sources */,
 				D4669FBF16A56541000D0256 /* HGAlphaAnimationScripter.cpp in Sources */,
+				2E4F28DE16A5ACAC00A90645 /* HGMapDataScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

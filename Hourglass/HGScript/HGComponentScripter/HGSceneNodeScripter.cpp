@@ -36,7 +36,7 @@ namespace HG
 
 SceneNode* scenenode_check(lua_State* L, int idx)
 {
-    return *(SceneNode **)(luaL_checkudata(L, idx, SCENENODE_METATABLE));
+    return *static_cast<SceneNode **>((luaL_checkudata(L, idx, SCENENODE_METATABLE)));
 }
     
 // Push a SceneNode to Lua
