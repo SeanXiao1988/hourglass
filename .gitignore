@@ -23,6 +23,7 @@ Thumbs.db
 *.suo
 *.user
 *.DS_Store
+*.i
 BuildLog.htm
 # directory #
 #############
@@ -30,3 +31,4 @@ BuildLog.htm
 xcuserdata
 project.xcworkspace
 Hourglass/Hourglass/.DS_Store
+Hourglass/Hourglass/Debug
