@@ -34,7 +34,8 @@
 namespace HG
 {
     
-static memory_log_t MEMORYLOG;
+static memory_log_t     MEMORYLOG;
+static memory_summary_t MEMORYSUMMARY;
     
 memory_log_t* _create_log_nod(const char* filename, int linenum)
 {
@@ -91,19 +92,19 @@ void _delete_top_node()
     
 void _set_top_node(void *p, size_t size, int isChunk = HG_MEM_ALLOC_NOT_CHUNK)
 {
-    if (HG::MEMORYLOG.linenum != HG_MEMTRACK_MAGIC)
+    if (MEMORYLOG.linenum != HG_MEMTRACK_MAGIC)
     {
         return;
     }
 
-    HG::memory_log_t* node = HG::MEMORYLOG.next;
+    memory_log_t* node = MEMORYLOG.next;
     if (node != NULL)
     {
         node->address = p;
         node->size = size;
         node->isChunk = isChunk;
-        HG::MEMORYLOG.linenum = 0;
-        HG::MEMORYLOG.size += size;
+        MEMORYLOG.linenum = 0;
+        MEMORYLOG.size += size;
     }
 }
     
@@ -129,6 +130,7 @@ MemLog::~MemLog()
 void InitializeMemoryLog()
 {
     memset(&MEMORYLOG, 0, sizeof(memory_log_t));
+    memset(&MEMORYSUMMARY, 0, sizeof(memory_summary_t));
     MEMORYLOG.next = NULL;
 }
     
@@ -167,6 +169,17 @@ void TrackLog(const MemLog& memLog, void *p, char const *typeName)
     if (node != NULL)
     {
         strcpy(node->type, typeName);
+        printf("%s\n", typeName);
+        // update summary
+        MEMORYSUMMARY.size += node->size;
+        MEMORYSUMMARY.times++;
+        if (node->size > MEMORYSUMMARY.peak)
+        {
+            MEMORYSUMMARY.peak = node->size;
+            MEMORYSUMMARY.linenum = node->linenum;
+            memcpy(MEMORYSUMMARY.peakFilename, node->filename, HGMEMORY_TAG_LENGTH);
+            memcpy(MEMORYSUMMARY.peakType, node->type, HGMEMORY_TAG_LENGTH);
+        }
     }
 }
     
@@ -183,6 +196,13 @@ void PrintMemoryLeak()
         }
         log = log->next;
     }
+}
+    
+void PrintMemorySummary()
+{
+    HGLog("------- MEMORY SUMMARY -------\n");
+    HGLog("allocate times: %u | total: %ldKB | peak: %ldKB\n", MEMORYSUMMARY.times, MEMORYSUMMARY.size/1024, MEMORYSUMMARY.peak/1024);
+    HGLog("peak file: %s | line: %d | type: %s\n", MEMORYSUMMARY.peakFilename, MEMORYSUMMARY.linenum, MEMORYSUMMARY.peakType);
 }
     
 } // namespace HG

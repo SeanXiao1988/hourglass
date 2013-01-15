@@ -26,17 +26,29 @@
 #include "HGSystem.h"
 #include <typeinfo>
 
+#define HGMEMORY_TAG_LENGTH 128
+
 namespace HG
 {
+    
+typedef struct _memory_summary
+{
+    size_t      size;
+    size_t      peak;
+    uint32_t    times;
+    int         linenum;
+    char        peakFilename[HGMEMORY_TAG_LENGTH];
+    char        peakType[HGMEMORY_TAG_LENGTH];
+}memory_summary_t;
     
 typedef struct _memory_log
 {
     void*   address;
     size_t  size;
     int     linenum;
-    int     isChunk;    // is the memory alloc by new[] operator
-    char    filename[128];
-    char    type[128];
+    int     isChunk;                        // is the memory alloc by new[] operator ?
+    char    filename[HGMEMORY_TAG_LENGTH];  // FIXME: 128 wtf
+    char    type[HGMEMORY_TAG_LENGTH];
     _memory_log* next;
 }memory_log_t;
         
@@ -55,6 +67,7 @@ public:
     
 void TrackLog(const MemLog& memLog, void *p, char const *typeName);
 void PrintMemoryLeak();
+void PrintMemorySummary();
 
 template <class T> inline T* operator*(const MemLog& log, T *p)
 {
@@ -66,7 +79,7 @@ class AutoMemoryTag
 {
 public:
 	AutoMemoryTag() {InitializeMemoryLog();}
-	~AutoMemoryTag() {PrintMemoryLeak(); DeInitializeMemoryLog();}
+	~AutoMemoryTag() {PrintMemoryLeak(); PrintMemorySummary(); DeInitializeMemoryLog();}
 };
     
 }
