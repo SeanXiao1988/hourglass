@@ -8,20 +8,23 @@ typedef std::map<uint32_t, Recti> RectMap;
 void mainloop()
 {
     bool running = true;
-    double frametime = 0.0;
-    double time = 0.0;
+    double simulationTime = glfwGetTime();
+    double realTime = 0.0;
     
     while (running)
     {
-        time = glfwGetTime();
+        realTime = glfwGetTime();
+        
+        while (simulationTime < realTime)
+        {
+            simulationTime += 0.016;
+            SCENEMANAGER.update(0.016);
+        }
         
         RENDER.beginScene();
         RENDER.clear();
-        
-        SCENEMANAGER.update(frametime);
+
         SCENEMANAGER.render();
-        
-        frametime = glfwGetTime() - time;
         
         RENDER.endScene();
         

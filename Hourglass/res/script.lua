@@ -150,32 +150,32 @@ end
 返回: float x,y
 说明: 获取矩形实体的中心点坐标
 
-方法: initAnimation
+方法: initSpriteAnimation
 参数: animation_header_t*
 返回: n/a
 说明: 为矩形实体初始化一个动画对象
 
-方法: deInitAnimation
+方法: deInitSpriteAnimation
 参数: n/a
 返回: n/a
 说明: 释放矩形实体内的动画对象
 
-方法: playAnimation
+方法: playSpriteAnimation
 参数: uint32_t
 返回: n/a
 说明: 播放指定的动画序列, 参数为动画名的hash值
 
-方法: pauseAnimation
+方法: pauseSpriteAnimation
 参数: n/a
 返回: n/a
 说明: 暂停当前的动画序列
 
-方法: resumeAnimation
+方法: resumeSpriteAnimation
 参数: n/a
 返回: n/a
 说明: 恢复播放当前的动画序列
 
-方法: stopAnimation
+方法: stopSpriteAnimation
 参数: n/a
 返回: n/a
 说明: 停止当前的动画序列
@@ -190,7 +190,7 @@ end
 返回: n/a
 说明: 强制切换到动画序列的上一帧
 
-方法: isAnimating
+方法: isSpriteAnimating
 参数: n/a
 返回: boolean
 说明: 查询当前是否在播放动画序列

@@ -31,15 +31,15 @@ function hg_init()
     icomp = shitNode:getEntity()
     print(HASH.stringForHash(icomp:getComponentName()))
 
-    trans1 = TranslateAnimation.new(100, 0, 0.01)
+    trans1 = TranslateAnimation.new(100, 0, 1)
     trans1:setType(ANIMATION_TYPE_PINGPONG)
     testAnimator:addAnimation(trans1, "trans1")
 
-    trans2 = TranslateAnimation.new(0, 100, 0.01)
+    trans2 = TranslateAnimation.new(0, 100, 1)
     trans2:setType(ANIMATION_TYPE_PINGPONG)
     testAnimator:addAnimation(trans2, "trans2")
 
-    rot = RotationAnimation.new(360, 0.03)
+    rot = RotationAnimation.new(360, 3)
     rot:setType(ANIMATION_TYPE_PINGPONG)
     testAnimator:addAnimation(rot, "rot")
     shitNode:setAlpha(128)
