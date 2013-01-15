@@ -32,7 +32,6 @@ RotationAnimation::RotationAnimation(float rotation, float duration)
     typeID = ANIMATION_ID_ROTATE;
     type = ANIMATION_TYPE_DEFAULT;
     name = 0;
-    host = NULL;
 }
     
 RotationAnimation::~RotationAnimation()

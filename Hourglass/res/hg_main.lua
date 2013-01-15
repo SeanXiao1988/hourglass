@@ -33,20 +33,20 @@ function hg_init()
 
     trans1 = TranslateAnimation.new(100, 0, 1)
     trans1:setType(ANIMATION_TYPE_PINGPONG)
-    testAnimator:addAnimation(trans1, "trans1")
+    shitNode:addAnimation(trans1, "trans1")
 
     trans2 = TranslateAnimation.new(0, 100, 1)
     trans2:setType(ANIMATION_TYPE_PINGPONG)
-    testAnimator:addAnimation(trans2, "trans2")
+    shitNode:addAnimation(trans2, "trans2")
 
     rot = RotationAnimation.new(360, 3)
     rot:setType(ANIMATION_TYPE_PINGPONG)
-    testAnimator:addAnimation(rot, "rot")
+    shitNode:addAnimation(rot, "rot")
     shitNode:setAlpha(128)
     
     scl = ScaleAnimation.new(1.5, 1.5, 1)
     scl:setType(ANIMATION_TYPE_PINGPONG)
-    testAnimator:addAnimation(scl, "scale")
+    shitNode:addAnimation(scl, "scale")
 
 end
 

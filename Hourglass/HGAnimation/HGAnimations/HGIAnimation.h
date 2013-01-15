@@ -41,7 +41,6 @@ public:
     ANIMATION_STAGE animationStage;
 
     uint32_t        name;
-    ISceneEntity*   host;
     AnimationTypeID typeID;
     ANIMATION_TYPE  type;
 };

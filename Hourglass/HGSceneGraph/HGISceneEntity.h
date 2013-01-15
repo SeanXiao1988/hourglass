@@ -30,10 +30,6 @@ namespace HG
 {
 
 class SceneNode;
-class IAnimation;
-    
-typedef std::list<IAnimation* > AnimationList;
-typedef std::set<uint32_t> AnimationSet;
 
 class ISceneEntity : public IComponent
 {
@@ -43,14 +39,6 @@ public:
 
 	virtual void render() = 0;
     virtual void update(const float dt) = 0;
-    
-    // Animation
-    void            updateAnimations(const float dt);
-    
-    void            addAnimation(IAnimation* anim, uint32_t name = 0);
-    IAnimation*     getAnimation(uint32_t name);
-    void            removeAnimation(uint32_t name);
-    void            removeAllAnimations();
     
     // Composite
     virtual EventResult     handleEvent(const Event& event) = 0;
@@ -62,10 +50,6 @@ protected:
 	SceneNode*	mSceneNode;
     
 	friend class SceneNode;
-    
-private:
-    AnimationList   mAnimations;
-    AnimationSet    mAnimationSet;
 };
 
 }

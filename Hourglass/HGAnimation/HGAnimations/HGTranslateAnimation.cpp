@@ -36,7 +36,6 @@ TranslateAnimation::TranslateAnimation(float x, float y, float duration)
     typeID = ANIMATION_ID_TRANSLATE;
     type = ANIMATION_TYPE_DEFAULT;
     name = 0;
-    host = NULL;
 }
     
 TranslateAnimation::~TranslateAnimation()

@@ -66,7 +66,6 @@ QuadEntity::~QuadEntity()
     
 void QuadEntity::update(const float dt)
 {
-    updateAnimations(dt);
     updateSpriteAnimation(dt);
 }
 

@@ -22,6 +22,7 @@
 
 #include "HGHash.h"
 #include "HGSceneNode.h"
+#include "HGIAnimation.h"
 #include "HGISceneEntity.h"
 #include "HGObjectManager.h"
 #include "HGSceneManager.h"
@@ -81,6 +82,8 @@ SceneNode::~SceneNode()
 	}
 
 	removeAll();
+    
+    removeAllAnimations();
 }
     
 void SceneNode::render()
@@ -147,11 +150,12 @@ void SceneNode::render()
 
 void SceneNode::update(const float dt)
 {
+    updateAnimations(dt);
+    
 	// pass "this" to render entity
 	if (mEntity != NULL)
 		mEntity->update(dt);
 
-    // Do render here
 	if (!mChildren.empty())
 	{
 		for (SceneNodeList::iterator iter = mChildren.begin(); iter != mChildren.end(); ++iter)
@@ -179,6 +183,123 @@ void SceneNode::setWorldXY(float x, float y)
     mDestWorldY = y;
     mIsWorldXNeedSet = true;
     mIsWorldYNeedSet = true;
+}
+    
+// Animation
+void SceneNode::updateAnimations(const float dt)
+{
+    BREAK_START;
+    
+    if (mAnimations.empty())
+        break;
+    
+    AnimationList::iterator iter = mAnimations.begin();
+    for (; iter != mAnimations.end(); )
+    {
+        if ((*iter)->isFinished)
+        {
+            mAnimationSet.erase((*iter)->name);
+            
+            delete *iter;
+            mAnimations.erase(iter++);
+        }
+        else
+        {
+            (*iter)->update(this, dt);
+            ++iter;
+        }
+    }
+    
+    BREAK_END;
+}
+
+void SceneNode::addAnimation(IAnimation* anim, uint32_t name)
+{
+    BREAK_START;
+    
+    if (anim == NULL)
+        break;
+    
+    name = (name == 0) ? anim->name : name;
+    
+    if (mAnimationSet.find(name) != mAnimationSet.end())
+        break;
+    
+    mAnimationSet.insert(name);
+    mAnimations.push_back(anim);
+    
+    BREAK_END;
+}
+
+IAnimation* SceneNode::getAnimation(uint32_t name)
+{
+    IAnimation* ret = NULL;
+    
+    BREAK_START;
+    
+    if (name == 0)
+        break;
+    
+    AnimationList::iterator iter = mAnimations.begin();
+    for (; iter != mAnimations.end(); ++iter)
+    {
+        if ((*iter)->name == name)
+        {
+            ret = *iter;
+            break;
+        }
+    }
+    
+    BREAK_END;
+    
+    return ret;
+}
+
+void SceneNode::removeAnimation(uint32_t name)
+{
+    BREAK_START;
+    
+    if (name == 0)
+        break;
+    
+    // find animation in set
+    AnimationSet::iterator setIter = mAnimationSet.find(name);
+    if (setIter == mAnimationSet.end())
+        break;
+    
+    mAnimationSet.erase(setIter);
+    
+    AnimationList::iterator listIter = mAnimations.begin();
+    for (; listIter != mAnimations.end(); ++listIter)
+    {
+        if ((*listIter)->name == name)
+        {
+            delete *listIter;
+            mAnimations.erase(listIter);
+            break;
+        }
+    }
+    
+    BREAK_END;
+}
+
+void SceneNode::removeAllAnimations()
+{
+    BREAK_START;
+    
+    if (mAnimations.empty())
+        break;
+    
+    AnimationList::iterator iter = mAnimations.begin();
+    for (; iter != mAnimations.end(); ++iter)
+    {
+        delete *iter;
+    }
+    
+    mAnimations.clear();
+    mAnimationSet.clear();
+    
+    BREAK_END;
 }
 
 // Scene Graph

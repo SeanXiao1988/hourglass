@@ -33,6 +33,10 @@ const GLfloat Z_INCREMENT = 0.1f;
 class SceneNode;
 typedef std::vector<SceneNode *>SceneNodeList;
 
+class IAnimation;
+typedef std::list<IAnimation* > AnimationList;
+typedef std::set<uint32_t> AnimationSet;
+    
 class ISceneEntity;
 
 class SceneNode : public IComponent
@@ -79,6 +83,14 @@ public:
     
     const int&      getRenderAlpha() const { return mRenderAlpha; }
     
+    // Animation
+    void            updateAnimations(const float dt);
+    
+    void            addAnimation(IAnimation* anim, uint32_t name = 0);
+    IAnimation*     getAnimation(uint32_t name);
+    void            removeAnimation(uint32_t name);
+    void            removeAllAnimations();
+    
     // Scene Graph
     SceneNode*      getParent();
     void            setParent(SceneNode* node);
@@ -121,6 +133,10 @@ private:
 	float	mDestWorldY;
     
     glm::mat4 mMatrix;
+    
+    // animation
+    AnimationList   mAnimations;
+    AnimationSet    mAnimationSet;
 
     // scene graph
     SceneNode*      mParent;

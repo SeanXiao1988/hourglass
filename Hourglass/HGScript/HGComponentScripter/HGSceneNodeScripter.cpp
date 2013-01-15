@@ -22,8 +22,10 @@
 #include "HGSceneNode.h"
 #include "HGSceneManager.h"
 #include "HGISceneEntity.h"
-#include "HGISceneEntityScripter.h"
 #include "HGHash.h"
+
+#include "HGISceneEntityScripter.h"
+#include "HGIAnimationScripter.h"
 #include "HGCompositeScripter.h"
 
 #define SCENENODE_METATABLE "SceneNodeMetatable"
@@ -779,42 +781,154 @@ static int scenenode_get_entity(lua_State* L)
     return ret;
 }
     
+    
+static int scenenode_add_animation(lua_State* L)
+{
+    BREAK_START;
+    
+    SceneNode* node = NULL;
+    node = scenenode_check(L, 1);
+    if (node == NULL)
+        break;
+    
+    IAnimation* anim = ianimation_check(L, 2);
+    if (anim == NULL)
+        break;
+    
+    uint32_t name = 0;
+    if (lua_isstring(L, 3))
+    {
+        const char* animName = luaL_checkstring(L, 3);
+        name = Hash(animName);
+    }
+    else if(lua_isnumber(L, 3))
+    {
+        name = luaL_checkunsigned(L, 3);
+    }
+    
+    node->addAnimation(anim, name);
+    
+    BREAK_END;
+    
+    return 0;
+}
+
+static int scenenode_get_animation(lua_State* L)
+{
+    int ret = 0;
+    
+    BREAK_START;
+    
+    SceneNode* node = NULL;
+    node = scenenode_check(L, 1);
+    if (node == NULL)
+        break;
+    
+    uint32_t name = 0;
+    if (lua_isstring(L, 2))
+    {
+        const char* animName = luaL_checkstring(L, 2);
+        name = Hash(animName);
+    }
+    else if (lua_isnumber(L, 2))
+    {
+        name = luaL_checkunsigned(L, 2);
+    }
+    
+    IAnimation* anim = node->getAnimation(name);
+    if (anim == NULL)
+        break;
+    
+    ret = ianimation_push(L, anim);
+    
+    BREAK_END;
+    
+    return ret;
+}
+
+static int scenenode_remove_animation(lua_State* L)
+{
+    BREAK_START;
+    
+    SceneNode* node = NULL;
+    node = scenenode_check(L, 1);
+    if (node == NULL)
+        break;
+    
+    uint32_t name = 0;
+    if (lua_isstring(L, 2))
+    {
+        const char* animName = luaL_checkstring(L, 2);
+        name = Hash(animName);
+    }
+    else if (lua_isnumber(L, 2))
+    {
+        name = luaL_checkunsigned(L, 2);
+    }
+    
+    node->removeAnimation(name);
+    
+    BREAK_END;
+    
+    return 0;
+}
+
+static int scenenode_remove_all_animations(lua_State* L)
+{
+    BREAK_START;
+    
+    SceneNode* node = NULL;
+    node = scenenode_check(L, 1);
+    if (node == NULL)
+        break;
+    
+    node->removeAllAnimations();
+    
+    BREAK_END;
+    
+    return 0;
+}
+    
 luaL_Reg sSceneNodeRegs[] =
 {
-    { "setAlpha",       scenenode_set_alpha },
-    { "setX",           scenenode_set_x },
-    { "setY",           scenenode_set_y },
-    { "setXY",          scenenode_set_xy },
-    { "setScaleX",      scenenode_set_scale_x },
-    { "setScaleY",      scenenode_set_scale_y },
-    { "setScaleXY",     scenenode_set_scale_xy },
-    { "setRotation",    scenenode_set_rotation },
-    { "setVisibility",  scenenode_set_visibility },
-    { "setWorldX",      scenenode_set_world_x },
-    { "setWorldY",      scenenode_set_world_y },
-    { "setWorldXY",     scenenode_set_world_xy },
-    { "getHashName",    scenenode_get_hashname },
-    { "getAlpha",       scenenode_get_alpha },
-    { "getX",           scenenode_get_x },
-    { "getY",           scenenode_get_y },
-    { "getXY",          scenenode_get_xy },
-    { "getScaleX",      scenenode_get_scale_x },
-    { "getScaleY",      scenenode_get_scale_y },
-    { "getScaleXY",     scenenode_get_scale_xy },
-    { "getRotation",    scenenode_get_rotation },
-    { "getVisibility",  scenenode_get_visibility },
-    { "getWorldX",      scenenode_get_world_x },
-    { "getWorldY",      scenenode_get_world_y },
-    { "getWorldXY",     scenenode_get_world_xy },
-    { "setParent",      scenenode_set_parent },
-    { "getParent",      scenenode_get_parent },
-    { "getChild",       scenenode_get_child },
-    { "addChild",       scenenode_add_child },
-    { "removeChild",    scenenode_remove_child },
-    { "removeAll",      scenenode_remove_all },
-    { "attachEntity",   scenenode_attach_entity },
-    { "detachEntity",   scenenode_detach_entity },
-    { "getEntity",      scenenode_get_entity },
+    { "setAlpha",               scenenode_set_alpha },
+    { "setX",                   scenenode_set_x },
+    { "setY",                   scenenode_set_y },
+    { "setXY",                  scenenode_set_xy },
+    { "setScaleX",              scenenode_set_scale_x },
+    { "setScaleY",              scenenode_set_scale_y },
+    { "setScaleXY",             scenenode_set_scale_xy },
+    { "setRotation",            scenenode_set_rotation },
+    { "setVisibility",          scenenode_set_visibility },
+    { "setWorldX",              scenenode_set_world_x },
+    { "setWorldY",              scenenode_set_world_y },
+    { "setWorldXY",             scenenode_set_world_xy },
+    { "getHashName",            scenenode_get_hashname },
+    { "getAlpha",               scenenode_get_alpha },
+    { "getX",                   scenenode_get_x },
+    { "getY",                   scenenode_get_y },
+    { "getXY",                  scenenode_get_xy },
+    { "getScaleX",              scenenode_get_scale_x },
+    { "getScaleY",              scenenode_get_scale_y },
+    { "getScaleXY",             scenenode_get_scale_xy },
+    { "getRotation",            scenenode_get_rotation },
+    { "getVisibility",  		scenenode_get_visibility },
+    { "getWorldX",      		scenenode_get_world_x },
+    { "getWorldY",      		scenenode_get_world_y },
+    { "getWorldXY",             scenenode_get_world_xy },
+    { "setParent",              scenenode_set_parent },
+    { "getParent",              scenenode_get_parent },
+    { "getChild",               scenenode_get_child },
+    { "addChild",               scenenode_add_child },
+    { "removeChild",            scenenode_remove_child },
+    { "removeAll",              scenenode_remove_all },
+    { "attachEntity",           scenenode_attach_entity },
+    { "detachEntity",           scenenode_detach_entity },
+    { "getEntity",              scenenode_get_entity },
+    { "addAnimation",           scenenode_add_animation },
+    { "getAnimation",           scenenode_get_animation },
+    { "removeAnimation",        scenenode_remove_animation },
+    { "removeAllAnimations",    scenenode_remove_all_animations },
     { NULL, NULL }
 };
         

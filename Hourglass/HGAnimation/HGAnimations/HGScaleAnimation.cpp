@@ -36,7 +36,6 @@ ScaleAnimation::ScaleAnimation(float sx, float sy, float duration)
     typeID = ANIMATION_ID_SCALE;
     type = ANIMATION_TYPE_DEFAULT;
     name = 0;
-    host = NULL;
 }
     
 void ScaleAnimation::setScale(float sx, float sy)

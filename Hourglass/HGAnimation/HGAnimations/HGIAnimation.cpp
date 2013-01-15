@@ -28,7 +28,6 @@ IAnimation::IAnimation()
     , isAnimating(true)
     , animationStage(ANIMATION_STAGE_FORWARD)
     , name(0)
-    , host(NULL)
     , typeID(ANIMATION_ID_INVALID)
     , type(ANIMATION_TYPE_DEFAULT)
 {
