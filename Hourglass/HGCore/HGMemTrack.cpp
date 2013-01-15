@@ -169,7 +169,7 @@ void TrackLog(const MemLog& memLog, void *p, char const *typeName)
     if (node != NULL)
     {
         strcpy(node->type, typeName);
-        printf("%s\n", typeName);
+        
         // update summary
         MEMORYSUMMARY.size += node->size;
         MEMORYSUMMARY.times++;
