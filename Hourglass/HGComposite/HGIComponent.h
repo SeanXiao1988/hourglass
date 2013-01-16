@@ -34,10 +34,10 @@ public:
     virtual ~IComponent() {};
     
     virtual void            deInitialize() = 0;
-    virtual EventResult		handleEvent(const Event& event) { return EVENT_RESULT_IGNORED; }
+    virtual EventResult     handleEvent(const Event& event) { return EVENT_RESULT_IGNORED; }
     virtual ComponentTypeID getComponentTypeID() = 0;
     virtual uint32_t        getComponentName() = 0;
-    const uint32_t			getObjectName() const { return mObjectName; }
+    const uint32_t          getObjectName() const { return mObjectName; }
 
 protected:
     friend class ObjectManager;
