@@ -45,11 +45,11 @@ public:
     void        clear();
     
     // Composite
-    static void     RegisterComponentType(void);
-    void            deInitialize();
-    EventResult     handleEvent(const Event& event);
-    ComponentTypeID getComponentTypeID() { return COMP_MAP_DATA; }
-    uint32_t        getComponentName();
+    static void             RegisterComponentType(void);
+    virtual void            deInitialize();
+    virtual EventResult     handleEvent(const Event& event);
+    virtual ComponentTypeID getComponentTypeID() { return COMP_MAP_DATA; }
+    virtual uint32_t        getComponentName();
     
     // Editor
     bool        createMap(int w, int h);
