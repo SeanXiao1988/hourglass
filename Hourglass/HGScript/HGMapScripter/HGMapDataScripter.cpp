@@ -255,6 +255,13 @@ static int mapdata_get_tile_type_by_grid_coord(lua_State* L)
     return 1;
 }
     
+static int mapdata_generate_tile_mask(lua_State* L)
+{
+    MapData::GenerateTileMask();
+    
+    return 0;
+}
+    
 static int mapdata_new(lua_State* L)
 {
     int ret = 0;
@@ -302,6 +309,10 @@ void ScriptRegisterMapData(lua_State* L)
     
     // Register MapData to Lua
     lua_newtable(L);
+    
+    lua_pushstring(L, "GenerateTileMask");
+    lua_pushcfunction(L, mapdata_generate_tile_mask);
+    lua_settable(L, -3);
     
     lua_pushstring(L, "new");
     lua_pushcfunction(L, mapdata_new);

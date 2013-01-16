@@ -24,6 +24,7 @@
 #include "HGPhysicalObject.h"
 #include "HGSceneNode.h"
 #include "HGQuadEntity.h"
+#include "HGMapData.h"
 
 #include "HGHash.h"
 
@@ -181,6 +182,7 @@ void ObjectManager::registerBuiltinComponents()
     PhysicalObject::RegisterComponentType();
     SceneNode::RegisterComponentType();
     QuadEntity::RegisterComponentType();
+    MapData::RegisterComponentType();
 }
     
 ComponentTypeID ObjectManager::getComponentTypeByName(uint32_t name)

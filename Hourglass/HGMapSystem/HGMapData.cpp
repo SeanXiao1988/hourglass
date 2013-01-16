@@ -20,6 +20,7 @@
 
 #include "HGMapData.h"
 #include "HGData.h"
+#include "HGHash.h"
 #include "HGRender.h"
 
 namespace HG
@@ -43,6 +44,27 @@ void MapData::GenerateTileMask()
     }
 }
 //
+    
+// Composite
+void MapData::RegisterComponentType(void)
+{
+    
+}
+
+void MapData::deInitialize()
+{
+    
+}
+
+EventResult MapData::handleEvent(const Event& event)
+{
+    return EVENT_RESULT_IGNORED;
+}
+
+uint32_t MapData::getComponentName()
+{
+    return Hash("MapData");
+}
 
 MapData::MapData()
 	: mData(NULL)

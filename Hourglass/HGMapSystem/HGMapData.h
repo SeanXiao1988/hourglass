@@ -26,6 +26,8 @@
 
 #include "HGSystem.h"
 #include "HGMapDef.h"
+#include "HGMapData.h"
+#include "HGIComponent.h"
 #include "HGGraphicsDef.h"
 
 namespace HG
@@ -35,12 +37,19 @@ class MapData
 {
 public:
     MapData();
-    ~MapData();
+    virtual ~MapData();
     
     static void GenerateTileMask();
 
     bool		loadFromFile(const char* filename);
     void        clear();
+    
+    // Composite
+    static void     RegisterComponentType(void);
+    void            deInitialize();
+    EventResult     handleEvent(const Event& event);
+    ComponentTypeID getComponentTypeID() { return COMP_MAP_DATA; }
+    uint32_t        getComponentName();
     
     // Editor
     bool        createMap(int w, int h);
@@ -59,6 +68,7 @@ public:
     void        debug_draw(int x, int y);
 
     static int  TileMask[Tiles_Count][TILE_SIZE];
+    
 private:
 	MapData(const MapData& other);
 	MapData& operator= (const MapData& rhs);
