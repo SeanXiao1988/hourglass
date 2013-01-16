@@ -118,12 +118,8 @@ static int alphaanimation_new(lua_State* L)
     
 static int alphaanimation_delete(lua_State* L)
 {
-    BREAK_START;
-    
     AlphaAnimation* anim = alphaanimation_check(L, 1);
     delete anim;
-    
-    BREAK_END;
     
     return 0;
 }
