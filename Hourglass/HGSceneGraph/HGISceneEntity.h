@@ -35,7 +35,7 @@ class ISceneEntity : public IComponent
 {
 public:
 	ISceneEntity();
-	virtual ~ISceneEntity();
+	~ISceneEntity();
 
 	virtual void render() = 0;
     virtual void update(const float dt) = 0;

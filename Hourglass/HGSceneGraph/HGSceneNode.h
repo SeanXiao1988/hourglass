@@ -111,7 +111,7 @@ private:
     explicit SceneNode();
     SceneNode(const SceneNode& other);
     SceneNode& operator = (const SceneNode& rhs);
-    virtual ~SceneNode();
+    ~SceneNode();
 
     // graphical members
     float   mAlpha;

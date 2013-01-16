@@ -37,7 +37,7 @@ class PhysicalObject : public IComponent
 {
 public:
     PhysicalObject();
-    virtual ~PhysicalObject();
+    ~PhysicalObject();
     
     void                    setMap(MapData *map) { mMap = map; }
 	void                    applyDisplacement(Vector2Di displace);

@@ -30,7 +30,7 @@ class AlphaAnimation : public IAnimation
 {
 public:
     explicit AlphaAnimation(float alpha, float duration);
-    virtual ~AlphaAnimation() {}
+    ~AlphaAnimation() {}
     
     virtual void update(SceneNode* node, float dt);
     

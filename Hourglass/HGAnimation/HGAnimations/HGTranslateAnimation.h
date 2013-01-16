@@ -30,7 +30,7 @@ class TranslateAnimation : public IAnimation
 {
 public:
     explicit TranslateAnimation(float x, float y, float duration);
-    virtual ~TranslateAnimation();
+    ~TranslateAnimation();
     
     virtual void update(SceneNode* node, float dt);
 

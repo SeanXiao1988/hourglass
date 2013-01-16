@@ -53,7 +53,7 @@ public:
         return instance;
     }
     
-    virtual ~ConsoleImpl();
+    ~ConsoleImpl();
 
     void        initialize();
     void        deInitialze();

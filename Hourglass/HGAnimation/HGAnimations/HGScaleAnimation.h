@@ -30,7 +30,7 @@ class ScaleAnimation : public IAnimation
 {
 public:
     explicit ScaleAnimation(float sx, float sy, float duration);
-    virtual ~ScaleAnimation() {}
+    ~ScaleAnimation() {}
     
     virtual void update(SceneNode* node, float dt);
     

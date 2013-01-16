@@ -33,11 +33,11 @@
 namespace HG
 {
 
-class MapData
+class MapData : public IComponent
 {
 public:
     MapData();
-    virtual ~MapData();
+    ~MapData();
     
     static void GenerateTileMask();
 
