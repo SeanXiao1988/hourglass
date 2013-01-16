@@ -31,7 +31,7 @@ class MapEntity : public ISceneEntity
 {
 public:
     MapEntity();
-    ~MapEntity();
+    virtual ~MapEntity();
     
     void render();
     

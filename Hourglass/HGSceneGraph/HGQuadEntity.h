@@ -31,7 +31,7 @@ class QuadEntity : public ISceneEntity
 {
 public:
 	QuadEntity();
-	~QuadEntity();
+	virtual ~QuadEntity();
 
     virtual void    update(const float dt);
 	virtual void    render();

@@ -37,11 +37,11 @@ class MapData
 {
 public:
     MapData();
-    ~MapData();
+    virtual ~MapData();
     
     static void GenerateTileMask();
 
-    bool		loadFromFile(const char* filename);
+    bool        loadFromFile(const char* filename);
     void        clear();
     
     // Composite

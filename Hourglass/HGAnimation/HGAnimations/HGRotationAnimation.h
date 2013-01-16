@@ -30,7 +30,7 @@ class RotationAnimation : public IAnimation
 {
 public:
     explicit RotationAnimation(float rotation, float duration);
-    ~RotationAnimation();
+    virtual ~RotationAnimation();
     
     virtual void update(SceneNode* node, float dt);
     
