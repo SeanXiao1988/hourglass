@@ -31,6 +31,8 @@
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 
+#include "HGMapDataScripter.h"
+
 #include "HGIAnimationScripter.h"
 #include "HGAlphaAnimationScripter.h"
 #include "HGRotationAnimationScripter.h"
@@ -161,6 +163,8 @@ void ScriptManager::_registerEngine()
     ScriptRegisterComposite(mState);
     ScriptRegisterSceneNode(mState);
     ScriptRegisterQuadEntity(mState);
+    
+    ScriptRegisterMapData(mState);
     
     ScriptRegisterIAnimation(mState);
     ScriptRegisterAlphaAnimation(mState);

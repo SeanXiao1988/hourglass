@@ -311,7 +311,7 @@ void ScriptRegisterMapData(lua_State* L)
     lua_pushcfunction(L, mapdata_delete);
     lua_settable(L, -3);
     
-    lua_setglobal(L, "MapData");
+    lua_setglobal(L, MAPDATA_LUA_NAME);
     
     // constants
     

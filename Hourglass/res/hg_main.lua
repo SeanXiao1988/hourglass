@@ -50,11 +50,15 @@ function hg_init()
     alp = AlphaAnimation.new(-200, 1)
     alp:setType(ANIMATION_TYPE_PINGPONG)
     shitNode:addAnimation(alp, "alp")
+    
+    map = MapData.new()
+    map:create(16, 16)
 
 end
 
 function hg_deinit()
     QuadEntity.delete(testAnimator)
+    MapData.delete(map)
 end
 
 function print_t(t)
