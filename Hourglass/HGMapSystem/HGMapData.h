@@ -37,7 +37,7 @@ class MapData
 {
 public:
     MapData();
-    virtual ~MapData();
+    ~MapData();
     
     static void GenerateTileMask();
 
@@ -54,7 +54,7 @@ public:
     // Editor
     bool        createMap(int w, int h);
     bool        saveToFile(const char* filename);
-	void		setTile(int gridX, int gridY, TileType type);
+    void        setTile(int gridX, int gridY, TileType type);
     void        setTexture(GLuint tex);
     void        update();
     void        verify();
@@ -70,11 +70,11 @@ public:
     static int  TileMask[Tiles_Count][TILE_SIZE];
     
 private:
-	MapData(const MapData& other);
-	MapData& operator= (const MapData& rhs);
+    MapData(const MapData& other);
+    MapData& operator= (const MapData& rhs);
 
-	map_header_t	mMapHeader;
-    TileType*		mData;
+    map_header_t    mMapHeader;
+    TileType*       mData;
     GLuint          mDebugTexture;
 };
 
