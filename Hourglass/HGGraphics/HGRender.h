@@ -90,6 +90,7 @@ public:
     void            renderLine(float x1, float y1, float x2, float y2, uint32_t color, float z);
     void            renderRect(float x, float y, float w, float h, uint32_t color, float z);
     void            renderBox(float x, float y, float w, float h, uint32_t color, float z);
+    void            renderCircle(float cx, float cy, float r, uint32_t v, uint32_t color, float z, int fill = 0);
     void            renderQuad(const Quad *quad);
     void            renderTriple(const Triple *triple);
     void            renderVertexList(const VertexList* list);
@@ -151,7 +152,7 @@ private:
     int                 mCurPrimitiveType;
     int                 mCurBlenMode;
     GLenum              mLastCustomPrimitive;
-    const VertexList*   mCurVertexList;
+    VertexList          mCurVertexList;
     
     unsigned char*		mBuffer;
     uint32_t			mBufferSize;

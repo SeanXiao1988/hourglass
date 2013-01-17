@@ -41,7 +41,6 @@ Render::Render()
     , mCurRTarget(NULL)
 	, mCurShader(0)
 	, mCurBlenMode(BLEND_DEFAULT)
-	, mCurVertexList(NULL)
 	, mLastCustomPrimitive(0)
 	, mPrimitive(0)
 	, mBuffer(0)
@@ -975,6 +974,54 @@ void Render::renderBox(float x, float y, float w, float h, uint32_t color, float
     renderLine(x+w, y, x+w, y+h, color, z);
     renderLine(x, y+h, x+w, y+h, color, z);
 }
+    
+void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t color, float z, int fill)
+{
+    if (v == 0)
+        return;
+    
+    int vcount = v + 2;
+    
+    VertexList vl;
+    vl.blend = BLEND_DEFAULT;
+    vl.tex = 0;
+    vl.primitive = fill ? GL_TRIANGLE_FAN : GL_LINE_STRIP;
+    vl.primitive_count = fill ? 3 : 1;
+    
+    Vertex vertices[vcount];
+    memset(vertices, 0, sizeof(Vertex) * vcount);
+    
+    vl.v = vertices;
+    vl.vertex_count = vcount;
+    
+    float angleStep = 2 * M_PI / (vcount - 2);
+    
+    for (int i = 1; i < vcount; i++)
+    {
+        vertices[i].u = 0.0f;
+        vertices[i].v = 0.0f;
+        vertices[i].x = cx + r * cosf(angleStep * (i-1));
+        vertices[i].y = cy + r * sinf(angleStep * (i-1));
+        setVertexColor(&vertices[i], color);
+    }
+    
+    if (fill)
+    {
+        vertices[0].u = 0.0f;
+        vertices[0].v = 0.0f;
+        vertices[0].x = cx;
+        vertices[0].y = cy;
+        setVertexColor(&vertices[0], color);
+        
+        memcpy(&vertices[1], &vertices[vcount-1], sizeof(Vertex));
+    }
+    else
+    {
+        memcpy(&vertices[0], &vertices[vcount-1], sizeof(Vertex));
+    }
+    
+    renderVertexList(&vl);
+}
 
 void Render::renderQuad(const Quad* quad)
 {
@@ -1028,7 +1075,7 @@ void Render::renderVertexList(const VertexList* list)
     if (list == NULL)
         return;
     
-    if (mCurPrimitiveType != PRIMITIVE_CUSTOM || mPrimitive >= HG_VERTEX_BUFFER_SIZE/list->count || mCurTexture != list->tex || mCurBlenMode != list->blend || mLastCustomPrimitive != list->primitive)
+    if (mCurPrimitiveType != PRIMITIVE_CUSTOM || mPrimitive >= HG_VERTEX_BUFFER_SIZE/list->vertex_count || mCurTexture != list->tex || mCurBlenMode != list->blend || mLastCustomPrimitive != list->primitive)
     {
         _renderBatch();
         
@@ -1040,11 +1087,12 @@ void Render::renderVertexList(const VertexList* list)
         _bindTexture(list->tex);
     }
     
-    memcpy(&mpVertices[mPrimitive * list->count], list->v, sizeof(Vertex) * list->count);
+    memcpy(&mpVertices[mPrimitive * list->vertex_count], list->v, sizeof(Vertex) * list->vertex_count);
     mPrimitive++;
-    mDebugVertexUsed+=list->count;
-    mCurVertexList = list;
-    mLastCustomPrimitive = list->primitive;
+    mDebugVertexUsed += list->vertex_count;
+    mCurVertexList.vertex_count     = list->vertex_count;
+    mCurVertexList.primitive_count  = list->primitive_count;
+    mLastCustomPrimitive            = list->primitive;
 }
     
 void Render::renderText(float x, float y, uint32_t color,const char* format, ...)
@@ -1115,8 +1163,8 @@ void Render::_renderBatch(bool bEndScene)
         switch (mCurPrimitiveType)
         {
             case PRIMITIVE_CUSTOM:
-                glDrawArrays(mCurVertexList->primitive, 0, mPrimitive*mCurVertexList->count);
-                mCurVertexList = NULL;
+                glDrawArrays(mLastCustomPrimitive, 0, mCurVertexList.vertex_count);
+                //mCurVertexList = NULL;
                 break;
                 
             case PRIMITIVE_QUADS:

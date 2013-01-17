@@ -91,7 +91,8 @@ typedef struct _vertex_list
 {
     uint32_t    blend;
     GLuint      tex;
-    int32_t     count;
+    int32_t     vertex_count;
+    GLuint      primitive_count;
     GLenum      primitive;
     Vertex*     v;
 }VertexList;

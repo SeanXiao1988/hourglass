@@ -4,6 +4,17 @@ function hg_init()
 
     RENDER.setClearColor(0x808080FF)
 
+end
+
+function hg_deinit()
+end
+
+function hg_init2()
+
+    APPLICATION.setTitle("hourglass v0.1")
+
+    RENDER.setClearColor(0x808080FF)
+
     anime = SPRITEANIMATIONCOMPILER.parseXML("animation.xml")
 
     shitNode = SCENEMANAGER.createNode("shitNode")
@@ -56,7 +67,7 @@ function hg_init()
 
 end
 
-function hg_deinit()
+function hg_deinit2()
     QuadEntity.delete(testAnimator)
     MapData.delete(map)
 end

@@ -26,7 +26,7 @@ namespace HG
     
 void Application::initialize()
 {
-    RENDER.initialize(1024, 768);
+    RENDER.initialize(800, 600);
     OBJECTMANAGER.initialize();
     SPRITEANIMATIONCOMPILER.initialize();
     SCENEMANAGER.initialize();
