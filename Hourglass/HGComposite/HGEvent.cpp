@@ -1,11 +1,11 @@
 /**
- *  @file    HGEventScripter.h
- *  @brief   Event script adapter
+ *  @file    HGEvent.cpp
+ *  @brief   Event implementation
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2013/01/08
+ *  Created:  2013/01/17
  *  Company:  SNSTEAM.inc
  *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
@@ -18,17 +18,21 @@
  * =====================================================================================
  */
 
-#ifndef HGEVENTSCRIPTER_H_
-#define HGEVENTSCRIPTER_H_
-
-#include "HGScriptDef.h"
+#include "HGEvent.h"
 
 namespace HG
 {
-    
-extern void ScriptRegisterEvent(lua_State* L);
-    
+
+EventKeyboard::EventKeyboard(int key, int action)
+    : key(key)
+    , action(action)
+{
+    eventID = EVENT_KEYBOARD;
 }
 
-#endif // HGEVENTSCRIPTER_H_
-
+EventKeyboard::~EventKeyboard()
+{
+    
+}
+    
+}

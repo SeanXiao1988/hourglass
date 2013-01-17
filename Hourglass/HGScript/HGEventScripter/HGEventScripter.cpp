@@ -18,14 +18,90 @@
  * =====================================================================================
  */
 
+#include "HGEvent.h"
 #include "HGEventScripter.h"
-#include "HGEventDef.h"
+#include "HGEventKeyboardScripter.h"
+
+#define EVENT_LUA_NAME  "Event"
 
 namespace HG
 {
+    
+Event* event_check(lua_State* L, int idx)
+{
+    Event* event = NULL;
+    
+    BREAK_START;
+    
+    if (!lua_isuserdata(L, idx))
+        break;
+    
+    event = *static_cast<Event **>(lua_touserdata(L, idx));
+    
+    BREAK_END;
+    
+    return event;
+}
+    
+int event_push(lua_State* L, Event* event)
+{
+    int ret = 0;
+    
+    BREAK_START;
+    
+    if (event == NULL)
+        break;
+    
+    switch (event->eventID)
+    {
+        case EVENT_KEYBOARD:
+            ret = eventkeyboard_push(L, (EventKeyboard *)event);
+            break;
+            
+        default:
+            break;
+    }
+    
+    BREAK_END;
+    
+    return ret;
+}
+    
+static int event_event_id(lua_State* L)
+{
+    EventID eid = EVENT_WILDCARD;
+    
+    BREAK_START;
+    
+    Event *event = event_check(L, 1);
+    if (event == NULL)
+        break;
+    
+    eid = event->eventID;
+    
+    BREAK_END;
+    
+    lua_pushinteger(L, (int)eid);
+    
+    return 1;
+}
+    
+luaL_Reg sEventRegs[] =
+{
+    { "eventID", event_event_id },
+    { NULL, NULL }
+};
 
 void ScriptRegisterEvent(lua_State* L)
 {
+    luaL_newmetatable(L, EVENT_METATABLE);
+    lua_pushstring(L, "__index");
+    lua_pushvalue(L, -2);
+    lua_settable(L, -3);
+    luaL_setfuncs(L, sEventRegs, 0);
+    
+    lua_pop(L, 1);
+    
     // event type
     lua_pushinteger(L, EVENT_WILDCARD);
     lua_setglobal(L, "EVENT_WILDCARD");
@@ -36,8 +112,8 @@ void ScriptRegisterEvent(lua_State* L)
     lua_pushinteger(L, EVENT_INPUT);
     lua_setglobal(L, "EVENT_INPUT");
     
-    lua_pushinteger(L, EVENT_PLAYER_ATTACK);
-    lua_setglobal(L, "EVENT_PLAYER_ATTACK");
+    lua_pushinteger(L, EVENT_KEYBOARD);
+    lua_setglobal(L, "EVENT_KEYBOARD");
     
     lua_pushinteger(L, EVENT_COUNT);
     lua_setglobal(L, "EVENT_COUNT");
@@ -51,6 +127,8 @@ void ScriptRegisterEvent(lua_State* L)
     
     lua_pushinteger(L, EVENT_RESULT_INTERCEPT);
     lua_setglobal(L, "EVENT_RESULT_INTERCEPT");
+    
+    ScriptRegisterEventKeyboard(L);
 }
     
 }

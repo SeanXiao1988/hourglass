@@ -32,7 +32,7 @@ typedef enum
     
     EVENT_UPDATE,           /* frame update */
 	EVENT_INPUT,            /* input event */
-    EVENT_PLAYER_ATTACK,    /* player attack */
+    EVENT_KEYBOARD,         /* keyboard event */
     
     EVENT_COUNT
 }EventID;

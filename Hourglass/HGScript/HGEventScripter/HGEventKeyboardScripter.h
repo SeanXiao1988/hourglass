@@ -1,13 +1,13 @@
 /**
- *  @file    HGEvent.h
- *  @brief   Event class header
+ *  @file    HGEventKeyboardScripter.h
+ *  @brief   EventKeyboard script adapter header
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2012/11/06
+ *  Created:  2013/01/17
  *  Company:  SNSTEAM.inc
- *  (C) Copyright 2012 SNSTEAM.inc All rights reserved.
+ *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
  * This file is a part of Hourglass Engine Project.
  *
@@ -18,34 +18,24 @@
  * =====================================================================================
  */
 
-#ifndef HGEVENT_H_
-#define HGEVENT_H_
+#ifndef HGEVENTKEYBOARDSCRIPTER_H_
+#define HGEVENTKEYBOARDSCRIPTER_H_
 
-#include "HGEventDef.h"
+#include "HGScriptDef.h"
 
 namespace HG
 {
     
-class Event
-{
-public:
-    Event() {}
-    virtual ~Event() {}
-    
-    EventID eventID;
-};
-    
-// input event
-class EventKeyboard : public Event
-{
-public:
-    explicit EventKeyboard(int key, int action);
-    ~EventKeyboard();
-    
-    int     key;
-    int     action;
-};
+class EventKeyboard;
+
+extern luaL_Reg sEventKeyboardRegs[];
+
+extern EventKeyboard* eventkeyboard_check(lua_State* L, int idx);
+extern int eventkeyboard_push(lua_State* L, EventKeyboard* event);
+
+extern void ScriptRegisterEventKeyboard(lua_State* L);
     
 }
 
-#endif // HGEVENT_H_
+
+#endif // HGEVENTKEYBOARDSCRIPTER_H_

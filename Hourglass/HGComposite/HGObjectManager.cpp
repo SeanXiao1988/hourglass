@@ -245,7 +245,7 @@ void ObjectManager::postEvent(uint32_t objName, const Event& event)
     if (compMap != NULL)
     {
 
-        EventComponentSet &eventCompSet = mEventComponentSet[event.getEventID()];
+        EventComponentSet &eventCompSet = mEventComponentSet[event.eventID];
         EventComponentSet::iterator setIter = eventCompSet.begin();
         for (; setIter != eventCompSet.end(); ++setIter)
         {
@@ -265,7 +265,7 @@ void ObjectManager::broadcastEvent(const Event& event)
         if (compMap == NULL)
             continue;
 
-        EventComponentSet &eventCompSet = mEventComponentSet[event.getEventID()];
+        EventComponentSet &eventCompSet = mEventComponentSet[event.eventID];
         EventComponentSet::iterator eventSetIter = eventCompSet.begin();
         for (; eventSetIter != eventCompSet.end(); ++eventSetIter)
         {

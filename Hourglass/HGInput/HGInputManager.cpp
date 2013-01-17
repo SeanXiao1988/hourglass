@@ -19,6 +19,7 @@
  */
 
 #include "HGInputManager.h"
+#include "HGObjectManager.h"
 #include "HGConsoleImpl.h"
 
 namespace HG
@@ -85,8 +86,9 @@ void InputManager::keyboardCallback(int key, int action)
 	
     getInstance().mKeyMap[key] = action;
 
-//  Event keyEvent(EVENT_INPUT, &keyInfo);
-//	EVENTMANAGER.broadcastEvent(keyEvent);
+    //
+    EventKeyboard keyEvent(key, action);
+    OBJECTMANAGER.broadcastEvent(keyEvent);
 }
     
 void InputManager::mousePosCallback(int x, int y)

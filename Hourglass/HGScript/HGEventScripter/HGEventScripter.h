@@ -1,13 +1,13 @@
 /**
- *  @file    HGEvent.h
- *  @brief   Event class header
+ *  @file    HGEventScripter.h
+ *  @brief   Event script adapter
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2012/11/06
+ *  Created:  2013/01/08
  *  Company:  SNSTEAM.inc
- *  (C) Copyright 2012 SNSTEAM.inc All rights reserved.
+ *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
  * This file is a part of Hourglass Engine Project.
  *
@@ -18,34 +18,26 @@
  * =====================================================================================
  */
 
-#ifndef HGEVENT_H_
-#define HGEVENT_H_
+#ifndef HGEVENTSCRIPTER_H_
+#define HGEVENTSCRIPTER_H_
 
-#include "HGEventDef.h"
+#include "HGScriptDef.h"
+
+#define EVENT_METATABLE "EventMetatable"
 
 namespace HG
 {
     
-class Event
-{
-public:
-    Event() {}
-    virtual ~Event() {}
+class Event;
+
+extern luaL_Reg sEventRegs[];
+
+extern Event* event_check(lua_State* L, int idx);
+extern int event_push(lua_State* L, Event* event);
     
-    EventID eventID;
-};
-    
-// input event
-class EventKeyboard : public Event
-{
-public:
-    explicit EventKeyboard(int key, int action);
-    ~EventKeyboard();
-    
-    int     key;
-    int     action;
-};
+extern void ScriptRegisterEvent(lua_State* L);
     
 }
 
-#endif // HGEVENT_H_
+#endif // HGEVENTSCRIPTER_H_
+

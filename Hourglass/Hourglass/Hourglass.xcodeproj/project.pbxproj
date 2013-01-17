@@ -21,7 +21,6 @@
 		2E87B98016A4429E00F44F81 /* HGRotationAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */; };
 		2EE40C9716A2AEE40033DFE2 /* HGIAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */; };
 		2EE40C9816A2AEE40033DFE2 /* HGCompositeScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7C16A2AEE40033DFE2 /* HGCompositeScripter.cpp */; };
-		2EE40C9916A2AEE40033DFE2 /* HGEventScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7E16A2AEE40033DFE2 /* HGEventScripter.cpp */; };
 		2EE40C9A16A2AEE40033DFE2 /* HGISceneEntityScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C8016A2AEE40033DFE2 /* HGISceneEntityScripter.cpp */; };
 		2EE40C9B16A2AEE40033DFE2 /* HGQuadEntityScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C8216A2AEE40033DFE2 /* HGQuadEntityScripter.cpp */; };
 		2EE40C9C16A2AEE40033DFE2 /* HGSceneNodeScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C8416A2AEE40033DFE2 /* HGSceneNodeScripter.cpp */; };
@@ -58,6 +57,9 @@
 		D48614511651D7D600B5E746 /* c.xml in Resources */ = {isa = PBXBuildFile; fileRef = D48614501651D7D600B5E746 /* c.xml */; };
 		D4884BBC1643C9D3007E535D /* shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = D4884BB81643C9C2007E535D /* shader.frag */; };
 		D4884BBD1643C9D3007E535D /* shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = D4884BB91643C9C2007E535D /* shader.vert */; };
+		D49D9AE916A7DBFC0007D971 /* HGEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AE816A7DBFC0007D971 /* HGEvent.cpp */; };
+		D49D9AF316A7E13B0007D971 /* HGEventScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */; };
+		D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */; };
 		D4B74E0916814EAC00C9DB3B /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DCF16814EAC00C9DB3B /* lapi.c */; };
 		D4B74E0A16814EAC00C9DB3B /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DD116814EAC00C9DB3B /* lauxlib.c */; };
 		D4B74E0B16814EAC00C9DB3B /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DD316814EAC00C9DB3B /* lbaselib.c */; };
@@ -183,8 +185,6 @@
 		2EE40C7A16A2AEE40033DFE2 /* HGIAnimationScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGIAnimationScripter.h; sourceTree = "<group>"; };
 		2EE40C7C16A2AEE40033DFE2 /* HGCompositeScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGCompositeScripter.cpp; sourceTree = "<group>"; };
 		2EE40C7D16A2AEE40033DFE2 /* HGCompositeScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGCompositeScripter.h; sourceTree = "<group>"; };
-		2EE40C7E16A2AEE40033DFE2 /* HGEventScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventScripter.cpp; sourceTree = "<group>"; };
-		2EE40C7F16A2AEE40033DFE2 /* HGEventScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGEventScripter.h; sourceTree = "<group>"; };
 		2EE40C8016A2AEE40033DFE2 /* HGISceneEntityScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGISceneEntityScripter.cpp; sourceTree = "<group>"; };
 		2EE40C8116A2AEE40033DFE2 /* HGISceneEntityScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGISceneEntityScripter.h; sourceTree = "<group>"; };
 		2EE40C8216A2AEE40033DFE2 /* HGQuadEntityScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGQuadEntityScripter.cpp; sourceTree = "<group>"; };
@@ -544,6 +544,11 @@
 		D48A412115D501C90033E61F /* HGSceneNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSceneNode.cpp; sourceTree = "<group>"; };
 		D48A412215D501C90033E61F /* HGSceneNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSceneNode.h; sourceTree = "<group>"; };
 		D48CCB0515E21C6B005B3BDB /* HGRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGRender.h; sourceTree = "<group>"; };
+		D49D9AE816A7DBFC0007D971 /* HGEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEvent.cpp; sourceTree = "<group>"; };
+		D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventScripter.cpp; sourceTree = "<group>"; };
+		D49D9AF216A7E13B0007D971 /* HGEventScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGEventScripter.h; sourceTree = "<group>"; };
+		D49D9AF416A7E2580007D971 /* HGEventKeyboardScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGEventKeyboardScripter.h; sourceTree = "<group>"; };
+		D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventKeyboardScripter.cpp; sourceTree = "<group>"; };
 		D4A676B215F7263C009E004F /* HGData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGData.cpp; sourceTree = "<group>"; };
 		D4A676B315F7263C009E004F /* HGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGData.h; sourceTree = "<group>"; };
 		D4B74DCF16814EAC00C9DB3B /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
@@ -704,6 +709,7 @@
 			children = (
 				2E1E701E165943EC006FDD5C /* HGEventDef.h */,
 				2E1E701D165943EC006FDD5C /* HGEvent.h */,
+				D49D9AE816A7DBFC0007D971 /* HGEvent.cpp */,
 				2E2668CE164FCB9E00E8E6EB /* HGComponentDef.h */,
 				2E2668CC164FC96500E8E6EB /* HGIComponent.h */,
 				2E5653861653E49C001C2A4D /* HGObjectManager.h */,
@@ -793,8 +799,6 @@
 			children = (
 				2EE40C7D16A2AEE40033DFE2 /* HGCompositeScripter.h */,
 				2EE40C7C16A2AEE40033DFE2 /* HGCompositeScripter.cpp */,
-				2EE40C7F16A2AEE40033DFE2 /* HGEventScripter.h */,
-				2EE40C7E16A2AEE40033DFE2 /* HGEventScripter.cpp */,
 				2EE40C8116A2AEE40033DFE2 /* HGISceneEntityScripter.h */,
 				2EE40C8016A2AEE40033DFE2 /* HGISceneEntityScripter.cpp */,
 				2EE40C8316A2AEE40033DFE2 /* HGQuadEntityScripter.h */,
@@ -1397,6 +1401,17 @@
 			path = ../HGSceneGraph;
 			sourceTree = "<group>";
 		};
+		D49D9AF016A7E13B0007D971 /* HGEventScripter */ = {
+			isa = PBXGroup;
+			children = (
+				D49D9AF216A7E13B0007D971 /* HGEventScripter.h */,
+				D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */,
+				D49D9AF416A7E2580007D971 /* HGEventKeyboardScripter.h */,
+				D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */,
+			);
+			path = HGEventScripter;
+			sourceTree = "<group>";
+		};
 		D4B74DCE16814EAC00C9DB3B /* Lua */ = {
 			isa = PBXGroup;
 			children = (
@@ -1509,9 +1524,10 @@
 			isa = PBXGroup;
 			children = (
 				2EE40C7816A2AEE40033DFE2 /* HGAnimationScripter */,
-				2EE40C7B16A2AEE40033DFE2 /* HGComponentScripter */,
-				2E4F28DA16A5A86F00A90645 /* HGMapScripter */,
 				2EE40C8616A2AEE40033DFE2 /* HGCoreScripter */,
+				2EE40C7B16A2AEE40033DFE2 /* HGComponentScripter */,
+				D49D9AF016A7E13B0007D971 /* HGEventScripter */,
+				2E4F28DA16A5A86F00A90645 /* HGMapScripter */,
 				2EE40C8C16A2AEE40033DFE2 /* HGServiceScripter */,
 			);
 			name = HGScript;
@@ -1662,7 +1678,6 @@
 				2E3F2F7D16A1D7FB00A801D8 /* HGIAnimation.cpp in Sources */,
 				2EE40C9716A2AEE40033DFE2 /* HGIAnimationScripter.cpp in Sources */,
 				2EE40C9816A2AEE40033DFE2 /* HGCompositeScripter.cpp in Sources */,
-				2EE40C9916A2AEE40033DFE2 /* HGEventScripter.cpp in Sources */,
 				2EE40C9A16A2AEE40033DFE2 /* HGISceneEntityScripter.cpp in Sources */,
 				2EE40C9B16A2AEE40033DFE2 /* HGQuadEntityScripter.cpp in Sources */,
 				2EE40C9C16A2AEE40033DFE2 /* HGSceneNodeScripter.cpp in Sources */,
@@ -1682,6 +1697,9 @@
 				D4669FBC16A55F91000D0256 /* HGAlphaAnimation.cpp in Sources */,
 				D4669FBF16A56541000D0256 /* HGAlphaAnimationScripter.cpp in Sources */,
 				2E4F28DE16A5ACAC00A90645 /* HGMapDataScripter.cpp in Sources */,
+				D49D9AE916A7DBFC0007D971 /* HGEvent.cpp in Sources */,
+				D49D9AF316A7E13B0007D971 /* HGEventScripter.cpp in Sources */,
+				D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
