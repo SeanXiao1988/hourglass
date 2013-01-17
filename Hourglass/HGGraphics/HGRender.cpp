@@ -988,7 +988,7 @@ void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t colo
     vl.primitive = fill ? GL_TRIANGLE_FAN : GL_LINE_STRIP;
     vl.primitive_count = fill ? 3 : 1;
     
-    Vertex vertices[vcount];
+    Vertex *vertices = (Vertex *)alloca(sizeof(Vertex) * vcount);
     memset(vertices, 0, sizeof(Vertex) * vcount);
     
     vl.v = vertices;
@@ -1021,6 +1021,7 @@ void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t colo
     }
     
     renderVertexList(&vl);
+	free(vertices);
 }
 
 void Render::renderQuad(const Quad* quad)
