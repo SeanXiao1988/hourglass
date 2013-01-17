@@ -15,7 +15,7 @@ function create_1st_obj()
     SCENEMANAGER.getRoot():addChild(sceneNode)
     OBJECTMANAGER.addComponentToObject(objName, sceneNode);
     
-    local entity = QuadEntity.new()
+    entity = QuadEntity.new()
     entity:setTexture(RENDER.textureLoad("map.png"))
     entity:setTextureRect(0, 0, 256, 256)
     sceneNode:attachEntity(entity)
@@ -25,10 +25,19 @@ function create_1st_obj()
     local rotAnim = RotationAnimation.new(360, 3)
     rotAnim:setType(ANIMATION_TYPE_RESET);
     sceneNode:addAnimation(rotAnim)
+    
+    local inputer = InputListener.new()
+    OBJECTMANAGER.addComponentToObject(objName, inputer)
+    inputer:setScriptCallback("input_callback")
+end
+
+function input_callback(listener, event)
+    print(event)
 end
 
 
 function hg_deinit()
+    QuadEntity.delete(entity)
 end
 
 function hg_init2()

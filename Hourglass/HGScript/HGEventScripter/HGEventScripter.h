@@ -33,7 +33,7 @@ class Event;
 extern luaL_Reg sEventRegs[];
 
 extern Event* event_check(lua_State* L, int idx);
-extern int event_push(lua_State* L, Event* event);
+extern int event_push(lua_State* L, const Event* event);
     
 extern void ScriptRegisterEvent(lua_State* L);
     

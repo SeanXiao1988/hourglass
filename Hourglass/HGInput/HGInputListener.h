@@ -33,12 +33,18 @@ public:
     InputListener() {}
     ~InputListener() {}
     
+    void            setScriptCallback(const char* func) { mScriptCallback = func; }
+    std::string&    getScriptCallback() { return mScriptCallback; }
+    
     // Composite
     static void             RegisterComponentType(void);
     virtual void            deInitialize();
     virtual EventResult     handleEvent(const Event& event);
-    virtual ComponentTypeID getComponentTypeID() { return COMP_PHYSICAL_OBJECT; };
+    virtual ComponentTypeID getComponentTypeID() { return COMP_INPUT_LISTENER; };
     virtual uint32_t        getComponentName();
+    
+private:
+    std::string mScriptCallback;
 };
     
 }

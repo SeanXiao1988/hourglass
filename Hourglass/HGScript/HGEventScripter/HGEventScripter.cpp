@@ -43,7 +43,7 @@ Event* event_check(lua_State* L, int idx)
     return event;
 }
     
-int event_push(lua_State* L, Event* event)
+int event_push(lua_State* L, const Event* event)
 {
     int ret = 0;
     

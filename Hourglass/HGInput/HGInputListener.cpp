@@ -21,6 +21,9 @@
 #include "HGInputListener.h"
 #include "HGHash.h"
 #include "HGObjectManager.h"
+#include "HGEventScripter.h"
+#include "HGInputListenerScripter.h"
+#include "HGScriptManager.h"
 
 namespace HG
 {
@@ -37,7 +40,25 @@ void InputListener::deInitialize()
     
 EventResult InputListener::handleEvent(const Event& event)
 {
-    return EVENT_RESULT_IGNORED;
+    EventResult result = EVENT_RESULT_IGNORED;
+    switch (event.eventID)
+    {
+        case EVENT_KEYBOARD:
+            if (mScriptCallback != "")
+            {
+                lua_getglobal(SCRIPTMANAGER.getState(), mScriptCallback.c_str());
+                inputlistener_push(SCRIPTMANAGER.getState(), this);
+                event_push(SCRIPTMANAGER.getState(), &event);
+                lua_call(SCRIPTMANAGER.getState(), 2, 0);
+                result = EVENT_RESULT_PROCESSED;
+            }
+            break;
+            
+        default:
+            break;
+    }
+
+    return result;
 }
 
 uint32_t InputListener::getComponentName()

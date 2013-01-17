@@ -251,6 +251,7 @@ void ObjectManager::postEvent(uint32_t objName, const Event& event)
         EventComponentSet::iterator setIter = eventCompSet.begin();
         for (; setIter != eventCompSet.end(); ++setIter)
         {
+            printf("%d\n", *setIter);
             ComponentsMap::iterator compMapIter = compMap->find((*setIter));
             if (compMapIter != compMap->end())
                 (compMapIter->second)->handleEvent(event);
@@ -260,13 +261,16 @@ void ObjectManager::postEvent(uint32_t objName, const Event& event)
     
 void ObjectManager::broadcastEvent(const Event& event)
 {
+    // iterate objects
     ObjectMap::iterator objmapIter = mObjects.begin();
     for (; objmapIter != mObjects.end(); ++objmapIter)
     {
+        // get object's components
         ComponentsMap *compMap = objmapIter->second;
         if (compMap == NULL)
             continue;
 
+        // find out what component subscript to this event
         EventComponentSet &eventCompSet = mEventComponentSet[event.eventID];
         EventComponentSet::iterator eventSetIter = eventCompSet.begin();
         for (; eventSetIter != eventCompSet.end(); ++eventSetIter)

@@ -67,6 +67,41 @@ int inputlistener_push(lua_State* L, InputListener* listener)
     return ret;
 }
     
+static int inputlistener_set_script_callback(lua_State* L)
+{
+    BREAK_START;
+    
+    InputListener* listener = inputlistener_check(L, 1);
+    if (listener == NULL)
+        break;
+    
+    const char* func = luaL_checkstring(L, 2);
+    listener->setScriptCallback(func);
+    
+    BREAK_END;
+    
+    return 0;
+}
+    
+static int inputlistener_get_script_callback(lua_State* L)
+{
+    int ret = 0;
+    
+    BREAK_START;
+    
+    InputListener* listener = inputlistener_check(L, 1);
+    if (listener == NULL)
+        break;
+    
+    std::string function = listener->getScriptCallback();
+    lua_pushstring(L, function.c_str());
+    ret = 1;
+    
+    BREAK_END;
+    
+    return ret;
+}
+    
 static int inputlistener_new(lua_State* L)
 {
     int ret = 0;
@@ -94,6 +129,8 @@ static int inputlistener_delete(lua_State* L)
     
 luaL_Reg sInputListenerRegs[] =
 {
+    { "setScriptCallback", inputlistener_set_script_callback },
+    { "getScriptCallback", inputlistener_get_script_callback },
     { NULL, NULL }
 };
     
