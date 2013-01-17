@@ -31,6 +31,7 @@
 #include "HGCompositeScripter.h"
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
+#include "HGInputListenerScripter.h"
 
 #include "HGMapDataScripter.h"
 
@@ -163,6 +164,7 @@ void ScriptManager::_registerEngine()
     
     // register metatable for other classes
     ScriptRegisterComposite(mState);
+    ScriptRegisterInputListener(mState);
     ScriptRegisterSceneNode(mState);
     ScriptRegisterQuadEntity(mState);
     

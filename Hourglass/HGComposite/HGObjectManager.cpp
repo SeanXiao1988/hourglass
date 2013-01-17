@@ -22,6 +22,7 @@
 #include "HGData.h"
 
 #include "HGPhysicalObject.h"
+#include "HGInputListener.h"
 #include "HGSceneNode.h"
 #include "HGQuadEntity.h"
 #include "HGMapData.h"
@@ -179,6 +180,7 @@ IComponent* ObjectManager::queryComponent(uint32_t name, ComponentTypeID ctid)
     
 void ObjectManager::registerBuiltinComponents()
 {
+    InputListener::RegisterComponentType();
     PhysicalObject::RegisterComponentType();
     SceneNode::RegisterComponentType();
     QuadEntity::RegisterComponentType();

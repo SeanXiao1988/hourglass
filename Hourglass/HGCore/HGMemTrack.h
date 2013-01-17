@@ -79,7 +79,7 @@ class AutoMemoryTag
 {
 public:
 	AutoMemoryTag() {InitializeMemoryLog();}
-	~AutoMemoryTag() {PrintMemoryLeak(); PrintMemorySummary(); DeInitializeMemoryLog();}
+	~AutoMemoryTag() {PrintMemoryLeak(); /*PrintMemorySummary();*/ DeInitializeMemoryLog();}
 };
     
 }
