@@ -62,7 +62,7 @@ void SceneManager::deInitialize()
 		mRootNode = NULL;
 	}
 
-	deleteAll();
+	// deleteAll();
 }
 
 SceneNode* SceneManager::getRoot()
@@ -147,7 +147,7 @@ SceneNode* SceneManager::getNode(const std::string& name)
 {
     return getNode(Hash(name));
 }
-
+/*
 void SceneManager::deleteNode(const std::string& name)
 {
     deleteNode(Hash(name));
@@ -189,5 +189,5 @@ void SceneManager::deleteAll()
 
 	mNodeMap.clear();
 }
-
+*/
 }

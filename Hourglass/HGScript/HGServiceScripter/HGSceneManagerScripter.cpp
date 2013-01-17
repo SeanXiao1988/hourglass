@@ -48,7 +48,7 @@ static int scenemanager_create_node(lua_State* L)
 
     return ret;
 }
-    
+    /*
 static int scenemanager_delete_node(lua_State* L)
 {
     BREAK_START;
@@ -68,7 +68,7 @@ static int scenemanager_delete_node(lua_State* L)
     
     return 0;
 }
-    
+    */
 static int scenemanager_get_node(lua_State* L)
 {
     int ret = 0;
@@ -121,11 +121,11 @@ void ScriptRegisterSceneManager(lua_State* L)
     lua_pushstring(L, "createNode");
     lua_pushcfunction(L, scenemanager_create_node);
     lua_settable(L, -3);
-    
+    /*
     lua_pushstring(L, "deleteNode");
     lua_pushcfunction(L, scenemanager_delete_node);
     lua_settable(L, -3);
-    
+     */
     lua_pushstring(L, "getNode");
     lua_pushcfunction(L, scenemanager_get_node);
     lua_settable(L, -3);

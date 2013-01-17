@@ -26,7 +26,7 @@
 namespace HG
 {
 
-extern void ScriptRegisterSceneManager(lua_State* L);
+extern void ScriptRegisterObjectManager(lua_State* L);
 
 }
 

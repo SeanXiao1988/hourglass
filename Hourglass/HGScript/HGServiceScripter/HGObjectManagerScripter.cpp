@@ -55,10 +55,7 @@ static int objectmanager_is_object_exists(lua_State* L)
     
 static int objectmanager_delete_object(lua_State* L)
 {
-    int ret = 0;
     uint32_t objectNameHash = 0;
-    
-    BREAK_START;
     
     if (lua_isstring(L, 1))
     {
@@ -72,22 +69,14 @@ static int objectmanager_delete_object(lua_State* L)
     
     OBJECTMANAGER.deleteObject(objectNameHash);
     
-    BREAK_END;
-    
-    return ret;
+    return 0;
 }
     
 static int objectmanager_delete_objects(lua_State* L)
 {
-    int ret = 0;
-    
-    BREAK_START;
-    
     OBJECTMANAGER.deleteObjects();
-
-    BREAK_END;
     
-    return ret;
+    return 0;
 }
     
 static int objectmanager_get_object_components(lua_State* L)
@@ -130,6 +119,66 @@ static int objectmanager_get_object_components(lua_State* L)
     
     return ret;
 }
+    
+static int objectmanager_query_component(lua_State* L)
+{
+    int ret = 0;
+    uint32_t name = 0;
+    ComponentTypeID tid = COMP_NONE;
+    
+    BREAK_START;
+    
+    if (lua_isstring(L, 1))
+    {
+        const char* objectName = luaL_checkstring(L, 1);
+        name = Hash(objectName);
+    }
+    else if (lua_isnumber(L, 1))
+    {
+        name = luaL_checkunsigned(L, 1);
+    }
+    
+    tid = (ComponentTypeID)luaL_checkinteger(L, 2);
+    
+    IComponent* comp = OBJECTMANAGER.queryComponent(name, tid);
+    
+    ret = icomponent_push(L, comp);
+    
+    BREAK_END;
+    
+    return ret;
+}
+    
+static int objectmanager_add_component_to_object(lua_State* L)
+{
+    bool added = false;
+    uint32_t name = 0;
+    IComponent* comp = NULL;
+    
+    BREAK_START;
+    
+    if (lua_isstring(L, 1))
+    {
+        const char* objectName = luaL_checkstring(L, 1);
+        name = Hash(objectName);
+    }
+    else if (lua_isnumber(L, 1))
+    {
+        name = luaL_checkunsigned(L, 1);
+    }
+    
+    comp = icomponent_check(L, 2);
+    if (comp == NULL)
+        break;
+    
+    added = OBJECTMANAGER.addComponentToObject(name, comp);
+    
+    BREAK_END;
+    
+    lua_pushboolean(L, added?1:0);
+    
+    return 1;
+}
 
 void ScriptRegisterObjectManager(lua_State* L)
 {
@@ -154,6 +203,14 @@ void ScriptRegisterObjectManager(lua_State* L)
     
     lua_pushstring(L, "getObjectComponents");
     lua_pushcfunction(L, objectmanager_get_object_components);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "queryComponent");
+    lua_pushcfunction(L, objectmanager_query_component);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "addComponentToObject");
+    lua_pushcfunction(L, objectmanager_add_component_to_object);
     lua_settable(L, -3);
 
     lua_setglobal(L, "OBJECTMANAGER");

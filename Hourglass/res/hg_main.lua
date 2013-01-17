@@ -3,8 +3,19 @@ function hg_init()
     APPLICATION.setTitle("hourglass v0.1")
 
     RENDER.setClearColor(0x808080FF)
+    
+    create_1st_obj()
 
 end
+
+function create_1st_obj()
+    local objName = "1stObject"
+    local sceneNode = SCENEMANAGER.createNode("1stNode")
+    sceneNode:setXY(100, 100)
+    SCENEMANAGER.getRoot():addChild(sceneNode)
+    OBJECTMANAGER.addComponentToObject(objName, sceneNode);
+end
+
 
 function hg_deinit()
 end

@@ -44,11 +44,12 @@ public:
 	void		deInitialize();
 
     SceneNode*  createNode(const std::string& name);
+    /*
 	void		deleteNode(const std::string& name);
     void        deleteNode(const uint32_t hashname);
 	void		deleteNode(SceneNode* node);
 	void		deleteAll();
-
+     */
     SceneNode*  getNode(const uint32_t hashedName);
     SceneNode*  getNode(const std::string& name);
 

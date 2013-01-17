@@ -23,6 +23,7 @@
 #include "HGApplicationScripter.h"
 #include "HGGraphicScripter.h"
 #include "HGHashScripter.h"
+#include "HGObjectManagerScripter.h"
 #include "HGRenderScripter.h"
 #include "HGSceneManagerScripter.h"
 #include "HGSpriteAnimationCompilerScripter.h"
@@ -155,6 +156,7 @@ void ScriptManager::_registerEngine()
     ScriptRegisterApplication(mState);
     ScriptRegisterGraphic(mState);
     ScriptRegisterHash(mState);
+    ScriptRegisterObjectManager(mState);
     ScriptRegisterRender(mState);
     ScriptRegisterSceneManager(mState);
     ScriptRegisterSpriteAnimationCompiler(mState);

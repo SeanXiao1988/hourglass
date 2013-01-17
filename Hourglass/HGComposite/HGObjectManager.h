@@ -60,7 +60,7 @@ public:
     // component
     void            registerBuiltinComponents();
     ComponentTypeID getComponentTypeByName(uint32_t name);
-    bool            addComponentToObject(IComponent* comp, uint32_t objectName);
+    bool            addComponentToObject(uint32_t objectName, IComponent* comp);
     
     // event
     void            subscribeToEvent(ComponentTypeID ctid, EventID etid);

@@ -196,7 +196,7 @@ ComponentTypeID ObjectManager::getComponentTypeByName(uint32_t name)
     return ret;
 }
     
-bool ObjectManager::addComponentToObject(IComponent* comp, uint32_t objectName)
+bool ObjectManager::addComponentToObject(uint32_t objectName, IComponent* comp)
 {
     bool ret = false;
     
