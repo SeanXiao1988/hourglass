@@ -10,21 +10,30 @@ end
 
 function create_1st_obj()
     local objName = "1stObject"
-    local sceneNode = SCENEMANAGER.createNode("1stNode")
+    sceneNode = SCENEMANAGER.createNode("1stNode")
     sceneNode:setXY(100, 100)
     SCENEMANAGER.getRoot():addChild(sceneNode)
     OBJECTMANAGER.addComponentToObject(objName, sceneNode);
     
+    sceneNode2 = SCENEMANAGER.createNode("2ndNode")
+    sceneNode2:setXY(0, 0)
+    sceneNode:addChild(sceneNode2)
+    
+    entity2 = QuadEntity.new()
+    entity2:setTexture(RENDER.textureLoad("test.png"))
+    entity2:setTextureRect(0, 0, 256, 256)
+    sceneNode2:attachEntity(entity2)
+    
     entity = QuadEntity.new()
-    entity:setTexture(RENDER.textureLoad("map.png"))
+    entity:setTexture(RENDER.textureLoad("test2.png"))
     entity:setTextureRect(0, 0, 256, 256)
     sceneNode:attachEntity(entity)
     
     sceneNode:setXY(128, 128)
     
-    local rotAnim = RotationAnimation.new(360, 3)
-    rotAnim:setType(ANIMATION_TYPE_RESET);
-    sceneNode:addAnimation(rotAnim)
+    --local rotAnim = RotationAnimation.new(360, 3)
+    --rotAnim:setType(ANIMATION_TYPE_RESET);
+    --sceneNode:addAnimation(rotAnim)
     
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
@@ -32,7 +41,12 @@ function create_1st_obj()
 end
 
 function input_callback(listener, event)
-    print(event)
+    if event:key() == string.byte("A", 1) and event:action() == 1 then
+        x = sceneNode:getX();
+        x = x - 5.0
+        sceneNode:setX(x)
+        print("...");
+    end
 end
 
 

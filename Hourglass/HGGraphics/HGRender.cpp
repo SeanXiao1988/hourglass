@@ -250,7 +250,7 @@ void Render::setClipping(int x, int y, int w, int h)
  */
 void Render::clear()
 {
-    bool cleanZ = false;
+    bool cleanZ = true;
     if (mCurRTarget)
     {
         if (mCurRTarget->bDepth)
@@ -297,14 +297,14 @@ HG_ERROR Render::beginScene(GLuint tar)
             }
             else
             {
-                glDisable(GL_DEPTH_TEST);
+                //glDisable(GL_DEPTH_TEST);
             }
             _setupOrtho(target->width, target->height, true);
         }
         else // taget
         {
             glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-            glDisable(GL_DEPTH_TEST);
+            //glDisable(GL_DEPTH_TEST);
             _setupOrtho(mWidth, mHeight);
         }
         
@@ -1329,12 +1329,12 @@ HG_ERROR Render::_initOpenGL()
 {
     _setupOrtho(mWidth, mHeight);
     
-    glDisable(GL_ALPHA_TEST);
-    glDisable(GL_CULL_FACE);
-    glDisable(GL_LIGHTING);
-	glDisable(GL_DEPTH_TEST); // TODO: learn! must disable to enable alpha blend
+    glAlphaFunc(GL_GREATER, 0.1);   // why we need this ?
+    glEnable(GL_ALPHA_TEST);
+
+	glEnable(GL_DEPTH_TEST);        // answer http://www.sjbaker.org/steve/omniv/alpha_sorting.html
 	glDepthFunc(GL_LESS);
-	glDepthMask(GL_FALSE);
+	glDepthMask(GL_TRUE);
     
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

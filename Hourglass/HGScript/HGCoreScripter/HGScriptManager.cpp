@@ -29,6 +29,7 @@
 #include "HGSpriteAnimationCompilerScripter.h"
 
 #include "HGCompositeScripter.h"
+#include "HGEventScripter.h"
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 #include "HGInputListenerScripter.h"
@@ -65,6 +66,7 @@ void ScriptManager::initialize()
     {
         { "base", luaopen_base },
         { "io", luaopen_io },
+        { "string", luaopen_string },
         { NULL, NULL }
     };
 
@@ -164,6 +166,7 @@ void ScriptManager::_registerEngine()
     
     // register metatable for other classes
     ScriptRegisterComposite(mState);
+    ScriptRegisterEvent(mState);
     ScriptRegisterInputListener(mState);
     ScriptRegisterSceneNode(mState);
     ScriptRegisterQuadEntity(mState);

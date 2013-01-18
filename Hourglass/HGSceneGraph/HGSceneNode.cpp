@@ -103,6 +103,12 @@ void SceneNode::render()
     mat *= glm::translate(glm::mat4(1.0f), glm::vec3(mX, mY, mZ));
     mat *= glm::rotate(glm::mat4(1.0f), mRotation, glm::vec3(0.0f, 0.0f, 1.0f));
     mat *= glm::scale(glm::mat4(1.0f), glm::vec3(mScaleX, mScaleY, 1.0f));
+
+    glm::mat4 skew(1.0f);
+    skew[1][0] = tanf(0.5);
+    //skew[0][1] = tanf(0.5);
+    
+    mat *= skew;
     
     // Magic number...
     // extract the x, y coordinates
