@@ -127,15 +127,15 @@ static int objectmanager_query_component(lua_State* L)
     ComponentTypeID tid = COMP_NONE;
     
     BREAK_START;
-    
-    if (lua_isstring(L, 1))
+
+    if (lua_isnumber(L, 1))
+    {
+        name = luaL_checkunsigned(L, 1);
+    }
+    else if (lua_isstring(L, 1))
     {
         const char* objectName = luaL_checkstring(L, 1);
         name = Hash(objectName);
-    }
-    else if (lua_isnumber(L, 1))
-    {
-        name = luaL_checkunsigned(L, 1);
     }
     
     tid = (ComponentTypeID)luaL_checkinteger(L, 2);

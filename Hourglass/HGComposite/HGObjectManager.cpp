@@ -56,14 +56,14 @@ bool ObjectManager::isObjectExists(uint32_t name)
     
     BREAK_START;
     
-        if (mObjects.empty())
-            break;
-        
-        ObjectMap::iterator iter = mObjects.find(name);
-        if (iter == mObjects.end())
-            break;
-        else
-            ret = true;
+    if (mObjects.empty())
+        break;
+    
+    ObjectMap::iterator iter = mObjects.find(name);
+    if (iter == mObjects.end())
+        break;
+    else
+        ret = true;
         
     BREAK_END;
     
@@ -204,27 +204,32 @@ bool ObjectManager::addComponentToObject(uint32_t objectName, IComponent* comp)
     
     BREAK_START;
     
-		if (comp == NULL)
-			break;
-		
-        // object not exists
-        if (!isObjectExists(objectName))
-        {
-			ComponentsMap *compMap = new ComponentsMap;
-			compMap->insert(ComponentsMap::value_type(comp->getComponentTypeID(), comp));
-			mObjects.insert(ObjectMap::value_type(objectName, compMap));
-        }
+    if (comp == NULL)
+        break;
+    
+    // object not exists
+    if (!isObjectExists(objectName))
+    {
+        ComponentsMap *compMap = new ComponentsMap;
+        compMap->insert(ComponentsMap::value_type(comp->getComponentTypeID(), comp));
+        mObjects.insert(ObjectMap::value_type(objectName, compMap));
+        comp->mObjectName = objectName;
+        ret = true;
+    }
+    else
+    {
+        ObjectMap::iterator objectIter = mObjects.find(objectName);
+        if (objectIter == mObjects.end())
+            break;
 
-		ObjectMap::iterator objectIter = mObjects.find(objectName);
-		if (objectIter == mObjects.end())
-			break;
-
-		ComponentsMap *compsMap = objectIter->second;
+        ComponentsMap *compsMap = objectIter->second;
         if (compsMap == NULL)
             break;
         
         compsMap->insert(ComponentsMap::value_type(comp->getComponentTypeID(), comp));
+        comp->mObjectName = objectName;
         ret = true;
+    }
 
     BREAK_END;
     

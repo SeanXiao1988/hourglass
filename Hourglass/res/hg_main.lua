@@ -35,10 +35,14 @@ end
 
 function input_callback(listener, event)
     if event:key() == string.byte("A", 1) and event:action() == 1 then
-        x = sceneNode:getX();
-        x = x - 5.0
-        sceneNode:setX(x)
-        print("...");
+        local objName = listener:getObjectName()
+        local node = OBJECTMANAGER.queryComponent(objName, COMP_SCENE_NODE)
+        if node ~= nil then
+            x = node:getX()
+            x = x - 5.0
+            node:setX(x)
+        end
+
     end
 end
 

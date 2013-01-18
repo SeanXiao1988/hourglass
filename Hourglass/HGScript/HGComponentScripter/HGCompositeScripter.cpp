@@ -120,6 +120,8 @@ static int icomponent_get_object_name(lua_State* L)
     if (comp == NULL)
         break;
     
+    name = comp->getObjectName();
+    
     BREAK_END;
     
     lua_pushunsigned(L, name);
