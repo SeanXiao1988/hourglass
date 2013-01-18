@@ -162,22 +162,6 @@ int main2(int argc, const char * argv[])
         
         // Check if ESC key was pressed or window was closed
         running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
-        
-        // Debug
-        static bool isF1triggered = false;
-        
-        if (glfwGetKey(GLFW_KEY_F1) == GLFW_RELEASE && isF1triggered)
-        {
-            bool debug = RENDER.isDebug();
-			RENDER.setDebug(!debug);
-            isF1triggered = false;
-        }
-        else if (glfwGetKey(GLFW_KEY_F1) == GLFW_PRESS)
-        {
-            isF1triggered = true;
-        }
-        //
-        
 
 		frametime = glfwGetTime() - time;
 #if PLATFORM == PLATFORM_WINDOWS

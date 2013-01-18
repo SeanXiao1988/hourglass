@@ -597,39 +597,6 @@ static int render_is_fullscreen(lua_State* L)
 	return ret;
 }
 
-static int render_set_debug(lua_State* L)
-{
-    int ret = 0;
-
-    BREAK_START;
-
-	if (!lua_isboolean(L, 1))
-		break;
-	
-	bool debug = lua_toboolean(L, 1) == 0?false:true;
-	RENDER.setDebug(debug);
-
-    BREAK_END;
-
-    return ret;
-}
-
-static int render_is_debug(lua_State* L)
-{
-    int ret = 1;
-	bool isdebug = false;
-
-    BREAK_START;
-
-	isdebug = RENDER.isDebug();
-
-    BREAK_END;
-
-	lua_pushboolean(L, isdebug?1:0);
-
-    return ret;
-}
-
 void ScriptRegisterRender(lua_State* L)
 {
     BREAK_START;
@@ -765,14 +732,6 @@ void ScriptRegisterRender(lua_State* L)
     
     lua_pushstring(L, "getHeight");
     lua_pushcfunction(L, render_get_height);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "setDebug");
-    lua_pushcfunction(L, render_set_debug);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "isDebug");
-    lua_pushcfunction(L, render_is_debug);
     lua_settable(L, -3);
     
     lua_setglobal(L, RENDER_LUA_NAME);

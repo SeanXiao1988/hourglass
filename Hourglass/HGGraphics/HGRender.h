@@ -107,9 +107,6 @@ public:
     const int&      getHeight() const { return mHeight; }
 	const bool&		isFullScreen() const { return mIsFullScreen; }
     
-    void			setDebug(bool debug = true);
-    const bool		isDebug() const { return mIsDebug; }
-    
 private:
     void			_renderBatch(bool bEndScene = false);
     void			_setupPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar);
@@ -165,8 +162,6 @@ private:
     double              mFPS;
     double              mTime0;
     double              mTime1;
-    
-    bool				mIsDebug;
     int                 mDebugVertexUsed;
     
 private:

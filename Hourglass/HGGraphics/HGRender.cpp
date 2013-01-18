@@ -53,7 +53,6 @@ Render::Render()
     , mHeight(0)
     , mIsFullScreen(false)
 	, mDebugVertexUsed(0)
-	, mIsDebug(false)
     , mDefaultFont(NULL)
 {
     
@@ -1154,35 +1153,27 @@ void Render::_renderBatch(bool bEndScene)
     if (mPrimitive == 0)
         return;
     
-    if (mIsDebug)
+    switch (mCurPrimitiveType)
     {
-        glDrawArrays(GL_LINE_STRIP, 0, mDebugVertexUsed);
-        mDebugVertexUsed = 0;
-    }
-    else
-    {
-        switch (mCurPrimitiveType)
-        {
-            case PRIMITIVE_CUSTOM:
-                glDrawArrays(mLastCustomPrimitive, 0, mCurVertexList.vertex_count);
-                //mCurVertexList = NULL;
-                break;
-                
-            case PRIMITIVE_QUADS:
-                glDrawElements(GL_TRIANGLES, mPrimitive * 6, GL_UNSIGNED_SHORT, mpIB);
-                break;
-                
-            case PRIMITIVE_TRIANGLES:
-                glDrawArrays(GL_TRIANGLES, 0, mPrimitive * 3);
-                break;
-                
-            case PRIMITIVE_LINES:
-                glDrawArrays(GL_LINES, 0, mPrimitive * 2);
-                break;
-                
-            default:
-                break;
-        }
+        case PRIMITIVE_CUSTOM:
+            glDrawArrays(mLastCustomPrimitive, 0, mCurVertexList.vertex_count);
+            //mCurVertexList = NULL;
+            break;
+            
+        case PRIMITIVE_QUADS:
+            glDrawElements(GL_TRIANGLES, mPrimitive * 6, GL_UNSIGNED_SHORT, mpIB);
+            break;
+            
+        case PRIMITIVE_TRIANGLES:
+            glDrawArrays(GL_TRIANGLES, 0, mPrimitive * 3);
+            break;
+            
+        case PRIMITIVE_LINES:
+            glDrawArrays(GL_LINES, 0, mPrimitive * 2);
+            break;
+            
+        default:
+            break;
     }
     
     mPrimitive = 0;
@@ -1530,24 +1521,6 @@ double Render::calculateFPS()
     mFrames++;
     
     return ret;
-}
-    
-void Render::setDebug( bool debug /*= true*/ )
-{
-    if (debug)
-    {
-        glDisable(GL_TEXTURE_2D);
-        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    }
-    else
-    {
-        glEnable(GL_TEXTURE_2D);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    }
-    
-    mDebugVertexUsed = 0;
-    mPrimitive = 0;
-    mIsDebug = debug;
 }
     
 }
