@@ -34,14 +34,14 @@ static int objectmanager_is_object_exists(lua_State* L)
     
     BREAK_START;
     
-    if (lua_isstring(L, 1))
+    if (lua_isnumber(L, 1))
+    {
+        objectNameHash = luaL_checkunsigned(L, 1);
+    }
+    else if (lua_isstring(L, 1))
     {
         const char* objectName = luaL_checkstring(L, 1);
         objectNameHash = Hash(objectName);
-    }
-    else if (lua_isnumber(L, 1))
-    {
-        objectNameHash = luaL_checkunsigned(L, 1);
     }
     
     exist = OBJECTMANAGER.isObjectExists(objectNameHash);
@@ -57,14 +57,14 @@ static int objectmanager_delete_object(lua_State* L)
 {
     uint32_t objectNameHash = 0;
     
-    if (lua_isstring(L, 1))
+    if (lua_isnumber(L, 1))
+    {
+        objectNameHash = luaL_checkunsigned(L, 1);
+    }
+    else if (lua_isstring(L, 1))
     {
         const char* objectName = luaL_checkstring(L, 1);
         objectNameHash = Hash(objectName);
-    }
-    else if (lua_isnumber(L, 1))
-    {
-        objectNameHash = luaL_checkunsigned(L, 1);
     }
     
     OBJECTMANAGER.deleteObject(objectNameHash);
@@ -86,14 +86,14 @@ static int objectmanager_get_object_components(lua_State* L)
     
     BREAK_START;
     
-    if (lua_isstring(L, 1))
+    if (lua_isnumber(L, 1))
+    {
+        objectNameHash = luaL_checkunsigned(L, 1);
+    }
+    else if (lua_isstring(L, 1))
     {
         const char* objectName = luaL_checkstring(L, 1);
         objectNameHash = Hash(objectName);
-    }
-    else if (lua_isnumber(L, 1))
-    {
-        objectNameHash = luaL_checkunsigned(L, 1);
     }
     
     ComponentsMap* map = OBJECTMANAGER.getObjectComponents(objectNameHash);
@@ -157,14 +157,14 @@ static int objectmanager_add_component_to_object(lua_State* L)
     
     BREAK_START;
     
-    if (lua_isstring(L, 1))
+    if (lua_isnumber(L, 1))
+    {
+        name = luaL_checkunsigned(L, 1);
+    }
+    else if (lua_isstring(L, 1))
     {
         const char* objectName = luaL_checkstring(L, 1);
         name = Hash(objectName);
-    }
-    else if (lua_isnumber(L, 1))
-    {
-        name = luaL_checkunsigned(L, 1);
     }
     
     comp = icomponent_check(L, 2);

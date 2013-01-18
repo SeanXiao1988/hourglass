@@ -796,14 +796,14 @@ static int scenenode_add_animation(lua_State* L)
         break;
     
     uint32_t name = 0;
-    if (lua_isstring(L, 3))
+    if(lua_isnumber(L, 3))
+    {
+        name = luaL_checkunsigned(L, 3);
+    }
+    else if (lua_isstring(L, 3))
     {
         const char* animName = luaL_checkstring(L, 3);
         name = Hash(animName);
-    }
-    else if(lua_isnumber(L, 3))
-    {
-        name = luaL_checkunsigned(L, 3);
     }
     
     node->addAnimation(anim, name);
@@ -825,14 +825,14 @@ static int scenenode_get_animation(lua_State* L)
         break;
     
     uint32_t name = 0;
-    if (lua_isstring(L, 2))
+    if (lua_isnumber(L, 2))
+    {
+        name = luaL_checkunsigned(L, 2);
+    }
+    else if (lua_isstring(L, 2))
     {
         const char* animName = luaL_checkstring(L, 2);
         name = Hash(animName);
-    }
-    else if (lua_isnumber(L, 2))
-    {
-        name = luaL_checkunsigned(L, 2);
     }
     
     IAnimation* anim = node->getAnimation(name);
@@ -856,14 +856,14 @@ static int scenenode_remove_animation(lua_State* L)
         break;
     
     uint32_t name = 0;
-    if (lua_isstring(L, 2))
+    if (lua_isnumber(L, 2))
+    {
+        name = luaL_checkunsigned(L, 2);
+    }
+    else if (lua_isstring(L, 2))
     {
         const char* animName = luaL_checkstring(L, 2);
         name = Hash(animName);
-    }
-    else if (lua_isnumber(L, 2))
-    {
-        name = luaL_checkunsigned(L, 2);
     }
     
     node->removeAnimation(name);
