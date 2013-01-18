@@ -56,6 +56,7 @@
 		D46C94D31647BA93005B98A4 /* blur.vert in Resources */ = {isa = PBXBuildFile; fileRef = D46C94CF1647BA8A005B98A4 /* blur.vert */; };
 		D46C94D81647BC3D005B98A4 /* ripple.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94D41647BC35005B98A4 /* ripple.frag */; };
 		D46C94D91647BC3D005B98A4 /* ripple.vert in Resources */ = {isa = PBXBuildFile; fileRef = D46C94D51647BC35005B98A4 /* ripple.vert */; };
+		D47F3E8416A95080000CBCD5 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F3E8316A95080000CBCD5 /* OpenAL.framework */; };
 		D48614511651D7D600B5E746 /* c.xml in Resources */ = {isa = PBXBuildFile; fileRef = D48614501651D7D600B5E746 /* c.xml */; };
 		D4884BBC1643C9D3007E535D /* shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = D4884BB81643C9C2007E535D /* shader.frag */; };
 		D4884BBD1643C9D3007E535D /* shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = D4884BB91643C9C2007E535D /* shader.vert */; };
@@ -536,6 +537,7 @@
 		D46C94D51647BC35005B98A4 /* ripple.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ripple.vert; path = ../res/ripple.vert; sourceTree = "<group>"; };
 		D4733F4915FF34570088D218 /* HGConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGConsole.cpp; sourceTree = "<group>"; };
 		D4733F4A15FF34570088D218 /* HGConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGConsole.h; sourceTree = "<group>"; };
+		D47F3E8316A95080000CBCD5 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		D48614501651D7D600B5E746 /* c.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = c.xml; path = ../res/c.xml; sourceTree = "<group>"; };
 		D4884BB81643C9C2007E535D /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.frag; path = ../res/shader.frag; sourceTree = "<group>"; };
 		D4884BB91643C9C2007E535D /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.vert; path = ../res/shader.vert; sourceTree = "<group>"; };
@@ -652,9 +654,10 @@
 				D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */,
 				2E501CAD164E1D0C007AC606 /* libGLEW.a in Frameworks */,
 				2E501CAC164E1CCD007AC606 /* libglfw.a in Frameworks */,
+				2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */,
+				D47F3E8416A95080000CBCD5 /* OpenAL.framework in Frameworks */,
 				D4BFA96A16169BE300587E6B /* OpenGL.framework in Frameworks */,
 				D4BFA835161699EC00587E6B /* Cocoa.framework in Frameworks */,
-				2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,6 +998,7 @@
 		D4683E0D15D39845005EE6D6 = {
 			isa = PBXGroup;
 			children = (
+				D47F3E8316A95080000CBCD5 /* OpenAL.framework */,
 				D4BFA86316169B0900587E6B /* Hourglass.xcodeproj */,
 				D4D7BADD164B586C00CB40A8 /* HG.h */,
 				2E501CAE164E1D8B007AC606 /* HGEngine */,

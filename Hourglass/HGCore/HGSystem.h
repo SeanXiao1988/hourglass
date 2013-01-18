@@ -123,6 +123,12 @@
     #pragma comment(lib, "ftgl_static.lib")
 #endif
 
+/// Audio
+#if PLATFORM == PLATFORM_MACOS
+    #include <OpenAL/al.h>
+    #include <OpenAL/alc.h>
+#endif
+
 /// Utility Macros
 #define BREAK_START do{
 #define BREAK_END   }while(0)

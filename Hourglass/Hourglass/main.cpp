@@ -11,11 +11,13 @@ void mainloop()
     double simulationTime = glfwGetTime();
     double realTime = 0.0;
     
+    double timeScale = 0.5;
+    
     while (running)
     {
         realTime = glfwGetTime();
         
-        while (simulationTime < realTime)
+        while (simulationTime/timeScale < realTime)
         {
             simulationTime += 0.016;
             SCENEMANAGER.update(0.016);
