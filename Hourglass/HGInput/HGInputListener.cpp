@@ -41,15 +41,19 @@ void InputListener::deInitialize()
 EventResult InputListener::handleEvent(const Event& event)
 {
     EventResult result = EVENT_RESULT_IGNORED;
+    lua_State* L = SCRIPTMANAGER.getState();
+    
     switch (event.eventID)
     {
         case EVENT_KEYBOARD:
             if (mScriptCallback != "")
             {
-                lua_getglobal(SCRIPTMANAGER.getState(), mScriptCallback.c_str());
-                inputlistener_push(SCRIPTMANAGER.getState(), this);
-                event_push(SCRIPTMANAGER.getState(), &event);
-                lua_call(SCRIPTMANAGER.getState(), 2, 0);
+                lua_getglobal(L, mScriptCallback.c_str());
+                if (lua_isnil(L, 1))
+                    break;
+                inputlistener_push(L, this);
+                event_push(L, &event);
+                lua_call(L, 2, 0);
                 result = EVENT_RESULT_PROCESSED;
             }
             break;

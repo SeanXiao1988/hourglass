@@ -33,8 +33,10 @@ typedef enum hg_error_types
     HG_ERROR_GLEW					= 1 << 6,
     HG_ERROR_GL_VER_NOT_SUPPORT		= 1 << 7,
 	HG_ERROR_GL_EXTENSIONS_ERROR	= 1 << 8,
-    HG_ERROR_INSUFFICIENT_MEMORY    = 1 << 9,
-    HG_ERROR_BAD_INVOCATION         = 1 << 10
+    HG_ERROR_AL_DEVICE_NOT_SUPPORT  = 1 << 9,
+    HG_ERROR_AL_CONTEXT_FAILED      = 1 << 10,
+    HG_ERROR_INSUFFICIENT_MEMORY    = 1 << 11,
+    HG_ERROR_BAD_INVOCATION         = 1 << 12
 }HG_ERROR;
 
 #endif // HGERROR_H_

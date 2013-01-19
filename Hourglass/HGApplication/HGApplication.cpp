@@ -32,9 +32,12 @@ void Application::initialize()
     SCENEMANAGER.initialize();
     INPUTMANAGER.initialize();
     CONSOLE.initialize();
+    AUDIOMANAGER.initialize();
+    
     SCRIPTMANAGER.initialize();
     SCRIPTMANAGER.execScript(MAIN_SCRIPT_FILE);
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_ENTRY);
+    
     mMainLoopFunc = NULL;
 }
     
@@ -42,6 +45,8 @@ void Application::deInitialize()
 {
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_DEINIT);
     SCRIPTMANAGER.deInitialize();
+    
+    AUDIOMANAGER.deInitialize();
     CONSOLE.deInitialze();
     INPUTMANAGER.deInitialize();
     SCENEMANAGER.deInitialize();

@@ -42,6 +42,7 @@
 		D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4197811167ECAF3006A65ED /* libfreetype.a */; };
 		D41DCAC71626CC6200541544 /* HGMapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41DCAC61626CC6200541544 /* HGMapData.cpp */; };
 		D422BF6B1655E0FD0064B8DE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = D422BF6A1655E0FD0064B8DE /* license.txt */; };
+		D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */; };
 		D43871A8164A5D3C00E2A521 /* HGInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43871A6164A5D3C00E2A521 /* HGInputManager.cpp */; };
 		D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */; };
 		D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D45001EC16804D9C004FF847 /* source_code_pro.ttf */; };
@@ -276,6 +277,9 @@
 		D41DCAC61626CC6200541544 /* HGMapData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMapData.cpp; sourceTree = "<group>"; };
 		D422BF6A1655E0FD0064B8DE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		D42B812C166C3AB2000EE2AA /* HGAnimationDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAnimationDef.h; sourceTree = "<group>"; };
+		D433C1F916AA322000F0D712 /* HGAudioDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioDef.h; sourceTree = "<group>"; };
+		D433C1FB16AA362200F0D712 /* HGAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioManager.h; sourceTree = "<group>"; };
+		D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGAudioManager.cpp; sourceTree = "<group>"; };
 		D43488DA1603050300E792DD /* HGPhysicsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPhysicsManager.h; sourceTree = "<group>"; };
 		D43488DC160313EA00E792DD /* HGPhysicsManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGPhysicsManager.cpp; sourceTree = "<group>"; };
 		D43871A6164A5D3C00E2A521 /* HGInputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGInputManager.cpp; sourceTree = "<group>"; };
@@ -698,6 +702,7 @@
 			children = (
 				D4683F2B15D3A44E005EE6D6 /* HGCore */,
 				2EF4D3C71674DEBD00C616D3 /* HGApplication */,
+				D433C1F816AA322000F0D712 /* HGAudio */,
 				D42B812B166C3AB2000EE2AA /* HGAnimation */,
 				D43871A5164A5D3C00E2A521 /* HGInput */,
 				2EAAA422161E907F0079ECAC /* HGMapSystem */,
@@ -967,6 +972,17 @@
 			);
 			name = HGAnimation;
 			path = ../HGAnimation;
+			sourceTree = "<group>";
+		};
+		D433C1F816AA322000F0D712 /* HGAudio */ = {
+			isa = PBXGroup;
+			children = (
+				D433C1F916AA322000F0D712 /* HGAudioDef.h */,
+				D433C1FB16AA362200F0D712 /* HGAudioManager.h */,
+				D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */,
+			);
+			name = HGAudio;
+			path = ../HGAudio;
 			sourceTree = "<group>";
 		};
 		D43871A5164A5D3C00E2A521 /* HGInput */ = {
@@ -1716,6 +1732,7 @@
 				D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */,
 				2EE2A14216A821B9005AF2A8 /* HGInputListener.cpp in Sources */,
 				2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */,
+				D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

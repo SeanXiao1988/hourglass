@@ -470,11 +470,6 @@ end
 返回: SceneNode
 说明: 创建一个新的场景节点
 
-方法: deleteNode
-参数: string name
-返回: n/a
-说明: 销毁一个场景节点
-
 方法: getNode
 参数: string name
 返回: SceneNode

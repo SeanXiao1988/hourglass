@@ -21,5 +21,6 @@
 #ifndef HGAUDIODEF_H_
 #define HGAUDIODEF_H_
 
+#include "HGSystem.h"
 
 #endif // HGAUDIODEF_H_
