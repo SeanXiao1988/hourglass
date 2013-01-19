@@ -42,7 +42,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\HGScript\HGEventScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGMapScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGServiceScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGCoreScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGComponentScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGAnimationScripter&quot;;&quot;$(ProjectDir)\..\HGScript&quot;;&quot;$(ProjectDir)\..\HGApplication&quot;;&quot;$(ProjectDir)\..\HGAnimation\HGAnimations&quot;;&quot;$(ProjectDir)\..\HGAnimation&quot;;&quot;$(ProjectDir)\..\HGGeometry&quot;;&quot;$(ProjectDir)\..\HGComposite&quot;;&quot;$(ProjectDir)\..\HGInput&quot;;&quot;$(ProjectDir)\..\HGMapSystem&quot;;&quot;$(ProjectDir)\..\HGConsole&quot;;&quot;$(ProjectDir)\..\HGEventSystem&quot;;&quot;$(ProjectDir)\..\HGPhysics&quot;;&quot;$(ProjectDir)\..\ThirdParty&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm\gtc&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm&quot;;&quot;$(ProjectDir)\..\ThirdParty\glew&quot;;&quot;$(ProjectDir)\..\ThirdParty\glfw&quot;;&quot;$(ProjectDir)\..\ThirdParty\LodePNG&quot;;&quot;$(ProjectDir)\..\ThirdParty\rapidXML&quot;;&quot;$(ProjectDir)\..\ThirdParty\freetype&quot;;&quot;$(ProjectDir)\..\ThirdParty\other&quot;;&quot;$(ProjectDir)\..\&quot;;&quot;$(ProjectDir)\..\HGCore&quot;;&quot;$(ProjectDir)\..\HGGraphics&quot;;&quot;$(ProjectDir)\..\HGSceneGraph&quot;;&quot;$(ProjectDir)\..\ThirdParty\FTGL&quot;;&quot;$(ProjectDir)\..\bakup&quot;;&quot;$(ProjectDir)\..\ThirdParty\Lua&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\ThirdParty\OpenAL&quot;;&quot;$(ProjectDir)\..\HGAudio&quot;;&quot;$(ProjectDir)\..\HGScript\HGEventScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGMapScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGServiceScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGCoreScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGComponentScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGAnimationScripter&quot;;&quot;$(ProjectDir)\..\HGScript&quot;;&quot;$(ProjectDir)\..\HGApplication&quot;;&quot;$(ProjectDir)\..\HGAnimation\HGAnimations&quot;;&quot;$(ProjectDir)\..\HGAnimation&quot;;&quot;$(ProjectDir)\..\HGGeometry&quot;;&quot;$(ProjectDir)\..\HGComposite&quot;;&quot;$(ProjectDir)\..\HGInput&quot;;&quot;$(ProjectDir)\..\HGMapSystem&quot;;&quot;$(ProjectDir)\..\HGConsole&quot;;&quot;$(ProjectDir)\..\HGEventSystem&quot;;&quot;$(ProjectDir)\..\HGPhysics&quot;;&quot;$(ProjectDir)\..\ThirdParty&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm\gtc&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm&quot;;&quot;$(ProjectDir)\..\ThirdParty\glew&quot;;&quot;$(ProjectDir)\..\ThirdParty\glfw&quot;;&quot;$(ProjectDir)\..\ThirdParty\LodePNG&quot;;&quot;$(ProjectDir)\..\ThirdParty\rapidXML&quot;;&quot;$(ProjectDir)\..\ThirdParty\freetype&quot;;&quot;$(ProjectDir)\..\ThirdParty\other&quot;;&quot;$(ProjectDir)\..\&quot;;&quot;$(ProjectDir)\..\HGCore&quot;;&quot;$(ProjectDir)\..\HGGraphics&quot;;&quot;$(ProjectDir)\..\HGSceneGraph&quot;;&quot;$(ProjectDir)\..\ThirdParty\FTGL&quot;;&quot;$(ProjectDir)\..\bakup&quot;;&quot;$(ProjectDir)\..\ThirdParty\Lua&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -116,7 +116,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\HGScript\HGEventScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGMapScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGServiceScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGCoreScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGComponentScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGAnimationScripter&quot;;&quot;$(ProjectDir)\..\HGScript&quot;;&quot;$(ProjectDir)\..\HGApplication&quot;;&quot;$(ProjectDir)\..\HGAnimation\HGAnimations&quot;;&quot;$(ProjectDir)\..\HGAnimation&quot;;&quot;$(ProjectDir)\..\HGGeometry&quot;;&quot;$(ProjectDir)\..\HGComposite&quot;;&quot;$(ProjectDir)\..\HGInput&quot;;&quot;$(ProjectDir)\..\HGMapSystem&quot;;&quot;$(ProjectDir)\..\HGConsole&quot;;&quot;$(ProjectDir)\..\HGEventSystem&quot;;&quot;$(ProjectDir)\..\HGPhysics&quot;;&quot;$(ProjectDir)\..\ThirdParty&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm\gtc&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm&quot;;&quot;$(ProjectDir)\..\ThirdParty\glew&quot;;&quot;$(ProjectDir)\..\ThirdParty\glfw&quot;;&quot;$(ProjectDir)\..\ThirdParty\LodePNG&quot;;&quot;$(ProjectDir)\..\ThirdParty\rapidXML&quot;;&quot;$(ProjectDir)\..\ThirdParty\freetype&quot;;&quot;$(ProjectDir)\..\ThirdParty\other&quot;;&quot;$(ProjectDir)\..\&quot;;&quot;$(ProjectDir)\..\HGCore&quot;;&quot;$(ProjectDir)\..\HGGraphics&quot;;&quot;$(ProjectDir)\..\HGSceneGraph&quot;;&quot;$(ProjectDir)\..\ThirdParty\FTGL&quot;;&quot;$(ProjectDir)\..\bakup&quot;;&quot;$(ProjectDir)\..\ThirdParty\Lua&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)\..\ThirdParty\OpenAL&quot;;&quot;$(ProjectDir)\..\HGAudio&quot;;&quot;$(ProjectDir)\..\HGScript\HGEventScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGMapScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGServiceScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGCoreScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGComponentScripter&quot;;&quot;$(ProjectDir)\..\HGScript\HGAnimationScripter&quot;;&quot;$(ProjectDir)\..\HGScript&quot;;&quot;$(ProjectDir)\..\HGApplication&quot;;&quot;$(ProjectDir)\..\HGAnimation\HGAnimations&quot;;&quot;$(ProjectDir)\..\HGAnimation&quot;;&quot;$(ProjectDir)\..\HGGeometry&quot;;&quot;$(ProjectDir)\..\HGComposite&quot;;&quot;$(ProjectDir)\..\HGInput&quot;;&quot;$(ProjectDir)\..\HGMapSystem&quot;;&quot;$(ProjectDir)\..\HGConsole&quot;;&quot;$(ProjectDir)\..\HGEventSystem&quot;;&quot;$(ProjectDir)\..\HGPhysics&quot;;&quot;$(ProjectDir)\..\ThirdParty&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm\gtc&quot;;&quot;$(ProjectDir)\..\ThirdParty\glm&quot;;&quot;$(ProjectDir)\..\ThirdParty\glew&quot;;&quot;$(ProjectDir)\..\ThirdParty\glfw&quot;;&quot;$(ProjectDir)\..\ThirdParty\LodePNG&quot;;&quot;$(ProjectDir)\..\ThirdParty\rapidXML&quot;;&quot;$(ProjectDir)\..\ThirdParty\freetype&quot;;&quot;$(ProjectDir)\..\ThirdParty\other&quot;;&quot;$(ProjectDir)\..\&quot;;&quot;$(ProjectDir)\..\HGCore&quot;;&quot;$(ProjectDir)\..\HGGraphics&quot;;&quot;$(ProjectDir)\..\HGSceneGraph&quot;;&quot;$(ProjectDir)\..\ThirdParty\FTGL&quot;;&quot;$(ProjectDir)\..\bakup&quot;;&quot;$(ProjectDir)\..\ThirdParty\Lua&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -687,6 +687,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\HGScript\HGEventScripter\HGEventMouseScripter.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\HGScript\HGEventScripter\HGEventMouseScripter.h"
+						>
+					</File>
+					<File
 						RelativePath="..\HGScript\HGEventScripter\HGEventScripter.cpp"
 						>
 					</File>
@@ -695,6 +703,22 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="Audio"
+				>
+				<File
+					RelativePath="..\HGAudio\HGAudioDef.h"
+					>
+				</File>
+				<File
+					RelativePath="..\HGAudio\HGAudioManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\HGAudio\HGAudioManager.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -2329,6 +2353,22 @@
 				</File>
 				<File
 					RelativePath="..\ThirdParty\Lua\lzio.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="OpenAL"
+				>
+				<File
+					RelativePath="..\ThirdParty\OpenAL\al.h"
+					>
+				</File>
+				<File
+					RelativePath="..\ThirdParty\OpenAL\alc.h"
+					>
+				</File>
+				<File
+					RelativePath="..\ThirdParty\OpenAL\OpenAL32.lib"
 					>
 				</File>
 			</Filter>

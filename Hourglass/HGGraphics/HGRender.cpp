@@ -792,7 +792,7 @@ GLuint Render::shaderLoad(const char* filename, bool activate)
 		if (activate)
 			shaderActive(newShader->program);
 
-		memset(mBuffer, 0, sizeof(HG_MAX_IMAGE_SIZE));
+		memset(mBuffer, 0, sizeof(unsigned char) * HG_MAX_IMAGE_SIZE);
 		glGetInfoLogARB(newShader->program, HG_MAX_IMAGE_SIZE, NULL, (GLchar *)mBuffer);
 		HGLog("shaderLoad: %s\n", mBuffer);
 		

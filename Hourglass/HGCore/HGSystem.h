@@ -127,6 +127,10 @@
 #if PLATFORM == PLATFORM_MACOS
     #include <OpenAL/al.h>
     #include <OpenAL/alc.h>
+#elif PLATFORM == PLATFORM_WINDOWS
+	#include "al.h"
+	#include "alc.h"
+	#pragma comment(lib, "OpenAL32.lib")
 #endif
 
 /// Utility Macros
