@@ -31,8 +31,7 @@
 #define JUMP_ENEGRY_DELTA   2
 #define HOR_MOVE_SPEED      4
 
-namespace HG
-{
+HGNAMESPACE_START
         
 void PhysicalObject::RegisterComponentType()
 {
@@ -762,4 +761,4 @@ void PhysicalObject::update(double dt)
     }
 }
     
-}
+HGNAMESPACE_END

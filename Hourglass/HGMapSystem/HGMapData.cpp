@@ -23,8 +23,7 @@
 #include "HGHash.h"
 #include "HGRender.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 int MapData::TileMask[Tiles_Count][TILE_SIZE];
 
@@ -393,4 +392,4 @@ void MapData::debug_draw(int x, int y)
 	}
 }
 
-}
+HGNAMESPACE_END

@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class QuadEntity;
 
@@ -34,6 +33,6 @@ extern QuadEntity* quadentity_check(lua_State* L, int idx);
 extern int quadentity_push(lua_State* L, QuadEntity* entity);
 extern void ScriptRegisterQuadEntity(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 #endif // HGQUADENTITYSCRIPTER_H_

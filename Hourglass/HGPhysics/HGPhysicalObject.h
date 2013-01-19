@@ -27,8 +27,7 @@
 #include "HGGeometry.hpp"
 #include "HGPhysicsDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 // forward declaration
 class MapData;
@@ -95,6 +94,6 @@ private:
 	MapData			*mMap;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGPHYSICALOBJECT_H_

@@ -24,8 +24,7 @@
 #include "HGComponentDef.h"
 #include "HGEvent.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class IComponent
 {
@@ -44,6 +43,6 @@ protected:
     uint32_t     mObjectName;
 };
     
-}
+HGNAMESPACE_END
 
 #endif // HGICOMPONENT_H_

@@ -23,11 +23,10 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 extern void ScriptRegisterSceneManager(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGSCENEMANAGERSCRIPTER_H_

@@ -24,8 +24,7 @@
 #include "HGGraphicsDef.h"
 #include "HGAnimationDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class QuadEntity : public ISceneEntity
 {
@@ -102,6 +101,6 @@ private:
     ANIMATION_STAGE			mSpriteAnimationStage;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGQUADENTITY_H_

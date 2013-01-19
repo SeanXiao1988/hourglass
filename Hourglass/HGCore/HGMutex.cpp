@@ -20,8 +20,7 @@
 
 #include "HGMutex.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 Mutex::Mutex()
 {
@@ -48,4 +47,4 @@ void Mutex::unlock()
     glfwUnlockMutex(mutex);
 }
     
-}
+HGNAMESPACE_END

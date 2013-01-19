@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 typedef enum
 {
@@ -50,6 +49,6 @@ typedef struct
     INPUT_TYPE  action;
 }InputInfo;
     
-}
+HGNAMESPACE_END
 
 #endif // HGINPUTDEF_H_

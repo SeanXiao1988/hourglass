@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 typedef enum
 {
@@ -68,6 +67,6 @@ typedef enum
     
 typedef std::vector<Recti> CollisionRects;
 
-}
+HGNAMESPACE_END
 
 #endif // HGPHYSICSDEF_H_

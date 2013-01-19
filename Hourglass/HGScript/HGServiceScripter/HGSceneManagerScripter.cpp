@@ -24,8 +24,7 @@
 #include "HGSceneManager.h"
 #include "HGSceneNode.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 static int scenemanager_create_node(lua_State* L)
 {
@@ -139,4 +138,4 @@ void ScriptRegisterSceneManager(lua_State* L)
     BREAK_END;
 }
 
-}
+HGNAMESPACE_END

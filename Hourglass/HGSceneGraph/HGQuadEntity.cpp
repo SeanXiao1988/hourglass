@@ -26,8 +26,7 @@
 
 #include "HGRender.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 QuadEntity::QuadEntity()
 	: ISceneEntity()
@@ -523,4 +522,4 @@ uint32_t QuadEntity::getComponentName()
     return Hash("QuadEntity");
 }
     
-}
+HGNAMESPACE_END

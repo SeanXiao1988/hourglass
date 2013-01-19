@@ -20,8 +20,7 @@
 
 #include "HGHash.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 #define HASH_INIT		0x811C9DC5
 #define HASH_PRIME		0x01000193
@@ -163,4 +162,4 @@ std::string Hash::StringForHash(uint32_t hash)
 	return "";
 }
 
-}
+HGNAMESPACE_END

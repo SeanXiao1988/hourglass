@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 typedef enum
 {
@@ -44,6 +43,6 @@ typedef enum
     EVENT_RESULT_INTERCEPT
 }EventResult;
     
-}
+HGNAMESPACE_END
 
 #endif // HGEVENTDEF_H_

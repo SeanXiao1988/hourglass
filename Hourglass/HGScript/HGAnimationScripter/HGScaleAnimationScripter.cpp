@@ -25,8 +25,7 @@
 #define SCALEANIMATION_METATABLE    "ScaleAnimationMetatable"
 #define SCALEANIMATION_LUA_NAME     "ScaleAnimation"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 ScaleAnimation* scaleanimation_check(lua_State* L, int idx)
 {
@@ -162,4 +161,4 @@ void ScriptRegisterScaleAnimation(lua_State* L)
     lua_setglobal(L, SCALEANIMATION_LUA_NAME);
 }
     
-}
+HGNAMESPACE_END

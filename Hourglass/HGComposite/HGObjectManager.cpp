@@ -29,8 +29,7 @@
 
 #include "HGHash.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 ObjectManager::ObjectManager()
 {
@@ -288,4 +287,4 @@ void ObjectManager::broadcastEvent(const Event& event)
     }
 }
 
-}
+HGNAMESPACE_END

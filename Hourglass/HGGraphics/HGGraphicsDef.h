@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 // Color operate
 #define RGBA(r,g,b,a)	((uint32_t(r)<<24) + (uint32_t(g)<<16) + (uint32_t(b)<<8) + uint32_t(a))
@@ -152,6 +151,6 @@ typedef struct _PixmapFontContext
     uint32_t        color;
 }PixmapFontContext;
 
-}
+HGNAMESPACE_END
 
 #endif // HGGRAPHICSDEF_H_

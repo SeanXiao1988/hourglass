@@ -23,8 +23,7 @@
 
 #include "HGVector2D.hpp"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 template<typename Type>
 class Rectangle
@@ -188,6 +187,6 @@ typedef Rectangle<double>   Rectd;
 typedef Rectangle<int32_t>  Rect32i;
 typedef Rectangle<uint32_t> Rect32u;
 
-}
+HGNAMESPACE_END
 
 #endif // HGRECTANGLE_HPP_

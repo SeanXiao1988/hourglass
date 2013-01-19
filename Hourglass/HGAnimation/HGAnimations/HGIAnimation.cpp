@@ -20,8 +20,7 @@
 
 #include "HGIAnimation.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 IAnimation::IAnimation()
     : isFinished(false)
@@ -33,4 +32,4 @@ IAnimation::IAnimation()
 {
 }
     
-}
+HGNAMESPACE_END

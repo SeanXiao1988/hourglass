@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 #define INVALID_HASH	0xFFFFFFFF
     
@@ -68,6 +67,6 @@ private:
 	uint32_t mHashValue;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGHASH_H_

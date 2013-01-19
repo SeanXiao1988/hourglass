@@ -21,8 +21,7 @@
 #include "HGTranslateAnimation.h"
 #include "HGSceneNode.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 TranslateAnimation::TranslateAnimation(float x, float y, float duration)
     : mDuration(duration)
@@ -113,4 +112,4 @@ void TranslateAnimation::update(SceneNode *node, float dt)
     }
 }
 
-}
+HGNAMESPACE_END

@@ -28,8 +28,7 @@
 #define QUADENTITY_METATABLE    "QuadEntityMetatable"
 #define QUADENTITY_LUA_NAME     "QuadEntity"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 QuadEntity* quadentity_check(lua_State* L, int idx)
 {
@@ -711,4 +710,4 @@ void ScriptRegisterQuadEntity(lua_State* L)
     lua_setglobal(L, QUADENTITY_LUA_NAME);
 }
     
-}
+HGNAMESPACE_END

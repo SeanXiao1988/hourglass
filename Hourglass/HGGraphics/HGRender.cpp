@@ -29,8 +29,7 @@
 //#define NO_BUFFER
 // TODO generate mid map
 
-namespace HG
-{
+HGNAMESPACE_START
     
 Render::Render()
 	: mpVB(NULL)
@@ -1523,4 +1522,4 @@ double Render::calculateFPS()
     return ret;
 }
     
-}
+HGNAMESPACE_END

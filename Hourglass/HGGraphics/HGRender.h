@@ -28,8 +28,7 @@
 #define HG_DEFAULT_FONT_FILE    "source_code_pro.ttf"
 #define HG_DEFAULT_FONT_SIZE    14
 
-namespace HG
-{
+HGNAMESPACE_START
 
 #define RENDER Render::getInstance()
     
@@ -171,7 +170,7 @@ private:
     Render& operator= (const Render& rhs);
 };
     
-}
+HGNAMESPACE_END
 
 
 

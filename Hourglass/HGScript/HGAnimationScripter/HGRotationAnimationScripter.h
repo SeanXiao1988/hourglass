@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class RotationAnimation;
 
@@ -34,6 +33,6 @@ extern RotationAnimation* rotationanimation_check(lua_State* L, int idx);
 extern int rotationanimation_push(lua_State* L, RotationAnimation* anim);
 extern void ScriptRegisterRotationAnimation(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 #endif // HGROTATIONANIMATIONSCRIPTER_H_

@@ -20,8 +20,7 @@
 
 #include "HGEvent.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 EventKeyboard::EventKeyboard(int key, int action)
     : key(key)
@@ -35,4 +34,4 @@ EventKeyboard::~EventKeyboard()
     
 }
     
-}
+HGNAMESPACE_END

@@ -36,6 +36,8 @@
 #define DETECT_PLATFORM_UP     1
 #define DETECT_PLATFORM_DOWN   2
 
+HGNAMESPACE_START
+
 typedef enum
 {
     Tile_None = 0,
@@ -112,5 +114,7 @@ const static int tile_mask[Tiles_Count][TILE_SIZE] =
 /* *    ************************ */
 /* ***************************** */
 /*   right_27_1    right_27_2    */
+
+HGNAMESPACE_END
 
 #endif // HGMAPDEF_H_

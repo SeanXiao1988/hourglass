@@ -26,8 +26,7 @@
 #include "HGEvent.h"
 #include "HGIComponent.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class SceneNode;
 
@@ -52,6 +51,6 @@ protected:
 	friend class SceneNode;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGISCENEENTITY_H_

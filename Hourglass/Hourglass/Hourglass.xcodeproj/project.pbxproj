@@ -12,7 +12,6 @@
 		2E3F2F7816A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */; };
 		2E3F2F7D16A1D7FB00A801D8 /* HGIAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */; };
 		2E4F28DE16A5ACAC00A90645 /* HGMapDataScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E4F28DC16A5ACAC00A90645 /* HGMapDataScripter.cpp */; };
-		2E501CAC164E1CCD007AC606 /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4683E2915D398E7005EE6D6 /* libglfw.a */; };
 		2E501CAD164E1D0C007AC606 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D7A559162D441100CD3DF9 /* libGLEW.a */; };
 		2E5653881653E4A2001C2A4D /* HGObjectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5653851653E49C001C2A4D /* HGObjectManager.cpp */; };
 		2E5E02E316A1C42A0067B1A0 /* HGTranslateAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E5E02E216A1C42A0067B1A0 /* HGTranslateAnimation.cpp */; };
@@ -119,6 +118,7 @@
 		D4E6D5BE1699628B00ED9397 /* hg_main.lua in Resources */ = {isa = PBXBuildFile; fileRef = D4E6D5BD1699628B00ED9397 /* hg_main.lua */; };
 		D4E8EFCF1637F36200C521A8 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E8EFCE1637F36200C521A8 /* map.png */; };
 		D4EBDE031687EE5C0040BE56 /* HGConsoleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4EBDE021687EE5C0040BE56 /* HGConsoleImpl.cpp */; };
+		D4FE009916AA73A6002A4146 /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4683E2E15D398F8005EE6D6 /* libglfw.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -301,7 +301,6 @@
 		D4683E1E15D39845005EE6D6 /* Hourglass.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Hourglass.1; sourceTree = "<group>"; };
 		D4683E2515D398B0005EE6D6 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		D4683E2715D398B9005EE6D6 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		D4683E2915D398E7005EE6D6 /* libglfw.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw.a; path = ../ThirdParty/glfw/libglfw.a; sourceTree = "<group>"; };
 		D4683E2D15D398F8005EE6D6 /* glfw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw.h; sourceTree = "<group>"; };
 		D4683E2E15D398F8005EE6D6 /* libglfw.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libglfw.a; sourceTree = "<group>"; };
 		D4683E2F15D398F8005EE6D6 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.dylib; sourceTree = "<group>"; };
@@ -655,9 +654,9 @@
 			files = (
 				D419781A167ECED6006A65ED /* libbz2.dylib in Frameworks */,
 				D4197818167ECE5C006A65ED /* libz.dylib in Frameworks */,
+				D4FE009916AA73A6002A4146 /* libglfw.a in Frameworks */,
 				D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */,
 				2E501CAD164E1D0C007AC606 /* libGLEW.a in Frameworks */,
-				2E501CAC164E1CCD007AC606 /* libglfw.a in Frameworks */,
 				2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */,
 				D47F3E8416A95080000CBCD5 /* OpenAL.framework in Frameworks */,
 				D4BFA96A16169BE300587E6B /* OpenGL.framework in Frameworks */,
@@ -1014,11 +1013,9 @@
 		D4683E0D15D39845005EE6D6 = {
 			isa = PBXGroup;
 			children = (
-				D47F3E8316A95080000CBCD5 /* OpenAL.framework */,
 				D4BFA86316169B0900587E6B /* Hourglass.xcodeproj */,
 				D4D7BADD164B586C00CB40A8 /* HG.h */,
 				2E501CAE164E1D8B007AC606 /* HGEngine */,
-				D4683F2915D3A42B005EE6D6 /* Framework */,
 				D4683E1B15D39845005EE6D6 /* Hourglass */,
 				D4738F4E162D67030073E949 /* Resources */,
 				D4BFA83A161699EC00587E6B /* Hourglass_mac */,
@@ -1343,16 +1340,6 @@
 			path = RapidXML;
 			sourceTree = "<group>";
 		};
-		D4683F2915D3A42B005EE6D6 /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				D4683E2915D398E7005EE6D6 /* libglfw.a */,
-				D4683E2715D398B9005EE6D6 /* Cocoa.framework */,
-				D4683E2515D398B0005EE6D6 /* OpenGL.framework */,
-			);
-			name = Framework;
-			sourceTree = "<group>";
-		};
 		D4683F2B15D3A44E005EE6D6 /* HGCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -1509,9 +1496,6 @@
 		D4BFA833161699EC00587E6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4197817167ECE5C006A65ED /* libz.dylib */,
-				D4197819167ECED6006A65ED /* libbz2.dylib */,
-				D4BFA834161699EC00587E6B /* Cocoa.framework */,
 				D4BFA836161699EC00587E6B /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -1520,6 +1504,12 @@
 		D4BFA836161699EC00587E6B /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4197817167ECE5C006A65ED /* libz.dylib */,
+				D4197819167ECED6006A65ED /* libbz2.dylib */,
+				D4683E2715D398B9005EE6D6 /* Cocoa.framework */,
+				D4683E2515D398B0005EE6D6 /* OpenGL.framework */,
+				D47F3E8316A95080000CBCD5 /* OpenAL.framework */,
+				D4BFA834161699EC00587E6B /* Cocoa.framework */,
 				D4BFA837161699EC00587E6B /* AppKit.framework */,
 				D4BFA838161699EC00587E6B /* CoreData.framework */,
 				D4BFA839161699EC00587E6B /* Foundation.framework */,

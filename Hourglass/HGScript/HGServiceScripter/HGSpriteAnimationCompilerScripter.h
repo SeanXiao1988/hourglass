@@ -23,11 +23,10 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 extern void ScriptRegisterSpriteAnimationCompiler(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 #endif // HGSPRITEANIMATIONCOMPILERSCRIPTER_H_

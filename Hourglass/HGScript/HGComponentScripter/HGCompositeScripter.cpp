@@ -25,8 +25,7 @@
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 IComponent* icomponent_check(lua_State* L, int idx)
 {
@@ -170,4 +169,4 @@ void ScriptRegisterComposite(lua_State* L)
     lua_setglobal(L, "COMP_COUNT");
 }
 
-}
+HGNAMESPACE_END

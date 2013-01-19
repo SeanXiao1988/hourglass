@@ -28,8 +28,7 @@
 #define FILE_OPEN_END
 #endif
 
-namespace HG
-{
+HGNAMESPACE_START
 
 Data::Data()
     : mBuffer(NULL)
@@ -215,4 +214,4 @@ bool Data::writeToFile(const char* filename, bool overwrite)
     return retval;
 }
 
-}
+HGNAMESPACE_END

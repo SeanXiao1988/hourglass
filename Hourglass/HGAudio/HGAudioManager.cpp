@@ -20,8 +20,7 @@
 
 #include "HGAudioManager.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 AudioManager::AudioManager()
 {
@@ -64,4 +63,4 @@ void AudioManager::deInitialize()
     alcCloseDevice(mDevice);
 }
     
-}
+HGNAMESPACE_END

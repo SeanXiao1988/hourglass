@@ -21,8 +21,7 @@
 #include "HGAlphaAnimation.h"
 #include "HGSceneNode.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 AlphaAnimation::AlphaAnimation(float alpha, float duration)
     : mDuration(duration)
@@ -76,4 +75,4 @@ void AlphaAnimation::update(SceneNode *node, float dt)
     }
 }
     
-}
+HGNAMESPACE_END

@@ -25,8 +25,7 @@
 
 #define RENDER_LUA_NAME     "RENDER"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 static int render_set_clear_color(lua_State* L)
 {
@@ -739,4 +738,4 @@ void ScriptRegisterRender(lua_State* L)
     BREAK_END;
 }
     
-}
+HGNAMESPACE_END

@@ -21,8 +21,7 @@
 #include "HGSpriteAnimationCompiler.h"
 #include "HGSpriteAnimationCompilerScripter.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 static int sprite_animationcompiler_clear(lua_State* L)
 {
@@ -106,4 +105,4 @@ void ScriptRegisterSpriteAnimationCompiler(lua_State* L)
 
 }
 
-}
+HGNAMESPACE_END

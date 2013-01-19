@@ -25,8 +25,7 @@
 #include "HGEvent.h"
 #include "HGIComponent.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 const GLfloat Z_INCREMENT = 0.1f;
 
@@ -148,6 +147,6 @@ private:
     friend class SceneManager;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGSCENENODE_H_

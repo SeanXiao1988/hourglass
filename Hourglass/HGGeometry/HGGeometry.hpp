@@ -24,8 +24,7 @@
 #include "HGVector2D.hpp"
 #include "HGRectangle.hpp"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 template<class T, class U>
 T Clamp(T in, U low, U high)
@@ -38,6 +37,6 @@ T Clamp(T in, U low, U high)
         return in;
 }
     
-}
+HGNAMESPACE_END
 
 #endif // HGGEOMETRY_HPP_

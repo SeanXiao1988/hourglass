@@ -31,8 +31,7 @@
 #define SCENENODE_METATABLE "SceneNodeMetatable"
 #define SCENENODE_LUA_NAME  "SceneNode"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 SceneNode* scenenode_check(lua_State* L, int idx)
 {
@@ -944,4 +943,4 @@ void ScriptRegisterSceneNode(lua_State* L)
     lua_pop(L, 1);
 }
     
-}
+HGNAMESPACE_END

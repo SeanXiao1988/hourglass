@@ -133,6 +133,9 @@
 #define BREAK_START do{
 #define BREAK_END   }while(0)
 
+#define HGNAMESPACE_START   namespace HG {
+#define HGNAMESPACE_END     }
+
 /// Log
 #if PLATFORM == PLATFORM_WINDOWS
 static void __cdecl debug_printf(const char *format, ...)

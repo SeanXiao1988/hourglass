@@ -28,8 +28,7 @@
 
 #define IANIMATION_METATABLE "IAnimationMetatable"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 IAnimation* ianimation_check(lua_State* L, int idx)
 {
@@ -256,4 +255,4 @@ void ScriptRegisterIAnimation(lua_State* L)
     lua_setglobal(L, "ANIMATION_TYPE_RESET");
 }
 
-}
+HGNAMESPACE_END

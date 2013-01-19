@@ -21,8 +21,7 @@
 #include "HGApplication.h"
 #include "HG.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 void Application::initialize()
 {
@@ -75,4 +74,4 @@ void Application::setAppTitle(const char *title)
     glfwSetWindowTitle(title);
 }
     
-}
+HGNAMESPACE_END

@@ -28,8 +28,7 @@
 
 #define HGMEMORY_TAG_LENGTH 128
 
-namespace HG
-{
+HGNAMESPACE_START
     
 typedef struct _memory_summary
 {
@@ -82,7 +81,7 @@ public:
 	~AutoMemoryTag() {PrintMemoryLeak(); /*PrintMemorySummary();*/ DeInitializeMemoryLog();}
 };
     
-}
+HGNAMESPACE_END
 
 #ifdef new
 #undef new

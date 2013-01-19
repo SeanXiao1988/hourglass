@@ -23,8 +23,7 @@
 
 #include "HGIAnimation.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class ScaleAnimation : public IAnimation
 {
@@ -47,6 +46,6 @@ private:
     bool    mIsFinishY;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGSCALEANIMATION_H_

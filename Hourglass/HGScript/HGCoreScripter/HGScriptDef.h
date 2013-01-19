@@ -28,8 +28,7 @@
 
 // http://cfc.kizzx2.com/index.php/binding-c-classes-to-lua-a-step-by-step-example-for-beginners/
 
-namespace HG
-{
+HGNAMESPACE_START
     
 static void lua_stack_dump (lua_State *L)
 {
@@ -63,6 +62,6 @@ static void lua_stack_dump (lua_State *L)
     printf("\n----- STACK DUMP END -----\n");  /* end the listing */
 }
     
-}
+HGNAMESPACE_END
 
 #endif // HGSCRIPTDEF_H_

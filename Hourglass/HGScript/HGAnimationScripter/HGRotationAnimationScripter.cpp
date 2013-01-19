@@ -25,8 +25,7 @@
 #define ROTATIONANIMATION_METATABLE "RotationAnimationMetatable"
 #define ROTATIONANIMATION_LUA_NAME  "RotationAnimation"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 RotationAnimation* rotationanimation_check(lua_State* L, int idx)
 {
@@ -160,4 +159,4 @@ void ScriptRegisterRotationAnimation(lua_State* L)
     lua_setglobal(L, ROTATIONANIMATION_LUA_NAME);
 }
 
-}
+HGNAMESPACE_END

@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class EventKeyboard;
 
@@ -35,7 +34,7 @@ extern int eventkeyboard_push(lua_State* L, EventKeyboard* event);
 
 extern void ScriptRegisterEventKeyboard(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 
 #endif // HGEVENTKEYBOARDSCRIPTER_H_

@@ -23,8 +23,7 @@
 
 #include "HGInputDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 #define INPUTMANAGER InputManager::getInstance()
     
@@ -55,6 +54,6 @@ private:
     InputManager& operator= (const InputManager& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGINPUTMANAGER_H_

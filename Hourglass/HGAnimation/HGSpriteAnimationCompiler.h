@@ -26,8 +26,7 @@
 #include "HGError.h"
 #include "rapidxml.hpp"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 #define SPRITEANIMATIONCOMPILER SpriteAnimationCompiler::getInstance()
     
@@ -85,6 +84,6 @@ private:
     SpriteAnimationCompiler& operator= (const SpriteAnimationCompiler& rhs);
 };
     
-}
+HGNAMESPACE_END
 
 #endif // HGSPRITEANIMATIONCOMPILER_H_

@@ -21,8 +21,7 @@
 #include "HGHash.h"
 #include "HGHashScripter.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 static int hash_make(lua_State* L)
 {
@@ -63,4 +62,4 @@ void ScriptRegisterHash(lua_State* L)
     lua_setglobal(L, "HASH");
 }
     
-}
+HGNAMESPACE_END

@@ -22,8 +22,7 @@
 #include "HGObjectManager.h"
 #include "HGConsoleImpl.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 InputManager::InputManager()
 {
@@ -127,4 +126,4 @@ void InputManager::mouseBtnCallback(int btn, int action)
     
 }
     
-}
+HGNAMESPACE_END

@@ -23,8 +23,7 @@
 
 #include "HGIAnimation.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class TranslateAnimation : public IAnimation
 {
@@ -47,6 +46,6 @@ private:
     bool    mIsFinishY;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGTRANSLATEANIMATION_H_

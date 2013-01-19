@@ -21,8 +21,7 @@
 #include "HGRotationAnimation.h"
 #include "HGSceneNode.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 RotationAnimation::RotationAnimation(float rotation, float duration)
     : mDuration(duration)
@@ -87,4 +86,4 @@ void RotationAnimation::update(SceneNode *node, float dt)
     }
 }
 
-}
+HGNAMESPACE_END

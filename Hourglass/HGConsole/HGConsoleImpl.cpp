@@ -20,8 +20,8 @@
 
 #include "HGConsoleImpl.h"
 #include "HGRender.h"
-namespace HG
-{
+
+HGNAMESPACE_START
     
 ConsoleImpl::ConsoleImpl()
 {
@@ -209,4 +209,4 @@ void ConsoleImpl::close()
     mIsActive = false;
 }
     
-}
+HGNAMESPACE_END

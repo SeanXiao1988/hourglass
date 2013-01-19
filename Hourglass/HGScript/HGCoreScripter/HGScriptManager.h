@@ -27,8 +27,7 @@
 #define HG_SCRIPT_ENTRY     "hg_init"
 #define HG_SCRIPT_DEINIT    "hg_deinit"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 #define SCRIPTMANAGER ScriptManager::getInstance()
 
@@ -63,6 +62,6 @@ private:
     ScriptManager& operator= (const ScriptManager& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGSCRIPTMANAGER_H_

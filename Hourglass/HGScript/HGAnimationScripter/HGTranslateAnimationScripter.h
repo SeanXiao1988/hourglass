@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class TranslateAnimation;
 
@@ -34,6 +33,6 @@ extern TranslateAnimation* translateanimation_check(lua_State* L, int idx);
 extern int translateanimation_push(lua_State* L, TranslateAnimation* anim);
 extern void ScriptRegisterTranslateAnimation(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGTRANSLATEANIMATIONSCRIPTER_H_

@@ -24,8 +24,7 @@
 #include "HGISceneEntity.h"
 #include "HGGraphicsDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class MapEntity : public ISceneEntity
 {
@@ -47,6 +46,6 @@ private:
 	float	mTexHeight;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGMAPENTITY_H_

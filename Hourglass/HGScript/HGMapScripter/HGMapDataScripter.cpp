@@ -24,8 +24,7 @@
 #define MAPDATA_METATABLE   "MapDataMetatable"
 #define MAPDATA_LUA_NAME    "MapData"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 MapData* mapdata_check(lua_State* L, int idx)
 {
@@ -357,4 +356,4 @@ void ScriptRegisterMapData(lua_State* L)
     lua_setglobal(L, "Tiles_Count");
 }
     
-}
+HGNAMESPACE_END

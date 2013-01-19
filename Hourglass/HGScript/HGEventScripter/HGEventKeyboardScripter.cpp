@@ -25,8 +25,7 @@
 #define EVENTKEYBOARD_METATABLE "EventKeyboardMetatable"
 #define EVENTKEYBOARD_LUA_NAME  "EventKeyboard"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 EventKeyboard* eventkeyboard_check(lua_State* L, int idx)
 {
@@ -125,4 +124,4 @@ void ScriptRegisterEventKeyboard(lua_State* L)
     lua_pop(L, 1);
 }
     
-}
+HGNAMESPACE_END

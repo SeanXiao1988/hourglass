@@ -1,11 +1,11 @@
 /**
- *  @file    HGInputListenerScripter.h
- *  @brief   InputListener script adapter header
+ *  @file    HGFileStream.h
+ *  @brief   File stream header
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2013/01/17
+ *  Created:  2013/01/19
  *  Company:  SNSTEAM.inc
  *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
@@ -18,21 +18,7 @@
  * =====================================================================================
  */
 
-#ifndef HGINPUTLISTENERSCRIPTER_H_
-#define HGINPUTLISTENERSCRIPTER_H_
+#ifndef HGFILESTREAM_H_
+#define HGFILESTREAM_H_
 
-#include "HGScriptDef.h"
-
-HGNAMESPACE_START
-    
-class InputListener;
-
-extern luaL_Reg sInputListenerRegs[];
-
-extern InputListener* inputlistener_check(lua_State* L, int idx);
-extern int inputlistener_push(lua_State* L, InputListener* listener);
-extern void ScriptRegisterInputListener(lua_State* L);
-    
-HGNAMESPACE_END
-
-#endif // HGINPUTLISTENERSCRIPTER_H_
+#endif // HGFILESTREAM_H_

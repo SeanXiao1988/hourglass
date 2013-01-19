@@ -29,8 +29,7 @@
 
 #include "HGRender.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 void SceneNode::RegisterComponentType()
 {
@@ -423,4 +422,4 @@ void SceneNode::detachEntity()
 	}
 }
 
-}
+HGNAMESPACE_END

@@ -23,8 +23,7 @@
 #include "HGCompositeScripter.h"
 #include "HGHash.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 static int objectmanager_is_object_exists(lua_State* L)
 {
@@ -217,5 +216,5 @@ void ScriptRegisterObjectManager(lua_State* L)
 
     BREAK_END;
 }
-
-}
+    
+HGNAMESPACE_END

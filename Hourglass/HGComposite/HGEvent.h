@@ -23,8 +23,7 @@
 
 #include "HGEventDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class Event
 {
@@ -46,6 +45,6 @@ public:
     int     action;
 };
     
-}
+HGNAMESPACE_END
 
 #endif // HGEVENT_H_

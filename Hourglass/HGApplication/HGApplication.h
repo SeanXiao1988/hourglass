@@ -25,8 +25,7 @@
 
 #define MAIN_SCRIPT_FILE "hg_main.lua"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 typedef void (* mainloop_func)(void);
 
@@ -58,6 +57,6 @@ private:
     Application& operator= (const Application& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGAPPLICATION_H_

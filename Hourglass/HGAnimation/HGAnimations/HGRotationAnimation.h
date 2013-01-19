@@ -23,8 +23,7 @@
 
 #include "HGIAnimation.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class RotationAnimation : public IAnimation
 {
@@ -43,6 +42,6 @@ private:
     float   mDuration;
 };
     
-}
+HGNAMESPACE_END
 
 #endif // HGROTATIONANIMATION_H_

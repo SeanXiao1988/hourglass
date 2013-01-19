@@ -23,8 +23,7 @@
 
 #include "HGAnimationDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class SceneNode;
 class ISceneEntity;
@@ -45,6 +44,6 @@ public:
     ANIMATION_TYPE  type;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGIANIMATION_H_

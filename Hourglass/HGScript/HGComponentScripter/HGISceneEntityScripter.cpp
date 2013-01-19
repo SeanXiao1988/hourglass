@@ -26,8 +26,7 @@
 
 #define ISCENEENTITY_METATABLE "ISceneEntityMetatable"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 ISceneEntity* isceneentity_check(lua_State* L, int idx)
 {
@@ -61,4 +60,4 @@ void ScriptRegisterISceneEntity(lua_State* L)
     lua_pop(L, 1);
 }
     
-}
+HGNAMESPACE_END

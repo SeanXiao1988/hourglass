@@ -23,11 +23,10 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 extern void ScriptRegisterHash(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGHASHSCRIPTER_H_

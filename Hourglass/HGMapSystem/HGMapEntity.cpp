@@ -21,4 +21,6 @@
 #include "HGMapDef.h"
 #include "HGRender.h"
 
-using namespace HG;
+HGNAMESPACE_START
+
+HGNAMESPACE_END

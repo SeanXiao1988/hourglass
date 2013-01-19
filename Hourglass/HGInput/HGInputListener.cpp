@@ -25,8 +25,7 @@
 #include "HGInputListenerScripter.h"
 #include "HGScriptManager.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 void InputListener::RegisterComponentType(void)
 {
@@ -70,4 +69,4 @@ uint32_t InputListener::getComponentName()
     return Hash("InputListener");
 }
 
-}
+HGNAMESPACE_END

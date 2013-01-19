@@ -30,8 +30,7 @@
 #include "HGIComponent.h"
 #include "HGGraphicsDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class MapData : public IComponent
 {
@@ -78,5 +77,6 @@ private:
     GLuint          mDebugTexture;
 };
 
-}
+HGNAMESPACE_END
+
 #endif // HGMAPDATA_H_

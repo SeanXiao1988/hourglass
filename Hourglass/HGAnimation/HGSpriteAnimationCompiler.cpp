@@ -24,8 +24,7 @@
 
 using namespace rapidxml;
 
-namespace HG
-{
+HGNAMESPACE_START
     
 SpriteAnimationCompiler::SpriteAnimationCompiler()
     : mAnimationList(NULL)
@@ -342,4 +341,4 @@ bool SpriteAnimationCompiler::_addFrame()
     return true;
 }
 
-}
+HGNAMESPACE_END

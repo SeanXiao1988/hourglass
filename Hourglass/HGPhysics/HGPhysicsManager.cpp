@@ -22,8 +22,7 @@
 #include "HGPhysicalObject.h"
 #include "HGHash.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 PhysicsManager::PhysicsManager()
     : mFriction(0.0f)
@@ -155,4 +154,4 @@ void PhysicsManager::deleteAllObjects()
     mMutex.unlock();
 }
     
-}
+HGNAMESPACE_END

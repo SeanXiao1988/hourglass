@@ -31,8 +31,7 @@
 #define HG_MEM_ALLOC_CHUNK      1
 #define HG_MEM_ALLOC_NOT_CHUNK  0
 
-namespace HG
-{
+HGNAMESPACE_START
     
 static memory_log_t     MEMORYLOG;
 static memory_summary_t MEMORYSUMMARY;
@@ -205,7 +204,7 @@ void PrintMemorySummary()
     HGLog("peak file: %s | line: %d | type: %s\n", MEMORYSUMMARY.peakFilename, MEMORYSUMMARY.linenum, MEMORYSUMMARY.peakType);
 }
     
-} // namespace HG
+HGNAMESPACE_END
 
 void *operator new(size_t size)
 {

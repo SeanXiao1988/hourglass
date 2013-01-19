@@ -25,8 +25,7 @@
 #define TRANSLATEANIMATION_METATABLE    "TranslateAnimationMetatable"
 #define TRANSLATEANIMATION_LUA_NAME     "TranslateAnimation"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 TranslateAnimation* translateanimation_check(lua_State* L, int idx)
 {
@@ -162,4 +161,4 @@ void ScriptRegisterTranslateAnimation(lua_State* L)
     lua_setglobal(L, TRANSLATEANIMATION_LUA_NAME);
 }
     
-}
+HGNAMESPACE_END

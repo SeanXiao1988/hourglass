@@ -24,8 +24,7 @@
 
 #define EVENT_LUA_NAME  "Event"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 Event* event_check(lua_State* L, int idx)
 {
@@ -131,4 +130,4 @@ void ScriptRegisterEvent(lua_State* L)
     ScriptRegisterEventKeyboard(L);
 }
     
-}
+HGNAMESPACE_END

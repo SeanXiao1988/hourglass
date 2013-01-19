@@ -26,8 +26,7 @@
 
 #define OBJECTMANAGER ObjectManager::getInstance()
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class Data;
     
@@ -78,6 +77,6 @@ private:
     ObjectManager& operator= (const ObjectManager& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGOBJECTMANAGER_H_

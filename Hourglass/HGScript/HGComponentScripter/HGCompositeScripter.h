@@ -25,8 +25,7 @@
 
 #define ICOMPONENT_METATABLE "IComponentMetatable"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class IComponent;
     
@@ -37,6 +36,6 @@ extern int icomponent_push(lua_State* L, IComponent* comp);
     
 extern void ScriptRegisterComposite(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGCOMPOSITESCRIPTER_H_

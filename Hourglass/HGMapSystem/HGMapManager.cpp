@@ -22,8 +22,7 @@
 #include "HGMapData.h"
 #include "HGHash.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 MapManager::MapManager()
 {
@@ -97,4 +96,4 @@ MapData* MapManager::getMap(const uint32_t nameHash)
 	return ret;
 }
     
-}
+HGNAMESPACE_END

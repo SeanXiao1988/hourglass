@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 template<typename Type>
 class Vector2D
@@ -248,6 +247,6 @@ typedef Vector2Dd           Point2d;
 typedef Vector2Di32         Point2i32;
 typedef Vector2Du32         Point2u32;
     
-}
+HGNAMESPACE_END
 
 #endif // HGVECTOR2D_HPP_

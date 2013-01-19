@@ -23,8 +23,7 @@
 
 #define APPLICATION_LUA_NAME    "APPLICATION"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 static int application_set_titile(lua_State* L)
 {
@@ -45,4 +44,4 @@ void ScriptRegisterApplication(lua_State* L)
     lua_setglobal(L, APPLICATION_LUA_NAME);
 }
     
-}
+HGNAMESPACE_END

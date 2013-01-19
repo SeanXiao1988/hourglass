@@ -24,8 +24,7 @@
 #include "HGSystem.h"
 #include "HGIComponent.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class InputListener : public IComponent
 {
@@ -47,6 +46,6 @@ private:
     std::string mScriptCallback;
 };
     
-}
+HGNAMESPACE_END
 
 #endif // HGINPUTLISTENER_H_

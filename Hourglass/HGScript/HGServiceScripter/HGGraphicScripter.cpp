@@ -20,8 +20,7 @@
 
 #include "HGGraphicScripter.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 int vertex_push2lua(lua_State* L, const Vertex* v)
 {
@@ -154,4 +153,4 @@ void ScriptRegisterGraphic(lua_State* L)
     lua_setglobal(L, "BLEND_DEFAULT_Z");
 }
     
-}
+HGNAMESPACE_END

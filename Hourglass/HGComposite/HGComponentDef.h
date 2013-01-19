@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 typedef enum
 {
@@ -39,6 +38,6 @@ typedef enum
     COMP_COUNT
 }ComponentTypeID;
 
-}
+HGNAMESPACE_END
 
 #endif // HGCOMPONENTDEF_H_

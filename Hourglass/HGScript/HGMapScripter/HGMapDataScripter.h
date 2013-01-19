@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class MapData;
 
@@ -34,6 +33,6 @@ extern MapData* mapdata_check(lua_State* L, int idx);
 extern int mapdata_push(lua_State* L, MapData* data);
 extern void ScriptRegisterMapData(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGMAPDATASCRIPTER_H_

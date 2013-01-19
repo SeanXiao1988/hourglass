@@ -25,8 +25,7 @@
 
 #define EVENT_METATABLE "EventMetatable"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class Event;
 
@@ -37,7 +36,7 @@ extern int event_push(lua_State* L, const Event* event);
     
 extern void ScriptRegisterEvent(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 #endif // HGEVENTSCRIPTER_H_
 

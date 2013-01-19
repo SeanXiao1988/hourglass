@@ -24,8 +24,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 SceneManager::SceneManager()
 	: mRootNode(NULL)
@@ -190,4 +189,4 @@ void SceneManager::deleteAll()
 	mNodeMap.clear();
 }
 */
-}
+HGNAMESPACE_END

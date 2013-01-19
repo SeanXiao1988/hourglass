@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class IAnimation;
     
@@ -36,6 +35,6 @@ extern int ianimation_push(lua_State* L, IAnimation* anim);
     
 extern void ScriptRegisterIAnimation(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 #endif // HGIANIMATIONSCRIPTER_H_

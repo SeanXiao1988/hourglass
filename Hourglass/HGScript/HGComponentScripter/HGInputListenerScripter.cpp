@@ -26,8 +26,7 @@
 #define INPUTLISTENER_METATABLE "InputListenerMetatable"
 #define INPUTLISTENER_LUA_NAME  "InputListener"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 InputListener* inputlistener_check(lua_State* L, int idx)
 {
@@ -159,4 +158,4 @@ void ScriptRegisterInputListener(lua_State* L)
     lua_setglobal(L, INPUTLISTENER_LUA_NAME);
 }
     
-}
+HGNAMESPACE_END

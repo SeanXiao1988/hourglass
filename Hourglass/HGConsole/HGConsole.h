@@ -24,8 +24,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 const uint8_t CONSOLE_CHAR_SPACE = 32;
 const int CON_MAX_TEXT_LENGTH = 256;
@@ -124,6 +123,6 @@ protected:
     ItemList                    mItemList;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGCONSOLE_H_

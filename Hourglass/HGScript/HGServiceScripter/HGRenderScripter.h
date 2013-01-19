@@ -23,11 +23,10 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 extern void ScriptRegisterRender(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGRENDERSCRIPTER_H_

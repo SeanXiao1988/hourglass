@@ -21,8 +21,7 @@
 #include "HGScaleAnimation.h"
 #include "HGSceneNode.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 ScaleAnimation::ScaleAnimation(float sx, float sy, float duration)
     : mDuration(duration)
@@ -105,5 +104,5 @@ void ScaleAnimation::update(SceneNode *node, float dt)
         }
     }
 }
-    
-}
+
+HGNAMESPACE_END

@@ -21,8 +21,7 @@
 
 #include "HGConsole.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 Console::Console()
     : mCursorPos(0)
@@ -495,4 +494,4 @@ bool Console::_isParameterValid(const std::string &s)
     return true;
 }
 
-}
+HGNAMESPACE_END

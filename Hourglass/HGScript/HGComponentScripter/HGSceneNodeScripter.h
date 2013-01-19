@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class SceneNode;
     
@@ -33,7 +32,7 @@ extern luaL_Reg sSceneNodeRegs[];
 extern SceneNode* scenenode_check(lua_State* L, int idx);
 extern int scenenode_push(lua_State* L, SceneNode* node);
 extern void ScriptRegisterSceneNode(lua_State* L);
-    
-}
+
+HGNAMESPACE_END
 
 #endif // HGSCENENODESCRIPTER_H_

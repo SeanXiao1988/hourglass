@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class SceneNode;
 typedef std::map<uint32_t, SceneNode*> SceneNodeMap;
@@ -77,6 +76,6 @@ private:
     SceneNodeMap    mNodeMap;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // SCENEMANAGER_H_

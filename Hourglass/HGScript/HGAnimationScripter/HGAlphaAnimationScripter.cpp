@@ -25,8 +25,7 @@
 #define ALPHAANIMATION_METATABLE    "AlphaAnimationMetatable"
 #define ALPHAANIMATION_LUA_NAME     "AlphaAnimation"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 AlphaAnimation* alphaanimation_check(lua_State* L, int idx)
 {
@@ -156,4 +155,4 @@ void ScriptRegisterAlphaAnimation(lua_State* L)
     lua_setglobal(L, ALPHAANIMATION_LUA_NAME);
 }
     
-}
+HGNAMESPACE_END

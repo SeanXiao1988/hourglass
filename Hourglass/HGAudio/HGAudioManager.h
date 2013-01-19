@@ -26,8 +26,7 @@
 
 #define AUDIOMANAGER AudioManager::getInstance()
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class AudioManager
 {
@@ -52,6 +51,6 @@ private:
     AudioManager& operator= (const AudioManager& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGAUDIOMANAGER_H_

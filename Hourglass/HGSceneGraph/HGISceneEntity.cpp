@@ -22,8 +22,7 @@
 #include "HGSceneNode.h"
 #include "HGIAnimation.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 ISceneEntity::ISceneEntity()
 	: mSceneNode(NULL)
@@ -48,4 +47,4 @@ void ISceneEntity::detachFromSceneNode()
 	mSceneNode = NULL;
 }
     
-}
+HGNAMESPACE_END

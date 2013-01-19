@@ -24,8 +24,7 @@
 #include "HGSystem.h"
 #include "HGMutex.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 #define PHYSICSMANAGER PhysicsManager::getInstance()
 
@@ -77,6 +76,6 @@ private:
     PhysicsManager& operator= (const PhysicsManager& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGPHYSICSMANAGER_H_

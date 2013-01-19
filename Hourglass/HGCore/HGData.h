@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 const uint32_t MAX_DATA_CAPCITY = 1024*1024;
 
@@ -54,6 +53,6 @@ private:
     uint32_t        mLength;
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGDATA_H_

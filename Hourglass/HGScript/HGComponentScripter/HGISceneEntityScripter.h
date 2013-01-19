@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class ISceneEntity;
     
@@ -33,6 +32,7 @@ extern luaL_Reg sISceneEntityRegs[];
 extern ISceneEntity* isceneentity_check(lua_State* L, int idx);
     
 extern void ScriptRegisterISceneEntity(lua_State* L);
-}
+
+HGNAMESPACE_END
 
 #endif // HGISCENEENTITYSCRIPTER_H_

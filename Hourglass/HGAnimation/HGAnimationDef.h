@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 typedef enum
 {
@@ -83,6 +82,6 @@ typedef struct _sprite_frames_header_
     struct _sprite_frames_header_* next;
 }sprite_frames_header_t;
 
-}
+HGNAMESPACE_END
 
 #endif // HGANIMATIONDEF_H_

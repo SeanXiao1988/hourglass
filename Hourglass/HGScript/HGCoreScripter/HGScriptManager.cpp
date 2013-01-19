@@ -42,8 +42,7 @@
 #include "HGScaleAnimationScripter.h"
 #include "HGTranslateAnimationScripter.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 ScriptManager::ScriptManager()
     : mState(NULL)
@@ -197,4 +196,4 @@ int ScriptManager::scriptAtPanic(lua_State* L)
     return 0;
 }
     
-}
+HGNAMESPACE_END

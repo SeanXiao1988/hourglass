@@ -21,8 +21,7 @@
 #include "HGDistortionMesh.h"
 #include "HGRender.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 DistortionMesh::DistortionMesh(int cols, int rows)
 {
@@ -279,4 +278,4 @@ void DistortionMesh::getDisplacement(int col, int row, float *dx, float *dy, int
 	}
 }
 
-}
+HGNAMESPACE_END

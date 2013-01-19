@@ -23,8 +23,7 @@
 
 #include "HGSystem.h"
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class Mutex
 {
@@ -41,6 +40,6 @@ private:
 
 };
     
-}
+HGNAMESPACE_END
 
 #endif // HGMUTEX_H_

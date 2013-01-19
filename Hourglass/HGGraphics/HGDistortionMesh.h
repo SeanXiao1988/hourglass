@@ -28,8 +28,7 @@
 #define DISTORTION_TOPLEFT  1
 #define DISTORTION_CENTER   2
 
-namespace HG
-{
+HGNAMESPACE_START
 
 class DistortionMesh
 {
@@ -75,6 +74,6 @@ private:
     Quad        mQuad;
 };
  
-}
+HGNAMESPACE_END
 
 #endif // HGDISTORTIONMESH_H_

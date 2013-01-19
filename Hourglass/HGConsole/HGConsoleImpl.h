@@ -24,8 +24,7 @@
 #include "HGConsole.h"
 #include "HGGraphicsDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 #define CONSOLE ConsoleImpl::getInstance()
 
@@ -88,6 +87,6 @@ private:
     ConsoleImpl& operator= (const ConsoleImpl& rhs);
 };
 
-}
+HGNAMESPACE_END
 
 #endif // HGCONSOLEIMPL_H_

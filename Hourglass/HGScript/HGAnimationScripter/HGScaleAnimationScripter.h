@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class ScaleAnimation;
 
@@ -34,6 +33,6 @@ extern ScaleAnimation* scaleanimation_check(lua_State* L, int idx);
 extern int scaleanimation_push(lua_State* L, ScaleAnimation* anim);
 extern void ScriptRegisterScaleAnimation(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGSCALEANIMATIONSCRIPTER_H_

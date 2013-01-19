@@ -24,8 +24,7 @@
 #include "HGScriptDef.h"
 #include "HGGraphicsDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 extern int vertex_push2lua(lua_State* L, const Vertex* v);
 extern int quad_push2lua(lua_State* L, const Quad* q);
@@ -34,6 +33,6 @@ extern int rtarget_push2lua(lua_State* L, const rtarget_t* rt);
     
 extern void ScriptRegisterGraphic(lua_State* L);
     
-}
+HGNAMESPACE_END
 
 #endif // HGGRAPHICSCRIPTER_H_

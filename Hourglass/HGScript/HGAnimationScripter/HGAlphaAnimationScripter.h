@@ -23,8 +23,7 @@
 
 #include "HGScriptDef.h"
 
-namespace HG
-{
+HGNAMESPACE_START
     
 class AlphaAnimation;
 
@@ -34,6 +33,6 @@ extern AlphaAnimation* alphaanimation_check(lua_State* L, int idx);
 extern int alphaanimation_push(lua_State* L, AlphaAnimation* anim);
 extern void ScriptRegisterAlphaAnimation(lua_State* L);
 
-}
+HGNAMESPACE_END
 
 #endif // HGALPHAANIMATIONSCRIPTER_H_
