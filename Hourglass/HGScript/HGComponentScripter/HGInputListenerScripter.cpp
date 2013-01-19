@@ -75,8 +75,9 @@ static int inputlistener_set_script_callback(lua_State* L)
     if (listener == NULL)
         break;
     
-    const char* func = luaL_checkstring(L, 2);
-    listener->setScriptCallback(func);
+    int callbackRef = luaH_tofunction(L, 2);
+
+    listener->setScriptCallback(callbackRef);
     
     BREAK_END;
     
@@ -93,8 +94,9 @@ static int inputlistener_get_script_callback(lua_State* L)
     if (listener == NULL)
         break;
     
-    std::string function = listener->getScriptCallback();
-    lua_pushstring(L, function.c_str());
+    int function = listener->getScriptCallback();
+    lua_pushinteger(L, function);
+
     ret = 1;
     
     BREAK_END;

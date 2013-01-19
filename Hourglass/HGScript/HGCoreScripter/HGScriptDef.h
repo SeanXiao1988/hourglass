@@ -30,7 +30,7 @@
 
 HGNAMESPACE_START
     
-static void lua_stack_dump (lua_State *L)
+static void lua_stack_dump(lua_State *L)
 {
     int i;
     int top = lua_gettop(L);
@@ -60,6 +60,18 @@ static void lua_stack_dump (lua_State *L)
         printf("  ");  /* put a separator */
     }
     printf("\n----- STACK DUMP END -----\n");  /* end the listing */
+}
+
+static int luaH_tofunction(lua_State* L, int idx)
+{
+    int func = 0;
+    if (lua_type(L, idx) == LUA_TFUNCTION)
+    {
+        lua_pushvalue(L, idx);
+        func = luaL_ref(L, LUA_REGISTRYINDEX);
+    }
+    
+    return func;
 }
     
 HGNAMESPACE_END

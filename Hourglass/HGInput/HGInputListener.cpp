@@ -37,6 +37,36 @@ void InputListener::deInitialize()
 {
     
 }
+
+InputListener::InputListener()
+    : mScriptCallbackRef(0)
+{
+    
+}
+
+InputListener::~InputListener()
+{
+    if (mScriptCallbackRef != 0)
+    {
+        luaL_unref(SCRIPTMANAGER.getState(), LUA_REGISTRYINDEX, mScriptCallbackRef);
+        mScriptCallbackRef = 0;
+    }
+}
+
+void InputListener::setScriptCallback(int callbackRef)
+{
+    lua_State* L = SCRIPTMANAGER.getState();
+
+    if (callbackRef == 0 && mScriptCallbackRef != 0)
+    {
+        luaL_unref(L, LUA_REGISTRYINDEX, mScriptCallbackRef);
+        mScriptCallbackRef = 0;
+    }
+    else
+    {
+        mScriptCallbackRef = callbackRef;
+    }
+}
     
 EventResult InputListener::handleEvent(const Event& event)
 {
@@ -47,11 +77,13 @@ EventResult InputListener::handleEvent(const Event& event)
     {
         case EVENT_MOUSE:
         case EVENT_KEYBOARD:
-            if (mScriptCallback != "")
+            if (mScriptCallbackRef != 0)
             {
-                lua_getglobal(L, mScriptCallback.c_str());
+                //lua_getglobal(L, mScriptCallback.c_str());
+                lua_rawgeti(L, LUA_REGISTRYINDEX, mScriptCallbackRef);
                 if (lua_isnil(L, 1))
                     break;
+                
                 inputlistener_push(L, this);
                 event_push(L, &event);
                 lua_call(L, 2, 0);

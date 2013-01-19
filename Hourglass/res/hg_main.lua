@@ -30,7 +30,7 @@ function create_1st_obj()
     
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
-    inputer:setScriptCallback("input_callback")
+    inputer:setScriptCallback(input_callback)
 end
 
 function input_callback(listener, event)

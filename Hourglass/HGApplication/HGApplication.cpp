@@ -43,7 +43,6 @@ void Application::initialize()
 void Application::deInitialize()
 {
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_DEINIT);
-    SCRIPTMANAGER.deInitialize();
     
     AUDIOMANAGER.deInitialize();
     CONSOLE.deInitialze();
@@ -52,6 +51,8 @@ void Application::deInitialize()
     SPRITEANIMATIONCOMPILER.deInitialize();
     OBJECTMANAGER.deInitialize();
     RENDER.deInitialize();
+    
+    SCRIPTMANAGER.deInitialize();
 }
  
 void Application::setMainLoopFunction(mainloop_func func)

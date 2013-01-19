@@ -29,11 +29,11 @@ HGNAMESPACE_START
 class InputListener : public IComponent
 {
 public:
-    InputListener() {}
-    ~InputListener() {}
+    InputListener();
+    ~InputListener();
     
-    void            setScriptCallback(const char* func) { mScriptCallback = func; }
-    std::string&    getScriptCallback() { return mScriptCallback; }
+    void            setScriptCallback(int callbackRef);
+    const int&      getScriptCallback() const { return mScriptCallbackRef; }
     
     // Composite
     static void             RegisterComponentType(void);
@@ -43,7 +43,7 @@ public:
     virtual uint32_t        getComponentName();
     
 private:
-    std::string mScriptCallback;
+    int         mScriptCallbackRef;
 };
     
 HGNAMESPACE_END
