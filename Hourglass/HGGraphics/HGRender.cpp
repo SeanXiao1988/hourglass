@@ -1019,7 +1019,6 @@ void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t colo
     }
     
     renderVertexList(&vl);
-	free(vertices);
 }
 
 void Render::renderQuad(const Quad* quad)
