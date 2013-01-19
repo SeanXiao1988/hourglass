@@ -29,9 +29,13 @@ EventKeyboard::EventKeyboard(int key, int action)
     eventID = EVENT_KEYBOARD;
 }
 
-EventKeyboard::~EventKeyboard()
+// Mouse
+EventMouse::EventMouse(int x, int y, int action)
+    : x(x)
+    , y(y)
+    , action(action)
 {
-    
+    eventID = EVENT_MOUSE;
 }
     
 HGNAMESPACE_END

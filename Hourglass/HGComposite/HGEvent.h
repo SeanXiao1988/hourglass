@@ -34,15 +34,27 @@ public:
     EventID eventID;
 };
     
-// input event
+// keyboard event
 class EventKeyboard : public Event
 {
 public:
     explicit EventKeyboard(int key, int action);
-    ~EventKeyboard();
+    ~EventKeyboard() {}
     
     int     key;
     int     action;
+};
+
+// mouse event
+class EventMouse : public Event
+{
+public:
+    explicit EventMouse(int x, int y, int action);
+    ~EventMouse() {}
+    
+    int x;
+    int y;
+    int action;
 };
     
 HGNAMESPACE_END

@@ -35,7 +35,6 @@ HGNAMESPACE_START
         
 void PhysicalObject::RegisterComponentType()
 {
-    OBJECTMANAGER.subscribeToEvent(COMP_PHYSICAL_OBJECT, EVENT_INPUT);
 }
     
 void PhysicalObject::deInitialize()

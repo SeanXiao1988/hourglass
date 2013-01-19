@@ -30,6 +30,7 @@ HGNAMESPACE_START
 void InputListener::RegisterComponentType(void)
 {
     OBJECTMANAGER.subscribeToEvent(COMP_INPUT_LISTENER, EVENT_KEYBOARD);
+    OBJECTMANAGER.subscribeToEvent(COMP_INPUT_LISTENER, EVENT_MOUSE);
 }
     
 void InputListener::deInitialize()
@@ -44,6 +45,7 @@ EventResult InputListener::handleEvent(const Event& event)
     
     switch (event.eventID)
     {
+        case EVENT_MOUSE:
         case EVENT_KEYBOARD:
             if (mScriptCallback != "")
             {

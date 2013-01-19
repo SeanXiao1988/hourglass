@@ -1,13 +1,13 @@
 /**
- *  @file    HGEventDef.h
- *  @brief   Event definition
+ *  @file    HGEventMouseScripter.h
+ *  @brief   Mouse event script adapter header
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2012/11/06
+ *  Created:  2013/01/19
  *  Company:  SNSTEAM.inc
- *  (C) Copyright 2012 SNSTEAM.inc All rights reserved.
+ *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
  * This file is a part of Hourglass Engine Project.
  *
@@ -18,31 +18,21 @@
  * =====================================================================================
  */
 
-#ifndef HGEVENTDEF_H_
-#define HGEVENTDEF_H_
+#ifndef HGEVENTMOUSESCRIPTER_H_
+#define HGEVENTMOUSESCRIPTER_H_
 
-#include "HGSystem.h"
+#include "HGScriptDef.h"
 
 HGNAMESPACE_START
 
-typedef enum
-{
-    EVENT_WILDCARD = 0,
-    
-    EVENT_UPDATE,           /* frame update */
-    EVENT_MOUSE,            /* mouse event */
-    EVENT_KEYBOARD,         /* keyboard event */
-    
-    EVENT_COUNT
-}EventID;
+class EventMouse;
+extern luaL_Reg sEventMouseRegs[];
 
-typedef enum
-{
-    EVENT_RESULT_IGNORED = 0,
-	EVENT_RESULT_PROCESSED,
-    EVENT_RESULT_INTERCEPT
-}EventResult;
-    
+extern EventMouse* eventmouse_check(lua_State* L, int idx);
+extern int eventmouse_push(lua_State* L, EventMouse* event);
+
+extern void ScriptRegisterEventMouse(lua_State* L);
+
 HGNAMESPACE_END
 
-#endif // HGEVENTDEF_H_
+#endif // HGEVENTMOUSESCRIPTER_H_

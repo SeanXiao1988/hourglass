@@ -136,7 +136,7 @@ void SceneNode::render()
     
     if (mParent != NULL)
     {
-        RENDER.renderLine(mWorldX, mWorldY, mParent->getWorldX(), mParent->getWorldY(), 0xFF0000FF, 1.0f);
+        RENDER.renderLine(mWorldX, mWorldY, mParent->getWorldX(), mParent->getWorldY(), 0xFF0000FF, 0.1f);
     }
     
     // pass "this" to render entity

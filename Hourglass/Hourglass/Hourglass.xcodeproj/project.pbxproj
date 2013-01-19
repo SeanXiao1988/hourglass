@@ -119,6 +119,7 @@
 		D4E8EFCF1637F36200C521A8 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E8EFCE1637F36200C521A8 /* map.png */; };
 		D4EBDE031687EE5C0040BE56 /* HGConsoleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4EBDE021687EE5C0040BE56 /* HGConsoleImpl.cpp */; };
 		D4FE009916AA73A6002A4146 /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4683E2E15D398F8005EE6D6 /* libglfw.a */; };
+		D4FE009C16AA82AF002A4146 /* HGEventMouseScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FE009B16AA82AE002A4146 /* HGEventMouseScripter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -645,6 +646,8 @@
 		D4E8EFCE1637F36200C521A8 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map.png; path = ../res/map.png; sourceTree = "<group>"; };
 		D4EBDE011687EE5C0040BE56 /* HGConsoleImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGConsoleImpl.h; sourceTree = "<group>"; };
 		D4EBDE021687EE5C0040BE56 /* HGConsoleImpl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGConsoleImpl.cpp; sourceTree = "<group>"; };
+		D4FE009A16AA82AE002A4146 /* HGEventMouseScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGEventMouseScripter.h; sourceTree = "<group>"; };
+		D4FE009B16AA82AE002A4146 /* HGEventMouseScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventMouseScripter.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1425,6 +1428,8 @@
 				D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */,
 				D49D9AF416A7E2580007D971 /* HGEventKeyboardScripter.h */,
 				D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */,
+				D4FE009A16AA82AE002A4146 /* HGEventMouseScripter.h */,
+				D4FE009B16AA82AE002A4146 /* HGEventMouseScripter.cpp */,
 			);
 			path = HGEventScripter;
 			sourceTree = "<group>";
@@ -1723,6 +1728,7 @@
 				2EE2A14216A821B9005AF2A8 /* HGInputListener.cpp in Sources */,
 				2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */,
 				D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */,
+				D4FE009C16AA82AF002A4146 /* HGEventMouseScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

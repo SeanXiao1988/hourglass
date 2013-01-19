@@ -27,27 +27,18 @@ HGNAMESPACE_START
 
 typedef enum
 {
-    INPUT_PRESS = 0,
+    INPUT_NONE  = 0,
+    INPUT_PRESS,
     INPUT_RELEASE,
     INPUT_TRIGGER,
     
     INPUT_MOUSE_MOVE,
-    INPUT_MOUSE_LEFT,
-    INPUT_MOUSE_RIGHT
+    INPUT_MOUSE_LEFT_PRESS,
+    INPUT_MOUSE_LEFT_RELEASE,
+    INPUT_MOUSE_RIGHT_PRESS,
+    INPUT_MOUSE_RIGHT_RELEASE,
     
 }INPUT_TYPE;
-    
-typedef struct
-{
-    union
-    {
-        int     key;
-        int     x;
-        int     botton;
-    };
-    int         y;
-    INPUT_TYPE  action;
-}InputInfo;
     
 HGNAMESPACE_END
 

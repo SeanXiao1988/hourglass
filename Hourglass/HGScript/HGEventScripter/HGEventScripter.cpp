@@ -21,6 +21,7 @@
 #include "HGEvent.h"
 #include "HGEventScripter.h"
 #include "HGEventKeyboardScripter.h"
+#include "HGEventMouseScripter.h"
 
 #define EVENT_LUA_NAME  "Event"
 
@@ -55,6 +56,10 @@ int event_push(lua_State* L, const Event* event)
     {
         case EVENT_KEYBOARD:
             ret = eventkeyboard_push(L, (EventKeyboard *)event);
+            break;
+        
+        case EVENT_MOUSE:
+            ret = eventmouse_push(L, (EventMouse *)event);
             break;
             
         default:
@@ -108,8 +113,8 @@ void ScriptRegisterEvent(lua_State* L)
     lua_pushinteger(L, EVENT_UPDATE);
     lua_setglobal(L, "EVENT_UPDATE");
     
-    lua_pushinteger(L, EVENT_INPUT);
-    lua_setglobal(L, "EVENT_INPUT");
+    lua_pushinteger(L, EVENT_MOUSE);
+    lua_setglobal(L, "EVENT_MOUSE");
     
     lua_pushinteger(L, EVENT_KEYBOARD);
     lua_setglobal(L, "EVENT_KEYBOARD");
@@ -128,6 +133,7 @@ void ScriptRegisterEvent(lua_State* L)
     lua_setglobal(L, "EVENT_RESULT_INTERCEPT");
     
     ScriptRegisterEventKeyboard(L);
+    ScriptRegisterEventMouse(L);
 }
     
 HGNAMESPACE_END

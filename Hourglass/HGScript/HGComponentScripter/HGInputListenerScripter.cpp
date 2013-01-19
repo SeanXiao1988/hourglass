@@ -20,6 +20,7 @@
 
 #include "HGInputListenerScripter.h"
 #include "HGInputListener.h"
+#include "HGInputDef.h"
 
 #include "HGCompositeScripter.h"
 
@@ -156,6 +157,34 @@ void ScriptRegisterInputListener(lua_State* L)
     lua_settable(L, -3);
     
     lua_setglobal(L, INPUTLISTENER_LUA_NAME);
-}
     
+    // constants
+    lua_pushinteger(L, INPUT_NONE);
+    lua_setglobal(L, "INPUT_NONE");
+
+    lua_pushinteger(L, INPUT_PRESS);
+    lua_setglobal(L, "INPUT_PRESS");
+
+    lua_pushinteger(L, INPUT_RELEASE);
+    lua_setglobal(L, "INPUT_RELEASE");
+
+    lua_pushinteger(L, INPUT_TRIGGER);
+    lua_setglobal(L, "INPUT_TRIGGER");
+
+    lua_pushinteger(L, INPUT_MOUSE_MOVE);
+    lua_setglobal(L, "INPUT_MOUSE_MOVE");
+
+    lua_pushinteger(L, INPUT_MOUSE_LEFT_PRESS);
+    lua_setglobal(L, "INPUT_MOUSE_LEFT_PRESS");
+    
+    lua_pushinteger(L, INPUT_MOUSE_LEFT_RELEASE);
+    lua_setglobal(L, "INPUT_MOUSE_LEFT_RELEASE");
+
+    lua_pushinteger(L, INPUT_MOUSE_RIGHT_PRESS);
+    lua_setglobal(L, "INPUT_MOUSE_RIGHT_PRESS");
+    
+    lua_pushinteger(L, INPUT_MOUSE_RIGHT_RELEASE);
+    lua_setglobal(L, "INPUT_MOUSE_RIGHT_RELEASE");
+}
+
 HGNAMESPACE_END

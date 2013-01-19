@@ -60,9 +60,7 @@ void InputManager::charkeysCallback(int key, int action)
     
 void InputManager::keyboardCallback(int key, int action)
 {
-    InputInfo keyInfo;
-    keyInfo.key = key;
-    
+    INPUT_TYPE type = INPUT_NONE;
     if (CONSOLE.isActive())
     {
         CONSOLE.handleControl(key, action);
@@ -74,56 +72,58 @@ void InputManager::keyboardCallback(int key, int action)
 	{
 		if (getInstance().mKeyMap[key] == GLFW_PRESS)
 			// triggered
-            keyInfo.action = INPUT_TRIGGER;
+            type = INPUT_TRIGGER;
 		else
-            keyInfo.action = INPUT_RELEASE;
+            type = INPUT_RELEASE;
 	}
     else
     {
-        keyInfo.action = INPUT_PRESS;
+        type = INPUT_PRESS;
     }
 	
     getInstance().mKeyMap[key] = action;
 
     //
-    EventKeyboard keyEvent(key, action);
+    EventKeyboard keyEvent(key, (int)type);
     OBJECTMANAGER.broadcastEvent(keyEvent);
 }
     
 void InputManager::mousePosCallback(int x, int y)
 {
-    InputInfo posInfo;
-    posInfo.x = x;
-    posInfo.y = y;
-    posInfo.action = INPUT_MOUSE_MOVE;
-    
-//    Event mouseEvent(EVENT_INPUT, &posInfo);
-//    EVENTMANAGER.broadcastEvent(mouseEvent);
+    EventMouse mouseEvent(x, y, INPUT_MOUSE_MOVE);
+    OBJECTMANAGER.broadcastEvent(mouseEvent);
 }
     
 void InputManager::mouseBtnCallback(int btn, int action)
 {
-    InputInfo btnInfo;
+    INPUT_TYPE type = INPUT_NONE;
+    int x = 0;
+    int y = 0;
     
     switch (btn)
     {
         case GLFW_MOUSE_BUTTON_LEFT:
-            btnInfo.botton = INPUT_MOUSE_LEFT;
+            if (action == GLFW_PRESS)
+                type = INPUT_MOUSE_LEFT_PRESS;
+            else
+                type = INPUT_MOUSE_LEFT_RELEASE;
             break;
             
         case GLFW_MOUSE_BUTTON_RIGHT:
-            btnInfo.botton = INPUT_MOUSE_RIGHT;
+            if (action == GLFW_PRESS)
+                type = INPUT_MOUSE_RIGHT_PRESS;
+            else
+                type = INPUT_MOUSE_RIGHT_RELEASE;
             break;
             
         default:
             return;
     }
     
-    btnInfo.action = (action == GLFW_PRESS) ? INPUT_PRESS : INPUT_RELEASE;
+    glfwGetMousePos(&x, &y);
     
-//    Event clickEvent(EVENT_INPUT, &btnInfo);
-//    EVENTMANAGER.broadcastEvent(clickEvent);
-    
+    EventMouse event(x, y, (int)type);
+    OBJECTMANAGER.broadcastEvent(event);
 }
     
 HGNAMESPACE_END

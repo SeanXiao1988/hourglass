@@ -34,84 +34,31 @@ function create_1st_obj()
 end
 
 function input_callback(listener, event)
-    if event:key() == string.byte("A", 1) and event:action() == 1 then
-        local objName = listener:getObjectName()
-        local node = OBJECTMANAGER.queryComponent(objName, COMP_SCENE_NODE)
-        if node ~= nil then
-            x = node:getX()
-            x = x - 5.0
-            node:setX(x)
+    if event:eventID() == EVENT_KEYBOARD then
+        if event:key() == string.byte("A", 1) and event:action() == INPUT_PRESS then
+            local objName = listener:getObjectName()
+            local node = OBJECTMANAGER.queryComponent(objName, COMP_SCENE_NODE)
+            if node ~= nil then
+                x = node:getX()
+                x = x - 5.0
+                node:setX(x)
+            end
         end
-
+    elseif event:eventID() == EVENT_MOUSE then
+        --if event:action() == INPUT_MOUSE_LEFT_RELEASE then
+            local node = OBJECTMANAGER.queryComponent(listener:getObjectName(), COMP_SCENE_NODE)
+            local x = event:x()
+            local y = event:y()
+            if node ~= nil then
+                node:setXY(x, y)
+            end
+        --end
     end
 end
 
 
 function hg_deinit()
     QuadEntity.delete(entity)
-end
-
-function hg_init2()
-
-    APPLICATION.setTitle("hourglass v0.1")
-
-    RENDER.setClearColor(0x808080FF)
-
-    anime = SPRITEANIMATIONCOMPILER.parseXML("animation.xml")
-
-    shitNode = SCENEMANAGER.createNode("shitNode")
-
-    root = SCENEMANAGER.getRoot()
-
-    root:addChild(shitNode)
-
-    shitNode:setXY(400, 300)
-
-    testAnimator = QuadEntity.new()
-
-    tex = RENDER.textureLoad("map.png")
-
-    testAnimator:setTexture(tex)
-
-    testAnimator:setTextureRect(0, 0, 256, 256)
-
-    shitNode:attachEntity(testAnimator)
-
-    --testAnimator:initAnimation(anime)
-
-    --testAnimator:playAnimation(HASH.make("1stAnimation"))
-    
-    icomp = shitNode:getEntity()
-    print(HASH.stringForHash(icomp:getComponentName()))
-
-    trans1 = TranslateAnimation.new(100, 0, 1)
-    trans1:setType(ANIMATION_TYPE_PINGPONG)
-    shitNode:addAnimation(trans1, "trans1")
-
-    trans2 = TranslateAnimation.new(0, 100, 1)
-    trans2:setType(ANIMATION_TYPE_PINGPONG)
-    shitNode:addAnimation(trans2, "trans2")
-
-    rot = RotationAnimation.new(360, 3)
-    rot:setType(ANIMATION_TYPE_RESET)
-    shitNode:addAnimation(rot, "rot")
-
-    scl = ScaleAnimation.new(0.2, 0.2, 1)
-    scl:setType(ANIMATION_TYPE_PINGPONG)
-    shitNode:addAnimation(scl, "scale")
-    
-    alp = AlphaAnimation.new(-200, 1)
-    alp:setType(ANIMATION_TYPE_PINGPONG)
-    shitNode:addAnimation(alp, "alp")
-    
-    map = MapData.new()
-    map:create(16, 16)
-
-end
-
-function hg_deinit2()
-    QuadEntity.delete(testAnimator)
-    MapData.delete(map)
 end
 
 function print_t(t)
