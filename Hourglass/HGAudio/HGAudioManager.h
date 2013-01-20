@@ -26,6 +26,9 @@
 
 #define AUDIOMANAGER AudioManager::getInstance()
 
+#define AUDIO_MAX_BUFFERS   64
+#define AUDIO_MAX_SOURCES   16
+
 HGNAMESPACE_START
     
 class AudioManager
@@ -40,7 +43,25 @@ public:
     HG_ERROR    initialize();
     void        deInitialize();
     
+    uint32_t    audioLoad();
+    
 private:
+    ALfloat     mPosition[3];
+    ALfloat     mVelocity[3];
+    ALfloat     mOrientation[6];
+    
+    // audio sources
+    uint32_t    mAudioSourcesActiveCount;
+    uint32_t    mAudioSources[AUDIO_MAX_SOURCES];
+    bool        mAudioSourceActive[AUDIO_MAX_SOURCES];
+    
+    // audio buffers
+    uint32_t    mAudioBuffersActiveCount;
+    uint32_t    mAudioBuffers[AUDIO_MAX_BUFFERS];
+    bool        mAudioBufferActive[AUDIO_MAX_BUFFERS];
+    
+    uint32_t    mFileHashes[AUDIO_MAX_BUFFERS];
+    
     ALCdevice*  mDevice;
     ALCcontext* mContext;
     
