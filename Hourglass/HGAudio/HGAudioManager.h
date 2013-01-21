@@ -30,6 +30,8 @@
 #define AUDIO_MAX_SOURCES   16
 
 HGNAMESPACE_START
+
+using namespace glm;
     
 class AudioManager
 {
@@ -43,10 +45,29 @@ public:
     HG_ERROR    initialize();
     void        deInitialize();
     
-    uint32_t    audioLoad(const char* filename);
+    int32_t     audioLoad(const char* filename, bool roop = false);
+    bool        audioPlay(int32_t audioID, bool reset = false);
+    bool        audioPause(int32_t audioID);
+    bool        audioPauseAll();
+    bool        audioResume(int32_t audioID);
+    bool        audioResumeAll();
+    bool        audioStop(int32_t audioID);
+    bool        audioStopAll();
+    bool        audioFree(int32_t audioID);
+    bool        audioFreeAll();
+    
+    bool        audioSet(int32_t audioID, vec3 pos, vec3 vel, vec3 dir, float maxDistance, float minGain, bool play, bool reset);
+    
+    bool        audioSetPosition(int32_t audioID, vec3 pos);
+    bool        audioSetup(int32_t audioID, vec3 pos, vec3 vel, vec3 dir);
+
+    bool        listenerSet(vec3 pos, vec3 vel, vec3 ori);
     
 private:
     bool        _isALerror();
+    int32_t     _findLoadedBuffer(const char* filename);
+    int32_t     _loadAudioFile(const char* filename);
+    bool        _loadOgg(const char* filename, ALuint buffer);
     
     ALfloat     mPosition[3];
     ALfloat     mVelocity[3];
@@ -54,12 +75,12 @@ private:
     
     // audio sources
     uint32_t    mAudioSourcesActiveCount;
-    uint32_t    mAudioSources[AUDIO_MAX_SOURCES];
+    ALuint      mAudioSources[AUDIO_MAX_SOURCES];
     bool        mAudioSourceActive[AUDIO_MAX_SOURCES];
     
     // audio buffers
     uint32_t    mAudioBuffersActiveCount;
-    uint32_t    mAudioBuffers[AUDIO_MAX_BUFFERS];
+    ALuint      mAudioBuffers[AUDIO_MAX_BUFFERS];
     bool        mAudioBufferActive[AUDIO_MAX_BUFFERS];
     
     uint32_t    mFileHashes[AUDIO_MAX_BUFFERS];

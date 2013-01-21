@@ -133,6 +133,8 @@
 	#pragma comment(lib, "OpenAL32.lib")
 #endif
 
+#include "vorbisfile.h"
+
 /// Utility Macros
 #define BREAK_START do{
 #define BREAK_END   }while(0)

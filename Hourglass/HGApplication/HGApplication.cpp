@@ -37,6 +37,9 @@ void Application::initialize()
     SCRIPTMANAGER.execScript(MAIN_SCRIPT_FILE);
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_ENTRY);
     
+    int32_t audio = AUDIOMANAGER.audioLoad("audio.ogg");
+    AUDIOMANAGER.audioPlay(audio, true);
+    
     mMainLoopFunc = NULL;
 }
     

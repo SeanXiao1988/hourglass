@@ -117,6 +117,8 @@
 		D4BFC88A162E4018008053F6 /* HGMemTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BFC889162E4018008053F6 /* HGMemTrack.cpp */; };
 		D4D74FA816AD29FF00197DBD /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FA416AD29E900197DBD /* libogg.a */; };
 		D4D74FA916AD2A0A00197DBD /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FA016AD296500197DBD /* libvorbisfile.a */; };
+		D4D74FAB16AD399700197DBD /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FAA16AD399700197DBD /* libvorbis.a */; };
+		D4D74FAD16AD3E9800197DBD /* audio.ogg in Resources */ = {isa = PBXBuildFile; fileRef = D4D74FAC16AD3E9800197DBD /* audio.ogg */; };
 		D4E6D5BE1699628B00ED9397 /* hg_main.lua in Resources */ = {isa = PBXBuildFile; fileRef = D4E6D5BD1699628B00ED9397 /* hg_main.lua */; };
 		D4E8EFCF1637F36200C521A8 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E8EFCE1637F36200C521A8 /* map.png */; };
 		D4EBDE031687EE5C0040BE56 /* HGConsoleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4EBDE021687EE5C0040BE56 /* HGConsoleImpl.cpp */; };
@@ -646,6 +648,8 @@
 		D4D74FA516AD29E900197DBD /* config_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = config_types.h; path = ogg/config_types.h; sourceTree = "<group>"; };
 		D4D74FA616AD29E900197DBD /* ogg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ogg.h; path = ogg/ogg.h; sourceTree = "<group>"; };
 		D4D74FA716AD29E900197DBD /* os_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = os_types.h; path = ogg/os_types.h; sourceTree = "<group>"; };
+		D4D74FAA16AD399700197DBD /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = vorbis/libvorbis.a; sourceTree = "<group>"; };
+		D4D74FAC16AD3E9800197DBD /* audio.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = audio.ogg; path = ../res/audio.ogg; sourceTree = "<group>"; };
 		D4D7A559162D441100CD3DF9 /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLEW.a; sourceTree = "<group>"; };
 		D4D7BAD6164B489A00CB40A8 /* HGInputDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInputDef.h; sourceTree = "<group>"; };
 		D4D7BADD164B586C00CB40A8 /* HG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HG.h; path = ../HG.h; sourceTree = "<group>"; };
@@ -666,6 +670,7 @@
 			files = (
 				D419781A167ECED6006A65ED /* libbz2.dylib in Frameworks */,
 				D4197818167ECE5C006A65ED /* libz.dylib in Frameworks */,
+				D4D74FAB16AD399700197DBD /* libvorbis.a in Frameworks */,
 				D4FE009916AA73A6002A4146 /* libglfw.a in Frameworks */,
 				D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */,
 				2E501CAD164E1D0C007AC606 /* libGLEW.a in Frameworks */,
@@ -1389,6 +1394,7 @@
 		D4738F4E162D67030073E949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4D74FAC16AD3E9800197DBD /* audio.ogg */,
 				D4E6D5BD1699628B00ED9397 /* hg_main.lua */,
 				D4B74E2B16814EBE00C9DB3B /* script.lua */,
 				D45001EC16804D9C004FF847 /* source_code_pro.ttf */,
@@ -1562,6 +1568,7 @@
 			isa = PBXGroup;
 			children = (
 				D4D74FA016AD296500197DBD /* libvorbisfile.a */,
+				D4D74FAA16AD399700197DBD /* libvorbis.a */,
 				D4D74FA116AD296500197DBD /* codec.h */,
 				D4D74FA216AD296500197DBD /* vorbisfile.h */,
 			);
@@ -1668,6 +1675,7 @@
 				D464329716718DA7007B9142 /* animation.xml in Resources */,
 				D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */,
 				D4E6D5BE1699628B00ED9397 /* hg_main.lua in Resources */,
+				D4D74FAD16AD3E9800197DBD /* audio.ogg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
