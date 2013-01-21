@@ -64,7 +64,7 @@ void InputManager::keyboardCallback(int key, int action)
     if (CONSOLE.isActive())
     {
         CONSOLE.handleControl(key, action);
-        memset(getInstance().mKeyMap, 0, GLFW_KEY_LAST);
+        memset(getInstance().mKeyMap, 0, GLFW_KEY_LAST * sizeof(int));
         return;
     }
     

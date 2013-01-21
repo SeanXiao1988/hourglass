@@ -43,9 +43,11 @@ public:
     HG_ERROR    initialize();
     void        deInitialize();
     
-    uint32_t    audioLoad();
+    uint32_t    audioLoad(const char* filename);
     
 private:
+    bool        _isALerror();
+    
     ALfloat     mPosition[3];
     ALfloat     mVelocity[3];
     ALfloat     mOrientation[6];
@@ -61,6 +63,8 @@ private:
     bool        mAudioBufferActive[AUDIO_MAX_BUFFERS];
     
     uint32_t    mFileHashes[AUDIO_MAX_BUFFERS];
+    
+    bool        mIsSoundOn;
     
     ALCdevice*  mDevice;
     ALCcontext* mContext;

@@ -115,6 +115,8 @@
 		D4BFA96A16169BE300587E6B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4683E2515D398B0005EE6D6 /* OpenGL.framework */; };
 		D4BFA96D1616F96000587E6B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4683F1915D39952005EE6D6 /* main.cpp */; };
 		D4BFC88A162E4018008053F6 /* HGMemTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BFC889162E4018008053F6 /* HGMemTrack.cpp */; };
+		D4D74FA816AD29FF00197DBD /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FA416AD29E900197DBD /* libogg.a */; };
+		D4D74FA916AD2A0A00197DBD /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FA016AD296500197DBD /* libvorbisfile.a */; };
 		D4E6D5BE1699628B00ED9397 /* hg_main.lua in Resources */ = {isa = PBXBuildFile; fileRef = D4E6D5BD1699628B00ED9397 /* hg_main.lua */; };
 		D4E8EFCF1637F36200C521A8 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = D4E8EFCE1637F36200C521A8 /* map.png */; };
 		D4EBDE031687EE5C0040BE56 /* HGConsoleImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4EBDE021687EE5C0040BE56 /* HGConsoleImpl.cpp */; };
@@ -637,6 +639,13 @@
 		D4BFA86316169B0900587E6B /* Hourglass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Hourglass.xcodeproj; sourceTree = "<group>"; };
 		D4BFC888162E4018008053F6 /* HGMemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMemTrack.h; sourceTree = "<group>"; };
 		D4BFC889162E4018008053F6 /* HGMemTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMemTrack.cpp; sourceTree = "<group>"; };
+		D4D74FA016AD296500197DBD /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = vorbis/libvorbisfile.a; sourceTree = "<group>"; };
+		D4D74FA116AD296500197DBD /* codec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = codec.h; path = vorbis/codec.h; sourceTree = "<group>"; };
+		D4D74FA216AD296500197DBD /* vorbisfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vorbisfile.h; path = vorbis/vorbisfile.h; sourceTree = "<group>"; };
+		D4D74FA416AD29E900197DBD /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = ogg/libogg.a; sourceTree = "<group>"; };
+		D4D74FA516AD29E900197DBD /* config_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = config_types.h; path = ogg/config_types.h; sourceTree = "<group>"; };
+		D4D74FA616AD29E900197DBD /* ogg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ogg.h; path = ogg/ogg.h; sourceTree = "<group>"; };
+		D4D74FA716AD29E900197DBD /* os_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = os_types.h; path = ogg/os_types.h; sourceTree = "<group>"; };
 		D4D7A559162D441100CD3DF9 /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGLEW.a; sourceTree = "<group>"; };
 		D4D7BAD6164B489A00CB40A8 /* HGInputDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGInputDef.h; sourceTree = "<group>"; };
 		D4D7BADD164B586C00CB40A8 /* HG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HG.h; path = ../HG.h; sourceTree = "<group>"; };
@@ -661,6 +670,8 @@
 				D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */,
 				2E501CAD164E1D0C007AC606 /* libGLEW.a in Frameworks */,
 				2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */,
+				D4D74FA916AD2A0A00197DBD /* libvorbisfile.a in Frameworks */,
+				D4D74FA816AD29FF00197DBD /* libogg.a in Frameworks */,
 				D47F3E8416A95080000CBCD5 /* OpenAL.framework in Frameworks */,
 				D4BFA96A16169BE300587E6B /* OpenGL.framework in Frameworks */,
 				D4BFA835161699EC00587E6B /* Cocoa.framework in Frameworks */,
@@ -1051,12 +1062,14 @@
 				D4B74DCE16814EAC00C9DB3B /* Lua */,
 				2E83B3DD167F7C0600F860F6 /* FTGL */,
 				D41977B8167ECAF3006A65ED /* freetype */,
+				D4D74FA316AD29D800197DBD /* ogg */,
 				2EE7DE2F162DBF6000212BD0 /* other */,
 				2E0E4ABB15E288CD00B9EE12 /* glew */,
 				D48A411115D49A4F0033E61F /* LodePNG */,
 				D4683E2C15D398F8005EE6D6 /* glfw */,
 				D4683E3015D398F8005EE6D6 /* glm */,
 				D4683F1215D398F8005EE6D6 /* RapidXML */,
+				D4D74F9E16AD294500197DBD /* vorbis */,
 			);
 			name = ThirdParty;
 			path = ../ThirdParty;
@@ -1545,6 +1558,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D4D74F9E16AD294500197DBD /* vorbis */ = {
+			isa = PBXGroup;
+			children = (
+				D4D74FA016AD296500197DBD /* libvorbisfile.a */,
+				D4D74FA116AD296500197DBD /* codec.h */,
+				D4D74FA216AD296500197DBD /* vorbisfile.h */,
+			);
+			name = vorbis;
+			sourceTree = "<group>";
+		};
+		D4D74FA316AD29D800197DBD /* ogg */ = {
+			isa = PBXGroup;
+			children = (
+				D4D74FA416AD29E900197DBD /* libogg.a */,
+				D4D74FA516AD29E900197DBD /* config_types.h */,
+				D4D74FA616AD29E900197DBD /* ogg.h */,
+				D4D74FA716AD29E900197DBD /* os_types.h */,
+			);
+			name = ogg;
+			sourceTree = "<group>";
+		};
 		D4EBDE311688547F0040BE56 /* HGScript */ = {
 			isa = PBXGroup;
 			children = (
@@ -1822,6 +1856,8 @@
 					"\"$(SRCROOT)/../ThirdParty/glew\"",
 					"\"$(SRCROOT)/../ThirdParty/freetype\"",
 					"\"$(SRCROOT)/../ThirdParty/FTGL\"",
+					"\"$(SRCROOT)/../ThirdParty/ogg\"",
+					"\"$(SRCROOT)/../ThirdParty/vorbis\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1852,6 +1888,8 @@
 					"\"$(SRCROOT)/../ThirdParty/glew\"",
 					"\"$(SRCROOT)/../ThirdParty/freetype\"",
 					"\"$(SRCROOT)/../ThirdParty/FTGL\"",
+					"\"$(SRCROOT)/../ThirdParty/ogg\"",
+					"\"$(SRCROOT)/../ThirdParty/vorbis\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
