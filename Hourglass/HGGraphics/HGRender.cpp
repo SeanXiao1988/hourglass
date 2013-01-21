@@ -992,7 +992,7 @@ void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t colo
     vl.v = vertices;
     vl.vertex_count = vcount;
     
-    float angleStep = 2 * M_PI / (vcount - 2);
+    float angleStep = (float)(2 * M_PI / (vcount - 2));
     
     for (int i = 1; i < vcount; i++)
     {
@@ -1318,7 +1318,7 @@ HG_ERROR Render::_initOpenGL()
 {
     _setupOrtho(mWidth, mHeight);
     
-    glAlphaFunc(GL_GREATER, 0.1);   // why we need this ?
+    glAlphaFunc(GL_GREATER, 0.1f);   // why we need this ?
     glEnable(GL_ALPHA_TEST);
 
 	glEnable(GL_DEPTH_TEST);        // answer http://www.sjbaker.org/steve/omniv/alpha_sorting.html

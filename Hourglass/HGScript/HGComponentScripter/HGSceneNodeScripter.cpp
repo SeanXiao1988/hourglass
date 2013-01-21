@@ -62,7 +62,7 @@ int scenenode_push(lua_State* L, SceneNode* node)
     
 static int scenenode_set_alpha(lua_State* L)
 {
-    int alpha = 0;
+    float alpha = 0;
     
     BREAK_START;
     

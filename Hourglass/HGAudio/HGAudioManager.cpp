@@ -244,7 +244,7 @@ bool AudioManager::audioResumeAll()
         break;
     
     int sourceState = 0;
-    for (int i = 0; i < mAudioSourcesActiveCount; i++)
+    for (uint32_t i = 0; i < mAudioSourcesActiveCount; i++)
     {
         alGetSourcei(mAudioSources[i], AL_SOURCE_STATE, &sourceState);
         
@@ -287,7 +287,7 @@ bool AudioManager::audioStopAll()
     if (mAudioSourcesActiveCount >= AUDIO_MAX_SOURCES)
         break;
     
-    for (int i = 0; i < mAudioSourcesActiveCount; i++)
+    for (uint32_t i = 0; i < mAudioSourcesActiveCount; i++)
     {
         audioStop(i);
     }
