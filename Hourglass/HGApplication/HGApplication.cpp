@@ -31,14 +31,11 @@ void Application::initialize()
     SCENEMANAGER.initialize();
     INPUTMANAGER.initialize();
     CONSOLE.initialize();
-    AUDIOMANAGER.initialize();
+    //AUDIOMANAGER.initialize();
     
     SCRIPTMANAGER.initialize();
     SCRIPTMANAGER.execScript(MAIN_SCRIPT_FILE);
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_ENTRY);
-    
-    int32_t audio = AUDIOMANAGER.audioLoad("audio.ogg");
-    AUDIOMANAGER.audioPlay(audio, true);
     
     mMainLoopFunc = NULL;
 }
@@ -47,7 +44,7 @@ void Application::deInitialize()
 {
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_DEINIT);
     
-    AUDIOMANAGER.deInitialize();
+    //AUDIOMANAGER.deInitialize();
     CONSOLE.deInitialze();
     INPUTMANAGER.deInitialize();
     SCENEMANAGER.deInitialize();

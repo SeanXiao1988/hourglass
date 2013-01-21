@@ -62,12 +62,13 @@ HG_ERROR AudioManager::initialize()
     }
     
     mContext = alcCreateContext(mDevice, NULL);
-    alcMakeContextCurrent(mContext);
     if (mContext == NULL)
     {
         err = HG_ERROR_AL_CONTEXT_FAILED;
         break;
     }
+
+	alcMakeContextCurrent(mContext);
     
     // Create sources & buffer
     alGenSources(AUDIO_MAX_SOURCES, mAudioSources);
@@ -311,6 +312,7 @@ bool AudioManager::audioFree(int32_t audioID)
     alSourceStop(mAudioSources[audioID]);
     mAudioSourceActive[audioID] = false;
     mAudioSourcesActiveCount--;
+	mFileHashes[audioID] = 0;
     
     ret = !_isALerror();
     
@@ -465,7 +467,7 @@ int32_t AudioManager::_findLoadedBuffer(const char *filename)
 
 int32_t AudioManager::_loadAudioFile(const char *filename)
 {
-    int32_t bufferID = 0;
+    int32_t bufferID = -1;
     
     BREAK_START;
     
@@ -475,13 +477,14 @@ int32_t AudioManager::_loadAudioFile(const char *filename)
     if (mAudioBuffersActiveCount == AUDIO_MAX_BUFFERS)
         break;
     
+	bufferID = 0;
     while (mAudioBufferActive[bufferID])
         bufferID++;
     
     std::string name = filename;
     if (name.find(".ogg", 0) != std::string::npos)
     {
-        if (!_loadOgg(filename, mAudioBuffers[bufferID]))
+        if (!_loadOGG(filename, mAudioBuffers[bufferID]))
         {
             bufferID = -1;
             break;
@@ -497,7 +500,7 @@ int32_t AudioManager::_loadAudioFile(const char *filename)
     return bufferID;
 }
 
-bool AudioManager::_loadOgg(const char *filename, ALuint buffer)
+bool AudioManager::_loadOGG(const char *filename, ALuint buffer)
 {
     bool ret = false;
     
@@ -507,7 +510,7 @@ bool AudioManager::_loadOgg(const char *filename, ALuint buffer)
     
     if (ov_fopen(filename, &oggFile))
         break;
-    
+
     vorbis_info* info = ov_info(&oggFile, -1);
     
     ALenum format;
@@ -561,6 +564,8 @@ bool AudioManager::_loadOgg(const char *filename, ALuint buffer)
                 break;
         }
     }
+
+	ov_clear(&oggFile);
     
     alBufferData(buffer, format, &samples[0], (int)ov_pcm_total(&oggFile, -1), (int)info->rate);
     

@@ -67,7 +67,7 @@ private:
     bool        _isALerror();
     int32_t     _findLoadedBuffer(const char* filename);
     int32_t     _loadAudioFile(const char* filename);
-    bool        _loadOgg(const char* filename, ALuint buffer);
+    bool        _loadOGG(const char* filename, ALuint buffer);
     
     ALfloat     mPosition[3];
     ALfloat     mVelocity[3];

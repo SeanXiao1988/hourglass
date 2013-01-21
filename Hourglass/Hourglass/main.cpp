@@ -37,7 +37,7 @@ void mainloop()
 }
 
 #if PLATFORM == PLATFORM_WINDOWS
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain2 (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #else
 int main(int argc, const char * argv[])
 #endif
@@ -47,150 +47,118 @@ int main(int argc, const char * argv[])
     return APPLICATION.run();
 }
 
+#define BUFFER_SIZE 32768
+using namespace std;
+
+bool LoadOGG(char *name, vector<char> &buffer, ALenum &format, ALsizei &freq)  
+{  
+	int endian = 0;                         // 0 for Little-Endian, 1 for Big-Endian  
+	int bitStream;  
+	long bytes;  
+	char array[BUFFER_SIZE];                // Local fixed size array  
+	FILE *f;  
+
+	f = fopen(name, "rb");  
+
+	if (f == NULL)  
+		return false;   
+
+	vorbis_info *pInfo;  
+	OggVorbis_File oggFile;  
+
+	// Try opening the given file  
+	if (ov_open(f, &oggFile, NULL, 0) != 0)  
+		return false;   
+
+	pInfo = ov_info(&oggFile, -1);  
+
+	if (pInfo->channels == 1)  
+		format = AL_FORMAT_MONO16;  
+	else  
+		format = AL_FORMAT_STEREO16;  
+
+	freq = pInfo->rate;  
+
+	do  
+	{   
+		bytes = ov_read(&oggFile, array, BUFFER_SIZE, endian, 2, 1, &bitStream);  
+
+		if (bytes < 0)  
+		{  
+			ov_clear(&oggFile);  
+			cerr << "Error decoding " << name << "..." << endl;  
+			exit(-1);  
+		}  
+
+		buffer.insert(buffer.end(), array, array + bytes);  
+	}  
+	while (bytes > 0);  
+
+	ov_clear(&oggFile);  
+	return true;   
+}  
+
 #if PLATFORM == PLATFORM_WINDOWS
-int WINAPI WinMain2 (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 #else
 int main2(int argc, const char * argv[])
 #endif
 {
-    AutoMemoryTag memLog;
-	char   title[150];
-    
-    int running = GL_TRUE;
-    
-    // Render's initialization will also initialize glew and glfw
-    // before that, system io might not work properly
-    if (RENDER.initialize(1024, 768) != HG_OK)
-    {
-        exit(EXIT_FAILURE);
-    }
-    
-    //test();
-	OBJECTMANAGER.initialize();
-    
-    SCENEMANAGER.initialize();
-    
-    RENDER.setClearColor(0x808080FF);
+	APPLICATION.initialize();
+	APPLICATION.setMainLoopFunction(mainloop);
 
-    // Map
-    MapData::GenerateTileMask();
-    MapData * mapData = new MapData();
-    if (!mapData->loadFromFile("map.dat"))
-    {
-        mapData->createMap(16, 16);
-    }
-    mapData->setTexture(RENDER.textureLoad("map.png"));
-    
-    PhysicalObject * collider = static_cast<PhysicalObject *>(OBJECTMANAGER.queryComponent(Hash("1stObject"), COMP_PHYSICAL_OBJECT));
-    if (collider != NULL)
-    {
-        collider->setMap(mapData);
-    }
-    //*
-    SPRITEANIMATIONCOMPILER.initialize();
-    HG_ERROR err = HG_OK;
-    sprite_frames_header_t* anime = SPRITEANIMATIONCOMPILER.parseXML("animation.xml", &err);
-    
-    SceneNode *node = SCENEMANAGER.getNode("shitNode");
-    QuadEntity *testAnimator = new QuadEntity();
-    SCENEMANAGER.getRoot()->addChild(node);
-    node->attachEntity(testAnimator);
-    testAnimator->setTexture(RENDER.textureLoad("map.png"));
-    testAnimator->setTextureRect(0, 0, 32, 32);
-    node->setXY(400, 300);
-    testAnimator->initSpriteAnimation(anime);
-    testAnimator->playSpriteAnimation(Hash("1stAnimation"));
-    
-    //*/
-    FTGLTextureFont font("source_code_pro.ttf");
-	if (font.Error())
-		HGLog("shit happens: %d \n", font.Error());
+	ALCdevice* pDevice;  
+	ALCcontext* pContext;  
 
-	/* Set the font size and render a small text. */
-	font.FaceSize(14);
+	ALint state;                            // The state of the sound source  
+	ALuint bufferID;                        // The OpenAL sound buffer ID  
+	ALuint sourceID;                        // The OpenAL sound source  
+	ALenum format;                          // The sound data format  
+	ALsizei freq;                           // The frequency of the sound data  
+	vector<char> bufferData;                // The sound buffer data from file  
 
-    // Console
-    INPUTMANAGER.initialize();
-    CONSOLE.initialize();
-    SCRIPTMANAGER.initialize();
-    SCRIPTMANAGER.execScript("script.lua");
-    SCRIPTMANAGER.engineInvocation("hg_begin");
-    // Main loop
-    double frametime = 0.0;
-    double delay = 0.0;
-    while( running )
-    {
-		double time = glfwGetTime();
-        
-		// Calculate and display the FPS
-        if (RENDER.calculateFPS() != 0.0)
-        {
-            sprintf(title, "Hourglass Engine v0.4 (%.1f FPS)", RENDER.getFPS());
-			glfwSetWindowTitle(title);
-        }
-        
-        mapData->update();
-        
-        RENDER.beginScene();
-		RENDER.clear();
+	ALCdevice *device;  
+	ALCcontext *context;   
 
-        mapData->debug_draw(0, 0);
-		collider->debug_draw();
-        
-        delay += frametime;
-        if (delay > frametime * 0)
-		{
-            collider->update(frametime);
-            delay = 0.0;
-        }
-        
-        SCENEMANAGER.update(frametime);
-        SCENEMANAGER.render();
-        
-        RENDER.renderText(0, 0, 0x000000FF, "FPS: %.1f", RENDER.getFPS());
-        
-        glPushMatrix();
-        glLoadIdentity();
-        glTranslatef(10, 200, 1.0f);
-        //glRotatef(45, 0.0f, 0.0f, 1.0f);
-        glScalef(1.0f, -1.0f, 1.0f);
-        glColor3f(0.0f, 0.0f, 0.0f);
-        //font.Render("English中文2009国家недели 1956работы.国家知識1729.産権局Nationalのオフィスの下に設定します。");
-        glPopMatrix();
-        
-        CONSOLE.render(frametime);
-        
-		RENDER.endScene();
-        
-        // Check if ESC key was pressed or window was closed
-        running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
+	device = alcOpenDevice(0);  
+	context = alcCreateContext(device,0);  
+	ALboolean initStatus = alcMakeContextCurrent(context);      
 
-		frametime = glfwGetTime() - time;
-#if PLATFORM == PLATFORM_WINDOWS
-		/*
-		if (frametime < 1/61.0)
-			glfwSleep(1/61.0 - frametime);
-		*/
-#endif
-		
-    }
-    
-    SCRIPTMANAGER.engineInvocation("hg_end");
-    
-    delete testAnimator;
-    SCRIPTMANAGER.deInitialize();
-    SPRITEANIMATIONCOMPILER.deInitialize();
-    // Close window and terminate GLFW
-    RENDER.deInitialize();
-    
-    mapData->saveToFile("map.dat");
-    delete mapData;
+	// Create sound buffer and source  
+	alGenBuffers(1, &bufferID);  
+	alGenSources(1, &sourceID);  
 
-	OBJECTMANAGER.deInitialize();
-    SCENEMANAGER.deInitialize();
-    
-    CONSOLE.deInitialze();
-    INPUTMANAGER.deInitialize();
-    
-    return 0;
+	// Set the source and listener to the same location  
+	alListener3f(AL_POSITION, 0.0f, 0.0f, 0.0f);  
+	alSource3f(sourceID, AL_POSITION, 0.0f, 0.0f, 0.0f);  
+
+	// Load the OGG file into memory  
+	LoadOGG("audio.ogg", bufferData, format, freq);  
+
+	// Upload sound data to buffer  
+	alBufferData(bufferID, format, &bufferData[0], static_cast<ALsizei>(bufferData.size()), freq);  
+
+	// Attach sound buffer to source  
+	alSourcei(sourceID, AL_BUFFER, bufferID);  
+
+	alSourcef (sourceID, AL_GAIN, 1.0 );  
+
+	// Finally, play the sound!!!  
+	alSourcePlay(sourceID);  
+
+	do  
+	{  
+		// Query the state of the souce  
+		alGetSourcei(sourceID, AL_SOURCE_STATE, &state);  
+	}  
+	while (state != AL_STOPPED);  
+
+	// Clean up sound buffer and source  
+	alDeleteBuffers(1, &bufferID);  
+	alDeleteSources(1, &sourceID);  
+
+	alcDestroyContext(context);  
+	alcCloseDevice(device); 
+
+	return APPLICATION.run();
 }
