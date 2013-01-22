@@ -579,6 +579,14 @@
 						>
 					</File>
 					<File
+						RelativePath="..\HGScript\HGServiceScripter\HGAudioManagerScripter.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\HGScript\HGServiceScripter\HGAudioManagerScripter.h"
+						>
+					</File>
+					<File
 						RelativePath="..\HGScript\HGServiceScripter\HGGraphicScripter.cpp"
 						>
 					</File>
@@ -717,6 +725,22 @@
 				</File>
 				<File
 					RelativePath="..\HGAudio\HGAudioManager.h"
+					>
+				</File>
+				<File
+					RelativePath="..\HGAudio\HGSound.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\HGAudio\HGSound.h"
+					>
+				</File>
+				<File
+					RelativePath="..\HGAudio\HGSoundManager.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\HGAudio\HGSoundManager.h"
 					>
 				</File>
 			</Filter>
@@ -1208,11 +1232,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtc\noise.hpp"
+					RelativePath="..\ThirdParty\glm\gtx\noise.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtx\noise.hpp"
+					RelativePath="..\ThirdParty\glm\gtc\noise.hpp"
 					>
 				</File>
 				<File
@@ -1312,19 +1336,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtx\quaternion.inl"
-					>
-				</File>
-				<File
 					RelativePath="..\ThirdParty\glm\gtc\quaternion.inl"
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtc\random.hpp"
+					RelativePath="..\ThirdParty\glm\gtx\quaternion.inl"
 					>
 				</File>
 				<File
 					RelativePath="..\ThirdParty\glm\gtx\random.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\ThirdParty\glm\gtc\random.hpp"
 					>
 				</File>
 				<File
