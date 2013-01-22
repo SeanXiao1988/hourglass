@@ -22,6 +22,8 @@
 #include "HG.h"
 
 HGNAMESPACE_START
+
+static Sound snd;
     
 void Application::initialize()
 {
@@ -32,6 +34,8 @@ void Application::initialize()
     INPUTMANAGER.initialize();
     CONSOLE.initialize();
     AUDIOMANAGER.initialize();
+    //SOUNDMANAGER.initialize();
+
     
     SCRIPTMANAGER.initialize();
     SCRIPTMANAGER.execScript(MAIN_SCRIPT_FILE);
@@ -44,6 +48,7 @@ void Application::deInitialize()
 {
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_DEINIT);
     
+    //SOUNDMANAGER.deInitialize();
     AUDIOMANAGER.deInitialize();
     CONSOLE.deInitialze();
     INPUTMANAGER.deInitialize();
@@ -64,6 +69,8 @@ int Application::run()
 {
     if (mMainLoopFunc != NULL)
         mMainLoopFunc();
+    
+    snd.update();
     
     deInitialize();
     

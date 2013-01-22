@@ -64,6 +64,8 @@
 		D49D9AF316A7E13B0007D971 /* HGEventScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */; };
 		D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */; };
 		D4B691FA16AE27D100EE26B6 /* HGAudioManagerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */; };
+		D4B6924416AE76D600EE26B6 /* HGSoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B6924316AE76D600EE26B6 /* HGSoundManager.cpp */; };
+		D4B6924816AE7B3F00EE26B6 /* HGSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B6924716AE7B3F00EE26B6 /* HGSound.cpp */; };
 		D4B74E0916814EAC00C9DB3B /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DCF16814EAC00C9DB3B /* lapi.c */; };
 		D4B74E0A16814EAC00C9DB3B /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DD116814EAC00C9DB3B /* lauxlib.c */; };
 		D4B74E0B16814EAC00C9DB3B /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DD316814EAC00C9DB3B /* lbaselib.c */; };
@@ -570,6 +572,10 @@
 		D4A676B315F7263C009E004F /* HGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGData.h; sourceTree = "<group>"; };
 		D4B691F816AE27D100EE26B6 /* HGAudioManagerScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioManagerScripter.h; sourceTree = "<group>"; };
 		D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGAudioManagerScripter.cpp; sourceTree = "<group>"; };
+		D4B6924216AE76D600EE26B6 /* HGSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSoundManager.h; sourceTree = "<group>"; };
+		D4B6924316AE76D600EE26B6 /* HGSoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSoundManager.cpp; sourceTree = "<group>"; };
+		D4B6924616AE7B3F00EE26B6 /* HGSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSound.h; sourceTree = "<group>"; };
+		D4B6924716AE7B3F00EE26B6 /* HGSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSound.cpp; sourceTree = "<group>"; };
 		D4B74DCF16814EAC00C9DB3B /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		D4B74DD016814EAC00C9DB3B /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		D4B74DD116814EAC00C9DB3B /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -1001,6 +1007,10 @@
 			isa = PBXGroup;
 			children = (
 				D433C1F916AA322000F0D712 /* HGAudioDef.h */,
+				D4B6924616AE7B3F00EE26B6 /* HGSound.h */,
+				D4B6924716AE7B3F00EE26B6 /* HGSound.cpp */,
+				D4B6924216AE76D600EE26B6 /* HGSoundManager.h */,
+				D4B6924316AE76D600EE26B6 /* HGSoundManager.cpp */,
 				D433C1FB16AA362200F0D712 /* HGAudioManager.h */,
 				D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */,
 			);
@@ -1777,6 +1787,8 @@
 				D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */,
 				D4FE009C16AA82AF002A4146 /* HGEventMouseScripter.cpp in Sources */,
 				D4B691FA16AE27D100EE26B6 /* HGAudioManagerScripter.cpp in Sources */,
+				D4B6924416AE76D600EE26B6 /* HGSoundManager.cpp in Sources */,
+				D4B6924816AE7B3F00EE26B6 /* HGSound.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

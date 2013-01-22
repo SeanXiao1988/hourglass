@@ -26,6 +26,8 @@
 #include "HGApplication.h"
 
 // Audio
+#include "HGSound.h"
+#include "HGSoundManager.h"
 #include "HGAudioManager.h"
 
 // Core

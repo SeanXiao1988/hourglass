@@ -23,6 +23,10 @@
 
 #include "HGSystem.h"
 
+#define HG_SOUND_MAX_BUFFERS    64
+#define HG_SOUND_MAX_SOURCES    16
+#define HG_SOUND_BUFFER_SIZE    32768
+
 HGNAMESPACE_START
 
 typedef struct _ogg_stream_t_
@@ -35,6 +39,24 @@ typedef struct _ogg_stream_t_
     ALuint          source;
     ALenum          format;
 }ogg_stream_t;
+
+static bool alIsError()
+{
+    bool ret = false;
+    ALenum err = alGetError();
+    
+    BREAK_START;
+    
+    if (err == AL_NO_ERROR)
+        break;
+    
+    HGLog("Error: %s\n", alGetString(err));
+    ret = true;
+    
+    BREAK_END;
+    
+    return ret;
+}
 
 HGNAMESPACE_END
 
