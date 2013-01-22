@@ -150,13 +150,8 @@ void ScriptRegisterScaleAnimation(lua_State* L)
     // register ScaleAnimation class to lua
     lua_newtable(L);
     
-    lua_pushstring(L, "new");
-    lua_pushcfunction(L, scaleanimation_new);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "delete");
-    lua_pushcfunction(L, scaleanimation_delete);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "new", scaleanimation_new);
+    luaH_setfunc2table(L, "delete", scaleanimation_delete);
     
     lua_setglobal(L, SCALEANIMATION_LUA_NAME);
 }

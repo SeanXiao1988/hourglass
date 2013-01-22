@@ -144,13 +144,8 @@ void ScriptRegisterAlphaAnimation(lua_State* L)
     // register AlphaAnimation class to lua
     lua_newtable(L);
     
-    lua_pushstring(L, "new");
-    lua_pushcfunction(L, alphaanimation_new);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "delete");
-    lua_pushcfunction(L, alphaanimation_delete);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "new", alphaanimation_new);
+    luaH_setfunc2table(L, "delete", alphaanimation_delete);
     
     lua_setglobal(L, ALPHAANIMATION_LUA_NAME);
 }

@@ -87,17 +87,9 @@ void ScriptRegisterSpriteAnimationCompiler(lua_State* L)
     
     lua_newtable(L);
     
-    lua_pushstring(L, "clear");
-    lua_pushcfunction(L, sprite_animationcompiler_clear);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "parseXML");
-    lua_pushcfunction(L, sprite_animationcompiler_parse_xml);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "deleteAnimation");
-    lua_pushcfunction(L, sprite_animationcompiler_delete_animation);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "clear", sprite_animationcompiler_clear);
+    luaH_setfunc2table(L, "parseXML", sprite_animationcompiler_parse_xml);
+    luaH_setfunc2table(L, "deleteAnimation", sprite_animationcompiler_delete_animation);
     
     lua_setglobal(L, "SPRITEANIMATIONCOMPILER");
     

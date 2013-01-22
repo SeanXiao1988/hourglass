@@ -167,7 +167,7 @@ bool AudioManager::audioPlay(int32_t audioID, bool reset)
     {
         if (reset)
         {
-            // stop(audio);
+            audioStop(audioID);
         }
         else
         {
@@ -539,13 +539,13 @@ bool AudioManager::_loadOGG(const char *filename, ALuint buffer)
             break;
     }
     
-    std::vector<int16_t> samples;
-    char tempbuf[4096];
+    std::vector<char> samples;
+    char tempbuf[32768];
     int section = 0;
     bool firstrun = true;
     while (1)
     {
-        long result = ov_read(&oggFile, tempbuf, 4096, 0, 2, 1, &section);
+        long result = ov_read(&oggFile, tempbuf, 32768, 0, 2, 1, &section);
         if (result > 0)
         {
             firstrun = false;
@@ -564,10 +564,9 @@ bool AudioManager::_loadOGG(const char *filename, ALuint buffer)
                 break;
         }
     }
-
-	ov_clear(&oggFile);
     
-    alBufferData(buffer, format, &samples[0], (int)ov_pcm_total(&oggFile, -1), (int)info->rate);
+    alBufferData(buffer, format, &samples[0], static_cast<ALsizei>(samples.size()), (int)info->rate);
+    ov_clear(&oggFile);
     
     ret = true;
     

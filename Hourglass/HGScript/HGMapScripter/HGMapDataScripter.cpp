@@ -309,17 +309,9 @@ void ScriptRegisterMapData(lua_State* L)
     // Register MapData to Lua
     lua_newtable(L);
     
-    lua_pushstring(L, "GenerateTileMask");
-    lua_pushcfunction(L, mapdata_generate_tile_mask);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "new");
-    lua_pushcfunction(L, mapdata_new);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "delete");
-    lua_pushcfunction(L, mapdata_delete);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "GenerateTileMask", mapdata_generate_tile_mask);
+    luaH_setfunc2table(L, "new", mapdata_new);
+    luaH_setfunc2table(L, "delete", mapdata_delete);
     
     lua_setglobal(L, MAPDATA_LUA_NAME);
     

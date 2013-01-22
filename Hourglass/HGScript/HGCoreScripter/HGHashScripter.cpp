@@ -51,13 +51,8 @@ void ScriptRegisterHash(lua_State* L)
 {
     lua_newtable(L);
     
-    lua_pushstring(L, "make");
-    lua_pushcfunction(L, hash_make);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "stringForHash");
-    lua_pushcfunction(L, hash_string_for_hash);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "make", hash_make);
+    luaH_setfunc2table(L, "stringForHash", hash_string_for_hash);
     
     lua_setglobal(L, "HASH");
 }

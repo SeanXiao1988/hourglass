@@ -117,21 +117,9 @@ void ScriptRegisterSceneManager(lua_State* L)
 
     lua_newtable(L);
     
-    lua_pushstring(L, "createNode");
-    lua_pushcfunction(L, scenemanager_create_node);
-    lua_settable(L, -3);
-    /*
-    lua_pushstring(L, "deleteNode");
-    lua_pushcfunction(L, scenemanager_delete_node);
-    lua_settable(L, -3);
-     */
-    lua_pushstring(L, "getNode");
-    lua_pushcfunction(L, scenemanager_get_node);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "getRoot");
-    lua_pushcfunction(L, scenemanager_get_root);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "createNode", scenemanager_create_node);
+    luaH_setfunc2table(L, "getNode", scenemanager_get_node);
+    luaH_setfunc2table(L, "getRoot", scenemanager_get_root);
     
     lua_setglobal(L, "SCENEMANAGER");
 

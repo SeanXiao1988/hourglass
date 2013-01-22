@@ -188,29 +188,12 @@ void ScriptRegisterObjectManager(lua_State* L)
 
     lua_newtable(L);
     
-    lua_pushstring(L, "isObjectExists");
-    lua_pushcfunction(L, objectmanager_is_object_exists);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "deleteObject");
-    lua_pushcfunction(L, objectmanager_delete_object);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "deleteObjects");
-    lua_pushcfunction(L, objectmanager_delete_objects);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "getObjectComponents");
-    lua_pushcfunction(L, objectmanager_get_object_components);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "queryComponent");
-    lua_pushcfunction(L, objectmanager_query_component);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "addComponentToObject");
-    lua_pushcfunction(L, objectmanager_add_component_to_object);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "isObjectExists", objectmanager_is_object_exists);
+    luaH_setfunc2table(L, "deleteObject", objectmanager_delete_object);
+    luaH_setfunc2table(L, "deleteObjects", objectmanager_delete_objects);
+    luaH_setfunc2table(L, "getObjectComponents", objectmanager_get_object_components);
+    luaH_setfunc2table(L, "queryComponent", objectmanager_query_component);
+    luaH_setfunc2table(L, "addComponentToObject", objectmanager_add_component_to_object);
 
     lua_setglobal(L, "OBJECTMANAGER");
 

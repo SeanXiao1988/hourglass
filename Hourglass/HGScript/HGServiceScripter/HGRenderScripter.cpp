@@ -605,133 +605,38 @@ void ScriptRegisterRender(lua_State* L)
     
     lua_newtable(L);
     
-    lua_pushstring(L, "setClearColor");
-    lua_pushcfunction(L, render_set_clear_color);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureCreate");
-    lua_pushcfunction(L, render_texture_create);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureFree");
-    lua_pushcfunction(L, render_texture_free);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureGetWidth");
-    lua_pushcfunction(L, render_texture_get_width);
-    lua_settable(L, -3);
-
-    lua_pushstring(L, "textureGetHeight");
-    lua_pushcfunction(L, render_texture_get_height);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureLock");
-    lua_pushcfunction(L, render_texture_lock);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureUnlock");
-    lua_pushcfunction(L, render_texture_unlock);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureLoad");
-    lua_pushcfunction(L, render_texture_load);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "textureFreeAll");
-    lua_pushcfunction(L, render_texture_free_all);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "rtargetCreate");
-    lua_pushcfunction(L, render_rtarget_create);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "rtargetFree");
-    lua_pushcfunction(L, render_rtarget_free);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "rtargetGetTexture");
-    lua_pushcfunction(L, render_rtarget_get_texture);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "rtargetFind");
-    lua_pushcfunction(L, render_rtarget_find);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "rtargetFreeAll");
-    lua_pushcfunction(L, render_rtarget_free_all);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderLoad");
-    lua_pushcfunction(L, render_shader_load);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderFree");
-    lua_pushcfunction(L, render_shader_free);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderActive");
-    lua_pushcfunction(L, render_shader_active);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderDeactive");
-    lua_pushcfunction(L, render_shader_deactive);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderPush");
-    lua_pushcfunction(L, render_shader_push);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderPop");
-    lua_pushcfunction(L, render_shader_pop);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "shaderGetCurrent");
-    lua_pushcfunction(L, render_shader_get_current);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawLine");
-    lua_pushcfunction(L, render_draw_line);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawRect");
-    lua_pushcfunction(L, render_draw_rect);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawBox");
-    lua_pushcfunction(L, render_draw_box);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawQuad");
-    lua_pushcfunction(L, render_draw_quad);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawTriple");
-    lua_pushcfunction(L, render_draw_triple);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawVertexList");
-    lua_pushcfunction(L, render_draw_vertex_list);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "drawText");
-    lua_pushcfunction(L, render_draw_text);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "setDefaultFontSize");
-    lua_pushcfunction(L, render_set_default_font_size);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "getFPS");
-    lua_pushcfunction(L, render_get_fps);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "getWidth");
-    lua_pushcfunction(L, render_get_width);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "getHeight");
-    lua_pushcfunction(L, render_get_height);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "setClearColor",      render_set_clear_color);
+    luaH_setfunc2table(L, "textureCreate",      render_texture_create);
+    luaH_setfunc2table(L, "textureFree",        render_texture_free);
+    luaH_setfunc2table(L, "textureGetWidth",    render_texture_get_width);
+    luaH_setfunc2table(L, "textureGetHeight",   render_texture_get_height);
+    luaH_setfunc2table(L, "textureLock",        render_texture_lock);
+    luaH_setfunc2table(L, "textureUnlock",      render_texture_unlock);
+    luaH_setfunc2table(L, "textureLoad",        render_texture_load);
+    luaH_setfunc2table(L, "textureFreeAll",     render_texture_free_all);
+    luaH_setfunc2table(L, "rtargetCreate",      render_rtarget_create);
+    luaH_setfunc2table(L, "rtargetFree",        render_rtarget_free);
+    luaH_setfunc2table(L, "rtargetGetTexture",  render_rtarget_get_texture);
+    luaH_setfunc2table(L, "rtargetFind",        render_rtarget_find);
+    luaH_setfunc2table(L, "rtargetFreeAll",     render_rtarget_free_all);
+    luaH_setfunc2table(L, "shaderLoad",         render_shader_load);
+    luaH_setfunc2table(L, "shaderFree",         render_shader_free);
+    luaH_setfunc2table(L, "shaderActive",       render_shader_active);
+    luaH_setfunc2table(L, "shaderDeactive",     render_shader_deactive);
+    luaH_setfunc2table(L, "shaderPush",         render_shader_push);
+    luaH_setfunc2table(L, "shaderPop",          render_shader_pop);
+    luaH_setfunc2table(L, "shaderGetCurrent",   render_shader_get_current);
+    luaH_setfunc2table(L, "drawLine",           render_draw_line);
+    luaH_setfunc2table(L, "drawRect",           render_draw_rect);
+    luaH_setfunc2table(L, "drawBox",            render_draw_box);
+    luaH_setfunc2table(L, "drawQuad",           render_draw_quad);
+    luaH_setfunc2table(L, "drawTriple",         render_draw_triple);
+    luaH_setfunc2table(L, "drawVertexList",     render_draw_vertex_list);
+    luaH_setfunc2table(L, "drawText",           render_draw_text);
+    luaH_setfunc2table(L, "setDefaultFontSize", render_set_default_font_size);
+    luaH_setfunc2table(L, "getFPS",             render_get_fps);
+    luaH_setfunc2table(L, "getWidth",           render_get_width);
+    luaH_setfunc2table(L, "getHeight",          render_get_height);
     
     lua_setglobal(L, RENDER_LUA_NAME);
     

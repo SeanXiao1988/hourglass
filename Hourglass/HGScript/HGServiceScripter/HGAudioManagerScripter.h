@@ -1,11 +1,11 @@
 /**
- *  @file    HGApplicationScripter.cpp
- *  @brief   Application script adapter implementation
+ *  @file    HGAudioManagerScripter.h
+ *  @brief   AudioManager script adapter header
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2013/01/14
+ *  Created:  2013/01/22
  *  Company:  SNSTEAM.inc
  *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
@@ -18,28 +18,15 @@
  * =====================================================================================
  */
 
-#include "HGApplicationScripter.h"
-#include "HGApplication.h"
+#ifndef HGAUDIOMANAGERSCRIPTER_H_
+#define HGAUDIOMANAGERSCRIPTER_H_
 
-#define APPLICATION_LUA_NAME    "APPLICATION"
+#include "HGScriptDef.h"
 
 HGNAMESPACE_START
-    
-static int application_set_titile(lua_State* L)
-{
-    const char* title = luaL_checkstring(L, 1);
-    APPLICATION.setAppTitle(title);
-    
-    return 0;
-}
-    
-void ScriptRegisterApplication(lua_State* L)
-{
-    lua_newtable(L);
-    
-    luaH_setfunc2table(L, "setTitle", application_set_titile);
-    
-    lua_setglobal(L, APPLICATION_LUA_NAME);
-}
-    
+
+extern void ScriptRegisterAudioManager(lua_State* L);
+
 HGNAMESPACE_END
+
+#endif // HGAUDIOMANAGERSCRIPTER_H_

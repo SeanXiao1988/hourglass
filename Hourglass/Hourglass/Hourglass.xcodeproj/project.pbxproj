@@ -63,6 +63,7 @@
 		D49D9AE916A7DBFC0007D971 /* HGEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AE816A7DBFC0007D971 /* HGEvent.cpp */; };
 		D49D9AF316A7E13B0007D971 /* HGEventScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */; };
 		D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */; };
+		D4B691FA16AE27D100EE26B6 /* HGAudioManagerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */; };
 		D4B74E0916814EAC00C9DB3B /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DCF16814EAC00C9DB3B /* lapi.c */; };
 		D4B74E0A16814EAC00C9DB3B /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DD116814EAC00C9DB3B /* lauxlib.c */; };
 		D4B74E0B16814EAC00C9DB3B /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DD316814EAC00C9DB3B /* lbaselib.c */; };
@@ -567,6 +568,8 @@
 		D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventKeyboardScripter.cpp; sourceTree = "<group>"; };
 		D4A676B215F7263C009E004F /* HGData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGData.cpp; sourceTree = "<group>"; };
 		D4A676B315F7263C009E004F /* HGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGData.h; sourceTree = "<group>"; };
+		D4B691F816AE27D100EE26B6 /* HGAudioManagerScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioManagerScripter.h; sourceTree = "<group>"; };
+		D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGAudioManagerScripter.cpp; sourceTree = "<group>"; };
 		D4B74DCF16814EAC00C9DB3B /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lapi.c; sourceTree = "<group>"; };
 		D4B74DD016814EAC00C9DB3B /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lapi.h; sourceTree = "<group>"; };
 		D4B74DD116814EAC00C9DB3B /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lauxlib.c; sourceTree = "<group>"; };
@@ -860,6 +863,8 @@
 			children = (
 				D44979FF16A3EC030068D65A /* HGApplicationScripter.h */,
 				D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */,
+				D4B691F816AE27D100EE26B6 /* HGAudioManagerScripter.h */,
+				D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */,
 				2EE40C8E16A2AEE40033DFE2 /* HGGraphicScripter.h */,
 				2EE40C8D16A2AEE40033DFE2 /* HGGraphicScripter.cpp */,
 				2EE40C9016A2AEE40033DFE2 /* HGObjectManagerScripter.h */,
@@ -1771,6 +1776,7 @@
 				2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */,
 				D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */,
 				D4FE009C16AA82AF002A4146 /* HGEventMouseScripter.cpp in Sources */,
+				D4B691FA16AE27D100EE26B6 /* HGAudioManagerScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

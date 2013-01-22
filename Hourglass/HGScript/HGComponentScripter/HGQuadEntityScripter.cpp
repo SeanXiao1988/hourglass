@@ -699,13 +699,8 @@ void ScriptRegisterQuadEntity(lua_State* L)
     // register QuadEntity
     lua_newtable(L);
     
-    lua_pushstring(L, "new");
-    lua_pushcfunction(L, quadentity_new);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "delete");
-    lua_pushcfunction(L, quadentity_delete);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "new", quadentity_new);
+    luaH_setfunc2table(L, "delete", quadentity_delete);
     
     lua_setglobal(L, QUADENTITY_LUA_NAME);
 }

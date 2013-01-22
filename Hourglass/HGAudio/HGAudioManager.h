@@ -45,7 +45,7 @@ public:
     HG_ERROR    initialize();
     void        deInitialize();
     
-    int32_t     audioLoad(const char* filename, bool roop = false);
+    int32_t     audioLoad(const char* filename, bool loop = false);
     bool        audioPlay(int32_t audioID, bool reset = false);
     bool        audioPause(int32_t audioID);
     bool        audioPauseAll();

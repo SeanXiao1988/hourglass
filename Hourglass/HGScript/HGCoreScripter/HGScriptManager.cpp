@@ -21,6 +21,7 @@
 #include "HGScriptManager.h"
 
 #include "HGApplicationScripter.h"
+#include "HGAudioManagerScripter.h"
 #include "HGGraphicScripter.h"
 #include "HGHashScripter.h"
 #include "HGObjectManagerScripter.h"
@@ -156,6 +157,7 @@ void ScriptManager::_registerEngine()
 {
     // singletons push to lua as simple table
     ScriptRegisterApplication(mState);
+    ScriptRegisterAudioManager(mState);
     ScriptRegisterGraphic(mState);
     ScriptRegisterHash(mState);
     ScriptRegisterObjectManager(mState);

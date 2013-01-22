@@ -73,6 +73,13 @@ static int luaH_tofunction(lua_State* L, int idx)
     
     return func;
 }
+
+static void luaH_setfunc2table(lua_State* L, const char* n, lua_CFunction func)
+{
+    lua_pushstring(L, n);
+    lua_pushcfunction(L, func);
+    lua_settable(L, -3);
+}
     
 HGNAMESPACE_END
 

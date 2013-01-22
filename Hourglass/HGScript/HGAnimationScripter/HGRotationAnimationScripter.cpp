@@ -148,13 +148,8 @@ void ScriptRegisterRotationAnimation(lua_State* L)
     // register RotationAnimation class to lua
     lua_newtable(L);
     
-    lua_pushstring(L, "new");
-    lua_pushcfunction(L, rotationanimation_new);
-    lua_settable(L, -3);
-    
-    lua_pushstring(L, "delete");
-    lua_pushcfunction(L, rotationanimation_delete);
-    lua_settable(L, -3);
+    luaH_setfunc2table(L, "new", rotationanimation_new);
+    luaH_setfunc2table(L, "delete", rotationanimation_delete);
     
     lua_setglobal(L, ROTATIONANIMATION_LUA_NAME);
 }
