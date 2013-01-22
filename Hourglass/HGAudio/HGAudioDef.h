@@ -23,4 +23,19 @@
 
 #include "HGSystem.h"
 
+HGNAMESPACE_START
+
+typedef struct _ogg_stream_t_
+{
+    OggVorbis_File  oggFile;
+    vorbis_info     oggInfo;
+    vorbis_comment  comment;
+    
+    ALuint          buffers[2];
+    ALuint          source;
+    ALenum          format;
+}ogg_stream_t;
+
+HGNAMESPACE_END
+
 #endif // HGAUDIODEF_H_

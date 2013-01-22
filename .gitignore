@@ -33,3 +33,5 @@ project.xcworkspace
 Hourglass/Hourglass/.DS_Store
 Hourglass/Hourglass/Debug
 Hourglass/Hourglass/Release
+
+*.swp
