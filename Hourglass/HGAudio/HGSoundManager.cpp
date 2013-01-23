@@ -70,9 +70,28 @@ HG_ERROR SoundManager::initialize()
 
 void SoundManager::deInitialize()
 {
+    clear();
+    
     alcMakeContextCurrent(NULL);
     alcDestroyContext(mContext);
     alcCloseDevice(mDevice);
+}
+
+void SoundManager::clear()
+{
+    OggSourceList::iterator srcIter = mSourceList.begin();
+    for (; srcIter != mSourceList.end(); ++srcIter)
+    {
+        ogg_source_destory(*srcIter);
+    }
+    mSourceList.clear();
+    
+    OggBufferList::iterator bufIter = mBufferList.begin();
+    for (; bufIter != mBufferList.end(); ++bufIter)
+    {
+        ogg_buffer_destory(*bufIter);
+    }
+    mBufferList.clear();
 }
 
 ALuint SoundManager::loadOggFile(const char *filename)
@@ -107,7 +126,65 @@ ALuint SoundManager::loadOggFile(const char *filename)
 
 ALuint SoundManager::forkOggFile(const char *filename)
 {
-    return 0;
+    ALuint sourceID = 0;
+    
+    BREAK_START;
+    
+    if (filename == NULL)
+        break;
+    
+    uint32_t fileNameHash = Hash(filename);
+    ogg_buffer_t* buffer = NULL;
+    buffer = _findBuffer(fileNameHash);
+    if (buffer == NULL)
+        buffer = _loadOggFile(filename);
+    
+    if (buffer == NULL)
+        break;
+    
+    ogg_source_t* source = _createSourceWithBuffer(buffer->buffer);
+    if (source == NULL)
+        break;
+    
+    sourceID = source->source;
+    
+    BREAK_END;
+    
+    return sourceID;
+}
+
+void SoundManager::freeOggFile(const char* filename)
+{
+    BREAK_START;
+    
+    if (filename == NULL)
+        break;
+    
+    ogg_buffer_t* buffer = _findBuffer(Hash(filename));
+    if (buffer == NULL)
+        break;
+    
+    _freeSourceWithBuffer(buffer->buffer);
+    
+    OggBufferList::iterator iter = mBufferList.begin();
+    for (; iter != mBufferList.end(); ++iter)
+    {
+        if (*iter == buffer)
+            break;
+    }
+    
+    if (iter != mBufferList.end())
+    {
+        ogg_buffer_destory(buffer);
+        mBufferList.erase(iter);
+    }
+    
+    BREAK_END;
+}
+
+void SoundManager::freeOggSource(ALuint sourceID)
+{
+    
 }
 
 ogg_buffer_t* SoundManager::_loadOggFile(const char* filename)
@@ -127,11 +204,11 @@ ogg_buffer_t* SoundManager::_loadOggFile(const char* filename)
     
     // not found, create
     buffer = ogg_buffer_create();
+    ogg_buffer_loadfile(buffer, filename);
     // error
     if (buffer == NULL)
         break;
     
-    buffer->nameHash = nameHash;
     mBufferList.push_back(buffer);
     
     BREAK_END;
@@ -201,6 +278,23 @@ ogg_source_t* SoundManager::_createSourceWithBuffer(ALuint bufferID)
     BREAK_END;
     
     return source;
+}
+
+void SoundManager::_freeSourceWithBuffer(ALuint bufferID)
+{
+    OggSourceList::iterator iter = mSourceList.begin();
+    for (; iter != mSourceList.end(); )
+    {
+        if ((*iter)->buffer == bufferID)
+        {
+            ogg_source_destory(*iter);
+            mSourceList.erase(iter++);
+        }
+        else
+        {
+            ++iter;
+        }
+    }
 }
 
 HGNAMESPACE_END

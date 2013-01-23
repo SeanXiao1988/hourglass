@@ -32,8 +32,8 @@ function create_1st_obj()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
     
-    local sound = AUDIOMANAGER.audioLoad("audio.ogg")
-    AUDIOMANAGER.audioPlay(sound)
+    --local sound = AUDIOMANAGER.audioLoad("audio.ogg")
+    --AUDIOMANAGER.audioPlay(sound)
 end
 
 function input_callback(listener, event)

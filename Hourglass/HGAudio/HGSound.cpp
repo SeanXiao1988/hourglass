@@ -162,7 +162,15 @@ void ogg_source_bind_buffer(ogg_source_t* os, ALuint buffer)
 {
     BREAK_START;
     
-    if (os == NULL || os->source == 0 || buffer == 0)
+    if (os == NULL || buffer == 0)
+        break;
+    
+    if (os->source != 0)
+        ogg_source_release(os);
+    
+    alGenSources(1, &os->source);
+    CHK_AL_ERROR;
+    if (os->source == 0)
         break;
     
     os->buffer = buffer;

@@ -44,15 +44,20 @@ public:
     HG_ERROR        initialize();
     void            deInitialize();
     
+    void            clear();
+    
     ALuint          loadOggFile(const char* filename);
     ALuint          forkOggFile(const char* filename);
-    ALuint          forkOggBuffer(ALuint bufferID);
+    
+    void            freeOggFile(const char* filename);
+    void            freeOggSource(ALuint sourceID);
     
 private:
     ogg_buffer_t*   _loadOggFile(const char* filename);
     ogg_buffer_t*   _findBuffer(uint32_t fileNameHash);
     ogg_source_t*   _createSourceWithBuffer(ALuint bufferID);
     ogg_source_t*   _findSource(ALuint bufferID);
+    void            _freeSourceWithBuffer(ALuint bufferID);
     
     ALCdevice*      mDevice;
     ALCcontext*     mContext;
