@@ -56,6 +56,13 @@ typedef struct _ogg_source_t_
 
 extern ogg_source_t* ogg_source_create();
 extern void ogg_source_bind_buffer(ogg_source_t* os, ALuint buffer);
+extern void ogg_source_setup(ogg_source_t* os);
+extern void ogg_source_set_pitch(ogg_source_t* os, ALfloat pitch);
+extern void ogg_source_set_gain(ogg_source_t* os, ALfloat gain);
+extern void ogg_source_set_loop(ogg_source_t* os, ALint loop);
+extern void ogg_source_set_position(ogg_source_t* os, ALfloat x, ALfloat y, ALfloat z);
+extern void ogg_source_set_velocity(ogg_source_t* os, ALfloat x, ALfloat y, ALfloat z);
+extern void ogg_source_set_direction(ogg_source_t* os, ALfloat x, ALfloat y, ALfloat z);
 extern void ogg_source_release(ogg_source_t* os);
 extern void ogg_source_destory(ogg_source_t* os);
 

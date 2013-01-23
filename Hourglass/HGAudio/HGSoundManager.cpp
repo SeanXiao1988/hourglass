@@ -19,6 +19,7 @@
  */
 
 #include "HGSoundManager.h"
+#include "HGHash.h"
 
 HGNAMESPACE_START
 
@@ -72,6 +73,134 @@ void SoundManager::deInitialize()
     alcMakeContextCurrent(NULL);
     alcDestroyContext(mContext);
     alcCloseDevice(mDevice);
+}
+
+ALuint SoundManager::loadOggFile(const char *filename)
+{
+    ALuint sourceID = 0;
+    
+    BREAK_START;
+    
+    if (filename == NULL)
+        break;
+    
+    ogg_buffer_t* buffer = NULL;
+    
+    buffer = _loadOggFile(filename);
+    if (buffer == NULL)
+        break;
+    
+    ogg_source_t* source = NULL;
+    source = _findSource(buffer->buffer);
+    if (source == NULL)
+         source = _createSourceWithBuffer(buffer->buffer);
+    
+    if (source == NULL)
+        break;
+    
+    sourceID = source->source;
+    
+    BREAK_END;
+    
+    return sourceID;
+}
+
+ALuint SoundManager::forkOggFile(const char *filename)
+{
+    return 0;
+}
+
+ogg_buffer_t* SoundManager::_loadOggFile(const char* filename)
+{
+    ogg_buffer_t* buffer = NULL;
+    
+    BREAK_START;
+    
+    if (filename == NULL)
+        break;
+    
+    // find exist buffer
+    uint32_t nameHash = Hash(filename);
+    buffer = _findBuffer(nameHash);
+    if (buffer != NULL)
+        break;
+    
+    // not found, create
+    buffer = ogg_buffer_create();
+    // error
+    if (buffer == NULL)
+        break;
+    
+    buffer->nameHash = nameHash;
+    mBufferList.push_back(buffer);
+    
+    BREAK_END;
+    
+    return buffer;
+}
+
+ogg_buffer_t* SoundManager::_findBuffer(uint32_t fileNameHash)
+{
+    ogg_buffer_t* buffer = NULL;
+    
+    BREAK_START;
+    
+    OggBufferList::iterator iter = mBufferList.begin();
+    for (; iter != mBufferList.end(); ++iter)
+    {
+        if ((*iter)->nameHash == fileNameHash)
+        {
+            buffer = *iter;
+            break;
+        }
+    }
+    
+    BREAK_END;
+    
+    return buffer;
+}
+
+ogg_source_t* SoundManager::_findSource(ALuint bufferID)
+{
+    ogg_source_t* source = 0;
+    
+    BREAK_START;
+    
+    OggSourceList::iterator iter = mSourceList.begin();
+    for (; iter != mSourceList.end(); ++iter)
+    {
+        if ((*iter)->buffer == bufferID)
+        {
+            source = *iter;
+            break;
+        }
+    }
+    
+    BREAK_END;
+    
+    return source;
+}
+
+ogg_source_t* SoundManager::_createSourceWithBuffer(ALuint bufferID)
+{
+    ogg_source_t* source = NULL;
+    
+    BREAK_START;
+    
+    if (bufferID == 0)
+        break;
+    
+    source = ogg_source_create();
+    if (source == NULL)
+        break;
+    
+    ogg_source_bind_buffer(source, bufferID);
+    
+    mSourceList.push_back(source);
+    
+    BREAK_END;
+    
+    return source;
 }
 
 HGNAMESPACE_END

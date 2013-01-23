@@ -22,11 +22,15 @@
 #define HGSOUNDMANAGER_H_
 
 #include "HGAudioDef.h"
+#include "HGSound.h"
 #include "HGError.h"
 
 #define SOUNDMANAGER SoundManager::getInstance()
 
 HGNAMESPACE_START
+
+typedef std::list<ogg_buffer_t *> OggBufferList;
+typedef std::list<ogg_source_t *> OggSourceList;
 
 class SoundManager
 {
@@ -37,12 +41,24 @@ public:
         return instance;
     }
     
-    HG_ERROR    initialize();
-    void        deInitialize();
+    HG_ERROR        initialize();
+    void            deInitialize();
+    
+    ALuint          loadOggFile(const char* filename);
+    ALuint          forkOggFile(const char* filename);
+    ALuint          forkOggBuffer(ALuint bufferID);
     
 private:
-    ALCdevice*  mDevice;
-    ALCcontext* mContext;
+    ogg_buffer_t*   _loadOggFile(const char* filename);
+    ogg_buffer_t*   _findBuffer(uint32_t fileNameHash);
+    ogg_source_t*   _createSourceWithBuffer(ALuint bufferID);
+    ogg_source_t*   _findSource(ALuint bufferID);
+    
+    ALCdevice*      mDevice;
+    ALCcontext*     mContext;
+    
+    OggBufferList   mBufferList;
+    OggSourceList   mSourceList;
 
 private:
     SoundManager();
