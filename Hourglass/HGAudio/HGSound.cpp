@@ -233,7 +233,7 @@ void ogg_source_set_loop(ogg_source_t* os, ALint loop)
         break;
     
     os->loop = loop;
-    alSourcef(os->source, AL_LOOPING, os->loop);
+    alSourcei(os->source, AL_LOOPING, os->loop);
     CHK_AL_ERROR;
     
     BREAK_END;
