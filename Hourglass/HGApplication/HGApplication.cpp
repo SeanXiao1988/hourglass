@@ -22,8 +22,6 @@
 #include "HG.h"
 
 HGNAMESPACE_START
-
-static Sound snd;
     
 void Application::initialize()
 {
@@ -69,8 +67,6 @@ int Application::run()
 {
     if (mMainLoopFunc != NULL)
         mMainLoopFunc();
-    
-    snd.update();
     
     deInitialize();
     

@@ -27,20 +27,11 @@
 #define HG_SOUND_MAX_SOURCES    16
 #define HG_SOUND_BUFFER_SIZE    32768
 
+#define CHK_AL_ERROR alIsError(__FILE__, __LINE__, __func__)
+
 HGNAMESPACE_START
 
-typedef struct _ogg_stream_t_
-{
-    OggVorbis_File  oggFile;
-    vorbis_info     oggInfo;
-    vorbis_comment  comment;
-    
-    ALuint          buffers[2];
-    ALuint          source;
-    ALenum          format;
-}ogg_stream_t;
-
-static bool alIsError()
+static bool alIsError(const char* file, int line, const char* func)
 {
     bool ret = false;
     ALenum err = alGetError();
@@ -50,7 +41,7 @@ static bool alIsError()
     if (err == AL_NO_ERROR)
         break;
     
-    HGLog("Error: %s\n", alGetString(err));
+    HGLog("Error: %s @ %s|%d|%s()\n", alGetString(err), file, line, func);
     ret = true;
     
     BREAK_END;

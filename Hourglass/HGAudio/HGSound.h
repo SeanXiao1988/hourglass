@@ -25,43 +25,39 @@
 
 HGNAMESPACE_START
 
-class Sound
+typedef struct _ogg_buffer_t_
 {
-public:
-    Sound();
-    ~Sound();
+    uint32_t        nameHash;
+    ALuint          buffer;
+    ALenum          format;
     
-    bool    open(const char* file);
-    void    clear();
+    OggVorbis_File  oggFile;
+    vorbis_info*    oggInfo;
+    vorbis_comment* comment;
+}ogg_buffer_t;
+
+extern ogg_buffer_t* ogg_buffer_create();
+extern bool ogg_buffer_loadfile(ogg_buffer_t* ob, const char* filename);
+extern void ogg_buffer_release(ogg_buffer_t* ob);
+extern void ogg_buffer_destory(ogg_buffer_t* ob);
+
+typedef struct _ogg_source_t_
+{
+    ALuint          source;
+    ALuint          buffer; // the binding buffer
     
-    bool    play(bool reset=false);
-    bool    pause();
-    bool    resume();
-    bool    stop();
-    
-    bool    update();
-    
-    bool    isPlaying();
-    
-private:
-    bool    _stream(ALuint buffer);
-    void    _dequeue();
-    
-    // sound info
-    uint32_t        mFileHash;
-    
-    OggVorbis_File  mOggStream;
-    vorbis_info*    mVorbisInfo;
-    vorbis_comment* mVorbisComment;
-    
-    ALuint          mBuffers[2];
-    ALuint          mSource;
-    ALenum          mFormat;
-    
-private:
-    Sound(const Sound& other);
-    Sound& operator= (const Sound& rhs);
-};
+    ALint           loop;
+    ALfloat         pitch;
+    ALfloat         gain;
+    ALfloat         pos[3];
+    ALfloat         vel[3];
+    ALfloat         dir[3];
+}ogg_source_t;
+
+extern ogg_source_t* ogg_source_create();
+extern void ogg_source_bind_buffer(ogg_source_t* os, ALuint buffer);
+extern void ogg_source_release(ogg_source_t* os);
+extern void ogg_source_destory(ogg_source_t* os);
 
 HGNAMESPACE_END
 

@@ -23,222 +23,141 @@
 
 HGNAMESPACE_START
 
-Sound::Sound()
-    : mFileHash(0)
-    , mVorbisInfo(NULL)
-    , mVorbisComment(NULL)
-    , mSource(0)
-    , mFormat(0)
+ogg_buffer_t* ogg_buffer_create()
 {
-    mBuffers[0] = 0;
-    mBuffers[1] = 0;
+    ogg_buffer_t* ret = new ogg_buffer_t;
+    memset(ret, 0, sizeof(ogg_buffer_t));
+    
+    return ret;
 }
 
-Sound::~Sound()
+bool ogg_buffer_loadfile(ogg_buffer_t* ob, const char* filename)
 {
-    clear();
-}
-
-bool Sound::open(const char *file)
-{
-    bool ret = false;
+    bool loaded = false;
     
     BREAK_START;
     
-    if (file == NULL)
+    if (ob == NULL || filename == NULL)
         break;
+    
+    // clear
+    memset(ob, 0, sizeof(ogg_buffer_t));
     
     // open ogg file
-    if (ov_fopen(file, &mOggStream))
+    OggVorbis_File *fp = &ob->oggFile;
+    if (ov_fopen(filename, fp))
         break;
     
-    mFileHash = Hash(file);
-    
-    // get ogg file info
-    mVorbisInfo = ov_info(&mOggStream, -1);
-    mVorbisComment = ov_comment(&mOggStream, -1);
-    
-    switch (mVorbisInfo->channels)
+    // get ogg info
+    ob->nameHash = Hash(filename);
+    ob->comment = ov_comment(fp, -1);
+    ob->oggInfo = ov_info(fp, -1);
+    switch (ob->oggInfo->channels)
     {
         case 1:
-            mFormat = AL_FORMAT_MONO16;
+            ob->format = AL_FORMAT_MONO16;
             break;
         case 2:
-            mFormat = AL_FORMAT_STEREO16;
+            ob->format = AL_FORMAT_STEREO16;
             break;
         case 4:
-            mFormat = alGetEnumValue("AL_FORMAT_QUAD16");
+            ob->format = alGetEnumValue("AL_FORMAT_QUAD16");
             break;
         case 6:
-            mFormat = alGetEnumValue("AL_FORMAT_51CHN16");
+            ob->format = alGetEnumValue("AL_FORMAT_51CHN16");
             break;
         case 7:
-            mFormat = alGetEnumValue("AL_FORMAT_61CHN16");
+            ob->format = alGetEnumValue("AL_FORMAT_61CHN16");
             break;
         case 8:
-            mFormat = alGetEnumValue("AL_FORMAT_71CHN16");
+            ob->format = alGetEnumValue("AL_FORMAT_71CHN16");
             break;
         default:
-            mFormat = 0;
+            ob->format = 0;
             break;
     }
     
-    // create buffer
-    alGenBuffers(2, mBuffers);
-    if (alIsError())
-        break;
-    
-    alGenSources(1, &mSource);
-    if (alIsError())
-        break;
-    
-    alSource3f(mSource, AL_POSITION,        0.0, 0.0, 0.0);
-    alSource3f(mSource, AL_VELOCITY,        0.0, 0.0, 0.0);
-    alSource3f(mSource, AL_DIRECTION,       0.0, 0.0, 0.0);
-    alSourcef (mSource, AL_ROLLOFF_FACTOR,  0.0          );
-    alSourcei (mSource, AL_SOURCE_RELATIVE, AL_TRUE      );
-
-    ret = true;
-    
-    BREAK_END;
-    
-    if (!ret) {
-        clear();
-    }
-    
-    return ret;
-}
-
-void Sound::clear()
-{
-    if (mSource != 0)
-    {
-        alSourceStop(mSource);
-        alDeleteSources(1, &mSource);
-    }
-    
-    _dequeue();
-    
-    alDeleteBuffers(2, mBuffers);
-    
-    ov_clear(&mOggStream);
-}
-
-bool Sound::play(bool reset)
-{
-    bool ret = false;
-    
-    BREAK_START;
-    
-    if (!reset && isPlaying())
-    {
-        ret = true;
-        break;
-    }
-    
-    if (!_stream(mBuffers[0]))
-    {
-        ret = false;
-        break;
-    }
-    
-    if (!_stream(mBuffers[1]))
-    {
-        ret = false;
-        break;
-    }
-    
-    alSourceQueueBuffers(mSource, 2, mBuffers);
-    alSourcePlay(mSource);
-
-    ret = true;
-    
-    BREAK_END;
-    
-    return ret;
-}
-
-bool Sound::isPlaying()
-{
-    ALenum state;
-    
-    alGetSourcei(mSource, AL_SOURCE_STATE, &state);
-    
-    return (state == AL_PLAYING);
-}
-
-bool Sound::update()
-{
-    int processed = 0;
-    bool active = false;
-    
-    alGetSourcei(mSource, AL_BUFFERS_PROCESSED, &processed);
-    
-    while (processed--)
-    {
-        ALuint buffer = 0;
-        
-        alSourceUnqueueBuffers(mSource, 1, &buffer);
-        if (alIsError())
-            break;
-        
-        _stream(buffer);
-        
-        alSourceQueueBuffers(mSource, 1, &buffer);
-        
-        active = !alIsError();
-    }
-    
-    return active;
-}
-
-bool Sound::_stream(ALuint buffer)
-{
-    char pcm[HG_SOUND_BUFFER_SIZE];
-    int size = 0;
+    // read file
+    std::vector<char> samples;
+    char tempbuf[HG_SOUND_BUFFER_SIZE];
     int section = 0;
-    long result = 0;
-    
-    while (size < HG_SOUND_BUFFER_SIZE)
+    bool firstrun = true;
+    while (1)
     {
-        result = ov_read(&mOggStream, pcm + size, HG_SOUND_BUFFER_SIZE - size, 0, 2, 1, &section);
-        
+        long result = ov_read(fp, tempbuf, HG_SOUND_BUFFER_SIZE, 0, 2, 1, &section);
         if (result > 0)
         {
-            size += result;
+            firstrun = false;
+            samples.insert(samples.end(), tempbuf, tempbuf + result);
+        }
+        else if (result < 0)
+        {
+            ov_clear(fp);
+            return false;
         }
         else
         {
-            if (result < 0)
+            if (firstrun)
                 return false;
             else
                 break;
         }
     }
     
-    if (size == 0)
-        return false;
+    // generate openal buffer id
+    alGenBuffers(1, &ob->buffer);
+    if (CHK_AL_ERROR)
+        break;
     
-    alBufferData(buffer, mFormat, pcm, size, static_cast<ALsizei>(mVorbisInfo->rate));
-    return !alIsError();
+    // buffer data
+    alBufferData(ob->buffer, ob->format, &samples[0], (ALsizei)samples.size(), (int)ob->oggInfo->rate);
+    ov_clear(fp);
+    if (CHK_AL_ERROR)
+        alDeleteBuffers(1, &ob->buffer);
+    else
+        loaded = true;
+    
+    BREAK_END;
+    
+    return loaded;
 }
 
-void Sound::_dequeue()
+void ogg_buffer_release(ogg_buffer_t* ob)
 {
-    int queue;
-    
-    if (mSource == 0)
+    if (ob == NULL)
         return;
     
-    alGetSourcei(mSource, AL_BUFFERS_QUEUED, &queue);
-    alIsError();
-    while (queue--)
-    {
-        ALuint buffer = 0;
-        alSourceUnqueueBuffers(mSource, 1, &buffer);
-        if (alIsError())
-            break;
-    }
+    alDeleteBuffers(1, &ob->buffer);
+    CHK_AL_ERROR;
+}
+
+void ogg_buffer_destory(ogg_buffer_t* ob)
+{
+    ogg_buffer_release(ob);
+    delete ob;
+}
+
+
+// ogg source
+
+ogg_source_t* ogg_source_create()
+{
+    ogg_source_t* ret = new ogg_source_t;
+    memset(ret, 0, sizeof(ogg_source_t));
+    
+    return ret;
+}
+
+void ogg_source_bind_buffer(ogg_source_t* os, ALuint buffer)
+{
+    BREAK_START;
+    
+    if (os == NULL || buffer == 0)
+        break;
+    
+    
+    
+    BREAK_END;
 }
 
 HGNAMESPACE_END
