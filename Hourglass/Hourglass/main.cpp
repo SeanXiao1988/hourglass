@@ -30,7 +30,7 @@ void mainloop()
             SCENEMANAGER.update(0.016);
         }
         
-        RENDER.beginScene(0);
+        RENDER.beginScene(rt);
         RENDER.clear();
 
         SCENEMANAGER.render();
@@ -38,14 +38,14 @@ void mainloop()
         CONSOLE.render(0.016);
 
         RENDER.endScene();
-/*
+//*
         RENDER.beginScene();
         RENDER.clear();
 
         RENDER.renderQuad(&q);
 
         RENDER.endScene();
-*/
+//*/
         running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
     }
 }

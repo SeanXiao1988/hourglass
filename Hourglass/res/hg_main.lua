@@ -42,7 +42,6 @@ function create_1st_obj()
     backgroundNode:attachEntity(backgroundEntity)
     
     OBJECTMANAGER.addComponentToObject("background", backgroundNode);
-
 end
 
 function input_callback(listener, event)
