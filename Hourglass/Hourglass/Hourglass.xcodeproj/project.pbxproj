@@ -18,6 +18,9 @@
 		2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E83B3F7167F7C2200F860F6 /* libftgl.a */; };
 		2E87B97916A43AB100F44F81 /* HGRotationAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */; };
 		2E87B98016A4429E00F44F81 /* HGRotationAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */; };
+		2E89C24916B182B600E7310B /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C24316B182B600E7310B /* vector.c */; };
+		2E89C24A16B182B600E7310B /* vertex-attribute.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C24516B182B600E7310B /* vertex-attribute.c */; };
+		2E89C24B16B182B600E7310B /* vertex-buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C24716B182B600E7310B /* vertex-buffer.c */; };
 		2EE2A14216A821B9005AF2A8 /* HGInputListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2A14016A821B9005AF2A8 /* HGInputListener.cpp */; };
 		2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2A14316A826EB005AF2A8 /* HGInputListenerScripter.cpp */; };
 		2EE40C9716A2AEE40033DFE2 /* HGIAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */; };
@@ -192,6 +195,13 @@
 		2E87B97816A43AB100F44F81 /* HGRotationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGRotationAnimation.h; sourceTree = "<group>"; };
 		2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGRotationAnimationScripter.cpp; sourceTree = "<group>"; };
 		2E87B97F16A4429E00F44F81 /* HGRotationAnimationScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGRotationAnimationScripter.h; sourceTree = "<group>"; };
+		2E89C24216B182B600E7310B /* vec234.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec234.h; sourceTree = "<group>"; };
+		2E89C24316B182B600E7310B /* vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vector.c; sourceTree = "<group>"; };
+		2E89C24416B182B600E7310B /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		2E89C24516B182B600E7310B /* vertex-attribute.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vertex-attribute.c"; sourceTree = "<group>"; };
+		2E89C24616B182B600E7310B /* vertex-attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-attribute.h"; sourceTree = "<group>"; };
+		2E89C24716B182B600E7310B /* vertex-buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vertex-buffer.c"; sourceTree = "<group>"; };
+		2E89C24816B182B600E7310B /* vertex-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-buffer.h"; sourceTree = "<group>"; };
 		2EAAA423161E907F0079ECAC /* HGMapDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMapDef.h; sourceTree = "<group>"; };
 		2ECF1D57166276C600073108 /* HGRectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HGRectangle.hpp; sourceTree = "<group>"; };
 		2EE2A14016A821B9005AF2A8 /* HGInputListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGInputListener.cpp; sourceTree = "<group>"; };
@@ -811,6 +821,13 @@
 		2E89C24016B1822D00E7310B /* freetype-gl */ = {
 			isa = PBXGroup;
 			children = (
+				2E89C24216B182B600E7310B /* vec234.h */,
+				2E89C24416B182B600E7310B /* vector.h */,
+				2E89C24316B182B600E7310B /* vector.c */,
+				2E89C24616B182B600E7310B /* vertex-attribute.h */,
+				2E89C24516B182B600E7310B /* vertex-attribute.c */,
+				2E89C24816B182B600E7310B /* vertex-buffer.h */,
+				2E89C24716B182B600E7310B /* vertex-buffer.c */,
 			);
 			path = "freetype-gl";
 			sourceTree = "<group>";
@@ -1803,6 +1820,9 @@
 				D4B6924416AE76D600EE26B6 /* HGSoundManager.cpp in Sources */,
 				D4B6924816AE7B3F00EE26B6 /* HGSound.cpp in Sources */,
 				D420A2A616B0DD6E00048776 /* HGGraphicsUtil.cpp in Sources */,
+				2E89C24916B182B600E7310B /* vector.c in Sources */,
+				2E89C24A16B182B600E7310B /* vertex-attribute.c in Sources */,
+				2E89C24B16B182B600E7310B /* vertex-buffer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
