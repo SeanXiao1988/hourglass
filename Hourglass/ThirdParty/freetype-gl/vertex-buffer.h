@@ -34,11 +34,12 @@
 #ifndef __VERTEX_BUFFER_H__
 #define __VERTEX_BUFFER_H__
 
+#include "glfw.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "glfw.h"
 #include "vector.h"
 #include "vertex-attribute.h"
 

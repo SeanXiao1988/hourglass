@@ -44,7 +44,7 @@
 #include <assert.h>
 
 /* Mandatory */
-#include "glfw.h"
+#include "HGSystem.h"
 
 namespace ftgl
 {
