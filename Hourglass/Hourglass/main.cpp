@@ -13,6 +13,13 @@ void mainloop()
     
     double timeScale = 0.5;
     
+    GLuint rt = RENDER.rtargetCreate(800, 600);
+    Quad q;
+    quad_set_default(&q);
+    q.tex = RENDER.rtargetGetTexture(rt);
+    quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
+    quad_set_coord(&q, 0, 0, 800, 600);
+    
     while (running)
     {
         realTime = glfwGetTime();
@@ -23,15 +30,22 @@ void mainloop()
             SCENEMANAGER.update(0.016);
         }
         
-        RENDER.beginScene();
+        RENDER.beginScene(0);
         RENDER.clear();
 
         SCENEMANAGER.render();
-        
+
         CONSOLE.render(0.016);
-        
+
         RENDER.endScene();
-        
+/*
+        RENDER.beginScene();
+        RENDER.clear();
+
+        RENDER.renderQuad(&q);
+
+        RENDER.endScene();
+*/
         running = !glfwGetKey( GLFW_KEY_ESC ) && glfwGetWindowParam( GLFW_OPENED );
     }
 }

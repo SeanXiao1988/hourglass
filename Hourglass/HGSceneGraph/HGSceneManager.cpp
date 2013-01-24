@@ -78,24 +78,14 @@ void SceneManager::removeAll()
 }
 
 void SceneManager::update(const float dt)
-    {
-        glPushMatrix();
-        glLoadIdentity();
-        
-        mRootNode->update(dt);
-        
-        glPopMatrix();
-    }
-    
+{
+    mRootNode->update(dt);
+}
+
 
 void SceneManager::render()
 {
-    glPushMatrix();
-    glLoadIdentity();
-    
 	mRootNode->render();
-    
-    glPopMatrix();
 }
     
 void SceneManager::run(const float dt)

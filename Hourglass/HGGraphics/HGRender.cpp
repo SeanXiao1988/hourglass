@@ -248,20 +248,8 @@ void Render::setClipping(int x, int y, int w, int h)
  */
 void Render::clear()
 {
-    bool cleanZ = true;
-    if (mCurRTarget)
-    {
-        if (mCurRTarget->bDepth)
-            cleanZ = true;
-    }
-    
-    if (cleanZ)
-    {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearDepth(1.0f);
-    }
-    else
-        glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//    glClearDepth(1.0f);
 }
 
 HG_ERROR Render::beginScene(GLuint tar)
@@ -278,31 +266,14 @@ HG_ERROR Render::beginScene(GLuint tar)
         if (target)
         {
             glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, target->framebuffer);
-        }
-        else
-        {
-            
-        }
-        
-        if (target)
-        {
-            if (target->bDepth)
-            {
-                glEnable(GL_DEPTH_TEST);
-                glDepthFunc(GL_LEQUAL);
-                glDepthRange(-1.0, 10.0);
-                glDepthMask(GL_TRUE);
-            }
-            else
-            {
-                //glDisable(GL_DEPTH_TEST);
-            }
+            glBindRenderbufferEXT(GL_RENDERBUFFER_EXT, target->renderbuffer);
+
             _setupOrtho(target->width, target->height, true);
         }
-        else // taget
+        else // !taget
         {
-            glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-            //glDisable(GL_DEPTH_TEST);
+            glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
+            glBindRenderbufferEXT(GL_RENDERBUFFER_EXT, 0);
             _setupOrtho(mWidth, mHeight);
         }
         
@@ -341,7 +312,6 @@ Vertex* Render::startBatch(int primType, GLuint tex, int blend, int *maxPrim)
         
         if (mCurBlenMode != blend)
             _setBlendMode(blend);
-        
         
         _bindTexture(tex);
         
@@ -647,28 +617,38 @@ void Render::textureFreeAll()
 }
 
 // render target methods
-GLuint Render::rtargetCreate(int width, int height, bool zbuff)
+GLuint Render::rtargetCreate(int width, int height)
 {
     rtarget_t *target = new rtarget_t;
     if (target == NULL)
         return 0;
     
     memset(target, 0, sizeof(rtarget_t));
-    target->bDepth = zbuff;
     
     GLenum status;
-    glGenFramebuffersEXT(1, &target->framebuffer);
+    
     // set up FBO with one texture attachment
+    glGenFramebuffersEXT(1, &target->framebuffer);
     glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, target->framebuffer);
     
-    target->tex = textureCreate(width, height);
+    // create texture
+    glGenTextures(1, &target->tex);
     
     glBindTexture(GL_TEXTURE_2D, target->tex);
+    
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-    glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, target->tex, 0);
     
+    // depth
+    glGenRenderbuffersEXT(1, &target->renderbuffer);
+    glBindRenderbufferEXT(GL_RENDERBUFFER_EXT, target->renderbuffer);
+    glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_DEPTH_COMPONENT, width, height);
+    glFramebufferRenderbufferEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_RENDERBUFFER_EXT, target->renderbuffer);
+    
+    glFramebufferTextureEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0, target->tex, 0);
+    
+    // check for result
     status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
     if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
     {
@@ -682,8 +662,8 @@ GLuint Render::rtargetCreate(int width, int height, bool zbuff)
     
     mRTargetMap.insert(RTargetMap::value_type(target->framebuffer, target));
     
-    glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-    
+    glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
+
     return target->framebuffer;
 }
 
@@ -696,6 +676,8 @@ void Render::rtargetFree(GLuint target)
     rtarget_t *tar = iter->second;
     textureFree(tar->tex);
     glDeleteFramebuffers(1, &tar->framebuffer);
+    glDeleteRenderbuffers(1, &tar->renderbuffer);
+    
     delete tar;
     
     mRTargetMap.erase(iter);
@@ -1085,6 +1067,8 @@ void Render::renderVertexList(const VertexList* list)
     
 void Render::renderText(float x, float y, uint32_t color,const char* format, ...)
 {
+    return;
+    
     if (mDefaultFont->font == NULL)
         return;
     

@@ -78,4 +78,19 @@ void quad_set_texture_rect(Quad* q, float x, float y, float w, float h, float te
     q->v[3].v = q->v[2].v;
 }
 
+void quad_set_coord(Quad* q, float x, float y, float w, float h)
+{
+    q->v[0].x = x;
+    q->v[0].y = y;
+    
+    q->v[1].x = x + w;
+    q->v[1].y = y;
+    
+    q->v[2].x = q->v[1].x;
+    q->v[2].y = y + h;
+    
+    q->v[3].x = x;
+    q->v[3].y = q->v[2].y;
+}
+
 HGNAMESPACE_END

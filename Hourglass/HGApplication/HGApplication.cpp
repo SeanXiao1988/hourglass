@@ -39,11 +39,6 @@ void Application::initialize()
     SCRIPTMANAGER.execScript(MAIN_SCRIPT_FILE);
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_ENTRY);
     
-    ALuint s = SOUNDMANAGER.loadOggFile("audio.ogg");
-	ALuint s2 = SOUNDMANAGER.forkOggFile("audio.ogg");
-	SOUNDMANAGER.freeOggSource(s);
-    alSourcePlay(s2);
-    
     mMainLoopFunc = NULL;
 }
     

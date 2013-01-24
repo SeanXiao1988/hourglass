@@ -56,6 +56,8 @@ HGNAMESPACE_START
     
 #define BLEND_DEFAULT           (BLEND_COLORMUL | BLEND_ALPHABLEND | BLEND_NOZWRITE)
 #define BLEND_DEFAULT_Z         (BLEND_COLORMUL | BLEND_ALPHABLEND | BLEND_ZWRITE)
+
+#define CHK_GL_ERROR glIsError(__FILE__, __LINE__, __func__)
     
 typedef enum _blend_mode_t_
 {
@@ -109,8 +111,8 @@ typedef struct _rtarget_t_
     int     width;
     int     height;
     GLuint  framebuffer;
+    GLuint  renderbuffer;
     GLuint  tex;
-    bool    bDepth;
 }rtarget_t;
 
 typedef struct _TextureLockInfo
@@ -150,6 +152,24 @@ typedef struct _PixmapFontContext
     uint32_t        size;
     uint32_t        color;
 }PixmapFontContext;
+
+static bool glIsError(const char* file, int line, const char* func)
+{
+    bool ret = false;
+    GLenum err = glGetError();
+    
+    BREAK_START;
+    
+    if (err == GL_NO_ERROR)
+        break;
+    
+    HGLog("Error: %s @ %s|%d|%s()\n", glGetString(err), file, line, func);
+    ret = true;
+    
+    BREAK_END;
+    
+    return ret;
+}
 
 HGNAMESPACE_END
 

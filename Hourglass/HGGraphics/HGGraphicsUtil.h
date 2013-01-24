@@ -32,6 +32,7 @@ extern void quad_set_default(Quad* q);
 extern void quad_set_color(Quad* q, uint32_t color);
 extern void quad_set_alpha(Quad* q, uint8_t alpha);
 extern void quad_set_texture_rect(Quad* q, float x, float y, float w, float h, float texW, float texH);
+extern void quad_set_coord(Quad* q, float x, float y, float w, float h);
 
 
 HGNAMESPACE_END

@@ -71,7 +71,7 @@ public:
     GLuint          textureLoad(uint32_t filenameHash);
     void            textureFreeAll();
     
-    GLuint          rtargetCreate(int width, int height, bool zbuff = false);
+    GLuint          rtargetCreate(int width, int height);
     void            rtargetFree(GLuint target);
     GLuint          rtargetGetTexture(GLuint target);
     rtarget_t*      rtargetFind(GLuint target);
