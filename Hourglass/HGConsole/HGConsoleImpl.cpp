@@ -52,16 +52,16 @@ void ConsoleImpl::initialize()
     mQuad.blend     = BLEND_DEFAULT;
     mQuad.v[0].x    = 0.0f;
     mQuad.v[0].y    = 0.0f;
-    RENDER.setVertexColor(&mQuad.v[0], CONSOLE_COLOR_UPPER);
+    vertex_set_color(&mQuad.v[0], CONSOLE_COLOR_UPPER);
     mQuad.v[1].x    = (float)RENDER.getWidth();
     mQuad.v[1].y    = 0.0f;
-    RENDER.setVertexColor(&mQuad.v[1], CONSOLE_COLOR_UPPER);
+    vertex_set_color(&mQuad.v[1], CONSOLE_COLOR_UPPER);
     mQuad.v[2].x    = (float)RENDER.getWidth();
     mQuad.v[2].y    = RENDER.getHeight()/2.0f;
-    RENDER.setVertexColor(&mQuad.v[2], CONSOLE_COLOR_LOWER);
+    vertex_set_color(&mQuad.v[2], CONSOLE_COLOR_LOWER);
     mQuad.v[3].x    = 0.0f;
     mQuad.v[3].y    = RENDER.getHeight()/2.0f;
-    RENDER.setVertexColor(&mQuad.v[3], CONSOLE_COLOR_LOWER);
+    vertex_set_color(&mQuad.v[3], CONSOLE_COLOR_LOWER);
     mQuad.v[0].z = mQuad.v[1].z = mQuad.v[2].z = mQuad.v[3].z = 0.9f;
     
     print("Hello Developer, Welcome to Hourglass Console.", CMSG_SYSTEM_INFO);

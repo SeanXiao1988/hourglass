@@ -351,10 +351,7 @@ void MapData::debug_draw(int x, int y)
     float textureWidth = (float)RENDER.textureGetWidth(mDebugTexture);
     float textureHeight = (float)RENDER.textureGetHeight(mDebugTexture);
     
-    for (int i = 0; i < 4; i++)
-    {
-        RENDER.setVertexColor(&quad.v[i], 0xFFFFFFFF);
-    }
+    quad_set_color(&quad, 0xFFFFFFFF);
 	
 	for(i = 0; i < mMapHeader.height; i++){
 		for(j = 0; j < mMapHeader.width; j++){

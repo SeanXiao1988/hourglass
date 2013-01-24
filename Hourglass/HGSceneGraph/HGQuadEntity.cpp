@@ -77,11 +77,7 @@ void QuadEntity::setTexture(GLuint tex)
         mTexWidth = 0.0f;
         mTexHeight = 0.0f;
         
-        mQuad.v[0].u = mQuad.v[0].v = 0.0f;
-        mQuad.v[1].u = mQuad.v[1].v = 0.0f;
-        mQuad.v[2].u = mQuad.v[2].v = 0.0f;
-        mQuad.v[3].u = mQuad.v[3].v = 0.0f;
-        mQuad.tex = 0;
+        quad_set_default(&mQuad);
     }
     else
     {
@@ -89,7 +85,6 @@ void QuadEntity::setTexture(GLuint tex)
         mTexHeight = (float)RENDER.textureGetHeight(tex);
         mQuad.tex = tex;
     }
-
 }
 
 void QuadEntity::setTextureRect(float x, float y, float w, float h, bool adjust)
@@ -107,17 +102,7 @@ void QuadEntity::setTextureRect(float x, float y, float w, float h, bool adjust)
             mTexHeight = (float)RENDER.textureGetHeight(mQuad.tex);
         }
         
-        mQuad.v[0].u = mU / mTexWidth;
-        mQuad.v[0].v = mV / mTexHeight;
-        
-        mQuad.v[2].u = (mU + w) / mTexWidth;
-        mQuad.v[2].v = (mV + h) / mTexHeight;
-        
-        mQuad.v[1].u = mQuad.v[2].u;
-        mQuad.v[1].v = mQuad.v[0].v;
-        
-        mQuad.v[3].u = mQuad.v[0].u;
-        mQuad.v[3].v = mQuad.v[2].v;
+        quad_set_texture_rect(&mQuad, mU, mV, w, h, mTexWidth, mTexHeight);
     }
 }
     
@@ -146,20 +131,11 @@ void QuadEntity::setColor(uint32_t col, int i)
 {
     if (i == -1)
     {
-        for (int j = 0; j < 4; j++)
-        {
-            mQuad.v[j].color[0] = GETR(col);
-            mQuad.v[j].color[1] = GETG(col);
-            mQuad.v[j].color[2] = GETB(col);
-            mQuad.v[j].color[3] = GETA(col);
-        }
+        quad_set_color(&mQuad, col);
     }
     else
     {
-        mQuad.v[i].color[0] = GETR(col);
-        mQuad.v[i].color[1] = GETG(col);
-        mQuad.v[i].color[2] = GETB(col);
-        mQuad.v[i].color[3] = GETA(col);
+        vertex_set_color(&mQuad.v[i], col);
     }
 }
 
@@ -167,10 +143,7 @@ void QuadEntity::setVertexAlpha(uint8_t alpha, int i)
 {
     if (i == -1)
     {
-        for (int j = 0; j < 4; j++)
-        {
-            mQuad.v[j].color[3] = alpha;
-        }
+        quad_set_alpha(&mQuad, alpha);
     }
     else
     {

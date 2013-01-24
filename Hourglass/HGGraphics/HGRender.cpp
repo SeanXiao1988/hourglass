@@ -562,8 +562,8 @@ GLuint Render::textureLoad(const char* filename)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
         
         // pixel data
-        newItem.width = newItem.rawWidth;//_nextPow2(newItem.rawWidth);
-        newItem.height = newItem.rawHeight;//_nextPow2(newItem.rawHeight);
+        newItem.width = newItem.rawWidth;//*/_nextPow2(newItem.rawWidth);
+        newItem.height = newItem.rawHeight;//*/_nextPow2(newItem.rawHeight);
         
         // manage memory blocks
         if (newItem.width <= HG_MAX_IMAGE_SIZE && newItem.height <= HG_MAX_IMAGE_SIZE)
@@ -927,8 +927,10 @@ void Render::renderLine(float x1, float y1, float x2, float y2, uint32_t color, 
     mpVertices[i].z = mpVertices[i+1].z = z;
     mpVertices[i].u = 0.0f; mpVertices[i].v = 0.0f;
     mpVertices[i+1].u = 0.0f; mpVertices[i+1].v = 0.0f;
-    setVertexColor(&mpVertices[i], color);
-    setVertexColor(&mpVertices[i+1], color);
+    
+    vertex_set_color(&mpVertices[i], color);
+    vertex_set_color(&mpVertices[i+1], color);
+
     mpVertices[i].u = mpVertices[i+1].u = mpVertices[i].v = mpVertices[i+1].v = 0;
     
     mPrimitive++;
@@ -938,7 +940,9 @@ void Render::renderLine(float x1, float y1, float x2, float y2, uint32_t color, 
 void Render::renderRect(float x, float y, float w, float h, uint32_t color, float z)
 {
     Quad quad;
-    memset(&quad, 0, sizeof(Quad));
+    quad_set_default(&quad);
+    quad_set_color(&quad, color);
+    
     quad.v[0].x = x;
     quad.v[0].y = y;
     quad.v[1].x = x + w;
@@ -947,20 +951,6 @@ void Render::renderRect(float x, float y, float w, float h, uint32_t color, floa
     quad.v[2].y = y + h;
     quad.v[3].x = x;
     quad.v[3].y = y + h;
-    setVertexColor(&quad.v[0], color);
-    setVertexColor(&quad.v[1], color);
-    setVertexColor(&quad.v[2], color);
-    setVertexColor(&quad.v[3], color);
-    quad.v[0].u = 0;
-    quad.v[0].v = 0;
-    quad.v[1].u = 0;
-    quad.v[1].v = 0;
-    quad.v[2].u = 0;
-    quad.v[2].v = 0;
-    quad.v[3].u = 0;
-    quad.v[3].v = 0;
-    quad.blend = BLEND_DEFAULT;
-    quad.tex = 0;
     
     renderQuad(&quad);
 }
@@ -1000,7 +990,7 @@ void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t colo
         vertices[i].v = 0.0f;
         vertices[i].x = cx + r * cosf(angleStep * (i-1));
         vertices[i].y = cy + r * sinf(angleStep * (i-1));
-        setVertexColor(&vertices[i], color);
+        vertex_set_color(&vertices[i], color);
     }
     
     if (fill)
@@ -1009,7 +999,7 @@ void Render::renderCircle(float cx, float cy, float r, uint32_t v, uint32_t colo
         vertices[0].v = 0.0f;
         vertices[0].x = cx;
         vertices[0].y = cy;
-        setVertexColor(&vertices[0], color);
+        vertex_set_color(&vertices[0], color);
         
         memcpy(&vertices[1], &vertices[vcount-1], sizeof(Vertex));
     }
@@ -1490,17 +1480,6 @@ GLuint Render::_nextPow2( int raw )
         raw |= raw >> i;
     
     return raw + 1;
-}
-
-void Render::setVertexColor(Vertex* v, int rgba)
-{
-    if (v == NULL)
-        return;
-    
-    v->color[0] = GETR(rgba);
-    v->color[1] = GETG(rgba);
-    v->color[2] = GETB(rgba);
-    v->color[3] = GETA(rgba);
 }
 
 double Render::calculateFPS()

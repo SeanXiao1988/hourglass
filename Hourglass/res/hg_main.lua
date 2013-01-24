@@ -32,8 +32,17 @@ function create_1st_obj()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
     
-    --local sound = AUDIOMANAGER.audioLoad("audio.ogg")
-    --AUDIOMANAGER.audioPlay(sound)
+    backgroundNode = SCENEMANAGER.createNode("background")
+    SCENEMANAGER.getRoot():addChild(backgroundNode)
+    backgroundNode:setXY(400, 300)
+
+    backgroundEntity = QuadEntity.new()
+    backgroundEntity:setTexture(RENDER.textureLoad("nebula.png"))
+    backgroundEntity:setTextureRect(0, 0, 800, 600)
+    backgroundNode:attachEntity(backgroundEntity)
+    
+    OBJECTMANAGER.addComponentToObject("background", backgroundNode);
+
 end
 
 function input_callback(listener, event)
@@ -62,6 +71,7 @@ end
 
 function hg_deinit()
     QuadEntity.delete(entity)
+    QuadEntity.delete(backgroundEntity)
 end
 
 function print_t(t)

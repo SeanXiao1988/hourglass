@@ -40,7 +40,7 @@ DistortionMesh::DistortionMesh(int cols, int rows)
         mDispArray[i].v = 0.0f;
         
         mDispArray[i].z = 0.5f;
-        RENDER.setVertexColor(&mDispArray[i], 0xFFFFFFFF);
+        vertex_set_color(&mDispArray[i], 0xFFFFFFFF);
     }
 }
 
@@ -136,7 +136,7 @@ void DistortionMesh::clear(uint32_t color, float z)
         {
             mDispArray[j*mCols+i].x = i*mCellW;
             mDispArray[j*mCols+i].y = j*mCellH;
-            RENDER.setVertexColor(&mDispArray[j*mCols+i], color);
+            vertex_set_color(&mDispArray[j*mCols+i], color);
             mDispArray[j*mCols+i].z = z;
         }
     }
@@ -156,28 +156,28 @@ void DistortionMesh::render(float x, float y)
             mQuad.v[0].x = x + mDispArray[idx].x;
             mQuad.v[0].y = y + mDispArray[idx].y;
             mQuad.v[0].z = mDispArray[idx].z;
-            RENDER.setVertexColor(&mQuad.v[0], RGBA(mDispArray[idx].color[0], mDispArray[idx].color[1], mDispArray[idx].color[2], mDispArray[idx].color[3]));
+            vertex_set_color(&mQuad.v[0], RGBA(mDispArray[idx].color[0], mDispArray[idx].color[1], mDispArray[idx].color[2], mDispArray[idx].color[3]));
             
             mQuad.v[1].u = mDispArray[idx+1].u;
             mQuad.v[1].v = mDispArray[idx+1].v;
             mQuad.v[1].x = x + mDispArray[idx+1].x;
             mQuad.v[1].y = y + mDispArray[idx+1].y;
             mQuad.v[1].z = mDispArray[idx+1].z;
-            RENDER.setVertexColor(&mQuad.v[1], RGBA(mDispArray[idx+1].color[0], mDispArray[idx+1].color[1], mDispArray[idx+1].color[2], mDispArray[idx+1].color[3]));
+            vertex_set_color(&mQuad.v[1], RGBA(mDispArray[idx+1].color[0], mDispArray[idx+1].color[1], mDispArray[idx+1].color[2], mDispArray[idx+1].color[3]));
             
             mQuad.v[2].u = mDispArray[idx+mCols+1].u;
             mQuad.v[2].v = mDispArray[idx+mCols+1].v;
             mQuad.v[2].x = x + mDispArray[idx+mCols+1].x;
             mQuad.v[2].y = y + mDispArray[idx+mCols+1].y;
             mQuad.v[2].z = mDispArray[idx+mCols+1].z;
-            RENDER.setVertexColor(&mQuad.v[2], RGBA(mDispArray[idx+mCols+1].color[0], mDispArray[idx+mCols+1].color[1], mDispArray[idx+mCols+1].color[2], mDispArray[idx+mCols+1].color[3]));
+            vertex_set_color(&mQuad.v[2], RGBA(mDispArray[idx+mCols+1].color[0], mDispArray[idx+mCols+1].color[1], mDispArray[idx+mCols+1].color[2], mDispArray[idx+mCols+1].color[3]));
             
             mQuad.v[3].u = mDispArray[idx+mCols].u;
             mQuad.v[3].v = mDispArray[idx+mCols].v;
             mQuad.v[3].x = x + mDispArray[idx+mCols].x;
             mQuad.v[3].y = y + mDispArray[idx+mCols].y;
             mQuad.v[3].z = mDispArray[idx+mCols].z;
-            RENDER.setVertexColor(&mQuad.v[3], RGBA(mDispArray[idx+mCols].color[0], mDispArray[idx+mCols].color[1], mDispArray[idx+mCols].color[2], mDispArray[idx+mCols].color[3]));
+            vertex_set_color(&mQuad.v[3], RGBA(mDispArray[idx+mCols].color[0], mDispArray[idx+mCols].color[1], mDispArray[idx+mCols].color[2], mDispArray[idx+mCols].color[3]));
             
             RENDER.renderQuad(&mQuad);
         }
@@ -196,7 +196,7 @@ void DistortionMesh::setColor(int col, int row, uint32_t color)
 {
     if (row < mRows && col < mCols)
     {
-        RENDER.setVertexColor(&mDispArray[row*mCols+col], color);
+        vertex_set_color(&mDispArray[row*mCols+col], color);
     }
 }
 

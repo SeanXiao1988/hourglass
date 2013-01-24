@@ -100,7 +100,7 @@ ALuint SoundManager::loadOggFile(const char *filename)
     
     BREAK_START;
     
-    if (filename == NULL)
+    if (filename == NULL || mBufferList.size() >= SOUND_MAX_BUFFERS || mSourceList.size() >= SOUND_MAX_SOURCES)
         break;
     
     ogg_buffer_t* buffer = NULL;
@@ -130,7 +130,7 @@ ALuint SoundManager::forkOggFile(const char *filename)
     
     BREAK_START;
     
-    if (filename == NULL)
+    if (filename == NULL || mSourceList.size() >= SOUND_MAX_SOURCES)
         break;
     
     uint32_t fileNameHash = Hash(filename);
@@ -170,13 +170,11 @@ void SoundManager::freeOggFile(const char* filename)
     for (; iter != mBufferList.end(); ++iter)
     {
         if (*iter == buffer)
+        {
+            ogg_buffer_destory(*iter);
+            mBufferList.erase(iter);
             break;
-    }
-    
-    if (iter != mBufferList.end())
-    {
-        ogg_buffer_destory(buffer);
-        mBufferList.erase(iter);
+        }
     }
     
     BREAK_END;
@@ -184,7 +182,23 @@ void SoundManager::freeOggFile(const char* filename)
 
 void SoundManager::freeOggSource(ALuint sourceID)
 {
+    BREAK_START;
     
+    if (sourceID == 0)
+        break;
+    
+    OggSourceList::iterator iter = mSourceList.begin();
+    for (; iter != mSourceList.end(); ++iter)
+    {
+        if ((*iter)->source == sourceID)
+        {
+            ogg_source_destory(*iter);
+            mSourceList.erase(iter);
+            break;
+        }
+    }
+    
+    BREAK_END;
 }
 
 ogg_buffer_t* SoundManager::_loadOggFile(const char* filename)

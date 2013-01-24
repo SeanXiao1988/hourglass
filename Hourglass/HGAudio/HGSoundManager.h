@@ -27,6 +27,9 @@
 
 #define SOUNDMANAGER SoundManager::getInstance()
 
+#define SOUND_MAX_BUFFERS   64
+#define SOUND_MAX_SOURCES   16
+
 HGNAMESPACE_START
 
 typedef std::list<ogg_buffer_t *> OggBufferList;

@@ -23,6 +23,7 @@
 
 #include "HGSystem.h"
 #include "HGGraphicsDef.h"
+#include "HGGraphicsUtil.h"
 #include "HGError.h"
 
 #define HG_DEFAULT_FONT_FILE    "source_code_pro.ttf"
@@ -96,8 +97,6 @@ public:
     
     void            renderText(float x, float y, uint32_t color,const char* format, ...);  // TODO, add font support
     void            setDefaultFontSize(uint32_t size);
-    
-    static void		setVertexColor(Vertex *v, int rgba);
     
     double          calculateFPS();
     const double    getFPS() const { return mFPS; }
