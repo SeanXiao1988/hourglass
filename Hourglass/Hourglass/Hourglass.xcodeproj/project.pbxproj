@@ -808,6 +808,13 @@
 			path = FTGL;
 			sourceTree = "<group>";
 		};
+		2E89C24016B1822D00E7310B /* freetype-gl */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "freetype-gl";
+			sourceTree = "<group>";
+		};
 		2EAAA422161E907F0079ECAC /* HGMapSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -1087,6 +1094,7 @@
 				D4B74DCE16814EAC00C9DB3B /* Lua */,
 				2E83B3DD167F7C0600F860F6 /* FTGL */,
 				D41977B8167ECAF3006A65ED /* freetype */,
+				2E89C24016B1822D00E7310B /* freetype-gl */,
 				D4D74FA316AD29D800197DBD /* ogg */,
 				2EE7DE2F162DBF6000212BD0 /* other */,
 				2E0E4ABB15E288CD00B9EE12 /* glew */,
