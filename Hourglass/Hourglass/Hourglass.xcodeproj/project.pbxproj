@@ -22,6 +22,7 @@
 		2E89C24A16B182B600E7310B /* vertex-attribute.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C24516B182B600E7310B /* vertex-attribute.c */; };
 		2E89C24B16B182B600E7310B /* vertex-buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C24716B182B600E7310B /* vertex-buffer.c */; };
 		2E89C24E16B1842600E7310B /* texture-atlas.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C24C16B1842600E7310B /* texture-atlas.c */; };
+		2E89C25216B1860800E7310B /* texture-font.c in Sources */ = {isa = PBXBuildFile; fileRef = 2E89C25016B1860800E7310B /* texture-font.c */; };
 		2EE2A14216A821B9005AF2A8 /* HGInputListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2A14016A821B9005AF2A8 /* HGInputListener.cpp */; };
 		2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2A14316A826EB005AF2A8 /* HGInputListenerScripter.cpp */; };
 		2EE40C9716A2AEE40033DFE2 /* HGIAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */; };
@@ -205,6 +206,9 @@
 		2E89C24816B182B600E7310B /* vertex-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-buffer.h"; sourceTree = "<group>"; };
 		2E89C24C16B1842600E7310B /* texture-atlas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "texture-atlas.c"; sourceTree = "<group>"; };
 		2E89C24D16B1842600E7310B /* texture-atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "texture-atlas.h"; sourceTree = "<group>"; };
+		2E89C24F16B185A400E7310B /* freetype-gl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "freetype-gl.h"; sourceTree = "<group>"; };
+		2E89C25016B1860800E7310B /* texture-font.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "texture-font.c"; sourceTree = "<group>"; };
+		2E89C25116B1860800E7310B /* texture-font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "texture-font.h"; sourceTree = "<group>"; };
 		2EAAA423161E907F0079ECAC /* HGMapDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMapDef.h; sourceTree = "<group>"; };
 		2ECF1D57166276C600073108 /* HGRectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HGRectangle.hpp; sourceTree = "<group>"; };
 		2EE2A14016A821B9005AF2A8 /* HGInputListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGInputListener.cpp; sourceTree = "<group>"; };
@@ -824,8 +828,11 @@
 		2E89C24016B1822D00E7310B /* freetype-gl */ = {
 			isa = PBXGroup;
 			children = (
+				2E89C24F16B185A400E7310B /* freetype-gl.h */,
 				2E89C24D16B1842600E7310B /* texture-atlas.h */,
 				2E89C24C16B1842600E7310B /* texture-atlas.c */,
+				2E89C25116B1860800E7310B /* texture-font.h */,
+				2E89C25016B1860800E7310B /* texture-font.c */,
 				2E89C24216B182B600E7310B /* vec234.h */,
 				2E89C24416B182B600E7310B /* vector.h */,
 				2E89C24316B182B600E7310B /* vector.c */,
@@ -1829,6 +1836,7 @@
 				2E89C24A16B182B600E7310B /* vertex-attribute.c in Sources */,
 				2E89C24B16B182B600E7310B /* vertex-buffer.c in Sources */,
 				2E89C24E16B1842600E7310B /* texture-atlas.c in Sources */,
+				2E89C25216B1860800E7310B /* texture-font.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
