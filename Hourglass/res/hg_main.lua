@@ -31,7 +31,7 @@ function create_1st_obj()
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
-    
+    --[[
     backgroundNode = SCENEMANAGER.createNode("background")
     SCENEMANAGER.getRoot():addChild(backgroundNode)
     backgroundNode:setXY(400, 300)
@@ -42,6 +42,7 @@ function create_1st_obj()
     backgroundNode:attachEntity(backgroundEntity)
     
     OBJECTMANAGER.addComponentToObject("background", backgroundNode);
+    --]]
 end
 
 function input_callback(listener, event)

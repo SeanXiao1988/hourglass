@@ -40,7 +40,6 @@
 		D419781A167ECED6006A65ED /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4197819167ECED6006A65ED /* libbz2.dylib */; };
 		D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4197811167ECAF3006A65ED /* libfreetype.a */; };
 		D41DCAC71626CC6200541544 /* HGMapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41DCAC61626CC6200541544 /* HGMapData.cpp */; };
-		D420A2A216B0D9F600048776 /* nebula.png in Resources */ = {isa = PBXBuildFile; fileRef = D420A2A116B0D9F600048776 /* nebula.png */; };
 		D420A2A616B0DD6E00048776 /* HGGraphicsUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D420A2A516B0DD6E00048776 /* HGGraphicsUtil.cpp */; };
 		D422BF6B1655E0FD0064B8DE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = D422BF6A1655E0FD0064B8DE /* license.txt */; };
 		D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */; };
@@ -285,7 +284,6 @@
 		D4197819167ECED6006A65ED /* libbz2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.dylib; path = usr/lib/libbz2.dylib; sourceTree = SDKROOT; };
 		D41DCAC41626C61C00541544 /* HGMapData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMapData.h; sourceTree = "<group>"; };
 		D41DCAC61626CC6200541544 /* HGMapData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMapData.cpp; sourceTree = "<group>"; };
-		D420A2A116B0D9F600048776 /* nebula.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = nebula.png; path = ../../../Downloads/nebula.png; sourceTree = "<group>"; };
 		D420A2A416B0DD6E00048776 /* HGGraphicsUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGGraphicsUtil.h; sourceTree = "<group>"; };
 		D420A2A516B0DD6E00048776 /* HGGraphicsUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGGraphicsUtil.cpp; sourceTree = "<group>"; };
 		D422BF6A1655E0FD0064B8DE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
@@ -1416,7 +1414,6 @@
 		D4738F4E162D67030073E949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D420A2A116B0D9F600048776 /* nebula.png */,
 				D4D74FAC16AD3E9800197DBD /* audio.ogg */,
 				D4E6D5BD1699628B00ED9397 /* hg_main.lua */,
 				D4B74E2B16814EBE00C9DB3B /* script.lua */,
@@ -1699,7 +1696,6 @@
 				D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */,
 				D4E6D5BE1699628B00ED9397 /* hg_main.lua in Resources */,
 				D4D74FAD16AD3E9800197DBD /* audio.ogg in Resources */,
-				D420A2A216B0D9F600048776 /* nebula.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
