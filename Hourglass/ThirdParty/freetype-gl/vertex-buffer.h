@@ -36,14 +36,12 @@
 
 #include "glfw.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include "vector.h"
 #include "vertex-attribute.h"
 
-
+namespace ftgl
+{
 
 /**
  * @file   vertex-buffer.h
@@ -342,9 +340,5 @@ typedef struct
                        size_t index );
 
 /** @} */
-
-#ifdef __cplusplus
 }
-#endif
-
 #endif /* __VERTEX_BUFFER_H__ */

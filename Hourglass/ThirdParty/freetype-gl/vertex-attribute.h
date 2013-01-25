@@ -36,12 +36,11 @@
 
 #include "glfw.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #include "vector.h"
 
+namespace ftgl
+{
 
 /**
  * @file   vertex-attribute.h
@@ -446,9 +445,6 @@ vertex_attribute_delete( vertex_attribute_t * self );
   GL_TYPE_STRING( GLenum gtype );
 
 /** @} */
-
-#ifdef __cplusplus
 }
-#endif
 
 #endif /* __VERTEX_ATTRIBUTE_H__ */

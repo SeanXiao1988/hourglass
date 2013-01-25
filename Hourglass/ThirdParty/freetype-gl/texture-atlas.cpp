@@ -39,7 +39,8 @@
 #include "glfw.h"
 #include "texture-atlas.h"
 
-
+namespace ftgl
+{
 // ------------------------------------------------------ texture_atlas_new ---
 texture_atlas_t *
 texture_atlas_new( const size_t width,
@@ -330,3 +331,4 @@ texture_atlas_upload( texture_atlas_t * self )
     }
 }
 
+}

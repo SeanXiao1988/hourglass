@@ -38,7 +38,9 @@
 #include "vec234.h"
 #include "vertex-attribute.h"
 
-
+namespace ftgl
+{
+    
 // ----------------------------------------------------------------------------
 void
 vertex_attribute_position_enable( vertex_attribute_t *attr )
@@ -368,4 +370,5 @@ GL_TYPE_STRING( GLenum gtype )
     case GL_DOUBLE:         return "GL_DOUBLE";
     default:                return "GL_VOID";
     }
+}
 }

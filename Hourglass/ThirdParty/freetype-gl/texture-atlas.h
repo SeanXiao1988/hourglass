@@ -44,12 +44,11 @@
 #ifndef __TEXTURE_ATLAS_H__
 #define __TEXTURE_ATLAS_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "vector.h"
 #include "vec234.h"
+
+namespace ftgl
+{
 
 /**
  * @file   texture-atlas.h
@@ -216,8 +215,6 @@ typedef struct
 
 /** @} */
 
-#ifdef __cplusplus
 }
-#endif
 
 #endif /* __TEXTURE_ATLAS_H__ */

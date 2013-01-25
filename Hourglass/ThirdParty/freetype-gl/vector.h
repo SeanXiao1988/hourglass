@@ -34,12 +34,10 @@
 #ifndef __VECTOR_H__
 #define __VECTOR_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stddef.h>
 
+namespace ftgl
+{
 /**
  * @file   vector.h
  * @author Nicolas Rougier (Nicolas.Rougier@inria.fr)
@@ -344,8 +342,5 @@ typedef struct
 
 /** @} */
 
-#ifdef __cplusplus
 }
-#endif
-
 #endif /* __VECTOR_H__ */

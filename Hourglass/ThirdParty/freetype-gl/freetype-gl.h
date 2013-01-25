@@ -44,15 +44,10 @@
 #include <assert.h>
 
 /* Mandatory */
-#include "HGSystem.h"
-
-namespace ftgl
-{
 #include "vec234.h"
 #include "vector.h"
 #include "texture-atlas.h"
 #include "texture-font.h"
 #include "vertex-buffer.h"
-}
 
 #endif /* FREETYPE_GL_H */

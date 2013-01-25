@@ -36,7 +36,8 @@
 #include <stdio.h>
 #include "vector.h"
 
-
+namespace ftgl
+{
 
 // ------------------------------------------------------------- vector_new ---
 vector_t *
@@ -359,4 +360,6 @@ vector_sort( vector_t *self,
     assert( self->size );
 
     qsort(self->items, self->size, self->item_size, cmp);
+}
+
 }

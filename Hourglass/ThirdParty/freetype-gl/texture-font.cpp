@@ -44,6 +44,9 @@
 #include <wchar.h>
 #include "texture-font.h"
 
+namespace ftgl
+{
+
 #undef __FTERRORS_H__
 #define FT_ERRORDEF( e, v, s )  { e, s },
 #define FT_ERROR_START_LIST     {
@@ -53,8 +56,6 @@ const struct {
     const char*  message;
 } FT_Errors[] =
 #include FT_ERRORS_H
-
-
 
 
 // ------------------------------------------------- texture_font_load_face ---
@@ -581,10 +582,10 @@ texture_font_get_glyph( texture_font_t * self,
         size_t height = self->atlas->height;
         ivec4 region = texture_atlas_get_region( self->atlas, 5, 5 );
         texture_glyph_t * glyph = texture_glyph_new( );
-        static unsigned char data[4*4*3] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-                                            -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-                                            -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,
-                                            -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
+        static unsigned char data[4*4*3] = {255,255,255,255,255,255,255,255,255,255,255,255,
+                                            255,255,255,255,255,255,255,255,255,255,255,255,
+                                            255,255,255,255,255,255,255,255,255,255,255,255,
+                                            255,255,255,255,255,255,255,255,255,255,255,255};
         if ( region.x < 0 )
         {
             fprintf( stderr, "Texture atlas is full (line %d)\n",  __LINE__ );
@@ -609,4 +610,4 @@ texture_font_get_glyph( texture_font_t * self,
     return NULL;
 }
 
-
+}

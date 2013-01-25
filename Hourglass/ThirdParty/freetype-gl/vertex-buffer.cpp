@@ -38,21 +38,22 @@
 #include "vec234.h"
 #include "vertex-buffer.h"
 
+namespace ftgl
+{
 
 // If GL_DOUBLE does not exist we define it as GL_FLOAT
 #ifndef GL_DOUBLE
 #define GL_DOUBLE GL_FLOAT
 #else
 #define GL_DOUBLE_ GL_FLOAT
-#endif 
-
+#endif
 
 // strndup() was only added in OSX lion
 #ifdef __APPLE__
 char *
 strndup( const char *s1, size_t n)
 {
-    char *copy = calloc( n+1, sizeof(char) );
+    char *copy = (char*)calloc( n+1, sizeof(char) );
     memcpy( copy, s1, n );
     return copy;
 };
@@ -628,4 +629,6 @@ vertex_buffer_erase( vertex_buffer_t * self,
     vertex_buffer_erase_vertices( self, vstart, vstart+vcount );
     vector_erase( self->items, index );
     self->state = DIRTY;
+}
+
 }

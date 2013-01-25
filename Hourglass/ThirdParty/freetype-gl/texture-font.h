@@ -34,12 +34,11 @@
 #ifndef __TEXTURE_FONT_H__
 #define __TEXTURE_FONT_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "vector.h"
 #include "texture-atlas.h"
+
+namespace ftgl
+{
 
 /**
  * @file   texture-font.h
@@ -387,9 +386,7 @@ texture_glyph_get_kerning( const texture_glyph_t * self,
 
 /** @} */
 
-#ifdef __cplusplus
 }
-#endif
 
 #endif /* __TEXTURE_FONT_H__ */
 
