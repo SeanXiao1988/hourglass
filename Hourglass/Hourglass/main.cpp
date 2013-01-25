@@ -34,9 +34,12 @@ void mainloop()
         RENDER.beginScene(rt);
         RENDER.clear();
         
+        RENDER.renderText(0, 0, 1.0, 0xFF0000FF, "Hello World!");
+        
         SCENEMANAGER.render();
-        CONSOLE.render(0.016);
     
+        CONSOLE.render(0.016);
+        
         RENDER.endScene();
         //*/
 

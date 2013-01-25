@@ -60,6 +60,7 @@ public:
     void        setToggleKey(char key);
     void        toggleActive();
     
+    // console should be render last, no matter when
     void        render(float dt);
     
     bool        handleInput(int key, int action);

@@ -87,7 +87,6 @@ HG_ERROR Render::initialize(int width, int height, bool fullscreen)
     
     mDefaultFont = new TextureFontContext;
     mDefaultFont->font = new FTTextureFont(HG_DEFAULT_FONT_FILE);
-    mDefaultFont->color = 0xFFFFFFFF;
     setDefaultFontSize(HG_DEFAULT_FONT_SIZE);
     if (mDefaultFont->font == NULL || mDefaultFont->font->Error())
     {
@@ -1073,6 +1072,13 @@ void Render::renderText(float x, float y, float z, uint32_t color,const char* fo
     if (strlen(format) >= mBufferSize)
         return;
     
+    if (mCurPrimitiveType != PRIMITIVE_TEXT)
+    {
+        // force end scene
+        _renderBatch(true);
+        mCurPrimitiveType = PRIMITIVE_TEXT;
+    }
+    
     memset(mBuffer, 0, mBufferSize);
     
     va_list ap;
@@ -1080,22 +1086,17 @@ void Render::renderText(float x, float y, float z, uint32_t color,const char* fo
     vsprintf((char *)mBuffer, format, ap);
     va_end(ap);
     
-    GLint tex = 0;
-    glGetIntegerv(GL_TEXTURE_2D_BINDING_EXT, &tex);
-    
+    // actuall rendering
     glPushMatrix();
     glLoadIdentity();
     
     glTranslatef(x, y + mDefaultFont->size, z);
     glScalef(1.0f, -1.0f, 1.0f);
-    glColor3b(GETR(color), GETG(color), GETB(color));//, GETA(color));
+    glColor4f(GETR(color)/255.0f, GETG(color)/255.0f, GETB(color)/255.0f, GETA(color)/255.0f);
 
     mDefaultFont->font->Render((char *)mBuffer);
     
     glPopMatrix();
-    glBindTexture(GL_TEXTURE_2D, tex);
-    
-    glEnable(GL_BLEND);
 }
     
 void Render::setDefaultFontSize(uint32_t size)
@@ -1305,13 +1306,15 @@ HG_ERROR Render::_initOpenGL()
     glTexEnvi (GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri (GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     
     // set data alignment and byte order
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     
+    glEnable(GL_LINE_SMOOTH);
     glLineWidth(2.0f);
+    
     
     _setBlendMode(BLEND_DEFAULT);
     
