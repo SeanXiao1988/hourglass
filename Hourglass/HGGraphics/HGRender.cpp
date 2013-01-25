@@ -1092,6 +1092,7 @@ void Render::renderText(float x, float y, float z, uint32_t color,const char* fo
     
     glTranslatef(x, y + mDefaultFont->size, z);
     glScalef(1.0f, -1.0f, 1.0f);
+    
     glColor4f(GETR(color)/255.0f, GETG(color)/255.0f, GETB(color)/255.0f, GETA(color)/255.0f);
 
     mDefaultFont->font->Render((char *)mBuffer);

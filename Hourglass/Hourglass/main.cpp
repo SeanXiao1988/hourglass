@@ -1,3 +1,7 @@
+// TODO:
+// rotation with y/x axis in orthographic projection
+// using glm frustum to achieve that effect then do normal matrix tricks
+
 #include "HG.h"
 #include "lua.hpp"
 
@@ -19,7 +23,7 @@ void mainloop()
     quad_set_default(&q);
     q.tex = RENDER.rtargetGetTexture(rt);
     quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
-    quad_set_coord(&q, 0, 0, 800, 600);
+    quad_set_coord(&q, 0, 0, 400, 300);
     
     while (running)
     {
@@ -30,22 +34,22 @@ void mainloop()
             simulationTime += 0.016;
             SCENEMANAGER.update(0.016);
         }
-        //*/
+        //*/ render normal stuff
         RENDER.beginScene(rt);
         RENDER.clear();
         
-        RENDER.renderText(0, 0, 1.0, 0xFF0000FF, "Hello World!");
-        
         SCENEMANAGER.render();
-    
-        CONSOLE.render(0.016);
         
         RENDER.endScene();
         //*/
 
+        // render screen ,GUI and console
         RENDER.beginScene();
         RENDER.clear();
+        
         RENDER.renderQuad(&q);
+        
+        CONSOLE.render(0.016);
         
         RENDER.endScene();
         //*/

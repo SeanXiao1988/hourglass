@@ -51,7 +51,6 @@
 		D4669FB916A53711000D0256 /* HGScaleAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4669FB816A53711000D0256 /* HGScaleAnimationScripter.cpp */; };
 		D4669FBC16A55F91000D0256 /* HGAlphaAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4669FBB16A55F90000D0256 /* HGAlphaAnimation.cpp */; };
 		D4669FBF16A56541000D0256 /* HGAlphaAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4669FBE16A56541000D0256 /* HGAlphaAnimationScripter.cpp */; };
-		D4689E3A16B22BD5007D9BBD /* sc.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4689E3916B22BD5007D9BBD /* sc.ttf */; };
 		D46C94CC1647B2AD005B98A4 /* distortion.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94C71647B285005B98A4 /* distortion.frag */; };
 		D46C94CD1647B2AD005B98A4 /* distortion.vert in Resources */ = {isa = PBXBuildFile; fileRef = D46C94C81647B285005B98A4 /* distortion.vert */; };
 		D46C94D21647BA93005B98A4 /* blur.frag in Resources */ = {isa = PBXBuildFile; fileRef = D46C94CE1647BA8A005B98A4 /* blur.frag */; };
@@ -544,7 +543,6 @@
 		D4683F1915D39952005EE6D6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = SOURCE_ROOT; };
 		D4683F2C15D3A44E005EE6D6 /* HGHash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGHash.cpp; sourceTree = "<group>"; };
 		D4683F2D15D3A44E005EE6D6 /* HGHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGHash.h; sourceTree = "<group>"; };
-		D4689E3916B22BD5007D9BBD /* sc.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = sc.ttf; path = ../../../Desktop/font/sc.ttf; sourceTree = "<group>"; };
 		D46C94C71647B285005B98A4 /* distortion.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = distortion.frag; path = ../res/distortion.frag; sourceTree = "<group>"; };
 		D46C94C81647B285005B98A4 /* distortion.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = distortion.vert; path = ../res/distortion.vert; sourceTree = "<group>"; };
 		D46C94CE1647BA8A005B98A4 /* blur.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = blur.frag; path = ../res/blur.frag; sourceTree = "<group>"; };
@@ -1416,7 +1414,6 @@
 		D4738F4E162D67030073E949 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D4689E3916B22BD5007D9BBD /* sc.ttf */,
 				D4D74FAC16AD3E9800197DBD /* audio.ogg */,
 				D4E6D5BD1699628B00ED9397 /* hg_main.lua */,
 				D4B74E2B16814EBE00C9DB3B /* script.lua */,
@@ -1699,7 +1696,6 @@
 				D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */,
 				D4E6D5BE1699628B00ED9397 /* hg_main.lua in Resources */,
 				D4D74FAD16AD3E9800197DBD /* audio.ogg in Resources */,
-				D4689E3A16B22BD5007D9BBD /* sc.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
