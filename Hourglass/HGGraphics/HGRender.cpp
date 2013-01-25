@@ -85,8 +85,8 @@ HG_ERROR Render::initialize(int width, int height, bool fullscreen)
         break;
     
     
-    mDefaultFont = new PixmapFontContext;
-    mDefaultFont->font = new FTPixmapFont(HG_DEFAULT_FONT_FILE);
+    mDefaultFont = new TextureFontContext;
+    mDefaultFont->font = new FTTextureFont(HG_DEFAULT_FONT_FILE);
     mDefaultFont->color = 0xFFFFFFFF;
     setDefaultFontSize(HG_DEFAULT_FONT_SIZE);
     if (mDefaultFont->font == NULL || mDefaultFont->font->Error())
@@ -1065,47 +1065,37 @@ void Render::renderVertexList(const VertexList* list)
     mLastCustomPrimitive            = list->primitive;
 }
     
-void Render::renderText(float x, float y, uint32_t color,const char* format, ...)
-{
-    return;
-    
+void Render::renderText(float x, float y, float z, uint32_t color,const char* format, ...)
+{    
     if (mDefaultFont->font == NULL)
         return;
     
     if (strlen(format) >= mBufferSize)
         return;
     
-    if (mCurPrimitiveType != PRIMITIVE_TEXT)
-    {
-        _renderBatch();
-        mCurPrimitiveType = PRIMITIVE_TEXT;
-        _bindTexture(0);
-    }
-    
     memset(mBuffer, 0, mBufferSize);
-    
-    if (mDefaultFont->color != color)
-    {
-        mDefaultFont->color = color;
-        
-        float r = 1.0f - (float)GETR(color) / 255.0f;
-        float g = 1.0f - (float)GETG(color) / 255.0f;
-        float b = 1.0f - (float)GETB(color) / 255.0f;
-        float a = 1.0f - (float)GETA(color) / 255.0f;
-        
-        glPixelTransferf(GL_RED_BIAS,   -r);
-        glPixelTransferf(GL_GREEN_BIAS, -g);
-        glPixelTransferf(GL_BLUE_BIAS,  -b);
-        glPixelTransferf(GL_ALPHA_BIAS, -a);
-    }
     
     va_list ap;
     va_start(ap, format);
     vsprintf((char *)mBuffer, format, ap);
     va_end(ap);
     
-    uint32_t dy = mHeight - (uint32_t)y - mDefaultFont->size;
-    mDefaultFont->font->Render((char *)mBuffer, -1, FTPoint(x, dy));
+    GLint tex = 0;
+    glGetIntegerv(GL_TEXTURE_2D_BINDING_EXT, &tex);
+    
+    glPushMatrix();
+    glLoadIdentity();
+    
+    glTranslatef(x, y + mDefaultFont->size, z);
+    glScalef(1.0f, -1.0f, 1.0f);
+    glColor3b(GETR(color), GETG(color), GETB(color));//, GETA(color));
+
+    mDefaultFont->font->Render((char *)mBuffer);
+    
+    glPopMatrix();
+    glBindTexture(GL_TEXTURE_2D, tex);
+    
+    glEnable(GL_BLEND);
 }
     
 void Render::setDefaultFontSize(uint32_t size)
@@ -1215,9 +1205,9 @@ void Render::_setupOrtho(int width, int height, bool target)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     if (!target)
-        glOrtho(0, width, height, 0, -1.0f, 10.0f);
+        glOrtho(0, width, height, 0, -10.0f, 10.0f);
     else
-        glOrtho(0, width, 0, height, -1.0f, 10.0f);
+        glOrtho(0, width, 0, height, -10.0f, 10.0f);
 }
 
 HG_ERROR Render::_initLib()

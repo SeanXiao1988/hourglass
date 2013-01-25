@@ -110,7 +110,7 @@ void ConsoleImpl::render(float dt)
                 break;
         }
         
-        RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight*2-fontHeight*(mTextBuffer.size() - i), textColor, str.c_str());
+        RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight*2-fontHeight*(mTextBuffer.size() - i), 1.0f, textColor, str.c_str());
         i++;
     }
     
@@ -120,11 +120,11 @@ void ConsoleImpl::render(float dt)
     
     mCursorFlash += dt;
     if (mCursorFlash < CONSOLE_CURSOR_BLINK_TIME)
-        RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, mColorEdit, "%s_", mCursorLine.c_str());
+        RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, 1.0f, mColorEdit, "%s_", mCursorLine.c_str());
     else if (mCursorFlash > CONSOLE_CURSOR_BLINK_TIME * 2)
         mCursorFlash = 0.0f;
     
-    RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, mColorEdit, ">%s", mCommandLine.c_str());
+    RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, 1.0f, mColorEdit, ">%s", mCommandLine.c_str());
     
     BREAK_END;
 }

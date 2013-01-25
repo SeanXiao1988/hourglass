@@ -652,6 +652,12 @@ static int quadentity_delete(lua_State* L)
     
     return 0;
 }
+
+static int quadentity_new_index(lua_State* L)
+{
+    lua_stack_dump(L);
+    return 0;
+}
     
 luaL_Reg sQuadEntityRegs[] =
 {
@@ -681,6 +687,7 @@ luaL_Reg sQuadEntityRegs[] =
     { "nextFrame",      quadentity_next_frame },
     { "prevFrame",      quadentity_prev_frame },
     { "isAnimating",    quadentity_is_sprite_animating },
+    { "__newindex",     quadentity_new_index },
     { NULL, NULL }
 };
     

@@ -153,6 +153,13 @@ typedef struct _PixmapFontContext
     uint32_t        color;
 }PixmapFontContext;
 
+typedef struct _TextureFontContext
+{
+    FTTextureFont*  font;
+    uint32_t        size;
+    uint32_t        color;
+}TextureFontContext;
+
 static bool glIsError(const char* file, int line, const char* func)
 {
     bool ret = false;

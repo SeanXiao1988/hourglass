@@ -95,7 +95,7 @@ public:
     void            renderTriple(const Triple *triple);
     void            renderVertexList(const VertexList* list);
     
-    void            renderText(float x, float y, uint32_t color,const char* format, ...);  // TODO, add font support
+    void            renderText(float x, float y, float z, uint32_t color,const char* format, ...);  // TODO, add font support
     void            setDefaultFontSize(uint32_t size);
     
     double          calculateFPS();
@@ -153,7 +153,7 @@ private:
     uint32_t			mBufferSize;
     
     // font
-    PixmapFontContext*  mDefaultFont;
+    TextureFontContext* mDefaultFont;
     
     // FPS counter
     int                 mFrames;

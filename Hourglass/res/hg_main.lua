@@ -9,6 +9,7 @@ function hg_init()
 end
 
 function create_1st_obj()
+
     local objName = "1stObject"
     sceneNode = SCENEMANAGER.createNode("1stNode")
     sceneNode:setXY(100, 100)
@@ -31,6 +32,7 @@ function create_1st_obj()
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
+
     --[[
     backgroundNode = SCENEMANAGER.createNode("background")
     SCENEMANAGER.getRoot():addChild(backgroundNode)
@@ -43,6 +45,9 @@ function create_1st_obj()
     
     OBJECTMANAGER.addComponentToObject("background", backgroundNode);
     --]]
+    
+    entity.a = 0
+    print(entity.a)
 end
 
 function input_callback(listener, event)
