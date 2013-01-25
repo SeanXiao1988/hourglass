@@ -23,7 +23,7 @@ void mainloop()
     quad_set_default(&q);
     q.tex = RENDER.rtargetGetTexture(rt);
     quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
-    quad_set_coord(&q, 0, 0, 400, 300);
+    quad_set_coord(&q, 0, 0, 800, 600);
     
     while (running)
     {
