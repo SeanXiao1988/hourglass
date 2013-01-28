@@ -108,7 +108,7 @@ SceneNode* SceneManager::createNode(const std::string& name)
 	return node;
 }
     
-SceneNode*  SceneManager::getNode(const uint32_t hashedName)
+SceneNode* SceneManager::getNode(const uint32_t hashedName)
 {
     SceneNode *ret = NULL;
     

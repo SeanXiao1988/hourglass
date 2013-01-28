@@ -1287,7 +1287,7 @@ HG_ERROR Render::_initOpenGL()
     glAlphaFunc(GL_GREATER, 0.1f);   // why we need this ?
     glEnable(GL_ALPHA_TEST);
 
-	glEnable(GL_DEPTH_TEST);        // answer http://www.sjbaker.org/steve/omniv/alpha_sorting.html
+	glEnable(GL_DEPTH_TEST);         // answer http://www.sjbaker.org/steve/omniv/alpha_sorting.html
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
     

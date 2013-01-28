@@ -79,7 +79,6 @@ EventResult InputListener::handleEvent(const Event& event)
         case EVENT_KEYBOARD:
             if (mScriptCallbackRef != 0)
             {
-                //lua_getglobal(L, mScriptCallback.c_str());
                 lua_rawgeti(L, LUA_REGISTRYINDEX, mScriptCallbackRef);
                 if (lua_isnil(L, 1))
                     break;
