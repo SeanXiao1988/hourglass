@@ -44,16 +44,30 @@ public:
         return instance;
     }
     
+    // service
+    
     HG_ERROR        initialize();
     void            deInitialize();
     
+    // file management
+    
     void            clear();
     
-    ALuint          loadOggFile(const char* filename);
+    ALuint          loadOggFile(const char* filename, bool looping = false);
     ALuint          forkOggFile(const char* filename);
     
     void            freeOggFile(const char* filename);
     void            freeOggSource(ALuint sourceID);
+    
+    // sound management
+    void            soundPlay(ALuint sourceID, bool reset = false);
+    void            soundPause(ALuint sourceID);
+    void            soundResume(ALuint sourceID);
+    void            soundStop(ALuint sourceID);
+    
+    void            soundPauseAll();
+    void            soundResumeAll();
+    void            soundStopAll();
     
 private:
     ogg_buffer_t*   _loadOggFile(const char* filename);

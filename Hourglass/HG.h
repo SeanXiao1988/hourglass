@@ -28,7 +28,6 @@
 // Audio
 #include "HGSound.h"
 #include "HGSoundManager.h"
-#include "HGAudioManager.h"
 
 // Core
 #include "HGData.h"

@@ -48,6 +48,9 @@ function create_1st_obj()
     
     entity.a = 0
     print(entity.a)
+    
+    local sid = SOUNDMANAGER.loadOggFile("audio.ogg", true)
+    SOUNDMANAGER.soundPlay(sid)
 end
 
 function input_callback(listener, event)

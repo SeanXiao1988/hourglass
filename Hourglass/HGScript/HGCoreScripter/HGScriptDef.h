@@ -80,6 +80,17 @@ static void luaH_setfunc2table(lua_State* L, const char* n, lua_CFunction func)
     lua_pushcfunction(L, func);
     lua_settable(L, -3);
 }
+
+static bool luaH_checkboolean(lua_State* L, int idx)
+{
+    bool ret = false;
+    if (lua_isnumber(L, idx))
+    {
+        ret = lua_toboolean(L, idx)==0?false:true;
+    }
+    
+    return ret;
+}
     
 HGNAMESPACE_END
 

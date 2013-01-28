@@ -21,12 +21,12 @@
 #include "HGScriptManager.h"
 
 #include "HGApplicationScripter.h"
-#include "HGAudioManagerScripter.h"
 #include "HGGraphicScripter.h"
 #include "HGHashScripter.h"
 #include "HGObjectManagerScripter.h"
 #include "HGRenderScripter.h"
 #include "HGSceneManagerScripter.h"
+#include "HGSoundManagerScripter.h"
 #include "HGSpriteAnimationCompilerScripter.h"
 
 #include "HGCompositeScripter.h"
@@ -157,12 +157,12 @@ void ScriptManager::_registerEngine()
 {
     // singletons push to lua as simple table
     ScriptRegisterApplication(mState);
-    ScriptRegisterAudioManager(mState);
     ScriptRegisterGraphic(mState);
     ScriptRegisterHash(mState);
     ScriptRegisterObjectManager(mState);
     ScriptRegisterRender(mState);
     ScriptRegisterSceneManager(mState);
+    ScriptRegisterSoundManager(mState);
     ScriptRegisterSpriteAnimationCompiler(mState);
     
     // register metatable for other classes

@@ -45,6 +45,7 @@ typedef struct _ogg_source_t_
 {
     ALuint          source;
     ALuint          buffer; // the binding buffer
+    ALint           resume; // for resumeAll
     
     ALint           loop;
     ALfloat         pitch;

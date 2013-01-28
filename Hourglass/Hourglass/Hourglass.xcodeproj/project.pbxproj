@@ -42,7 +42,6 @@
 		D41DCAC71626CC6200541544 /* HGMapData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41DCAC61626CC6200541544 /* HGMapData.cpp */; };
 		D420A2A616B0DD6E00048776 /* HGGraphicsUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D420A2A516B0DD6E00048776 /* HGGraphicsUtil.cpp */; };
 		D422BF6B1655E0FD0064B8DE /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = D422BF6A1655E0FD0064B8DE /* license.txt */; };
-		D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */; };
 		D43871A8164A5D3C00E2A521 /* HGInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43871A6164A5D3C00E2A521 /* HGInputManager.cpp */; };
 		D4451AB116A401FA007D7882 /* HGApplicationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */; };
 		D45001ED16804D9C004FF847 /* source_code_pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D45001EC16804D9C004FF847 /* source_code_pro.ttf */; };
@@ -64,7 +63,7 @@
 		D49D9AE916A7DBFC0007D971 /* HGEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AE816A7DBFC0007D971 /* HGEvent.cpp */; };
 		D49D9AF316A7E13B0007D971 /* HGEventScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */; };
 		D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */; };
-		D4B691FA16AE27D100EE26B6 /* HGAudioManagerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */; };
+		D4B6325916B6087500CA740A /* HGSoundManagerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B6325816B6087500CA740A /* HGSoundManagerScripter.cpp */; };
 		D4B6924416AE76D600EE26B6 /* HGSoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B6924316AE76D600EE26B6 /* HGSoundManager.cpp */; };
 		D4B6924816AE7B3F00EE26B6 /* HGSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B6924716AE7B3F00EE26B6 /* HGSound.cpp */; };
 		D4B74E0916814EAC00C9DB3B /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74DCF16814EAC00C9DB3B /* lapi.c */; };
@@ -289,8 +288,6 @@
 		D422BF6A1655E0FD0064B8DE /* license.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 		D42B812C166C3AB2000EE2AA /* HGAnimationDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAnimationDef.h; sourceTree = "<group>"; };
 		D433C1F916AA322000F0D712 /* HGAudioDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioDef.h; sourceTree = "<group>"; };
-		D433C1FB16AA362200F0D712 /* HGAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioManager.h; sourceTree = "<group>"; };
-		D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGAudioManager.cpp; sourceTree = "<group>"; };
 		D43488DA1603050300E792DD /* HGPhysicsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGPhysicsManager.h; sourceTree = "<group>"; };
 		D43488DC160313EA00E792DD /* HGPhysicsManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGPhysicsManager.cpp; sourceTree = "<group>"; };
 		D43871A6164A5D3C00E2A521 /* HGInputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGInputManager.cpp; sourceTree = "<group>"; };
@@ -573,8 +570,8 @@
 		D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventKeyboardScripter.cpp; sourceTree = "<group>"; };
 		D4A676B215F7263C009E004F /* HGData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGData.cpp; sourceTree = "<group>"; };
 		D4A676B315F7263C009E004F /* HGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGData.h; sourceTree = "<group>"; };
-		D4B691F816AE27D100EE26B6 /* HGAudioManagerScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAudioManagerScripter.h; sourceTree = "<group>"; };
-		D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGAudioManagerScripter.cpp; sourceTree = "<group>"; };
+		D4B6325716B6087500CA740A /* HGSoundManagerScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSoundManagerScripter.h; sourceTree = "<group>"; };
+		D4B6325816B6087500CA740A /* HGSoundManagerScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSoundManagerScripter.cpp; sourceTree = "<group>"; };
 		D4B6924216AE76D600EE26B6 /* HGSoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSoundManager.h; sourceTree = "<group>"; };
 		D4B6924316AE76D600EE26B6 /* HGSoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSoundManager.cpp; sourceTree = "<group>"; };
 		D4B6924616AE7B3F00EE26B6 /* HGSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSound.h; sourceTree = "<group>"; };
@@ -874,8 +871,6 @@
 			children = (
 				D44979FF16A3EC030068D65A /* HGApplicationScripter.h */,
 				D4497A0016A3EC030068D65A /* HGApplicationScripter.cpp */,
-				D4B691F816AE27D100EE26B6 /* HGAudioManagerScripter.h */,
-				D4B691F916AE27D100EE26B6 /* HGAudioManagerScripter.cpp */,
 				2EE40C8E16A2AEE40033DFE2 /* HGGraphicScripter.h */,
 				2EE40C8D16A2AEE40033DFE2 /* HGGraphicScripter.cpp */,
 				2EE40C9016A2AEE40033DFE2 /* HGObjectManagerScripter.h */,
@@ -884,6 +879,8 @@
 				2EE40C9116A2AEE40033DFE2 /* HGRenderScripter.cpp */,
 				2EE40C9416A2AEE40033DFE2 /* HGSceneManagerScripter.h */,
 				2EE40C9316A2AEE40033DFE2 /* HGSceneManagerScripter.cpp */,
+				D4B6325716B6087500CA740A /* HGSoundManagerScripter.h */,
+				D4B6325816B6087500CA740A /* HGSoundManagerScripter.cpp */,
 				2EE40C9616A2AEE40033DFE2 /* HGSpriteAnimationCompilerScripter.h */,
 				2EE40C9516A2AEE40033DFE2 /* HGSpriteAnimationCompilerScripter.cpp */,
 			);
@@ -1016,8 +1013,6 @@
 				D4B6924716AE7B3F00EE26B6 /* HGSound.cpp */,
 				D4B6924216AE76D600EE26B6 /* HGSoundManager.h */,
 				D4B6924316AE76D600EE26B6 /* HGSoundManager.cpp */,
-				D433C1FB16AA362200F0D712 /* HGAudioManager.h */,
-				D433C1FC16AA362200F0D712 /* HGAudioManager.cpp */,
 			);
 			name = HGAudio;
 			path = ../HGAudio;
@@ -1789,12 +1784,11 @@
 				D49D9AF616A7E2580007D971 /* HGEventKeyboardScripter.cpp in Sources */,
 				2EE2A14216A821B9005AF2A8 /* HGInputListener.cpp in Sources */,
 				2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */,
-				D433C1FD16AA362200F0D712 /* HGAudioManager.cpp in Sources */,
 				D4FE009C16AA82AF002A4146 /* HGEventMouseScripter.cpp in Sources */,
-				D4B691FA16AE27D100EE26B6 /* HGAudioManagerScripter.cpp in Sources */,
 				D4B6924416AE76D600EE26B6 /* HGSoundManager.cpp in Sources */,
 				D4B6924816AE7B3F00EE26B6 /* HGSound.cpp in Sources */,
 				D420A2A616B0DD6E00048776 /* HGGraphicsUtil.cpp in Sources */,
+				D4B6325916B6087500CA740A /* HGSoundManagerScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -94,7 +94,7 @@ void SoundManager::clear()
     mBufferList.clear();
 }
 
-ALuint SoundManager::loadOggFile(const char *filename)
+ALuint SoundManager::loadOggFile(const char *filename, bool looping)
 {
     ALuint sourceID = 0;
     
@@ -118,6 +118,8 @@ ALuint SoundManager::loadOggFile(const char *filename)
         break;
     
     sourceID = source->source;
+    
+    alSourcei(sourceID, AL_LOOPING, looping?1:0);
     
     BREAK_END;
     
@@ -200,6 +202,90 @@ void SoundManager::freeOggSource(ALuint sourceID)
     
     BREAK_END;
 }
+
+// sound
+void SoundManager::soundPlay(ALuint sourceID, bool reset)
+{
+    int sourceState = 0;
+    
+    alGetSourcei(sourceID, AL_SOURCE_STATE, &sourceState);
+    
+    if (sourceState == AL_PLAYING)
+    {
+        if (reset)
+        {
+            soundStop(sourceID);
+        }
+        else
+        {
+            return;
+        }
+    }
+    
+    alSourcePlay(sourceID);
+    CHK_AL_ERROR;
+}
+
+void SoundManager::soundPause(ALuint sourceID)
+{
+    alSourcePause(sourceID);
+}
+
+void SoundManager::soundResume(ALuint sourceID)
+{
+    int state = 0;
+    alGetSourcei(sourceID, AL_SOURCE_STATE, &state);
+    
+    if (state == AL_PLAYING)
+        return;
+    
+    alSourcePlay(sourceID);
+}
+
+void SoundManager::soundStop(ALuint sourceID)
+{
+    alSourceStop(sourceID);
+}
+
+void SoundManager::soundPauseAll()
+{
+    OggSourceList::iterator iter = mSourceList.begin();
+    for (; iter != mSourceList.end(); ++iter)
+    {
+        ALuint sourceID = (*iter)->source;
+        int state = 0;
+        alGetSourcei(sourceID, AL_SOURCE_STATE, &state);
+        if (state == AL_PLAYING)
+            (*iter)->resume = 1;
+        
+        alSourceStop(sourceID);
+    }
+}
+
+void SoundManager::soundResumeAll()
+{
+    OggSourceList::iterator iter = mSourceList.begin();
+    for (; iter != mSourceList.end(); ++iter)
+    {
+        ALuint sourceID = (*iter)->source;
+        if ((*iter)->resume != 0)
+        {
+            (*iter)->resume = 0;
+            alSourcePlay(sourceID);
+        }
+    }
+}
+
+void SoundManager::soundStopAll()
+{
+    OggSourceList::iterator iter = mSourceList.begin();
+    for (; iter != mSourceList.end(); ++iter)
+    {
+        alSourceStop((*iter)->source);
+    }
+}
+
+// private methods
 
 ogg_buffer_t* SoundManager::_loadOggFile(const char* filename)
 {
