@@ -27,6 +27,8 @@
 
 HGNAMESPACE_START
 
+// https://github.com/cocos2d/cocos2d-x/blob/master/cocos2dx/particle_nodes/CCParticleSystem.h
+
 // particle mode
 typedef struct _particle_mode_gravity_t_
 {
@@ -57,7 +59,7 @@ typedef struct _particle_t_
     float       rotation;
     float       rotationDelta;
     
-    float       liveTime;
+    float       currentDuration;
     
     float       u,v,w,h;
     
@@ -87,10 +89,19 @@ typedef struct _emitter_mode_radius_t
     float   angularSpeedVar;
 }emitter_mode_radius_t;
 
+typedef enum _emitter_mode_
+{
+    EMITTER_GRAVITY = 0,
+    EMITTER_RADIUS
+}EmitterMode;
+
 // Emitter class
 class ParticleEmitter : public ISceneEntity
 {
 public:
+    ParticleEmitter();
+    ParticleEmitter(int32_t count);
+    ~ParticleEmitter();
     
     // ISceneEntity
     virtual void    update(const float dt);
@@ -100,8 +111,74 @@ public:
     static void             RegisterComponentType(void);
     virtual void            deInitialize();
     virtual EventResult     handleEvent(const Event& event);
-    virtual ComponentTypeID getComponentTypeID() { return COMP_QUAD_ENTITY; };
+    virtual ComponentTypeID getComponentTypeID() { return COMP_PARTICLE_EMITTER; };
     virtual uint32_t        getComponentName();
+    
+    //
+    void            setParticleCount(int32_t count);
+    const int32_t&  getParticleCount() const { return mParticleCount; }
+    
+    void            setEmissionRate(int32_t particles);
+    const int32_t&  getEmissionRate() const { return mEmissionRate; }
+    
+    void            setRemoveWhenFinish(bool remove) { mRemoveWhenFinish = remove; }
+    const bool&     isRemoveWhenFinish() const { return mRemoveWhenFinish; }
+    
+    void            setActive(bool active) { mIsActive = active; }
+    const bool&     isActive() const { return mIsActive; }
+    
+private:
+    particle_t*     mParticles;
+    int32_t         mParticleCount;
+    int32_t         mParticleIndex;
+    int32_t         mEmissionRate;
+    
+    bool            mRemoveWhenFinish;
+    
+    float           mDuration;
+    float           mDurationVar;
+    float           mCurrentDuration;
+    float           mAngle;
+    float           mAngleVar;
+    
+    bool            mIsActive;
+    
+    Point2f         mPositionVar;
+    
+    // mode gravity
+    Point2f         mGravity;
+    float           mSpeed;
+    float           mSpeedVar;
+    float           mTangentialAccel;
+    float           mTangentialAccelVar;
+    float           mRadialAccel;
+    float           mRadialAccelVar;
+    
+    // mode radius
+    float           mStartRadius;
+    float           mStartRadiusVar;
+    float           mEndRadius;
+    float           mEndRadiusVar;
+    float           mAngularSpeed;
+    float           mAngularSpeedVar;
+    
+    // mode both
+    float           mStartSize;
+    float           mStartSizeVar;
+    float           mEndSize;
+    float           mEndSizeVar;
+    color4f_t       mStartColor;
+    color4f_t       mStartColorVar;
+    color4f_t       mEndColor;
+    color4f_t       mEndColorVar;
+    float           mStartSpin;
+    float           mStartSpinVar;
+    float           mEndSpin;
+    float           mEndSpinVar;
+    
+    Quad            mQuad;
+    
+    EmitterMode     mMode;
 };
 
 HGNAMESPACE_END
