@@ -124,6 +124,22 @@ public:
     void            setRemoveWhenFinish(bool remove) { mRemoveWhenFinish = remove; }
     const bool&     isRemoveWhenFinish() const { return mRemoveWhenFinish; }
     
+    void            setDuration(float duration);
+    const float&    getDuration() const { return mDuration; }
+    
+    void            setDurationVar(float durationVar);
+    const float&    getDurationVar() const { return mDurationVar; }
+    
+    void            setAngle(float angle) { mAngle = angle; }
+    const float&    getAngle() const { return mAngle; }
+    
+    void            setAngleVar(float angleVar) { mAngleVar = angleVar; }
+    const float&    getAngleVar() const { return mAngleVar; }
+    
+    // mode gravity
+    void            setGravity(const Point2f& gravity) { mGravity = gravity; }
+    const Point2f&  getGravity() const { return mGravity; }
+    
     void            setActive(bool active) { mIsActive = active; }
     const bool&     isActive() const { return mIsActive; }
     
