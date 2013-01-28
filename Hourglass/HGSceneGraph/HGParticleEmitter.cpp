@@ -1,13 +1,13 @@
 /**
- *  @file    HGComponentDef.h
- *  @brief   Component definition
+ *  @file    HGParticleEmitter.cpp
+ *  @brief   Particle emitter implementation
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2012/11/11
+ *  Created:  2013/01/28
  *  Company:  SNSTEAM.inc
- *  (C) Copyright 2012 SNSTEAM.inc All rights reserved.
+ *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
  * This file is a part of Hourglass Engine Project.
  *
@@ -18,27 +18,8 @@
  * =====================================================================================
  */
 
-#ifndef HGCOMPONENTDEF_H_
-#define HGCOMPONENTDEF_H_
-
-#include "HGSystem.h"
+#include "HGParticleEmitter.h"
 
 HGNAMESPACE_START
 
-typedef enum
-{
-    COMP_NONE = 0,
-    COMP_SCENE_NODE,
-    COMP_QUAD_ENTITY,
-    COMP_MAP_ENTITY,
-    COMP_MAP_DATA,
-    COMP_PARTICLE_EMITTER,
-    COMP_PHYSICAL_OBJECT,
-    COMP_INPUT_LISTENER,
-    
-    COMP_COUNT
-}ComponentTypeID;
-
 HGNAMESPACE_END
-
-#endif // HGCOMPONENTDEF_H_

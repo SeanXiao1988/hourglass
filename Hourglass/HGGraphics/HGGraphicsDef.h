@@ -59,10 +59,31 @@ HGNAMESPACE_START
 
 #define CHK_GL_ERROR glIsError(__FILE__, __LINE__, __func__)
     
-typedef enum _blend_mode_t_
+// color
+typedef struct _color4f_t_
 {
-    
-}BLEND_MODE;
+    float r;
+    float g;
+    float b;
+    float a;
+}color4f_t;
+
+static inline color4f_t color4f_from_rgba(uint32_t rgba)
+{
+    color4f_t ret = { GETR(rgba)/255.0f, GETG(rgba)/255.0f, GETB(rgba)/255.0f, GETA(rgba)/255.0f };
+    return ret;
+}
+
+static inline color4f_t color4f(const float r, const float g, const float b, const float a)
+{
+    color4f_t ret = { r, g, b, a };
+    return ret;
+}
+
+static inline bool color4f_equal(const color4f_t& c1, const color4f_t& c2)
+{
+    return (c1.r == c2.r && c1.g == c2.g && c1.b == c2.b && c1.a == c2.a);
+}
     
 /**
  *	@brief	vertex define

@@ -100,6 +100,7 @@
 		D4B74E2916814EAC00C9DB3B /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = D4B74E0716814EAC00C9DB3B /* lzio.c */; };
 		D4B74E2C16814EBE00C9DB3B /* script.lua in Resources */ = {isa = PBXBuildFile; fileRef = D4B74E2B16814EBE00C9DB3B /* script.lua */; };
 		D4B74E2F168166A900C9DB3B /* HGMapManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B74E2E168166A800C9DB3B /* HGMapManager.cpp */; };
+		D4B8246016B6564A00618E27 /* HGParticleEmitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4B8245F16B6564A00618E27 /* HGParticleEmitter.cpp */; };
 		D4BFA835161699EC00587E6B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4BFA834161699EC00587E6B /* Cocoa.framework */; };
 		D4BFA83F161699EC00587E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4BFA83D161699EC00587E6B /* InfoPlist.strings */; };
 		D4BFA85216169A3400587E6B /* libglfw.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4683E2F15D398F8005EE6D6 /* libglfw.dylib */; };
@@ -636,6 +637,8 @@
 		D4B74E2B16814EBE00C9DB3B /* script.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = script.lua; path = ../res/script.lua; sourceTree = "<group>"; };
 		D4B74E2D168166A800C9DB3B /* HGMapManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMapManager.h; sourceTree = "<group>"; };
 		D4B74E2E168166A800C9DB3B /* HGMapManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMapManager.cpp; sourceTree = "<group>"; };
+		D4B8245E16B6564A00618E27 /* HGParticleEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGParticleEmitter.h; sourceTree = "<group>"; };
+		D4B8245F16B6564A00618E27 /* HGParticleEmitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGParticleEmitter.cpp; sourceTree = "<group>"; };
 		D4BC77C115E4827E00EDA679 /* HGRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGRender.cpp; sourceTree = "<group>"; };
 		D4BC77C515E4AF7200EDA679 /* HGError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGError.h; sourceTree = "<group>"; };
 		D4BC77C615E4BA3300EDA679 /* HGGraphicsDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGGraphicsDef.h; sourceTree = "<group>"; };
@@ -1444,6 +1447,8 @@
 			children = (
 				D48A411C15D501C90033E61F /* HGISceneEntity.h */,
 				D48A411B15D501C90033E61F /* HGISceneEntity.cpp */,
+				D4B8245E16B6564A00618E27 /* HGParticleEmitter.h */,
+				D4B8245F16B6564A00618E27 /* HGParticleEmitter.cpp */,
 				D48A411E15D501C90033E61F /* HGQuadEntity.h */,
 				D48A411D15D501C90033E61F /* HGQuadEntity.cpp */,
 				D48A412215D501C90033E61F /* HGSceneNode.h */,
@@ -1789,6 +1794,7 @@
 				D4B6924816AE7B3F00EE26B6 /* HGSound.cpp in Sources */,
 				D420A2A616B0DD6E00048776 /* HGGraphicsUtil.cpp in Sources */,
 				D4B6325916B6087500CA740A /* HGSoundManagerScripter.cpp in Sources */,
+				D4B8246016B6564A00618E27 /* HGParticleEmitter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,7 +34,6 @@ extern void quad_set_alpha(Quad* q, uint8_t alpha);
 extern void quad_set_texture_rect(Quad* q, float x, float y, float w, float h, float texW, float texH);
 extern void quad_set_coord(Quad* q, float x, float y, float w, float h);
 
-
 HGNAMESPACE_END
 
 #endif // HGGRAPHICSUTIL_H_
