@@ -46,9 +46,6 @@ function create_1st_obj()
     OBJECTMANAGER.addComponentToObject("background", backgroundNode);
     --]]
     
-    entity.a = 0
-    print(entity.a)
-    
     local sid = SOUNDMANAGER.loadOggFile("audio.ogg", true)
     SOUNDMANAGER.soundPlay(sid)
 end
