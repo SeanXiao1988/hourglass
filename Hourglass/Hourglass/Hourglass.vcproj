@@ -284,6 +284,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\HGSceneGraph\HGParticleEmitter.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\HGSceneGraph\HGParticleEmitter.h"
+					>
+				</File>
+				<File
 					RelativePath="..\HGSceneGraph\HGQuadEntity.cpp"
 					>
 				</File>
@@ -587,14 +595,6 @@
 						>
 					</File>
 					<File
-						RelativePath="..\HGScript\HGServiceScripter\HGAudioManagerScripter.cpp"
-						>
-					</File>
-					<File
-						RelativePath="..\HGScript\HGServiceScripter\HGAudioManagerScripter.h"
-						>
-					</File>
-					<File
 						RelativePath="..\HGScript\HGServiceScripter\HGGraphicScripter.cpp"
 						>
 					</File>
@@ -624,6 +624,14 @@
 					</File>
 					<File
 						RelativePath="..\HGScript\HGServiceScripter\HGSceneManagerScripter.h"
+						>
+					</File>
+					<File
+						RelativePath="..\HGScript\HGServiceScripter\HGSoundManagerScripter.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\HGScript\HGServiceScripter\HGSoundManagerScripter.h"
 						>
 					</File>
 					<File
@@ -725,14 +733,6 @@
 				>
 				<File
 					RelativePath="..\HGAudio\HGAudioDef.h"
-					>
-				</File>
-				<File
-					RelativePath="..\HGAudio\HGAudioManager.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\HGAudio\HGAudioManager.h"
 					>
 				</File>
 				<File
@@ -1240,11 +1240,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtc\noise.hpp"
+					RelativePath="..\ThirdParty\glm\gtx\noise.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtx\noise.hpp"
+					RelativePath="..\ThirdParty\glm\gtc\noise.hpp"
 					>
 				</File>
 				<File
@@ -1344,19 +1344,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtx\quaternion.inl"
-					>
-				</File>
-				<File
 					RelativePath="..\ThirdParty\glm\gtc\quaternion.inl"
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtc\random.hpp"
+					RelativePath="..\ThirdParty\glm\gtx\quaternion.inl"
 					>
 				</File>
 				<File
 					RelativePath="..\ThirdParty\glm\gtx\random.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\ThirdParty\glm\gtc\random.hpp"
 					>
 				</File>
 				<File
