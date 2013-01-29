@@ -190,7 +190,35 @@ void SceneNode::setWorldXY(float x, float y)
     mIsWorldXNeedSet = true;
     mIsWorldYNeedSet = true;
 }
+
+// Layer
+int SceneNode::getLayer()
+{
+    int layer = 0;
     
+    BREAK_START;
+    
+    if (mParent == NULL)
+        break;;
+    
+    SceneNodeList::iterator iter = mParent->mChildren.begin();
+    for (; iter != mParent->mChildren.end(); ++iter)
+    {
+        if (*iter != this)
+        {
+            layer++;
+        }
+        else
+        {
+            break;
+        }
+    }
+    
+    BREAK_END;
+    
+    return layer;
+}
+
 // Animation
 void SceneNode::updateAnimations(const float dt)
 {

@@ -77,6 +77,8 @@ public:
 
     const float&    getWorldX() const { return mWorldX; }
     const float&    getWorldY() const { return mWorldY; }
+    
+    int             getLayer();
 
     glm::mat4&      getMatrix() { return mMatrix; };
     

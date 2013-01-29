@@ -63,6 +63,9 @@ void mainloop()
     node3->attachEntity(entity);
     node3->setXY(200, 200);
     
+    SceneNode* n0 = SCENEMANAGER.getNode("1stObject");
+    printf("%d %d %d\n", n0->getLayer(), node->getLayer(), node3->getLayer());
+    
     while (running)
     {
         realTime = glfwGetTime();
