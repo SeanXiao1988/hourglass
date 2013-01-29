@@ -547,6 +547,7 @@
 		D46C94CF1647BA8A005B98A4 /* blur.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = blur.vert; path = ../res/blur.vert; sourceTree = "<group>"; };
 		D46C94D41647BC35005B98A4 /* ripple.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ripple.frag; path = ../res/ripple.frag; sourceTree = "<group>"; };
 		D46C94D51647BC35005B98A4 /* ripple.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = ripple.vert; path = ../res/ripple.vert; sourceTree = "<group>"; };
+		D470A4B816B7757300746966 /* HGMacros.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HGMacros.hpp; sourceTree = "<group>"; };
 		D4733F4915FF34570088D218 /* HGConsole.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGConsole.cpp; sourceTree = "<group>"; };
 		D4733F4A15FF34570088D218 /* HGConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGConsole.h; sourceTree = "<group>"; };
 		D47F3E8316A95080000CBCD5 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1388,6 +1389,7 @@
 				D4A676B215F7263C009E004F /* HGData.cpp */,
 				D4683F2D15D3A44E005EE6D6 /* HGHash.h */,
 				D4683F2C15D3A44E005EE6D6 /* HGHash.cpp */,
+				D470A4B816B7757300746966 /* HGMacros.hpp */,
 				2E0F52D81619D7D200E4C3FD /* HGMutex.h */,
 				2E0F52D71619D7D200E4C3FD /* HGMutex.cpp */,
 				D4BFC888162E4018008053F6 /* HGMemTrack.h */,

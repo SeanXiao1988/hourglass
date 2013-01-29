@@ -24,19 +24,4 @@
 #include "HGVector2D.hpp"
 #include "HGRectangle.hpp"
 
-HGNAMESPACE_START
-
-template<class T, class U>
-T Clamp(T in, U low, U high)
-{
-    if(in <= low)
-        return low;
-    else if(in >= high)
-        return high;
-    else
-        return in;
-}
-    
-HGNAMESPACE_END
-
 #endif // HGGEOMETRY_HPP_

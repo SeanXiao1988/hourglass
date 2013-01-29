@@ -29,6 +29,11 @@ HGNAMESPACE_START
 
 // https://github.com/cocos2d/cocos2d-x/blob/master/cocos2dx/particle_nodes/CCParticleSystem.h
 
+// Particle
+#define PARTICLE_DURATION_INFINITY          -1
+#define PARTICLE_SIZE_START_EQUALS_END      -1
+#define PARTICLE_RADIUS_START_EQUALS_END    -1
+
 // particle mode
 typedef struct _particle_mode_gravity_t_
 {
@@ -59,12 +64,12 @@ typedef struct _particle_t_
     float       rotation;
     float       rotationDelta;
     
-    float       currentDuration;
+    float       duration;
     
     float       u,v,w,h;
     
-    particle_mode_gravity_t gravityMode;
-    particle_mode_radius_t  radiusMode;
+    particle_mode_gravity_t modeGravity;
+    particle_mode_radius_t  modeRadius;
 }particle_t;
 
 // emitter mode
@@ -89,11 +94,19 @@ typedef struct _emitter_mode_radius_t
     float   angularSpeedVar;
 }emitter_mode_radius_t;
 
+// Constants
 typedef enum _emitter_mode_
 {
     EMITTER_GRAVITY = 0,
     EMITTER_RADIUS
 }EmitterMode;
+
+typedef enum _particle_position_type_t_
+{
+    PPositionTypeFree = 0,
+    PPositionTypeRelative,
+    PPositionTypeGroup
+}ParticlePositionType;
 
 // Emitter class
 class ParticleEmitter : public ISceneEntity
@@ -115,6 +128,16 @@ public:
     virtual uint32_t        getComponentName();
     
     //
+    void            setEmitterMode(EmitterMode mode) { mMode = mode; }
+    EmitterMode     getEmitterMode() { return mMode; }
+    
+    void            setParticlePositionType(ParticlePositionType type);
+    ParticlePositionType getParticlePositionType() { return mParticlePositionType; }
+    
+    void            setTexture(GLuint tex) { mQuad.tex = tex; }
+    GLuint          getTexture() { return mQuad.tex; }
+    
+    
     void            setParticleCount(int32_t count);
     const int32_t&  getParticleCount() const { return mParticleCount; }
     
@@ -127,23 +150,99 @@ public:
     void            setDuration(float duration);
     const float&    getDuration() const { return mDuration; }
     
-    void            setDurationVar(float durationVar);
+    void            setDurationVar(float var);
     const float&    getDurationVar() const { return mDurationVar; }
     
     void            setAngle(float angle) { mAngle = angle; }
     const float&    getAngle() const { return mAngle; }
     
-    void            setAngleVar(float angleVar) { mAngleVar = angleVar; }
+    void            setAngleVar(float var) { mAngleVar = var; }
     const float&    getAngleVar() const { return mAngleVar; }
+    
+    void            setActive(bool active) { mIsActive = active; }
+    const bool&     isActive() const { return mIsActive; }
     
     // mode gravity
     void            setGravity(const Point2f& gravity) { mGravity = gravity; }
     const Point2f&  getGravity() const { return mGravity; }
     
-    void            setActive(bool active) { mIsActive = active; }
-    const bool&     isActive() const { return mIsActive; }
+    void            setSpeed(float speed) { mSpeed = speed; }
+    const float&    getSpeed() const { return mSpeed; }
     
+    void            setSpeedVar(float var) { mSpeedVar = var; }
+    const float&    getSpeedVar() { return mSpeedVar; }
+    
+    void            setTangentialAccel(float accel) { mTangentialAccel = accel; }
+    const float&    getTangentialAccel() const { return mTangentialAccel; }
+    
+    void            setTangentialAccelVar(float var) { mTangentialAccelVar = var; }
+    const float&    getTangentialAccelVar() const { return mTangentialAccelVar; }
+    
+    void            setRadialAccel(float accel) { mRadialAccel = accel; }
+    const float&    getRadialAccel() const { return mRadialAccel; }
+    
+    void            setRadialAccelVar(float var) { mRadialAccelVar = var; }
+    const float&    getRadialAccelVar() const { return mRadialAccelVar; }
+    
+    // mode radius
+    void            setStartRadius(float radius) { mStartRadius = radius; }
+    const float&    getStartRadius() const { return mStartRadius; }
+    
+    void            setStartRadiusVar(float var) { mStartRadiusVar = var; }
+    const float&    getStartRadiusVar() const { return mStartRadiusVar; }
+    
+    void            setEndRadius(float radius) { mEndRadius = radius; }
+    const float&    getEndRadius() const { return mEndRadius; }
+    
+    void            setEndRadiusVar(float var) { mEndRadiusVar = var; }
+    const float&    getEndRadiusVar() const { return mEndRadiusVar; }
+    
+    void            setAngularSpeed(float speed) { mAngularSpeed = speed; }
+    const float&    getAngularSpeed() const { return mAngularSpeed; }
+    
+    void            setAngularSpeedVar(float var) { mAngularSpeedVar = var; }
+    const float&    getAngularSpeedVar() const { return mAngularSpeedVar; }
+    
+    // mode both
+    void            setStartSize(float size) { mStartSize = size; }
+    const float&    getStartSize() const { return mStartSize; }
+
+    void            setStartSizeVar(float var) { mStartSizeVar = var; }
+    const float&    getStartSizeVar() const { return mStartSizeVar; }
+
+    void            setEndSize(float size) { mEndSize = size; }
+    const float&    getEndSize() const { return mEndSize; }
+
+    void            setEndSizeVar(float var) { mEndSizeVar= var; }
+    const float&    getEndSizeVar() const { return mEndSizeVar; }
+
+    void            setStartColor(const color4f_t& color) { mStartColor = color; }
+    color4f_t       getStartColor() { return mStartColor; }
+
+    void            setStartColorVar(const color4f_t& var) { mStartColorVar = var; }
+    color4f_t       getStartColorVar() { return mStartColorVar; }
+
+    void            setEndColor(const color4f_t& color) { mEndColor = color; }
+    color4f_t       getEndColor() { return mEndColor; }
+
+    void            setEndColorVar(const color4f_t& var) { mEndColorVar = var; }
+    color4f_t       getEndColorVar() { return mEndColorVar; }
+
+    void            setStartSpin(float spin) { mStartSpin = spin; }
+    const float&    getStartSpin() const { return mStartSpin; }
+    
+    void            setStartSpinVar(float var) { mStartSpinVar = var; }
+    const float&    getStartSpinVar() const { return mStartSpinVar; }
+
+    void            setEndSpin(float spin) { mEndSpin = spin; }
+    const float&    getEndSpin() const { return mEndSpin; }
+
+    void            setEndSpinVar(float var) { mEndSpinVar = var; }
+    const float&    getEndSpinVar() const { return mEndSpinVar; }
+
 private:
+    void            _initParticle(particle_t* p);
+    
     particle_t*     mParticles;
     int32_t         mParticleCount;
     int32_t         mParticleIndex;
@@ -169,6 +268,7 @@ private:
     float           mTangentialAccelVar;
     float           mRadialAccel;
     float           mRadialAccelVar;
+    emitter_mode_gravity_t  mModeGravity;
     
     // mode radius
     float           mStartRadius;
@@ -177,6 +277,7 @@ private:
     float           mEndRadiusVar;
     float           mAngularSpeed;
     float           mAngularSpeedVar;
+    emitter_mode_radius_t   mModeRadius;
     
     // mode both
     float           mStartSize;
@@ -195,6 +296,7 @@ private:
     Quad            mQuad;
     
     EmitterMode     mMode;
+    ParticlePositionType mParticlePositionType;
 };
 
 HGNAMESPACE_END

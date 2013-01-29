@@ -138,39 +138,7 @@
 
 #include "vorbisfile.h"
 
-/// Utility Macros
-#define BREAK_START do{
-#define BREAK_END   }while(0)
-
-#define HGNAMESPACE_START   namespace HG {
-#define HGNAMESPACE_END     }
-
-/// Log
-#if PLATFORM == PLATFORM_WINDOWS
-static void __cdecl debug_printf(const char *format, ...)
-{
-    char buf[4096], *p = buf;
-    va_list args;
-    va_start(args, format);
-    p += _vsnprintf(p, sizeof buf - 1, format, args);
-    va_end(args);
-    while ( p > buf && isspace(p[-1]) )
-        *--p = '\0';
-    *p++ = '\r';
-    *p++ = '\n';
-    *p = '\0';
-    OutputDebugStringA(buf);
-}
-
-#ifndef __func__
-#define __func__ __FUNCTION__
-#endif
-
-#define HGLog(s, ...) debug_printf("[%s| %d |%s()]", __FILE__, __LINE__, __func__),debug_printf(s, ##__VA_ARGS__)
-
-#elif PLATFORM == PLATFORM_MACOS
-#define HGLog(s, ...) printf("[%s| %d |%s()]", __FILE__, __LINE__, __func__),printf(s, ##__VA_ARGS__)
-#endif
+#include "HGMacros.hpp"
 
 #include "HGMemTrack.h"
 

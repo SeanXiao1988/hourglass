@@ -141,7 +141,7 @@ void PhysicalObject::_applyHorizontal(int displace)
         break;
     
     // limit maximum speed
-    displace = Clamp(displace, -TILE_SIZE, TILE_SIZE);
+    displace = CLAMP(displace, -TILE_SIZE, TILE_SIZE);
     
     tile_collider_t collider;
     _constructCollider(collider);
@@ -724,7 +724,7 @@ void PhysicalObject::update(double dt)
 	// base velocity is a combination of horizontal movement control and
 	// acceleration downward due to gravity.
 	mVelocity.x += mMovement;//mAcceleration * dt;
-    mVelocity.y = Clamp(mVelocity.y + GRAVITY, -TILE_SIZE, TILE_SIZE);
+    mVelocity.y = CLAMP(mVelocity.y + GRAVITY, -TILE_SIZE, TILE_SIZE);
     
 	// m_velocity.y = DoJump(m_velocity.y, dt);
     
@@ -736,7 +736,7 @@ void PhysicalObject::update(double dt)
 	//	m_velocity.x *= AirDragFactor;
     
 	// Prevent the player from running faster than his top speed.
-    mVelocity.x = Clamp(mVelocity.x, -TILE_SIZE, TILE_SIZE);
+    mVelocity.x = CLAMP(mVelocity.x, -TILE_SIZE, TILE_SIZE);
     
 	// Apply velocity.
     Vector2Di disp;
