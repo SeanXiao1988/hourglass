@@ -20,15 +20,18 @@
 
 #include "HGParticleEmitter.h"
 #include "HGSceneNode.h"
+#include "HGRender.h"
 #include "HGHash.h"
 
 HGNAMESPACE_START
 
 ParticleEmitter::ParticleEmitter()
     : mParticles(NULL)
+    , mTotalParticles(0)
     , mParticleCount(0)
     , mParticleIndex(0)
-    , mEmissionRate(0)
+    , mEmissionRate(0.0f)
+    , mEmitCounter(0.0f)
     , mRemoveWhenFinish(false)
     , mDuration(0.0f)
     , mDurationVar(0.0f)
@@ -36,6 +39,8 @@ ParticleEmitter::ParticleEmitter()
     , mAngle(0.0f)
     , mAngleVar(0.0f)
     , mIsActive(false)
+    , mLifeTime(0.0f)
+    , mLifeTimeVar(0.0f)
     , mSpeed(0.0f)
     , mSpeedVar(0.0f)
     , mTangentialAccel(0.0f)
@@ -65,6 +70,9 @@ ParticleEmitter::ParticleEmitter()
     memset(&mEndColorVar, 0, sizeof(color4f_t));
     memset(&mModeGravity, 0, sizeof(emitter_mode_gravity_t));
     memset(&mModeRadius, 0, sizeof(emitter_mode_radius_t));
+    
+    quad_set_default(&mQuad);
+    mQuad.blend = BLEND_DEFAULT;
 }
 
 ParticleEmitter::~ParticleEmitter()
@@ -95,20 +103,198 @@ uint32_t ParticleEmitter::getComponentName()
 // Scene Entity
 void ParticleEmitter::update(const float dt)
 {
+    if (mParticles == NULL)
+        return;
     
+    if (mIsActive && mEmissionRate != 0.0f)
+    {
+        float rate = 1.0f / mEmissionRate;
+        
+        if (mParticleCount < mTotalParticles)
+        {
+            mEmitCounter += dt;
+        }
+        
+        while (mParticleCount < mTotalParticles && mEmitCounter > rate)
+        {
+            _addParticle();
+            mEmitCounter -= rate;
+        }
+        
+        mCurrentDuration += dt;
+        if (mDuration != -1.0f && mDuration < mCurrentDuration)
+        {
+            stopEmitter();
+        }
+    }
+    
+    mParticleIndex = 0;
+    
+    while (mParticleIndex < mParticleCount)
+    {
+        particle_t* p = &mParticles[mParticleIndex];
+        
+        p->lifeTime -= dt;
+        if (p->lifeTime > 0.0f)
+        {
+            // mode gravity
+            if (mMode == EMITTER_GRAVITY)
+            {
+                Point2f tmp, radial, tangential;
+                
+                // radial acceleration
+                if (p->pos.x || p->pos.y)
+                {
+                    radial = p->pos;
+                    radial.normalize();
+                }
+                tangential = radial;
+                radial *= p->modeGravity.radialAccel;
+                
+                // tangential acceleration
+                float newy = tangential.x;
+                tangential.x = -tangential.y;
+                tangential.y = newy;
+                tangential *= p->modeGravity.tangentialAccel;
+                
+                // (gravity + radial + tangential) * dt
+                tmp = p->modeGravity.dir * dt;
+                p->pos += tmp;
+            }
+            // mode radius
+            else
+            {
+                // update the angle and radius of the particle
+                p->modeRadius.angle += p->modeRadius.angularSpeed * dt;
+                p->modeRadius.radius += p->modeRadius.radiusDelta * dt;
+                
+                p->pos.x = - cosf(p->modeRadius.angle) * p->modeRadius.radius;
+                p->pos.y = - sinf(p->modeRadius.angle) * p->modeRadius.radius;
+            }
+            
+            // color
+            p->color.r += (p->colorDelta.r * dt);
+            p->color.g += (p->colorDelta.g * dt);
+            p->color.b += (p->colorDelta.b * dt);
+            p->color.a += (p->colorDelta.a * dt);
+            
+            // size
+            p->size += (p->sizeDelta * dt);
+            p->size = MAX(0.0f, p->size);
+            
+            // angle
+            p->rotation += (p->rotationDelta * dt);
+            
+            //
+            mParticleIndex++;
+        }
+        else
+        {
+            // life < 0.0f
+            if (mParticleIndex != mParticleCount-1)
+                mParticles[mParticleIndex] = mParticles[mParticleCount-1];
+            
+            mParticleCount--;
+            
+            if (mParticleCount == 0 && mRemoveWhenFinish)
+            {
+                mSceneNode->detachEntity();
+            }
+        }
+    }
 }
 
 void ParticleEmitter::render()
 {
+    uint8_t alpha = ((uint8_t)mSceneNode->getRenderAlpha());
+    quad_set_alpha(&mQuad, alpha);
     
+    float z = mSceneNode->getZ();
+    
+    for (int i = 0; i < mParticleCount; i++)
+    {
+        particle_t* p = &mParticles[i];
+        
+        glm::mat4 particleMat(1.0f);
+    
+        particleMat *= glm::translate(glm::mat4(1.0f), glm::vec3(p->pos.x + p->startPos.x, p->pos.y + p->startPos.y, z));
+        particleMat *= glm::rotate(glm::mat4(1.0f), p->rotation, glm::vec3(0.0f, 0.0f, 1.0f));
+        
+        glm::vec4 result = particleMat * glm::vec4(-p->size/2.0f, -p->size/2.0f, z, 1.0f);
+        mQuad.v[0].x = result[0];
+        mQuad.v[0].y = result[1];
+        mQuad.v[0].z = result[2];
+        
+        result = particleMat * glm::vec4(p->size/2.0f, -p->size/2.0f, z, 1.0f);
+        mQuad.v[1].x = result[0];
+        mQuad.v[1].y = result[1];
+        mQuad.v[1].z = result[2];
+        
+        result = particleMat * glm::vec4(p->size/2.0f, p->size/2.0f, z, 1.0f);
+        mQuad.v[2].x = result[0];
+        mQuad.v[2].y = result[1];
+        mQuad.v[2].z = result[2];
+        
+        result = particleMat * glm::vec4(-p->size/2.0f, p->size/2.0f, z, 1.0f);
+        mQuad.v[3].x = result[0];
+        mQuad.v[3].y = result[1];
+        mQuad.v[3].z = result[2];
+        
+        quad_set_color_4f(&mQuad, p->color);
+        RENDER.renderQuad(&mQuad);
+    }
+}
+
+// control
+void ParticleEmitter::fireEmitter()
+{
+    mIsActive = true;
+}
+
+void ParticleEmitter::stopEmitter()
+{
+    mIsActive = false;
+    mCurrentDuration = mDuration;
+    mEmitCounter = 0.0f;
+}
+
+void ParticleEmitter::setTotalParticles(int32_t total)
+{
+    if (mParticles != NULL || total <= 0)
+        delete[] mParticles;
+    
+    mParticles = NULL;
+    
+    mParticles = new particle_t[total];
+    mTotalParticles = total;
+}
+
+void ParticleEmitter::setTextureRect(float x, float y, float w, float h)
+{
+    float tw = (float)RENDER.textureGetWidth(mQuad.tex);
+    float th = (float)RENDER.textureGetHeight(mQuad.tex);
+    quad_set_texture_rect(&mQuad, x, y, w, h, tw, th);
+}
+
+void ParticleEmitter::setDuration(float duration)
+{
+    mDuration = duration;
+    if (duration > 0.0f)
+    {
+        mEmissionRate = mTotalParticles / mDuration;
+    }
+    else
+    {
+        mEmissionRate = 1.0f;
+    }
 }
 
 // private methods
 void ParticleEmitter::_initParticle(particle_t *p)
 {
     // timeToLive
-    p->duration = mDuration + mDurationVar + RANDOM_MINUS1_1();
-    p->duration = MAX(0.0f, p->duration);
+    p->lifeTime = mLifeTime + mLifeTimeVar + RANDOM_MINUS1_1();
+    p->lifeTime = MAX(0.0f, p->lifeTime);
     
     // position
     p->pos.x = mPositionVar.x + RANDOM_MINUS1_1();
@@ -128,10 +314,10 @@ void ParticleEmitter::_initParticle(particle_t *p)
     end.a = CLAMP(mEndColor.a + mEndColorVar.a * RANDOM_MINUS1_1(), 0.0f, 1.0f);
     
     p->color = start;
-    p->colorDelta.r = (end.r - start.r) / p->duration;
-    p->colorDelta.g = (end.g - start.g) / p->duration;
-    p->colorDelta.b = (end.b - start.b) / p->duration;
-    p->colorDelta.a = (end.a - start.a) / p->duration;
+    p->colorDelta.r = (end.r - start.r) / p->lifeTime;
+    p->colorDelta.g = (end.g - start.g) / p->lifeTime;
+    p->colorDelta.b = (end.b - start.b) / p->lifeTime;
+    p->colorDelta.a = (end.a - start.a) / p->lifeTime;
     
     // size
     float sizeStart = mStartSize + mStartSizeVar * RANDOM_MINUS1_1();
@@ -147,16 +333,18 @@ void ParticleEmitter::_initParticle(particle_t *p)
     {
         float sizeEnd = mEndSize + mEndSizeVar * RANDOM_MINUS1_1();
         sizeEnd = MAX(0.0f, sizeEnd);
-        p->sizeDelta = (sizeEnd - sizeStart) / p->duration;
+        p->sizeDelta = (sizeEnd - sizeStart) / p->lifeTime;
     }
     
     // rotation
     float angleStart = mStartSpin + mStartSpinVar * RANDOM_MINUS1_1();
     float angleEnd = mEndSpin + mEndSpinVar * RANDOM_MINUS1_1();
     p->rotation = angleStart;
-    p->rotationDelta = (angleEnd - angleStart) / p->duration;
+    p->rotationDelta = (angleEnd - angleStart) / p->lifeTime;
     
     // position
+    p->startPos = Point2f(mSceneNode->getWorldX(), mSceneNode->getWorldY());
+    /*
     if (mParticlePositionType == PPositionTypeFree)
     {
         p->startPos = Point2f(mSceneNode->getWorldX(), mSceneNode->getWorldY());
@@ -165,6 +353,7 @@ void ParticleEmitter::_initParticle(particle_t *p)
     {
         p->startPos = Point2f(0.0f, 0.0f);
     }
+     */
     
     // direction
     float angle = DEGREES_TO_RADIANS( mAngle + mAngleVar * RANDOM_MINUS1_1() );
@@ -199,12 +388,22 @@ void ParticleEmitter::_initParticle(particle_t *p)
         }
         else
         {
-            p->modeRadius.radiusDelta = (radiusEnd - radiusStart) / p->duration;
+            p->modeRadius.radiusDelta = (radiusEnd - radiusStart) / p->lifeTime;
         }
         
         p->modeRadius.angle = angle;
         p->modeRadius.angularSpeed = DEGREES_TO_RADIANS(mModeRadius.angularSpeed + mModeRadius.angularSpeedVar * RANDOM_MINUS1_1());
     }
+}
+
+void ParticleEmitter::_addParticle()
+{
+    if (mParticleCount >= mTotalParticles)
+        return;
+    
+    particle_t* p = &mParticles[mParticleCount];
+    _initParticle(p);
+    mParticleCount++;
 }
 
 HGNAMESPACE_END

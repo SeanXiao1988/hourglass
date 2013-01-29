@@ -64,7 +64,7 @@ typedef struct _particle_t_
     float       rotation;
     float       rotationDelta;
     
-    float       duration;
+    float       lifeTime;
     
     float       u,v,w,h;
     
@@ -113,7 +113,6 @@ class ParticleEmitter : public ISceneEntity
 {
 public:
     ParticleEmitter();
-    ParticleEmitter(int32_t count);
     ~ParticleEmitter();
     
     // ISceneEntity
@@ -127,22 +126,28 @@ public:
     virtual ComponentTypeID getComponentTypeID() { return COMP_PARTICLE_EMITTER; };
     virtual uint32_t        getComponentName();
     
+    // control
+    void            fireEmitter();
+    void            stopEmitter();
+    
     //
     void            setEmitterMode(EmitterMode mode) { mMode = mode; }
     EmitterMode     getEmitterMode() { return mMode; }
     
-    void            setParticlePositionType(ParticlePositionType type);
+    void            setParticlePositionType(ParticlePositionType type) { mParticlePositionType = type; }
     ParticlePositionType getParticlePositionType() { return mParticlePositionType; }
     
     void            setTexture(GLuint tex) { mQuad.tex = tex; }
     GLuint          getTexture() { return mQuad.tex; }
     
+    void            setTextureRect(float x, float y, float w, float h);
     
-    void            setParticleCount(int32_t count);
+    void            setTotalParticles(int32_t total);
+    
     const int32_t&  getParticleCount() const { return mParticleCount; }
     
-    void            setEmissionRate(int32_t particles);
-    const int32_t&  getEmissionRate() const { return mEmissionRate; }
+    void            setEmissionRate(float rate) { mEmissionRate = rate; };
+    const float&    getEmissionRate() const { return mEmissionRate; }
     
     void            setRemoveWhenFinish(bool remove) { mRemoveWhenFinish = remove; }
     const bool&     isRemoveWhenFinish() const { return mRemoveWhenFinish; }
@@ -150,7 +155,13 @@ public:
     void            setDuration(float duration);
     const float&    getDuration() const { return mDuration; }
     
-    void            setDurationVar(float var);
+    void            setLifeTime(float life) { mLifeTime = life; }
+    const float&    getLifeTime() const { return mLifeTime; }
+    
+    void            setLifeTimeVar(float var) { mLifeTimeVar = var; }
+    const float&    getLifeTimeVar() const { return mLifeTimeVar; }
+    
+    void            setDurationVar(float var) { mDurationVar = var; }
     const float&    getDurationVar() const { return mDurationVar; }
     
     void            setAngle(float angle) { mAngle = angle; }
@@ -158,6 +169,9 @@ public:
     
     void            setAngleVar(float var) { mAngleVar = var; }
     const float&    getAngleVar() const { return mAngleVar; }
+    
+    void            setPositionVar(Point2f var) { mPositionVar = var; }
+    const Point2f&  getPositionVar() const { return mPositionVar; }
     
     void            setActive(bool active) { mIsActive = active; }
     const bool&     isActive() const { return mIsActive; }
@@ -184,6 +198,8 @@ public:
     void            setRadialAccelVar(float var) { mRadialAccelVar = var; }
     const float&    getRadialAccelVar() const { return mRadialAccelVar; }
     
+    emitter_mode_gravity_t* getEmitterModeGravity() { return &mModeGravity; }
+    
     // mode radius
     void            setStartRadius(float radius) { mStartRadius = radius; }
     const float&    getStartRadius() const { return mStartRadius; }
@@ -202,6 +218,8 @@ public:
     
     void            setAngularSpeedVar(float var) { mAngularSpeedVar = var; }
     const float&    getAngularSpeedVar() const { return mAngularSpeedVar; }
+    
+    emitter_mode_radius_t* getEmitterModeRadius() { return &mModeRadius; }
     
     // mode both
     void            setStartSize(float size) { mStartSize = size; }
@@ -242,11 +260,15 @@ public:
 
 private:
     void            _initParticle(particle_t* p);
+    void            _addParticle();
     
     particle_t*     mParticles;
+    int32_t         mTotalParticles;
     int32_t         mParticleCount;
     int32_t         mParticleIndex;
-    int32_t         mEmissionRate;
+    
+    float           mEmissionRate;
+    float           mEmitCounter;
     
     bool            mRemoveWhenFinish;
     
@@ -259,6 +281,9 @@ private:
     bool            mIsActive;
     
     Point2f         mPositionVar;
+    
+    float           mLifeTime;
+    float           mLifeTimeVar;
     
     // mode gravity
     Point2f         mGravity;

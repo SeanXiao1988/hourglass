@@ -41,6 +41,8 @@ class ISceneEntity;
 class SceneNode : public IComponent
 {
 public:
+    ~SceneNode();
+    
     // Component
     static void             RegisterComponentType(void);
     virtual void            deInitialize();
@@ -110,7 +112,6 @@ private:
     explicit SceneNode();
     SceneNode(const SceneNode& other);
     SceneNode& operator = (const SceneNode& rhs);
-    ~SceneNode();
 
     // graphical members
     float   mAlpha;

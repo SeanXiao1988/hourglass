@@ -84,6 +84,16 @@ static inline bool color4f_equal(const color4f_t& c1, const color4f_t& c2)
 {
     return (c1.r == c2.r && c1.g == c2.g && c1.b == c2.b && c1.a == c2.a);
 }
+
+static inline uint32_t color4f_convert_u32(const color4f_t& c)
+{
+    uint8_t r = (uint8_t)(255.0f * c.r);
+    uint8_t g = (uint8_t)(255.0f * c.g);
+    uint8_t b = (uint8_t)(255.0f * c.b);
+    uint8_t a = (uint8_t)(255.0f * c.a);
+    
+    return (uint32_t)(RGBA(r, g, b, a));
+}
     
 /**
  *	@brief	vertex define

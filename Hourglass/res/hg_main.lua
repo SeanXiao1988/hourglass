@@ -11,11 +11,11 @@ end
 function create_1st_obj()
 
     local objName = "1stObject"
-    sceneNode = SCENEMANAGER.createNode("1stNode")
+    sceneNode = SCENEMANAGER.createNode("1stObject")
     sceneNode:setXY(100, 100)
     SCENEMANAGER.getRoot():addChild(sceneNode)
     OBJECTMANAGER.addComponentToObject(objName, sceneNode);
-    
+
     entity = QuadEntity.new()
     entity:setTexture(RENDER.textureLoad("test2.png"))
     entity:setTextureRect(0, 0, 512, 512)
@@ -28,7 +28,7 @@ function create_1st_obj()
     local rotAnim = RotationAnimation.new(360, 3)
     rotAnim:setType(ANIMATION_TYPE_RESET);
     sceneNode:addAnimation(rotAnim)
-    
+
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
@@ -45,9 +45,10 @@ function create_1st_obj()
     
     OBJECTMANAGER.addComponentToObject("background", backgroundNode);
     --]]
-    
+    --[[
     local sid = SOUNDMANAGER.loadOggFile("audio.ogg", true)
     SOUNDMANAGER.soundPlay(sid)
+    --]]
 end
 
 function input_callback(listener, event)

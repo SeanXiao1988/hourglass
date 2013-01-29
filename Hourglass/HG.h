@@ -72,6 +72,7 @@
 // Scene Graph
 #include "HGISceneEntity.h"
 #include "HGQuadEntity.h"
+#include "HGParticleEmitter.h"
 #include "HGSceneManager.h"
 #include "HGSceneNode.h"
 

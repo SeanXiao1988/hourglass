@@ -36,6 +36,11 @@ void vertex_set_color(Vertex* v, uint32_t color)
     v->color[3] = GETA(color);
 }
 
+void vertex_print(Vertex* v)
+{
+    HGLog("vertex:%p | x[%.3f] y[%.3f] z[%.3f] u[%.3f] v[%.3f] color[%08x]\n", v, v->x, v->y, v->z, v->u, v->v, RGBA(v->color[0], v->color[1], v->color[2], v->color[3]));
+}
+
 void quad_set_default(Quad* q)
 {
     q->tex = 0;
@@ -61,6 +66,29 @@ void quad_set_color(Quad* q, uint32_t color)
     vertex_set_color(&q->v[1], color);
     vertex_set_color(&q->v[2], color);
     vertex_set_color(&q->v[3], color);
+}
+
+void quad_set_color_4f(Quad* q, color4f_t& color)
+{
+    q->v[0].color[0] = (GLbyte)(255.0f * color.r);
+    q->v[0].color[1] = (GLbyte)(255.0f * color.g);
+    q->v[0].color[2] = (GLbyte)(255.0f * color.b);
+    q->v[0].color[3] = (GLbyte)(255.0f * color.a);
+    
+    q->v[1].color[0] = q->v[0].color[0];
+    q->v[1].color[1] = q->v[0].color[1];
+    q->v[1].color[2] = q->v[0].color[2];
+    q->v[1].color[3] = q->v[0].color[3];
+    
+    q->v[2].color[0] = q->v[0].color[0];
+    q->v[2].color[1] = q->v[0].color[1];
+    q->v[2].color[2] = q->v[0].color[2];
+    q->v[2].color[3] = q->v[0].color[3];
+    
+    q->v[3].color[0] = q->v[0].color[0];
+    q->v[3].color[1] = q->v[0].color[1];
+    q->v[3].color[2] = q->v[0].color[2];
+    q->v[3].color[3] = q->v[0].color[3];
 }
 
 void quad_set_texture_rect(Quad* q, float x, float y, float w, float h, float texW, float texH)
@@ -91,6 +119,15 @@ void quad_set_coord(Quad* q, float x, float y, float w, float h)
     
     q->v[3].x = x;
     q->v[3].y = q->v[2].y;
+}
+
+void quad_print(Quad* q)
+{
+    HGLog("quad:%p | blend[%d] texture[%d] \n", q, q->blend, q->tex);
+    vertex_print(&q->v[0]);
+    vertex_print(&q->v[1]);
+    vertex_print(&q->v[2]);
+    vertex_print(&q->v[3]);
 }
 
 HGNAMESPACE_END

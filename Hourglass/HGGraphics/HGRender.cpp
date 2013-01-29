@@ -1283,14 +1283,14 @@ HG_ERROR Render::_initLib()
 HG_ERROR Render::_initOpenGL()
 {
     _setupOrtho(mWidth, mHeight);
-    
+    /*
     glAlphaFunc(GL_GREATER, 0.1f);   // why we need this ?
     glEnable(GL_ALPHA_TEST);
 
 	glEnable(GL_DEPTH_TEST);         // answer http://www.sjbaker.org/steve/omniv/alpha_sorting.html
 	glDepthFunc(GL_LESS);
 	glDepthMask(GL_TRUE);
-    
+    */
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
@@ -1427,8 +1427,10 @@ void Render::_setBlendMode(int mode)
 {
     if((mode & BLEND_ALPHABLEND) != (mCurBlenMode & BLEND_ALPHABLEND))
     {
-        if(mode & BLEND_ALPHABLEND) glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        else glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+        if(mode & BLEND_ALPHABLEND)
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        else
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE);
     }
     
     if((mode & BLEND_ZWRITE) != (mCurBlenMode & BLEND_ZWRITE))
@@ -1439,8 +1441,10 @@ void Render::_setBlendMode(int mode)
     
     if((mode & BLEND_COLORADD) != (mCurBlenMode & BLEND_COLORADD))
     {
-        if(mode & BLEND_COLORADD) glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
-        else glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+        if(mode & BLEND_COLORADD)
+            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_ADD);
+        else
+            glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
     }
     
     mCurBlenMode = mode;
