@@ -40,7 +40,6 @@ public:
 	void            setTextureRect(float x, float y, float w, float h, bool adjust = true);
 	void            setColor(uint32_t col, int i = -1);
 	void            setVertexAlpha(uint8_t alpha, int i = -1);
-	void            setVertexZ(float z, int i = -1);
 	void            setBlendMode(int blend = BLEND_DEFAULT) { mQuad.blend = blend; }
 	void            setCenterPoint(float x, float y) { mCenterX = x; mCenterY = y; }
     void            setWidth(float width) { mWidth = width; }
@@ -50,7 +49,6 @@ public:
 	void			getTextureRect(float* x, float* y, float* w, float* h) const;
 	const uint32_t  getColor(int i = 0) const;
 	const uint8_t   getVertexAlpha(int i = 0) const { return mQuad.v[i].color[3]; }
-	const float&	getVertexZ(int i = 0) const { return mQuad.v[i].z; }
 	const int       getBlendMode() const { return mQuad.blend; }
 	void			getCenterPoint(float* x, float* y) const { *x = mCenterX; *y = mCenterY; }
     

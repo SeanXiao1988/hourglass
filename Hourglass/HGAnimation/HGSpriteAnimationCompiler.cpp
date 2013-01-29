@@ -222,8 +222,6 @@ void SpriteAnimationCompiler::_parseParamTypes(xml_node<> *pNode)
             mLastNodeType = SOURCE_X;
         else if (Hash(strParam) == Hash("sourcey"))
             mLastNodeType = SOURCE_Y;
-        else if (Hash(strParam) == Hash("z"))
-            mLastNodeType = Z;
         else if (Hash(strParam) == Hash("width"))
             mLastNodeType = WIDTH;
         else if (Hash(strParam) == Hash("height"))
@@ -258,9 +256,6 @@ void SpriteAnimationCompiler::_parseParameters(xml_node<> *pNode)
                     break;
                 case SOURCE_Y:
                     mCurrentFrame->sourceY = value;
-                    break;
-                case Z:
-                    mCurrentFrame->z = value;
                     break;
                 case WIDTH:
                     mCurrentFrame->width = value;

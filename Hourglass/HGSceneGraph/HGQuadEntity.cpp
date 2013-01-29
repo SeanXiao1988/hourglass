@@ -151,21 +151,6 @@ void QuadEntity::setVertexAlpha(uint8_t alpha, int i)
     }
 }
 
-void QuadEntity::setVertexZ(float z, int i)
-{
-    if (i == -1)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            mQuad.v[j].z = z;
-        }
-    }
-    else
-    {
-        mQuad.v[i].z = z;
-    }
-}
-
 void QuadEntity::render()
 {
 	if (mSceneNode == NULL)
@@ -174,25 +159,25 @@ void QuadEntity::render()
     setVertexAlpha((uint8_t)mSceneNode->getRenderAlpha());
     
     glm::mat4& mat = mSceneNode->getMatrix();
-    glm::vec4 result = mat * glm::vec4(-mWidth/2.0f - mCenterX, -mHeight/2.0f - mCenterY, mQuad.v[0].z, 1.0f);
+    glm::vec4 result = mat * glm::vec4(-mWidth/2.0f - mCenterX, -mHeight/2.0f - mCenterY, 1.0f, 1.0f);
     mQuad.v[0].x = result[0];
     mQuad.v[0].y = result[1];
-    mQuad.v[0].z = result[2];
+    //mQuad.v[0].z = result[2];
     
-    result =  mat * glm::vec4(mWidth/2.0f - mCenterX, -mHeight/2.0f - mCenterY, mQuad.v[1].z, 1.0f);
+    result =  mat * glm::vec4(mWidth/2.0f - mCenterX, -mHeight/2.0f - mCenterY, 1.0f, 1.0f);
     mQuad.v[1].x = result[0];
     mQuad.v[1].y = result[1];
-    mQuad.v[1].z = result[2];
+    //mQuad.v[1].z = result[2];
     
-    result = mat * glm::vec4(mWidth/2.0f - mCenterX, mHeight/2.0f - mCenterY, mQuad.v[2].z, 1.0f);
+    result = mat * glm::vec4(mWidth/2.0f - mCenterX, mHeight/2.0f - mCenterY, 1.0f, 1.0f);
     mQuad.v[2].x = result[0];
     mQuad.v[2].y = result[1];
-    mQuad.v[2].z = result[2];
+    //mQuad.v[2].z = result[2];
     
-    result = mat * glm::vec4(-mWidth/2.0f - mCenterX, mHeight/2.0f - mCenterY, mQuad.v[3].z, 1.0f);   
+    result = mat * glm::vec4(-mWidth/2.0f - mCenterX, mHeight/2.0f - mCenterY, 1.0f, 1.0f);
     mQuad.v[3].x = result[0];
     mQuad.v[3].y = result[1];
-    mQuad.v[3].z = result[2];
+    //mQuad.v[3].z = result[2];
     
     RENDER.renderQuad(&mQuad);
 }

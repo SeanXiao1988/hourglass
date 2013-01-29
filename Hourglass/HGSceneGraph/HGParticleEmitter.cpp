@@ -72,7 +72,7 @@ ParticleEmitter::ParticleEmitter()
     memset(&mModeRadius, 0, sizeof(emitter_mode_radius_t));
     
     quad_set_default(&mQuad);
-    mQuad.blend = BLEND_DEFAULT;
+    mQuad.blend = BLEND_ALPHAADD;
 }
 
 ParticleEmitter::~ParticleEmitter()
@@ -209,33 +209,31 @@ void ParticleEmitter::render()
     uint8_t alpha = ((uint8_t)mSceneNode->getRenderAlpha());
     quad_set_alpha(&mQuad, alpha);
     
-    float z = mSceneNode->getZ();
-    
     for (int i = 0; i < mParticleCount; i++)
     {
         particle_t* p = &mParticles[i];
         
         glm::mat4 particleMat(1.0f);
     
-        particleMat *= glm::translate(glm::mat4(1.0f), glm::vec3(p->pos.x + p->startPos.x, p->pos.y + p->startPos.y, z));
+        particleMat *= glm::translate(glm::mat4(1.0f), glm::vec3(p->pos.x + p->startPos.x, p->pos.y + p->startPos.y, 1.0f));
         particleMat *= glm::rotate(glm::mat4(1.0f), p->rotation, glm::vec3(0.0f, 0.0f, 1.0f));
         
-        glm::vec4 result = particleMat * glm::vec4(-p->size/2.0f, -p->size/2.0f, z, 1.0f);
+        glm::vec4 result = particleMat * glm::vec4(-p->size/2.0f, -p->size/2.0f, 1.0f, 1.0f);
         mQuad.v[0].x = result[0];
         mQuad.v[0].y = result[1];
         mQuad.v[0].z = result[2];
         
-        result = particleMat * glm::vec4(p->size/2.0f, -p->size/2.0f, z, 1.0f);
+        result = particleMat * glm::vec4(p->size/2.0f, -p->size/2.0f, 1.0f, 1.0f);
         mQuad.v[1].x = result[0];
         mQuad.v[1].y = result[1];
         mQuad.v[1].z = result[2];
         
-        result = particleMat * glm::vec4(p->size/2.0f, p->size/2.0f, z, 1.0f);
+        result = particleMat * glm::vec4(p->size/2.0f, p->size/2.0f, 1.0f, 1.0f);
         mQuad.v[2].x = result[0];
         mQuad.v[2].y = result[1];
         mQuad.v[2].z = result[2];
         
-        result = particleMat * glm::vec4(-p->size/2.0f, p->size/2.0f, z, 1.0f);
+        result = particleMat * glm::vec4(-p->size/2.0f, p->size/2.0f, 1.0f, 1.0f);
         mQuad.v[3].x = result[0];
         mQuad.v[3].y = result[1];
         mQuad.v[3].z = result[2];

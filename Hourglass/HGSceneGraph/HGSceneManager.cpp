@@ -48,7 +48,6 @@ void SceneManager::initialize()
     mRootNode->mHashName = Hash("root");
 	mRootNode->setXY(0, 0);
 	mRootNode->setScale(1.0f, 1.0f);
-	mRootNode->setZ(0);
 	mRootNode->setVisibility(true);
 	mRootNode->setRotation(0.0f);
 }

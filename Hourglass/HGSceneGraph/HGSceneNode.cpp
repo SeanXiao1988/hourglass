@@ -55,7 +55,6 @@ uint32_t SceneNode::getComponentName()
 SceneNode::SceneNode()
     : mAlpha(255.0f)
     , mRenderAlpha(0)
-    , mZ(0.0f)
     , mX(0.0f)
     , mY(0.0f)
     , mScaleX(1.0f)
@@ -99,7 +98,7 @@ void SceneNode::render()
         mRenderAlpha = mRenderAlpha * (mParent->getAlpha()/255.0f);
     }
     
-    mat *= glm::translate(glm::mat4(1.0f), glm::vec3(mX, mY, mZ));
+    mat *= glm::translate(glm::mat4(1.0f), glm::vec3(mX, mY, 1.0f));
     mat *= glm::rotate(glm::mat4(1.0f), mRotation, glm::vec3(0.0f, 0.0f, 1.0f));
     mat *= glm::scale(glm::mat4(1.0f), glm::vec3(mScaleX, mScaleY, 1.0f));
 

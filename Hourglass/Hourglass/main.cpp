@@ -106,8 +106,10 @@ void mainloop()
         running = !glfwGetKey(GLFW_KEY_ESC) && glfwGetWindowParam(GLFW_OPENED);
     }
     
-    delete node;
+    delete entity;
     delete emitter;
+    delete node;
+    delete node3;
 }
 
 #if PLATFORM == PLATFORM_WINDOWS

@@ -165,31 +165,6 @@ static int quadentity_set_vertex_alpha(lua_State* L)
     return 0;
 }
 
-static int quadentity_set_vertex_z(lua_State* L)
-{
-    int i = -1;
-    QuadEntity* entity = NULL;
-    
-    BREAK_START;
-    
-    entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    if (!lua_isnumber(L, 2))
-        break;
-    
-    if (lua_isnumber(L, 3))
-        i = (int)luaL_checkinteger(L, 3);
-    
-    float z = (float)luaL_checknumber(L, 3);
-    entity->setVertexZ(z, i);
-    
-    BREAK_END;
-    
-    return 0;
-}
-
 static int quadentity_set_blend_mode(lua_State* L)
 {
     QuadEntity* entity = NULL;
@@ -384,30 +359,6 @@ static int quadentity_get_vertex_alpha(lua_State* L)
     
     uint8_t alpha = entity->getVertexAlpha(vidx);
     lua_pushunsigned(L, alpha);
-    ret = 1;
-    
-    BREAK_END;
-    
-    return ret;
-}
-
-static int quadentity_get_vertex_z(lua_State* L)
-{
-    int ret = 0;
-    int vidx = 0;
-    QuadEntity* entity = NULL;
-    
-    BREAK_START;
-    
-    entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    if (lua_isnumber(L, 2))
-        vidx = (int)luaL_checkinteger(L, 2);
-    
-    float z = entity->getVertexZ(vidx);
-    lua_pushnumber(L, z);
     ret = 1;
     
     BREAK_END;
@@ -659,7 +610,6 @@ luaL_Reg sQuadEntityRegs[] =
     { "setTextureRect", quadentity_set_texture_rect },
     { "setColor",       quadentity_set_color },
     { "setVertexAlpha", quadentity_set_vertex_alpha },
-    { "setVertexZ",     quadentity_set_vertex_z },
     { "setBlendMode",   quadentity_set_blend_mode },
     { "setCenterPoint", quadentity_set_center_point },
     { "setWidth",       quadentity_set_width },
@@ -669,7 +619,6 @@ luaL_Reg sQuadEntityRegs[] =
     { "getTextureRect", quadentity_get_texture_rect },
     { "getColor",       quadentity_get_color },
     { "getVertexAlpha", quadentity_get_vertex_alpha },
-    { "getVertexZ",     quadentity_get_vertex_z },
     { "getBlendMode",   quadentity_get_blend_mode },
     { "getCenterPoint", quadentity_get_center_point },
     { "initAnimation",  quadentity_init_sprite_animation },

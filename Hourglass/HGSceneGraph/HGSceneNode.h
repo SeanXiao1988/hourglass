@@ -54,7 +54,6 @@ public:
     void            render();
 
     void            setAlpha(float alpha) { mAlpha = alpha; }
-    void            setZ(float z) { mZ = z; }
     void            setX(float x) { mX = x; }
     void            setY(float y) { mY = y; }
     void            setXY(float x, float y) { mX = x; mY = y; }
@@ -69,7 +68,6 @@ public:
     void            setWorldXY(float x, float y);
 
     const float&    getAlpha() const { return mAlpha; }
-    const float&    getZ() const { return mZ; }
     const float&    getX() const { return mX; }
     const float&    getY() const { return mY; }
     const float&    getScaleX() const { return mScaleX; }
@@ -116,7 +114,6 @@ private:
     // graphical members
     float   mAlpha;
     float   mRenderAlpha;
-    float   mZ;
     float   mX;
     float   mY;
     float   mScaleX;

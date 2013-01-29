@@ -67,7 +67,6 @@ private:
         INVALID_TYPE = 0,
         SOURCE_X,
         SOURCE_Y,
-        Z,
         WIDTH,
         HEIGHT,
         OFFSET_X,

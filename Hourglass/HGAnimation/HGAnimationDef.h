@@ -62,7 +62,6 @@ typedef struct _sprite_frame_node_
 {
     float sourceX;
     float sourceY;
-    float z;
     float width;
     float height;
     float offsetX;
