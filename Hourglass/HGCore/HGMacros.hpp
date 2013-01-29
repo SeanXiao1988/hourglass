@@ -55,11 +55,17 @@ static void __cdecl debug_printf(const char *format, ...)
 #define HGLog(s, ...) printf("[%s| %d |%s()]", __FILE__, __LINE__, __func__),printf(s, ##__VA_ARGS__)
 #endif
 
-// returns a random float between -1 and 1
-#define RANDOM_MINUS1_1() ((random() / (float)0x3fffffff )-1.0f)
-
-// returns a random float between 0 and 1
-#define RANDOM_0_1() ((random() / (float)0x7fffffff ))
+#if PLATFORM == PLATFORM_WINDOWS
+	// returns a random float between -1 and 1
+	#define RANDOM_MINUS1_1()  ((2.0f*((float)rand()/RAND_MAX))-1.0f)
+	// returns a random float between 0 and 1
+	#define RANDOM_0_1() ((float)rand()/RAND_MAX)
+#else
+	// returns a random float between -1 and 1
+	#define RANDOM_MINUS1_1() ((random() / (float)0x3fffffff )-1.0f)
+	// returns a random float between 0 and 1
+	#define RANDOM_0_1() ((random() / (float)0x7fffffff ))
+#endif
 
 // converts degrees to radians
 #define DEGREES_TO_RADIANS(__ANGLE__) ((__ANGLE__) * 0.01745329252f) // PI / 180
