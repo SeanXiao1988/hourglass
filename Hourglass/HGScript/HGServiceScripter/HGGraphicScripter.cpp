@@ -104,18 +104,59 @@ int quad_push2lua(lua_State* L, const Quad* q)
     return ret;
 }
 
-int triple_push2lua(lua_State* L, const Triple* t)
+// color4f_t
+int color4f_push(lua_State* L, color4f_t* color)
 {
-    int ret = 0;
+    if (color == NULL)
+        return 0;
     
-    return ret;
+    lua_newtable(L);
+    
+    lua_pushstring(L, "r");
+    lua_pushnumber(L, color->r);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "g");
+    lua_pushnumber(L, color->g);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "b");
+    lua_pushnumber(L, color->b);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "a");
+    lua_pushnumber(L, color->a);
+    lua_settable(L, -3);
+    
+    return 1;
 }
 
-int rtarget_push2lua(lua_State* L, const rtarget_t* rt)
+color4f_t color4_check(lua_State* L, int idx)
 {
-    int ret = 0;
+    float r = 0.0f;
+    float g = 0.0f;
+    float b = 0.0f;
+    float a = 0.0f;
     
-    return ret;
+    if (lua_istable(L, idx))
+    {
+        lua_pushstring(L, "r");
+        lua_gettable(L, idx);
+        r = luaL_checknumber(L, -1);
+
+        lua_pushstring(L, "g");
+        lua_gettable(L, idx);
+        g = luaL_checknumber(L, -1);
+        
+        lua_pushstring(L, "b");
+        lua_gettable(L, idx);
+        b = luaL_checknumber(L, -1);
+        
+        lua_pushstring(L, "a");
+        lua_gettable(L, idx);
+        a = luaL_checknumber(L, -1);
+    }
+    return color4f(r, g, b, a);
 }
 
 void ScriptRegisterGraphic(lua_State* L)

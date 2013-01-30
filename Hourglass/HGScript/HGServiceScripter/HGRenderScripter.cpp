@@ -196,28 +196,6 @@ static int render_rtarget_get_texture(lua_State* L)
     return 1;
 }
 
-static int render_rtarget_find(lua_State* L)
-{
-    int ret = 0;
-
-    BREAK_START;
-
-	if (!lua_isnumber(L, 1))
-		break;
-	
-	uint32_t tarID = luaL_checkunsigned(L, 1);
-	rtarget_t* rtar = RENDER.rtargetFind(tarID);
-	if (rtar == NULL)
-		break;
-
-	rtarget_push2lua(L, rtar);
-	ret = 1;
-
-    BREAK_END;
-
-    return ret;
-}
-
 static int render_rtarget_free_all(lua_State* L)
 {
 	RENDER.rtargetFreeAll();
@@ -454,7 +432,6 @@ void ScriptRegisterRender(lua_State* L)
     luaH_setfunc2table(L, "rtargetCreate",      render_rtarget_create);
     luaH_setfunc2table(L, "rtargetFree",        render_rtarget_free);
     luaH_setfunc2table(L, "rtargetGetTexture",  render_rtarget_get_texture);
-    luaH_setfunc2table(L, "rtargetFind",        render_rtarget_find);
     luaH_setfunc2table(L, "rtargetFreeAll",     render_rtarget_free_all);
     luaH_setfunc2table(L, "shaderLoad",         render_shader_load);
     luaH_setfunc2table(L, "shaderFree",         render_shader_free);

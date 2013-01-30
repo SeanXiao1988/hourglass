@@ -28,8 +28,9 @@ HGNAMESPACE_START
     
 extern int vertex_push2lua(lua_State* L, const Vertex* v);
 extern int quad_push2lua(lua_State* L, const Quad* q);
-extern int triple_push2lua(lua_State* L, const Triple* t);
-extern int rtarget_push2lua(lua_State* L, const rtarget_t* rt);
+
+extern color4f_t color4_check(lua_State* L, int idx);
+extern int color4f_push(lua_State* L, color4f_t* color);
     
 extern void ScriptRegisterGraphic(lua_State* L);
     
