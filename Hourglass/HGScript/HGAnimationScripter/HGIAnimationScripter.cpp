@@ -207,6 +207,12 @@ void ScriptRegisterIAnimation(lua_State* L)
     
     lua_pushinteger(L, ANIMATION_TYPE_RESET);
     lua_setglobal(L, "ANIMATION_TYPE_RESET");
+    
+    // register animations
+    ScriptRegisterAlphaAnimation(L);
+    ScriptRegisterRotationAnimation(L);
+    ScriptRegisterScaleAnimation(L);
+    ScriptRegisterTranslateAnimation(L);
 }
 
 HGNAMESPACE_END

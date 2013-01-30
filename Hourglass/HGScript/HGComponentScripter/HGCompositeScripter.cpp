@@ -22,6 +22,7 @@
 #include "HGComponentDef.h"
 #include "HGIComponent.h"
 
+#include "HGInputListenerScripter.h"
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 
@@ -143,6 +144,11 @@ void ScriptRegisterComposite(lua_State* L)
     
     lua_pushinteger(L, COMP_COUNT);
     lua_setglobal(L, "COMP_COUNT");
+    
+    // register IComponents
+    ScriptRegisterInputListener(L);
+    ScriptRegisterSceneNode(L);
+    ScriptRegisterQuadEntity(L);
 }
 
 HGNAMESPACE_END

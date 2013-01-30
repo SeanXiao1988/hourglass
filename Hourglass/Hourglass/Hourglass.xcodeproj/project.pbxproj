@@ -119,6 +119,7 @@
 		D4BFA96A16169BE300587E6B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4683E2515D398B0005EE6D6 /* OpenGL.framework */; };
 		D4BFA96D1616F96000587E6B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4683F1915D39952005EE6D6 /* main.cpp */; };
 		D4BFC88A162E4018008053F6 /* HGMemTrack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BFC889162E4018008053F6 /* HGMemTrack.cpp */; };
+		D4CF8D8D16B9038E00113E70 /* HGParticleEmitterScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4CF8D8C16B9038E00113E70 /* HGParticleEmitterScripter.cpp */; };
 		D4D74FA816AD29FF00197DBD /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FA416AD29E900197DBD /* libogg.a */; };
 		D4D74FA916AD2A0A00197DBD /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FA016AD296500197DBD /* libvorbisfile.a */; };
 		D4D74FAB16AD399700197DBD /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D74FAA16AD399700197DBD /* libvorbis.a */; };
@@ -654,6 +655,8 @@
 		D4BFA86316169B0900587E6B /* Hourglass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Hourglass.xcodeproj; sourceTree = "<group>"; };
 		D4BFC888162E4018008053F6 /* HGMemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMemTrack.h; sourceTree = "<group>"; };
 		D4BFC889162E4018008053F6 /* HGMemTrack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMemTrack.cpp; sourceTree = "<group>"; };
+		D4CF8D8B16B9038D00113E70 /* HGParticleEmitterScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGParticleEmitterScripter.h; sourceTree = "<group>"; };
+		D4CF8D8C16B9038E00113E70 /* HGParticleEmitterScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGParticleEmitterScripter.cpp; sourceTree = "<group>"; };
 		D4D74FA016AD296500197DBD /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = vorbis/libvorbisfile.a; sourceTree = "<group>"; };
 		D4D74FA116AD296500197DBD /* codec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = codec.h; path = vorbis/codec.h; sourceTree = "<group>"; };
 		D4D74FA216AD296500197DBD /* vorbisfile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vorbisfile.h; path = vorbis/vorbisfile.h; sourceTree = "<group>"; };
@@ -852,6 +855,8 @@
 				2EE40C8016A2AEE40033DFE2 /* HGISceneEntityScripter.cpp */,
 				2EE40C8316A2AEE40033DFE2 /* HGQuadEntityScripter.h */,
 				2EE40C8216A2AEE40033DFE2 /* HGQuadEntityScripter.cpp */,
+				D4CF8D8B16B9038D00113E70 /* HGParticleEmitterScripter.h */,
+				D4CF8D8C16B9038E00113E70 /* HGParticleEmitterScripter.cpp */,
 				2EE40C8516A2AEE40033DFE2 /* HGSceneNodeScripter.h */,
 				2EE40C8416A2AEE40033DFE2 /* HGSceneNodeScripter.cpp */,
 			);
@@ -1797,6 +1802,7 @@
 				D420A2A616B0DD6E00048776 /* HGGraphicsUtil.cpp in Sources */,
 				D4B6325916B6087500CA740A /* HGSoundManagerScripter.cpp in Sources */,
 				D4B8246016B6564A00618E27 /* HGParticleEmitter.cpp in Sources */,
+				D4CF8D8D16B9038E00113E70 /* HGParticleEmitterScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

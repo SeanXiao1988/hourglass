@@ -61,6 +61,8 @@ ParticleEmitter::ParticleEmitter()
     , mStartSpinVar(0.0f)
     , mEndSpin(0.0f)
     , mEndSpinVar(0.0f)
+    , mTexWidth(0.0f)
+    , mTexHeight(0.0f)
     , mMode(EMITTER_GRAVITY)
     , mParticlePositionType(PPositionTypeFree)
 {
@@ -158,6 +160,9 @@ void ParticleEmitter::update(const float dt)
                 tangential *= p->modeGravity.tangentialAccel;
                 
                 // (gravity + radial + tangential) * dt
+                tmp = radial + tangential + mModeGravity.gravity;
+                tmp *= dt;
+                p->modeGravity.dir += tmp;
                 tmp = p->modeGravity.dir * dt;
                 p->pos += tmp;
             }
@@ -271,6 +276,8 @@ void ParticleEmitter::setTextureRect(float x, float y, float w, float h)
 {
     float tw = (float)RENDER.textureGetWidth(mQuad.tex);
     float th = (float)RENDER.textureGetHeight(mQuad.tex);
+    mTexWidth = w;
+    mTexHeight = h;
     quad_set_texture_rect(&mQuad, x, y, w, h, tw, th);
 }
 
@@ -295,8 +302,8 @@ void ParticleEmitter::_initParticle(particle_t *p)
     p->lifeTime = MAX(0.0f, p->lifeTime);
     
     // position
-    p->pos.x = mPositionVar.x + RANDOM_MINUS1_1();
-    p->pos.y = mPositionVar.y + RANDOM_MINUS1_1();
+    p->pos.x = mPositionVar.x * RANDOM_MINUS1_1();
+    p->pos.y = mPositionVar.y * RANDOM_MINUS1_1();
     
     // Color
     color4f_t start;
@@ -341,17 +348,8 @@ void ParticleEmitter::_initParticle(particle_t *p)
     p->rotationDelta = (angleEnd - angleStart) / p->lifeTime;
     
     // position
+    //p->startPos = Point2f(mSceneNode->getWorldX() - mTexWidth/2.0f, mSceneNode->getWorldY() - mTexHeight/2.0f);
     p->startPos = Point2f(mSceneNode->getWorldX(), mSceneNode->getWorldY());
-    /*
-    if (mParticlePositionType == PPositionTypeFree)
-    {
-        p->startPos = Point2f(mSceneNode->getWorldX(), mSceneNode->getWorldY());
-    }
-    else
-    {
-        p->startPos = Point2f(0.0f, 0.0f);
-    }
-     */
     
     // direction
     float angle = DEGREES_TO_RADIANS( mAngle + mAngleVar * RANDOM_MINUS1_1() );

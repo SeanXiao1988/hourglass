@@ -31,17 +31,10 @@
 
 #include "HGCompositeScripter.h"
 #include "HGEventScripter.h"
-#include "HGQuadEntityScripter.h"
-#include "HGSceneNodeScripter.h"
-#include "HGInputListenerScripter.h"
 
 #include "HGMapDataScripter.h"
 
 #include "HGIAnimationScripter.h"
-#include "HGAlphaAnimationScripter.h"
-#include "HGRotationAnimationScripter.h"
-#include "HGScaleAnimationScripter.h"
-#include "HGTranslateAnimationScripter.h"
 
 HGNAMESPACE_START
 
@@ -168,17 +161,10 @@ void ScriptManager::_registerEngine()
     // register metatable for other classes
     ScriptRegisterComposite(mState);
     ScriptRegisterEvent(mState);
-    ScriptRegisterInputListener(mState);
-    ScriptRegisterSceneNode(mState);
-    ScriptRegisterQuadEntity(mState);
     
     ScriptRegisterMapData(mState);
     
     ScriptRegisterIAnimation(mState);
-    ScriptRegisterAlphaAnimation(mState);
-    ScriptRegisterRotationAnimation(mState);
-    ScriptRegisterScaleAnimation(mState);
-    ScriptRegisterTranslateAnimation(mState);
 }
     
 int ScriptManager::scriptAtPanic(lua_State* L)

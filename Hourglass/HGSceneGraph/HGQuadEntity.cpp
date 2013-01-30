@@ -273,11 +273,11 @@ void QuadEntity::deInitSpriteAnimation()
             tempNode = NULL;
         }
         
-        mIsSpriteAnimating        = false;
-        mCurFrameTimer      = 0.0f;
-        mCurrentSpriteAnimation   = NULL;
-        mCurrentFrame       = NULL;
-        mSpriteAnimationList      = NULL;
+        mIsSpriteAnimating      = false;
+        mCurFrameTimer          = 0.0f;
+        mCurrentSpriteAnimation = NULL;
+        mCurrentFrame           = NULL;
+        mSpriteAnimationList    = NULL;
     }
 }
     

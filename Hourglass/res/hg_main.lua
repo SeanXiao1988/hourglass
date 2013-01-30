@@ -23,6 +23,8 @@ function create_1st_obj()
     entity:setHeight(256)
     sceneNode:attachEntity(entity)
     
+    sceneNode:setVisibility(false)
+    
     sceneNode:setXY(128, 128)
     
     local rotAnim = RotationAnimation.new(360, 3)

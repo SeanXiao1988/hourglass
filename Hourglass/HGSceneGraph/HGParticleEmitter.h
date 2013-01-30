@@ -319,6 +319,8 @@ private:
     float           mEndSpinVar;
     
     Quad            mQuad;
+    float           mTexWidth;
+    float           mTexHeight;
     
     EmitterMode     mMode;
     ParticlePositionType mParticlePositionType;
