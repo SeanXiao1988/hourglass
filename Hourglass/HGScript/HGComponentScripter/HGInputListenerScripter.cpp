@@ -33,14 +33,8 @@ InputListener* inputlistener_check(lua_State* L, int idx)
 {
     InputListener* listener = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    listener = *static_cast<InputListener **>(luaL_checkudata(L, idx, INPUTLISTENER_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        listener = *static_cast<InputListener **>(luaL_checkudata(L, idx, INPUTLISTENER_METATABLE));
     
     return listener;
 }
@@ -69,17 +63,12 @@ int inputlistener_push(lua_State* L, InputListener* listener)
     
 static int inputlistener_set_script_callback(lua_State* L)
 {
-    BREAK_START;
-    
     InputListener* listener = inputlistener_check(L, 1);
-    if (listener == NULL)
-        break;
-    
-    int callbackRef = luaH_tofunction(L, 2);
-
-    listener->setScriptCallback(callbackRef);
-    
-    BREAK_END;
+    if (listener != NULL)
+    {
+        int callbackRef = luaH_tofunction(L, 2);
+        listener->setScriptCallback(callbackRef);
+    }
     
     return 0;
 }
@@ -88,18 +77,13 @@ static int inputlistener_get_script_callback(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     InputListener* listener = inputlistener_check(L, 1);
-    if (listener == NULL)
-        break;
-    
-    int function = listener->getScriptCallback();
-    lua_pushinteger(L, function);
-
-    ret = 1;
-    
-    BREAK_END;
+    if (listener != NULL)
+    {
+        int function = listener->getScriptCallback();
+        lua_pushinteger(L, function);
+        ret = 1;
+    }
     
     return ret;
 }
@@ -108,15 +92,9 @@ static int inputlistener_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     InputListener* listener = new InputListener;
-    if (listener == NULL)
-        break;
-    
-    ret = inputlistener_push(L, listener);
-    
-    BREAK_END;
+    if (listener != NULL)
+        ret = inputlistener_push(L, listener);
     
     return ret;
 }

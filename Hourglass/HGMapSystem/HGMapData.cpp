@@ -84,25 +84,25 @@ bool MapData::loadFromFile(const char* filename)
 
 	BREAK_START;
         
-		if (mapData == NULL)
-			break;
+    if (mapData == NULL)
+        break;
 
-		memcpy(&mMapHeader, mapData->getData(), sizeof(map_header_t));
+    memcpy(&mMapHeader, mapData->getData(), sizeof(map_header_t));
 
-		if (mMapHeader.width > MAX_MAP_SIZE || mMapHeader.height > MAX_MAP_SIZE)
-			break;
+    if (mMapHeader.width > MAX_MAP_SIZE || mMapHeader.height > MAX_MAP_SIZE)
+        break;
 
-		if (mapData->getLength() < (sizeof(map_header_t)+mMapHeader.width*mMapHeader.height))
-			break;
+    if (mapData->getLength() < (sizeof(map_header_t)+mMapHeader.width*mMapHeader.height))
+        break;
 
-        clear();
-        
-        memcpy(&mMapHeader, mapData->getData(), sizeof(map_header_t));
-        
-		mData = new TileType[mMapHeader.width*mMapHeader.height];
-		memcpy(mData, mapData->getData() + sizeof(map_header_t), sizeof(TileType) * mMapHeader.width*mMapHeader.height);
+    clear();
+    
+    memcpy(&mMapHeader, mapData->getData(), sizeof(map_header_t));
+    
+    mData = new TileType[mMapHeader.width*mMapHeader.height];
+    memcpy(mData, mapData->getData() + sizeof(map_header_t), sizeof(TileType) * mMapHeader.width*mMapHeader.height);
 
-		loaded = true;
+    loaded = true;
 
     BREAK_END;
 
@@ -129,18 +129,18 @@ bool MapData::createMap(int w, int h)
 
     BREAK_START;
     
-        if (w <= 0 || h <= 0)
-            break;
-        
-        clear();
-        
-		mMapHeader.version = 1;
-		mMapHeader.tag = 0;
-		mMapHeader.width = w;
-		mMapHeader.height = h;
+    if (w <= 0 || h <= 0)
+        break;
+    
+    clear();
+    
+    mMapHeader.version = 1;
+    mMapHeader.tag = 0;
+    mMapHeader.width = w;
+    mMapHeader.height = h;
 
-        mData = new TileType[mMapHeader.width * mMapHeader.height];
-        memset(mData, 0, sizeof(TileType) * mMapHeader.width * mMapHeader.height);
+    mData = new TileType[mMapHeader.width * mMapHeader.height];
+    memset(mData, 0, sizeof(TileType) * mMapHeader.width * mMapHeader.height);
 
     BREAK_END;
     
@@ -153,21 +153,21 @@ bool MapData::saveToFile(const char* filename)
 
     BREAK_START;
     
-		if (mData == NULL)
-			break;
+    if (mData == NULL)
+        break;
 
-		if (filename == NULL)
-			break;
-		
-		Data *data = Data::CreateEmpty();
-		if (data == NULL)
-			break;
+    if (filename == NULL)
+        break;
+    
+    Data *data = Data::CreateEmpty();
+    if (data == NULL)
+        break;
 
-		data->appendData((char*)&mMapHeader, sizeof(map_header_t));
-		data->appendData((char*)mData, mMapHeader.width * mMapHeader.height * sizeof(TileType));
-		saved = data->writeToFile(filename, true);
+    data->appendData((char*)&mMapHeader, sizeof(map_header_t));
+    data->appendData((char*)mData, mMapHeader.width * mMapHeader.height * sizeof(TileType));
+    saved = data->writeToFile(filename, true);
 
-		delete data;
+    delete data;
 		
     BREAK_END;
 
@@ -227,12 +227,7 @@ void MapData::update()
     
 void MapData::verify()
 {
-    BREAK_START;
-    
-        if (mData == NULL)
-            break;
-        
-    BREAK_END;
+
 }
         
 bool MapData::isSolid(int x, int y, int special)
@@ -300,31 +295,30 @@ TileType MapData::getTileType(int x, int y, int special)
     
     BREAK_START;
     
-        int gridX = x/TILE_SIZE;
-        int gridY = y/TILE_SIZE;
+    int gridX = x/TILE_SIZE;
+    int gridY = y/TILE_SIZE;
+    
+    if (gridX >= mMapHeader.width || gridY >= mMapHeader.height || gridX < 0 || gridY < 0)
+        break;
         
-        if (gridX >= mMapHeader.width || gridY >= mMapHeader.height || gridX < 0 || gridY < 0)
-            break;
-            
-        ret = (TileType)mData[gridY * mMapHeader.width + gridX];
-        
-        if (special == 0)
-        {
-            if (ret == Tile_Platform)
-                ret = Tile_None;
-        }
-        else if (special == DETECT_PLATFORM_UP)
-        {
-            if (ret == Tile_Platform)
-                ret = Tile_None;
-        }
-        else if (special == DETECT_PLATFORM_DOWN)
-        {
-            if (ret == Tile_Platform)
-                ret = Tile_Solid;
-        }
+    ret = (TileType)mData[gridY * mMapHeader.width + gridX];
+    
+    if (special == 0)
+    {
+        if (ret == Tile_Platform)
+            ret = Tile_None;
+    }
+    else if (special == DETECT_PLATFORM_UP)
+    {
+        if (ret == Tile_Platform)
+            ret = Tile_None;
+    }
+    else if (special == DETECT_PLATFORM_DOWN)
+    {
+        if (ret == Tile_Platform)
+            ret = Tile_Solid;
+    }
 
-        
     BREAK_END;
     
     return ret;

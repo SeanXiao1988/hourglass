@@ -110,11 +110,6 @@ static int scenemanager_get_root(lua_State* L)
 
 void ScriptRegisterSceneManager(lua_State* L)
 {
-    BREAK_START;
-
-    if (L == NULL)
-        break;
-
     lua_newtable(L);
     
     luaH_setfunc2table(L, "createNode", scenemanager_create_node);
@@ -122,8 +117,6 @@ void ScriptRegisterSceneManager(lua_State* L)
     luaH_setfunc2table(L, "getRoot", scenemanager_get_root);
     
     lua_setglobal(L, "SCENEMANAGER");
-
-    BREAK_END;
 }
 
 HGNAMESPACE_END

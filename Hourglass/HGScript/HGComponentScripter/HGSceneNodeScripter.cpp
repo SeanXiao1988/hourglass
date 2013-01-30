@@ -43,19 +43,15 @@ int scenenode_push(lua_State* L, SceneNode* node)
 {
     int ret = 0;
     
-    BREAK_START;
-    
-    if (node == NULL)
-        break;
-    
-    SceneNode** udata = static_cast<SceneNode **>(lua_newuserdata(L, sizeof(SceneNode*)));
-    *udata = node;
-    luaL_getmetatable(L, SCENENODE_METATABLE);
-    lua_setmetatable(L, -2);
-    
-    ret = 1;
-    
-    BREAK_END;
+    if (node != NULL)
+    {
+        SceneNode** udata = static_cast<SceneNode **>(lua_newuserdata(L, sizeof(SceneNode*)));
+        *udata = node;
+        luaL_getmetatable(L, SCENENODE_METATABLE);
+        lua_setmetatable(L, -2);
+        
+        ret = 1;
+    }
     
     return ret;
 }
@@ -322,270 +318,234 @@ static int scenenode_set_world_xy(lua_State* L)
 static int scenenode_get_hashname(lua_State* L)
 {
     uint32_t hashname = 0;
-    int ret = 1;
-    
-	BREAK_START;
-    
-    SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
 
-    hashname = node->getHashName();
-    
-    BREAK_END;
+    SceneNode* node = scenenode_check(L, 1);
+    if (node != NULL)
+        hashname = node->getHashName();
     
     lua_pushunsigned(L, hashname);
     
-    return ret;
+    return 1;
 }
      
 static int scenenode_get_alpha(lua_State* L)
 {
     float alpha = 0;
-    int ret = 1;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-
-    alpha = node->getAlpha();
-    
-    BREAK_END;
+    if (node != NULL)
+        alpha = node->getAlpha();
     
     lua_pushnumber(L, alpha);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_x(lua_State* L)
 {
     float x = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    x = node->getX();
-    
-    BREAK_END;
+    if (node != NULL)
+        x = node->getX();
     
     lua_pushnumber(L, x);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_y(lua_State* L)
 {
     float y = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
-    
+
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    y = node->getY();
-    
-    BREAK_END;
+    if (node != NULL)
+        y = node->getY();
     
     lua_pushnumber(L, y);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_xy(lua_State* L)
 {
     float x = 0.0f;
     float y = 0.0f;
-    int ret = 2;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    x = node->getX();
-    y = node->getY();
-    
-    BREAK_END;
+    if (node != NULL)
+    {
+        x = node->getX();
+        y = node->getY();
+    }
     
     lua_pushnumber(L, x);
     lua_pushnumber(L, y);
     
-    return ret;
+    return 2;
 }
 
 static int scenenode_get_scale_x(lua_State* L)
 {
     float sx = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    sx = node->getScaleX();
-    
-    BREAK_END;
+    if (node != NULL)
+        sx = node->getScaleX();
     
     lua_pushnumber(L, sx);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_scale_y(lua_State* L)
 {
     float sy = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    sy = node->getScaleY();
-    
-    BREAK_END;
+    if (node != NULL)
+        sy = node->getScaleY();
     
     lua_pushnumber(L, sy);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_scale_xy(lua_State* L)
 {
     float sx = 0.0f;
     float sy = 0.0f;
-    int ret = 2;
-    
-	BREAK_START;
-    
+
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    sx = node->getScaleX();
-    sy = node->getScaleY();
-    
-    BREAK_END;
+    if (node != NULL)
+    {
+        sx = node->getScaleX();
+        sy = node->getScaleY();
+    }
     
     lua_pushnumber(L, sx);
     lua_pushnumber(L, sy);
     
-    return ret;
+    return 2;
 }
 
 static int scenenode_get_rotation(lua_State* L)
 {
     float rot = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
-    
+
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    rot = node->getRotation();
-    
-    BREAK_END;
+    if (node != NULL)
+        rot = node->getRotation();
     
     lua_pushnumber(L, rot);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_visibility(lua_State* L)
 {
     bool visibility = false;
-    int ret = 1;
-    
-    BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    visibility = node->getVisibility();
-    
-    BREAK_END;
+    if (node != NULL)
+        visibility = node->getVisibility();
     
     lua_pushboolean(L, (visibility?1:0));
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_world_x(lua_State* L)
 {
     float wx = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    wx = node->getWorldX();
-    
-    BREAK_END;
+    if (node != NULL)
+        wx = node->getWorldX();
     
     lua_pushnumber(L, wx);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_world_y(lua_State* L)
 {
     float wy = 0.0f;
-    int ret = 1;
-    
-	BREAK_START;
-    
+
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    wy = node->getWorldY();
-    
-    BREAK_END;
+    if (node != NULL)
+        wy = node->getWorldY();
     
     lua_pushnumber(L, wy);
     
-    return ret;
+    return 1;
 }
 
 static int scenenode_get_world_xy(lua_State* L)
 {
     float wx = 0.0f;
     float wy = 0.0f;
-    int ret = 2;
-    
-	BREAK_START;
     
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    wx = node->getWorldX();
-    wy = node->getWorldY();
-    
-    BREAK_END;
+    if (node != NULL)
+    {
+        wx = node->getWorldX();
+        wy = node->getWorldY();
+    }
     
     lua_pushnumber(L, wx);
     lua_pushnumber(L, wy);
     
-    return ret;
+    return 2;
+}
+
+static int scenenode_get_layer(lua_State* L)
+{
+    int layer = 0;
+    
+    SceneNode* node = scenenode_check(L, 1);
+    if (node != NULL)
+        layer = node->getLayer();
+    
+    lua_pushinteger(L, layer);
+    
+    return 1;
+}
+
+static int scenenode_increase_layer(lua_State* L)
+{
+    SceneNode* node = scenenode_check(L, 1);
+    if (node != NULL)
+        node->increaseLayer();
+    
+    return 0;
+}
+
+static int scenenode_decrease_layer(lua_State* L)
+{
+    SceneNode* node = scenenode_check(L, 1);
+    if (node != NULL)
+        node->decreaseLayer();
+    
+    return 0;
+}
+
+static int scenenode_bring_to_top(lua_State* L)
+{
+    SceneNode* node = scenenode_check(L, 1);
+    if (node != NULL)
+        node->bringToTop();
+    
+    return 0;
+}
+
+static int scenenode_send_to_bottom(lua_State* L)
+{
+    SceneNode* node = scenenode_check(L, 1);
+    if (node != NULL)
+        node->sendToBottom();
+    
+    return 0;
 }
     
 static int scenenode_get_parent(lua_State* L)
@@ -611,27 +571,23 @@ static int scenenode_get_parent(lua_State* L)
     
 static int scenenode_set_parent(lua_State* L)
 {
-	BREAK_START;
-    
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    SceneNode* parent = NULL;
-    
-    if (lua_isstring(L, 2))
+    if (node != NULL)
     {
-        const char* parentName = luaL_checkstring(L, 2);
-        parent = SCENEMANAGER.getNode(parentName);
+        SceneNode* parent = NULL;
+        
+        if (lua_isstring(L, 2))
+        {
+            const char* parentName = luaL_checkstring(L, 2);
+            parent = SCENEMANAGER.getNode(parentName);
+        }
+        else
+        {
+            parent = scenenode_check(L, 2);
+        }
+        
+        node->setParent(parent);
     }
-    else
-    {
-        parent = scenenode_check(L, 2);
-    }
-    
-    node->setParent(parent);
-    
-    BREAK_END;
     
     return 0;
 }
@@ -639,20 +595,16 @@ static int scenenode_set_parent(lua_State* L)
 static int scenenode_get_child(lua_State* L)
 {
     int ret = 0;
-    
-	BREAK_START;
-    
+
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    const char* childName = luaL_checkstring(L, 2);
-    
-    SceneNode* child = node->getChild(childName);
-    
-    ret = scenenode_push(L, child);
-    
-    BREAK_END;
+    if (node != NULL)
+    {
+        const char* childName = luaL_checkstring(L, 2);
+        
+        SceneNode* child = node->getChild(childName);
+        
+        ret = scenenode_push(L, child);
+    }
     
     return ret;
 }
@@ -712,15 +664,9 @@ static int scenenode_remove_child(lua_State* L)
     
 static int scenenode_remove_all(lua_State* L)
 {
-	BREAK_START;
-    
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    node->removeAll();
-    
-    BREAK_END;
+    if (node != NULL)
+        node->removeAll();
     
     return 0;
 }
@@ -746,15 +692,9 @@ static int scenenode_attach_entity(lua_State* L)
     
 static int scenenode_detach_entity(lua_State* L)
 {
-    BREAK_START;
-    
     SceneNode* node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    node->detachEntity();
-    
-    BREAK_END;
+    if (node != NULL)
+        node->detachEntity();
     
     return 0;
 }
@@ -874,16 +814,10 @@ static int scenenode_remove_animation(lua_State* L)
 
 static int scenenode_remove_all_animations(lua_State* L)
 {
-    BREAK_START;
-    
     SceneNode* node = NULL;
     node = scenenode_check(L, 1);
-    if (node == NULL)
-        break;
-    
-    node->removeAllAnimations();
-    
-    BREAK_END;
+    if (node != NULL)
+        node->removeAllAnimations();
     
     return 0;
 }
@@ -915,6 +849,11 @@ luaL_Reg sSceneNodeRegs[] =
     { "getWorldX",      		scenenode_get_world_x },
     { "getWorldY",      		scenenode_get_world_y },
     { "getWorldXY",             scenenode_get_world_xy },
+    { "getLayer",               scenenode_get_layer },
+    { "increaseLayer",          scenenode_increase_layer },
+    { "decreaseLayer",          scenenode_decrease_layer },
+    { "bringToTop",             scenenode_bring_to_top },
+    { "sendToBottom",           scenenode_send_to_bottom },
     { "setParent",              scenenode_set_parent },
     { "getParent",              scenenode_get_parent },
     { "getChild",               scenenode_get_child },

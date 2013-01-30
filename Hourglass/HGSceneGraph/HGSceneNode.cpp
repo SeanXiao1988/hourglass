@@ -219,6 +219,80 @@ int SceneNode::getLayer()
     return layer;
 }
 
+void SceneNode::increaseLayer()
+{
+    BREAK_START;
+    
+    if (mParent == NULL)
+        break;
+    
+    // already at bottom
+    if (mParent->mChildren.back() == this)
+        break;
+    
+    int layer = getLayer();
+    if (layer >= mParent->mChildren.size())
+        break;
+    
+    std::swap(mParent->mChildren[layer], mParent->mChildren[layer+1]);
+    
+    BREAK_END;
+}
+
+void SceneNode::decreaseLayer()
+{
+    BREAK_START;
+    
+    if (mParent == NULL)
+        break;
+    
+    // already at top
+    if (mParent->mChildren.front() == this)
+        break;
+    
+    int layer = getLayer();
+    if (layer == 0)
+        break;
+    
+    std::swap(mParent->mChildren[layer], mParent->mChildren[layer-1]);
+    
+    BREAK_END;
+}
+
+void SceneNode::bringToTop()
+{
+    BREAK_START;
+    
+    if (mParent == NULL)
+        break;
+    
+    // already at top
+    if (mParent->mChildren.back() == this)
+        break;
+    
+    int layer = getLayer();
+    std::swap(mParent->mChildren[layer], mParent->mChildren.back());
+    
+    BREAK_END;
+}
+
+void SceneNode::sendToBottom()
+{
+    BREAK_START;
+    
+    if (mParent == NULL)
+        break;
+    
+    // already at bottom
+    if (mParent->mChildren.front() == this)
+        break;
+    
+    int layer = getLayer();
+    std::swap(mParent->mChildren[layer], mParent->mChildren.front());
+    
+    BREAK_END;
+}
+
 // Animation
 void SceneNode::updateAnimations(const float dt)
 {

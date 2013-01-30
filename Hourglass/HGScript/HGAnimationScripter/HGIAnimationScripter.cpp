@@ -34,14 +34,8 @@ IAnimation* ianimation_check(lua_State* L, int idx)
 {
     IAnimation* anim = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    anim = *static_cast<IAnimation **>(lua_touserdata(L, idx));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        anim = *static_cast<IAnimation **>(lua_touserdata(L, idx));
     
     return anim;
 }
@@ -90,16 +84,10 @@ static int ianimation_is_finished(lua_State* L)
     int ret = 1;
     bool isFinished = false;
     
-    BREAK_START;
-    
     IAnimation* anim = NULL;
     anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    isFinished = anim->isFinished;
-    
-    BREAK_END;
+    if (anim != NULL)
+        isFinished = anim->isFinished;
     
     lua_pushboolean(L, isFinished?1:0);
     
@@ -111,16 +99,10 @@ static int ianimation_is_animating(lua_State* L)
     int ret = 1;
     bool isAnimating = true;
     
-    BREAK_START;
-    
     IAnimation* anim = NULL;
     anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    isAnimating = anim->isAnimating;
-    
-    BREAK_END;
+    if (anim != NULL)
+        isAnimating = anim->isAnimating;
     
     lua_pushboolean(L, isAnimating?1:0);
     
@@ -132,15 +114,9 @@ static int ianimation_animation_stage(lua_State* L)
     int ret = 1;
     ANIMATION_STAGE stage = ANIMATION_STAGE_FORWARD;
     
-    BREAK_START;
-    
     IAnimation* anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    stage = anim->animationStage;
-    
-    BREAK_END;
+    if (anim != NULL)
+        stage = anim->animationStage;
     
     lua_pushinteger(L, stage);
     
@@ -152,15 +128,9 @@ static int ianimation_name(lua_State* L)
     int ret = 1;
     uint32_t name = 0;
     
-    BREAK_START;
-    
     IAnimation* anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    name = anim->name;
-    
-    BREAK_END;
+    if (anim != NULL)
+        name = anim->name;
     
     lua_pushunsigned(L, name);
     
@@ -172,15 +142,9 @@ static int ianimation_type_id(lua_State* L)
     int ret = 1;
     AnimationTypeID tid = ANIMATION_ID_INVALID;
     
-    BREAK_START;
-    
     IAnimation* anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    tid = anim->typeID;
-    
-    BREAK_END;
+    if (anim != NULL)
+        tid = anim->typeID;
     
     lua_pushinteger(L, tid);
     
@@ -192,15 +156,9 @@ static int ianimation_type(lua_State* L)
     int ret = 1;
     ANIMATION_TYPE type = ANIMATION_TYPE_RESET;
     
-    BREAK_START;
-    
     IAnimation* anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    type = anim->type;
-    
-    BREAK_END;
+    if (anim != NULL)
+        type = anim->type;
     
     lua_pushinteger(L, type);
     
@@ -209,16 +167,12 @@ static int ianimation_type(lua_State* L)
     
 static int ianimation_set_type(lua_State* L)
 {
-    BREAK_START;
-    
     IAnimation* anim = ianimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    ANIMATION_TYPE type = (ANIMATION_TYPE)luaL_checkinteger(L, 2);
-    anim->type = type;
-    
-    BREAK_END;
+    if (anim != NULL)
+    {
+        ANIMATION_TYPE type = (ANIMATION_TYPE)luaL_checkinteger(L, 2);
+        anim->type = type;
+    }
     
     return 0;
 }

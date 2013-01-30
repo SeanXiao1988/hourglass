@@ -335,31 +335,27 @@ GLuint Render::textureCreate( int width, int height )
 {
     GLuint ret = 0;
     
-    BREAK_START;
+    GLuint name;
+    glGenTextures(1, &name);
+    if (name == GL_INVALID_VALUE)
+        return ret;
     
-        GLuint name;
-        glGenTextures(1, &name);
-        if (name == GL_INVALID_VALUE)
-            break;
-        
-        texture_t *texItem  = new texture_t;
-        texItem->tex        = name;
-        texItem->width      = _nextPow2(width);
-        texItem->height     = _nextPow2(height);
-        texItem->rawWidth   = width;
-        texItem->rawHeight  = height;
-        
-        texItem->bpp            = 32;
-        texItem->internalFormat = GL_RGBA;
-        texItem->format         = GL_RGBA;
-        texItem->type           = GL_UNSIGNED_INT_8_8_8_8_REV;
-        texItem->lockInfo.data  = NULL;
-        
-        mTextureMap.insert(TextureMap::value_type(name, texItem));
+    texture_t *texItem  = new texture_t;
+    texItem->tex        = name;
+    texItem->width      = _nextPow2(width);
+    texItem->height     = _nextPow2(height);
+    texItem->rawWidth   = width;
+    texItem->rawHeight  = height;
     
-        ret = name;
-        
-    BREAK_END;
+    texItem->bpp            = 32;
+    texItem->internalFormat = GL_RGBA;
+    texItem->format         = GL_RGBA;
+    texItem->type           = GL_UNSIGNED_INT_8_8_8_8_REV;
+    texItem->lockInfo.data  = NULL;
+    
+    mTextureMap.insert(TextureMap::value_type(name, texItem));
+
+    ret = name;
     
     return ret;
 }
@@ -500,78 +496,78 @@ GLuint Render::textureLoad(const char* filename)
     
     BREAK_START;
     
-        if (fileData == NULL)
-            break;
-        
-        lodepngError = lodepng_decode32(&pngData, &imageWidth, &imageHeight, (const unsigned char*)fileData->getData(), fileData->getLength());
-        if (lodepngError != 0)
-            break;
-        
-        texture_t newItem;
-        newItem.format          = GL_RGBA;
-        newItem.internalFormat  = 4;
-        newItem.type            = GL_UNSIGNED_BYTE;
-        newItem.rawWidth        = imageWidth;
-        newItem.rawHeight       = imageHeight;
-        newItem.width           = imageWidth;
-        newItem.height          = imageHeight;
-        newItem.fileNameHash    = Hash(filename);
-        newItem.refCount        = 1;
-        
-        GLuint name;
-        glGenTextures(1, &name);
-        if (name == GL_INVALID_VALUE)
-            break;
-        
-        glBindTexture(GL_TEXTURE_2D, name);
-        // Texture options
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-        
-        // pixel data
-        newItem.width = newItem.rawWidth;//*/_nextPow2(newItem.rawWidth);
-        newItem.height = newItem.rawHeight;//*/_nextPow2(newItem.rawHeight);
-        
-        // manage memory blocks
-        if (newItem.width <= HG_MAX_IMAGE_SIZE && newItem.height <= HG_MAX_IMAGE_SIZE)
+    if (fileData == NULL)
+        break;
+    
+    lodepngError = lodepng_decode32(&pngData, &imageWidth, &imageHeight, (const unsigned char*)fileData->getData(), fileData->getLength());
+    if (lodepngError != 0)
+        break;
+    
+    texture_t newItem;
+    newItem.format          = GL_RGBA;
+    newItem.internalFormat  = 4;
+    newItem.type            = GL_UNSIGNED_BYTE;
+    newItem.rawWidth        = imageWidth;
+    newItem.rawHeight       = imageHeight;
+    newItem.width           = imageWidth;
+    newItem.height          = imageHeight;
+    newItem.fileNameHash    = Hash(filename);
+    newItem.refCount        = 1;
+    
+    GLuint name;
+    glGenTextures(1, &name);
+    if (name == GL_INVALID_VALUE)
+        break;
+    
+    glBindTexture(GL_TEXTURE_2D, name);
+    // Texture options
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    
+    // pixel data
+    newItem.width = newItem.rawWidth;//*/_nextPow2(newItem.rawWidth);
+    newItem.height = newItem.rawHeight;//*/_nextPow2(newItem.rawHeight);
+    
+    // manage memory blocks
+    if (newItem.width <= HG_MAX_IMAGE_SIZE && newItem.height <= HG_MAX_IMAGE_SIZE)
+    {
+        if (0)//(newItem.width != newItem.rawWidth || newItem.height != newItem.rawHeight)
         {
-            if (0)//(newItem.width != newItem.rawWidth || newItem.height != newItem.rawHeight)
-            {
-                //unsigned char* pbuff = new unsigned char[newItem.width*newItem.height*sizeof(uint32_t)];
-                memcpy(mBuffer, pngData, imageWidth * imageHeight * sizeof(uint32_t));
-                
-                glTexImage2D(GL_TEXTURE_2D, 0, newItem.internalFormat, newItem.width, newItem.height, 0, newItem.format, newItem.type, NULL);
-                glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, newItem.rawHeight, newItem.rawHeight, newItem.format, newItem.type, mBuffer);
-            }
-            else
-            {
-                glTexImage2D(GL_TEXTURE_2D, 0, newItem.internalFormat, newItem.width, newItem.height, 0, newItem.format, newItem.type, pngData);
-            }
+            //unsigned char* pbuff = new unsigned char[newItem.width*newItem.height*sizeof(uint32_t)];
+            memcpy(mBuffer, pngData, imageWidth * imageHeight * sizeof(uint32_t));
+            
+            glTexImage2D(GL_TEXTURE_2D, 0, newItem.internalFormat, newItem.width, newItem.height, 0, newItem.format, newItem.type, NULL);
+            glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, newItem.rawHeight, newItem.rawHeight, newItem.format, newItem.type, mBuffer);
         }
         else
         {
-            break;
+            glTexImage2D(GL_TEXTURE_2D, 0, newItem.internalFormat, newItem.width, newItem.height, 0, newItem.format, newItem.type, pngData);
         }
-        
-        texItem = new texture_t;
-        texItem->tex            = name;
-        texItem->format         = newItem.format;
-        texItem->internalFormat = newItem.internalFormat;
-        texItem->type           = newItem.type;
-        texItem->rawWidth       = newItem.rawWidth;
-        texItem->rawHeight      = newItem.rawHeight;
-        texItem->height         = newItem.height;
-        texItem->width          = newItem.width;
-        texItem->fileNameHash   = newItem.fileNameHash;
-        texItem->refCount       = newItem.refCount;
-        texItem->bpp            = 32;
-        texItem->lockInfo.data  = NULL;
-        
-        mTextureMap.insert(TextureMap::value_type(name, texItem));
+    }
+    else
+    {
+        break;
+    }
     
-        retval = name;
+    texItem = new texture_t;
+    texItem->tex            = name;
+    texItem->format         = newItem.format;
+    texItem->internalFormat = newItem.internalFormat;
+    texItem->type           = newItem.type;
+    texItem->rawWidth       = newItem.rawWidth;
+    texItem->rawHeight      = newItem.rawHeight;
+    texItem->height         = newItem.height;
+    texItem->width          = newItem.width;
+    texItem->fileNameHash   = newItem.fileNameHash;
+    texItem->refCount       = newItem.refCount;
+    texItem->bpp            = 32;
+    texItem->lockInfo.data  = NULL;
+    
+    mTextureMap.insert(TextureMap::value_type(name, texItem));
+
+    retval = name;
         
     BREAK_END;
     
@@ -720,62 +716,62 @@ GLuint Render::shaderLoad(const char* filename, bool activate)
 
 	BREAK_START;
 
-		if (filename == NULL)
-			break;
+    if (filename == NULL)
+        break;
 
-		std::string vertexFile = std::string(filename) + ".vert";
-		std::string fragmentFile = std::string(filename) + ".frag";
+    std::string vertexFile = std::string(filename) + ".vert";
+    std::string fragmentFile = std::string(filename) + ".frag";
 
-		vs = Data::CreateFromFileContent(vertexFile.c_str());
-		if (vs == NULL)
-			break;
-		
-		fs = Data::CreateFromFileContent(fragmentFile.c_str());
-		if (fs == NULL)
-			break;
-
-		newShader = new shader_t;
-		if (newShader == NULL)
-			break;
-		
-		memset(newShader, 0, sizeof(shader_t));
-
-		newShader->vertex = glCreateShader(GL_VERTEX_SHADER);
-		newShader->fragment = glCreateShader(GL_FRAGMENT_SHADER);
-
-		const char *vv = (const char *)vs->getData();
-		const char *ff = (const char *)fs->getData();
-        
-        glShaderSource(newShader->vertex, 1, &vv, NULL);
-		glShaderSource(newShader->fragment, 1, &ff, NULL);
-
-		glCompileShader(newShader->vertex);
-		glCompileShader(newShader->fragment);
-
-		newShader->program = glCreateProgram();
-
-		// can't create program
-		if (newShader->program == 0)
-		{
-			delete newShader;
-			newShader = NULL;
-			break;
-		}
-
-		glAttachShader(newShader->program, newShader->vertex);
-		glAttachShader(newShader->program, newShader->fragment);
-
-		glLinkProgram(newShader->program);
+    vs = Data::CreateFromFileContent(vertexFile.c_str());
+    if (vs == NULL)
+        break;
     
-        // add shader
-        mShaders.insert(ShaderMap::value_type(newShader->program, newShader));
+    fs = Data::CreateFromFileContent(fragmentFile.c_str());
+    if (fs == NULL)
+        break;
 
-		if (activate)
-			shaderActive(newShader->program);
+    newShader = new shader_t;
+    if (newShader == NULL)
+        break;
+    
+    memset(newShader, 0, sizeof(shader_t));
 
-		memset(mBuffer, 0, sizeof(unsigned char) * HG_MAX_IMAGE_SIZE);
-		glGetInfoLogARB(newShader->program, HG_MAX_IMAGE_SIZE, NULL, (GLchar *)mBuffer);
-		HGLog("shaderLoad: %s\n", mBuffer);
+    newShader->vertex = glCreateShader(GL_VERTEX_SHADER);
+    newShader->fragment = glCreateShader(GL_FRAGMENT_SHADER);
+
+    const char *vv = (const char *)vs->getData();
+    const char *ff = (const char *)fs->getData();
+    
+    glShaderSource(newShader->vertex, 1, &vv, NULL);
+    glShaderSource(newShader->fragment, 1, &ff, NULL);
+
+    glCompileShader(newShader->vertex);
+    glCompileShader(newShader->fragment);
+
+    newShader->program = glCreateProgram();
+
+    // can't create program
+    if (newShader->program == 0)
+    {
+        delete newShader;
+        newShader = NULL;
+        break;
+    }
+
+    glAttachShader(newShader->program, newShader->vertex);
+    glAttachShader(newShader->program, newShader->fragment);
+
+    glLinkProgram(newShader->program);
+
+    // add shader
+    mShaders.insert(ShaderMap::value_type(newShader->program, newShader));
+
+    if (activate)
+        shaderActive(newShader->program);
+
+    memset(mBuffer, 0, sizeof(unsigned char) * HG_MAX_IMAGE_SIZE);
+    glGetInfoLogARB(newShader->program, HG_MAX_IMAGE_SIZE, NULL, (GLchar *)mBuffer);
+    HGLog("shaderLoad: %s\n", mBuffer);
 		
     BREAK_END;
 	
@@ -787,14 +783,10 @@ GLuint Render::shaderLoad(const char* filename, bool activate)
 
 void Render::shaderFree(GLuint shader)
 {
-    ShaderMap::iterator iter;
-    
-    BREAK_START;
-    
-    iter = mShaders.find(shader);
+    ShaderMap::iterator iter = mShaders.find(shader);
     
     if (iter == mShaders.end())
-        break;
+        return;
     
     shader_t* pShader = iter->second;
     
@@ -805,8 +797,6 @@ void Render::shaderFree(GLuint shader)
     
     delete pShader;
     mShaders.erase(iter);
-    
-    BREAK_END;
 }
 
 void Render::shaderActive(GLuint shader)
@@ -860,10 +850,8 @@ void Render::shaderPop()
 
 void Render::shaderFreeAll()
 {
-    BREAK_START;
-    
     if (mShaders.empty())
-        break;
+        return;
  
     ShaderMap::iterator iter = mShaders.begin();
     
@@ -880,8 +868,6 @@ void Render::shaderFreeAll()
     }
     
     mShaders.clear();
-    
-    BREAK_END;
 }
     
 // render stuff
@@ -1333,62 +1319,62 @@ HG_ERROR Render::_initBuffer()
     
     BREAK_START;
 
-        if (mpVB != NULL)
-        {
-            ret = HG_ERROR_BAD_INVOCATION;
-            break;
-        }
-        
-        mpVB = new Vertex[HG_VERTEX_BUFFER_SIZE];
-        if (mpVB == NULL)
-        {
-            ret = HG_ERROR_INSUFFICIENT_MEMORY;
-            break;
-        }
-        
-        if (mpIB != NULL)
-        {
-            ret = HG_ERROR_BAD_INVOCATION;
-            break;
-        }
-        
-        mpIB = new GLushort[HG_VERTEX_BUFFER_SIZE*6/4];
-        if (mpIB == NULL)
-        {
-            ret = HG_ERROR_INSUFFICIENT_MEMORY;
-            break;
-        }
-        
-        GLushort* pIndices = mpIB;
-        int n = 0;
-        for (int i = 0; i < HG_VERTEX_BUFFER_SIZE / 4; i++)
-        {
-            *pIndices++=n;
-            *pIndices++=n+1;
-            *pIndices++=n+2;
-            *pIndices++=n+2;
-            *pIndices++=n+3;
-            *pIndices++=n;
-            n+=4;
-        }
-        
-        // initialize openGL buffer
-        glGenBuffers(1, &mIndexBufferObject);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferObject);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort) * ((HG_VERTEX_BUFFER_SIZE*6)/4), mpIB, GL_STATIC_DRAW);
-        delete [] mpIB;
-        mpIB = NULL;
-        
-        glVertexPointer(3, GL_FLOAT, sizeof(Vertex), &mpVB[0].x);
-        glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(Vertex), &mpVB[0].color);
-        glTexCoordPointer(2, GL_FLOAT, sizeof(Vertex), &mpVB[0].u);
-        
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_COLOR_ARRAY);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        
-        glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-        glPixelStorei(GL_PACK_ALIGNMENT, 1);
+    if (mpVB != NULL)
+    {
+        ret = HG_ERROR_BAD_INVOCATION;
+        break;
+    }
+    
+    mpVB = new Vertex[HG_VERTEX_BUFFER_SIZE];
+    if (mpVB == NULL)
+    {
+        ret = HG_ERROR_INSUFFICIENT_MEMORY;
+        break;
+    }
+    
+    if (mpIB != NULL)
+    {
+        ret = HG_ERROR_BAD_INVOCATION;
+        break;
+    }
+    
+    mpIB = new GLushort[HG_VERTEX_BUFFER_SIZE*6/4];
+    if (mpIB == NULL)
+    {
+        ret = HG_ERROR_INSUFFICIENT_MEMORY;
+        break;
+    }
+    
+    GLushort* pIndices = mpIB;
+    int n = 0;
+    for (int i = 0; i < HG_VERTEX_BUFFER_SIZE / 4; i++)
+    {
+        *pIndices++=n;
+        *pIndices++=n+1;
+        *pIndices++=n+2;
+        *pIndices++=n+2;
+        *pIndices++=n+3;
+        *pIndices++=n;
+        n+=4;
+    }
+    
+    // initialize openGL buffer
+    glGenBuffers(1, &mIndexBufferObject);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mIndexBufferObject);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort) * ((HG_VERTEX_BUFFER_SIZE*6)/4), mpIB, GL_STATIC_DRAW);
+    delete [] mpIB;
+    mpIB = NULL;
+    
+    glVertexPointer(3, GL_FLOAT, sizeof(Vertex), &mpVB[0].x);
+    glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(Vertex), &mpVB[0].color);
+    glTexCoordPointer(2, GL_FLOAT, sizeof(Vertex), &mpVB[0].u);
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    glPixelStorei(GL_PACK_ALIGNMENT, 1);
         
     BREAK_END;
     

@@ -31,14 +31,8 @@ AlphaAnimation* alphaanimation_check(lua_State* L, int idx)
 {
     AlphaAnimation* anim = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    anim = *static_cast<AlphaAnimation **>(luaL_checkudata(L, idx, ALPHAANIMATION_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        anim = *static_cast<AlphaAnimation **>(luaL_checkudata(L, idx, ALPHAANIMATION_METATABLE));
     
     return anim;
 }
@@ -68,32 +62,24 @@ int alphaanimation_push(lua_State* L, AlphaAnimation* anim)
 // AlphaAnimation methods
 static int alphaanimation_set_alpha(lua_State* L)
 {
-    BREAK_START;
-    
     AlphaAnimation* anim = alphaanimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    float alpha = (float)luaL_checknumber(L, 2);
-    anim->setAlpha(alpha);
-    
-    BREAK_END;
+    if (anim != NULL)
+    {
+        float alpha = (float)luaL_checknumber(L, 2);
+        anim->setAlpha(alpha);
+    }
     
     return 0;
 }
     
 static int alphaanimation_set_duration(lua_State* L)
 {
-    BREAK_START;
-    
     AlphaAnimation* anim = alphaanimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    float duration = (float)luaL_checknumber(L, 2);
-    anim->setDuration(duration);
-    
-    BREAK_END;
+    if (anim != NULL)
+    {
+        float duration = (float)luaL_checknumber(L, 2);
+        anim->setDuration(duration);
+    }
     
     return 0;
 }
@@ -102,15 +88,11 @@ static int alphaanimation_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     float alpha = (float)luaL_checknumber(L, 1);
     float duration = (float)luaL_checknumber(L, 2);
     
     AlphaAnimation* anim = new AlphaAnimation(alpha, duration);
     ret = alphaanimation_push(L, anim);
-    
-    BREAK_END;
     
     return ret;
 }

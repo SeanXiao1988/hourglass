@@ -74,10 +74,8 @@ void ConsoleImpl::deInitialze()
 
 void ConsoleImpl::render(float dt)
 {
-    BREAK_START;
-    
     if (!mIsActive)
-        break;
+        return;
     
     RENDER.renderQuad(&mQuad);
     
@@ -125,8 +123,6 @@ void ConsoleImpl::render(float dt)
         mCursorFlash = 0.0f;
     
     RENDER.renderText(CONSOLE_TEXT_OFFSET_X, height-fontHeight-1, 1.0f, mColorEdit, ">%s", mCommandLine.c_str());
-    
-    BREAK_END;
 }
     
 bool ConsoleImpl::handleInput(int key, int action)

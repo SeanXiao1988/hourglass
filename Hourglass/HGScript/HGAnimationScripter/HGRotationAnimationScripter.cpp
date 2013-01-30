@@ -30,15 +30,9 @@ HGNAMESPACE_START
 RotationAnimation* rotationanimation_check(lua_State* L, int idx)
 {
     RotationAnimation* anim = NULL;
-    
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    anim = *static_cast<RotationAnimation **>(luaL_checkudata(L, idx, ROTATIONANIMATION_METATABLE));
-    
-    BREAK_END;
+
+    if (lua_isuserdata(L, idx))
+        anim = *static_cast<RotationAnimation **>(luaL_checkudata(L, idx, ROTATIONANIMATION_METATABLE));
     
     return anim;
 }
@@ -102,27 +96,19 @@ static int rotationanimation_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     float rot = (float)luaL_checknumber(L, 1);
     float dur = (float)luaL_checknumber(L, 2);
     
     RotationAnimation* anim = new RotationAnimation(rot, dur);
     ret = rotationanimation_push(L, anim);
     
-    BREAK_END;
-    
     return ret;
 }
  
 static int rotationanimation_delete(lua_State* L)
 {
-    BREAK_START;
-    
     RotationAnimation* anim = rotationanimation_check(L, 1);
     delete anim;
-    
-    BREAK_END;
     
     return 0;
 }

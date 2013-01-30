@@ -73,14 +73,14 @@ Data* Data::CreateFromBytes(const char* bytes, uint32_t length)
 
     BREAK_START;
     
-        if (bytes == NULL || length == 0)
-            break;
+    if (bytes == NULL || length == 0)
+        break;
 
-        retval = new Data();
+    retval = new Data();
 
-        retval->mBuffer = new char[MAX_DATA_CAPCITY];
-        retval->mLength = length;
-        memcpy(retval->mBuffer, bytes, length);
+    retval->mBuffer = new char[MAX_DATA_CAPCITY];
+    retval->mLength = length;
+    memcpy(retval->mBuffer, bytes, length);
     
     BREAK_END;
 
@@ -93,20 +93,20 @@ bool Data::IsFileExist(const char* filename)
 
     BREAK_START;
     
-        if (filename == NULL)
-            break;
+    if (filename == NULL)
+        break;
 
-        std::fstream file;
-        FILE_OPEN_BEGIN;
-        file.open(filename, std::ios::in | std::ios::binary);
-        FILE_OPEN_END;
+    std::fstream file;
+    FILE_OPEN_BEGIN;
+    file.open(filename, std::ios::in | std::ios::binary);
+    FILE_OPEN_END;
 
-        if (file.fail())
-            break;
+    if (file.fail())
+        break;
 
-        file.close();
-        ret = true;
-        
+    file.close();
+    ret = true;
+    
     BREAK_END;
 
     return ret;
@@ -118,38 +118,38 @@ Data* Data::CreateFromFileContent(const char* filename)
 
     BREAK_START;
     
-        if (!IsFileExist(filename))
-            break;
+    if (!IsFileExist(filename))
+        break;
 
-        std::ifstream file;
-        FILE_OPEN_BEGIN;
-        file.open(filename, std::ios::in | std::ios::binary);
-        FILE_OPEN_END;
+    std::ifstream file;
+    FILE_OPEN_BEGIN;
+    file.open(filename, std::ios::in | std::ios::binary);
+    FILE_OPEN_END;
 
-        if (file.fail())
-            break;
+    if (file.fail())
+        break;
 
-        file.seekg(0, std::ios::end);
-        std::streamoff filesize = file.tellg();
+    file.seekg(0, std::ios::end);
+    std::streamoff filesize = file.tellg();
 
-        uint32_t copy_length = (filesize >= MAX_DATA_CAPCITY) ? MAX_DATA_CAPCITY : (uint32_t)filesize;
+    uint32_t copy_length = (filesize >= MAX_DATA_CAPCITY) ? MAX_DATA_CAPCITY : (uint32_t)filesize;
 
-        file.seekg(0, std::ios::beg);
+    file.seekg(0, std::ios::beg);
 
-        retval = new Data();
-        retval->mBuffer = new char[MAX_DATA_CAPCITY];
-		memset(retval->mBuffer, 0, MAX_DATA_CAPCITY);
+    retval = new Data();
+    retval->mBuffer = new char[MAX_DATA_CAPCITY];
+    memset(retval->mBuffer, 0, MAX_DATA_CAPCITY);
 
-        if (retval->mBuffer == NULL)
-        {
-            file.close();
-            break;
-        }
+    if (retval->mBuffer == NULL)
+    {
+        file.close();
+        break;
+    }
 
-        file.read((char *)retval->mBuffer, copy_length);
+    file.read((char *)retval->mBuffer, copy_length);
 
-        retval->mLength = copy_length;
-        
+    retval->mLength = copy_length;
+    
     BREAK_END;
     
     return retval;
@@ -167,14 +167,14 @@ const char* Data::appendData(const char* data, uint32_t length)
 
     BREAK_START;
     
-        if (data == NULL || length == 0)
-            break;
+    if (data == NULL || length == 0)
+        break;
 
-        if ((mLength + length) >= MAX_DATA_CAPCITY)
-            break;
+    if ((mLength + length) >= MAX_DATA_CAPCITY)
+        break;
 
-        memcpy(mBuffer + mLength, data, length);
-        mLength += length;
+    memcpy(mBuffer + mLength, data, length);
+    mLength += length;
 
     BREAK_END;
 
@@ -192,23 +192,23 @@ bool Data::writeToFile(const char* filename, bool overwrite)
     
     BREAK_START;
     
-        // file exist and not overwrite it
-        if ((IsFileExist(filename)) && (!overwrite))
-            break;
-        
-        std::ofstream file;
-        FILE_OPEN_BEGIN;
-        file.open(filename, std::ios::binary | std::ios::out | std::ios::trunc);
-        FILE_OPEN_END;
-        
-        if (file.fail())
-            break;
-        
-        file.write((char *)mBuffer, mLength);
-        file.close();
-        
-        retval = true;
-        
+    // file exist and not overwrite it
+    if ((IsFileExist(filename)) && (!overwrite))
+        break;
+    
+    std::ofstream file;
+    FILE_OPEN_BEGIN;
+    file.open(filename, std::ios::binary | std::ios::out | std::ios::trunc);
+    FILE_OPEN_END;
+    
+    if (file.fail())
+        break;
+    
+    file.write((char *)mBuffer, mLength);
+    file.close();
+    
+    retval = true;
+    
     BREAK_END;
     
     return retval;

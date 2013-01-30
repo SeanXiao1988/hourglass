@@ -31,14 +31,8 @@ EventKeyboard* eventkeyboard_check(lua_State* L, int idx)
 {
     EventKeyboard* event = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    event = *static_cast<EventKeyboard **>(luaL_checkudata(L, idx, EVENTKEYBOARD_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        event = *static_cast<EventKeyboard **>(luaL_checkudata(L, idx, EVENTKEYBOARD_METATABLE));
     
     return event;
 }
@@ -70,15 +64,9 @@ static int eventkeyboard_key(lua_State* L)
     EventKeyboard* event = NULL;
     int key = 0;
     
-    BREAK_START;
-    
     event = eventkeyboard_check(L, 1);
-    if (event == NULL)
-        break;
-    
-    key = event->key;
-    
-    BREAK_END;
+    if (event != NULL)
+        key = event->key;
     
     lua_pushinteger(L, key);
     
@@ -90,15 +78,9 @@ static int eventkeyboard_action(lua_State* L)
     EventKeyboard* event = NULL;
     int action = 0;
     
-    BREAK_START;
-    
     event = eventkeyboard_check(L, 1);
-    if (event == NULL)
-        break;
-    
-    action = event->action;
-    
-    BREAK_END;
+    if (event != NULL)
+        action = event->action;
     
     lua_pushinteger(L, action);
     

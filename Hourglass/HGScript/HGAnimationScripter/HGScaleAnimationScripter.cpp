@@ -31,14 +31,8 @@ ScaleAnimation* scaleanimation_check(lua_State* L, int idx)
 {
     ScaleAnimation* anim = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    anim = *static_cast<ScaleAnimation **>(luaL_checkudata(L, idx, SCALEANIMATION_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        anim = *static_cast<ScaleAnimation **>(luaL_checkudata(L, idx, SCALEANIMATION_METATABLE));
     
     return anim;
 }
@@ -103,8 +97,6 @@ static int scaleanimation_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     float sx = (float)luaL_checknumber(L, 1);
     float sy = (float)luaL_checknumber(L, 2);
     float d = (float)luaL_checknumber(L, 3);
@@ -112,19 +104,13 @@ static int scaleanimation_new(lua_State* L)
     ScaleAnimation* anim = new ScaleAnimation(sx, sy, d);
     ret = scaleanimation_push(L, anim);
     
-    BREAK_END;
-    
     return ret;
 }
     
 static int scaleanimation_delete(lua_State* L)
 {
-    BREAK_START;
-    
     ScaleAnimation* anim = scaleanimation_check(L, 1);
     delete anim;
-    
-    BREAK_END;
     
     return 0;
 }

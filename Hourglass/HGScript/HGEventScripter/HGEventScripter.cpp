@@ -31,14 +31,8 @@ Event* event_check(lua_State* L, int idx)
 {
     Event* event = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    event = *static_cast<Event **>(lua_touserdata(L, idx));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        event = *static_cast<Event **>(lua_touserdata(L, idx));
     
     return event;
 }
@@ -75,15 +69,9 @@ static int event_event_id(lua_State* L)
 {
     EventID eid = EVENT_WILDCARD;
     
-    BREAK_START;
-    
     Event *event = event_check(L, 1);
-    if (event == NULL)
-        break;
-    
-    eid = event->eventID;
-    
-    BREAK_END;
+    if (event != NULL)
+        eid = event->eventID;
     
     lua_pushinteger(L, (int)eid);
     

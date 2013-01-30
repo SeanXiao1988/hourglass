@@ -29,7 +29,7 @@ void mainloop()
     SCENEMANAGER.getRoot()->addChild(node);
     
     ParticleEmitter* emitter = new ParticleEmitter();
-    emitter->setTotalParticles(200);
+    emitter->setTotalParticles(100);
     emitter->setParticlePositionType(PPositionTypeRelative);
     emitter->setTexture(RENDER.textureLoad("test.png"));
     emitter->setTextureRect(0, 0, 32, 32);

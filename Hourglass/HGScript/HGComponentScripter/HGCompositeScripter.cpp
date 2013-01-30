@@ -31,14 +31,8 @@ IComponent* icomponent_check(lua_State* L, int idx)
 {
     IComponent* comp = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    comp = *static_cast<IComponent **>(lua_touserdata(L, idx));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        comp = *static_cast<IComponent **>(lua_touserdata(L, idx));
     
     return comp;
 }
@@ -75,15 +69,9 @@ static int icomponent_get_component_type_id(lua_State* L)
 {
     ComponentTypeID tid = COMP_NONE;
     
-    BREAK_START;
-    
     IComponent *comp = icomponent_check(L, 1);
-    if (comp == NULL)
-        break;
-    
-    tid = comp->getComponentTypeID();
-    
-    BREAK_END;
+    if (comp != NULL)
+        tid = comp->getComponentTypeID();
     
     lua_pushinteger(L, (int)tid);
     
@@ -94,15 +82,9 @@ static int icomponent_get_component_name(lua_State* L)
 {
     uint32_t name = 0;
     
-    BREAK_START;
-    
     IComponent *comp = icomponent_check(L, 1);
-    if (comp == NULL)
-        break;
-    
-    name = comp->getComponentName();
-    
-    BREAK_END;
+    if (comp != NULL)
+        name = comp->getComponentName();
     
     lua_pushunsigned(L, name);
     
@@ -113,15 +95,9 @@ static int icomponent_get_object_name(lua_State* L)
 {
     uint32_t name = 0;
     
-    BREAK_START;
-    
     IComponent* comp = icomponent_check(L, 1);
-    if (comp == NULL)
-        break;
-    
-    name = comp->getObjectName();
-    
-    BREAK_END;
+    if (comp != NULL)
+        name = comp->getObjectName();
     
     lua_pushunsigned(L, name);
     

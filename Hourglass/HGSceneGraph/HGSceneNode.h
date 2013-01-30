@@ -79,6 +79,10 @@ public:
     const float&    getWorldY() const { return mWorldY; }
     
     int             getLayer();
+    void            increaseLayer();
+    void            decreaseLayer();
+    void            bringToTop();
+    void            sendToBottom();
 
     glm::mat4&      getMatrix() { return mMatrix; };
     

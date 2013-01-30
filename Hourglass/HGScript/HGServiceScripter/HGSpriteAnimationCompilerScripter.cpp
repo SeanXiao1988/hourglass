@@ -25,15 +25,9 @@ HGNAMESPACE_START
     
 static int sprite_animationcompiler_clear(lua_State* L)
 {
-    int ret = 0;
-    
-    BREAK_START;
-    
     SPRITEANIMATIONCOMPILER.clear();
-    
-    BREAK_END;
-    
-    return ret;
+
+    return 0;
 }
 
 static int sprite_animationcompiler_parse_xml(lua_State* L)
@@ -80,11 +74,6 @@ static int sprite_animationcompiler_delete_animation(lua_State* L)
     
 void ScriptRegisterSpriteAnimationCompiler(lua_State* L)
 {
-    BREAK_START;
-    
-    if (L == NULL)
-        break;
-    
     lua_newtable(L);
     
     luaH_setfunc2table(L, "clear", sprite_animationcompiler_clear);
@@ -92,9 +81,6 @@ void ScriptRegisterSpriteAnimationCompiler(lua_State* L)
     luaH_setfunc2table(L, "deleteAnimation", sprite_animationcompiler_delete_animation);
     
     lua_setglobal(L, "SPRITEANIMATIONCOMPILER");
-    
-    BREAK_END;
-
 }
 
 HGNAMESPACE_END

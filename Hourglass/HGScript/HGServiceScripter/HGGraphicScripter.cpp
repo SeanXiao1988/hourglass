@@ -108,20 +108,12 @@ int triple_push2lua(lua_State* L, const Triple* t)
 {
     int ret = 0;
     
-    BREAK_START;
-    
-    BREAK_END;
-    
     return ret;
 }
 
 int rtarget_push2lua(lua_State* L, const rtarget_t* rt)
 {
     int ret = 0;
-    
-    BREAK_START;
-    
-    BREAK_END;
     
     return ret;
 }

@@ -82,15 +82,9 @@ static int mapdata_clear(lua_State* L)
 {
     MapData* data = NULL;
     
-    BREAK_START;
-    
     data = mapdata_check(L, 1);
-    if (data == NULL)
-        break;
-    
-    data->clear();
-    
-    BREAK_END;
+    if (data != NULL)
+        data->clear();
     
     return 0;
 }
@@ -123,19 +117,15 @@ static int mapdata_set_tile(lua_State* L)
 {
     MapData* data = NULL;
     
-    BREAK_START;
-    
     data = mapdata_check(L, 1);
-    if (data == NULL)
-        break;
-    
-    int gridX = (int)luaL_checkinteger(L, 2);
-    int gridY = (int)luaL_checkinteger(L, 3);
-    int type = (int)luaL_checkinteger(L, 4);
-    
-    data->setTile(gridX, gridY, (TileType)type);
-    
-    BREAK_END;
+    if (data != NULL)
+    {
+        int gridX = (int)luaL_checkinteger(L, 2);
+        int gridY = (int)luaL_checkinteger(L, 3);
+        int type = (int)luaL_checkinteger(L, 4);
+        
+        data->setTile(gridX, gridY, (TileType)type);
+    }
     
     return 0;
 }
@@ -145,15 +135,9 @@ static int mapdata_get_width(lua_State* L)
     MapData* data = NULL;
     int width = 0;
     
-    BREAK_START;
-    
     data = mapdata_check(L, 1);
-    if (data == NULL)
-        break;
-    
-    width = data->getWith();
-    
-    BREAK_END;
+    if (data != NULL)
+        width = data->getWith();
     
     lua_pushinteger(L, width);
     
@@ -165,15 +149,9 @@ static int mapdata_get_height(lua_State* L)
     MapData* data = NULL;
     int height = 0;
     
-    BREAK_START;
-    
     data = mapdata_check(L, 1);
-    if (data == NULL)
-        break;
-    
-    height = data->getHeight();
-    
-    BREAK_END;
+    if (data != NULL)
+        height = data->getHeight();
     
     lua_pushinteger(L, height);
     
@@ -185,19 +163,18 @@ static int mapdata_is_solid(lua_State* L)
     MapData* data = NULL;
     bool solid = true;
     
-    BREAK_START;
-    
     data = mapdata_check(L, 1);
-    int x = (int)luaL_checkinteger(L, 2);
-    int y = (int)luaL_checkinteger(L, 3);
-    int special = 0;
-    
-    if (lua_isnumber(L, 4))
-        special = (int)luaL_checkinteger(L, 4);
-    
-    solid = data->isSolid(x, y, special);
-    
-    BREAK_END;
+    if (data != NULL)
+    {
+        int x = (int)luaL_checkinteger(L, 2);
+        int y = (int)luaL_checkinteger(L, 3);
+        int special = 0;
+        
+        if (lua_isnumber(L, 4))
+            special = (int)luaL_checkinteger(L, 4);
+        
+        solid = data->isSolid(x, y, special);
+    }
     
     lua_pushboolean(L, solid?1:0);
     
@@ -236,18 +213,14 @@ static int mapdata_get_tile_type_by_grid_coord(lua_State* L)
     MapData* data = NULL;
     TileType type = Tile_Solid;
     
-    BREAK_START;
-    
     data = mapdata_check(L, 1);
-    if (data == NULL)
-        break;
-    
-    int x = (int)luaL_checkinteger(L, 2);
-    int y = (int)luaL_checkinteger(L, 3);
+    if (data != NULL)
+    {
+        int x = (int)luaL_checkinteger(L, 2);
+        int y = (int)luaL_checkinteger(L, 3);
 
-    type = data->getTileTypeByGridCoord(x, y);
-    
-    BREAK_END;
+        type = data->getTileTypeByGridCoord(x, y);
+    }
     
     lua_pushinteger(L, (int)type);
     
@@ -265,12 +238,8 @@ static int mapdata_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     MapData* data = new MapData;
     ret = mapdata_push(L, data);
-    
-    BREAK_END;
     
     return ret;
 }

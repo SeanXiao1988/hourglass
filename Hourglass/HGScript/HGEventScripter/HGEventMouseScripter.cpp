@@ -31,14 +31,8 @@ EventMouse* eventmouse_check(lua_State* L, int idx)
 {
     EventMouse* event = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    event = *static_cast<EventMouse **>(luaL_checkudata(L, idx, EVENTMOUSE_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        event = *static_cast<EventMouse **>(luaL_checkudata(L, idx, EVENTMOUSE_METATABLE));
     
     return event;
 }
@@ -70,15 +64,9 @@ static int eventmouse_x(lua_State* L)
     EventMouse* event = NULL;
     int x = 0;
     
-    BREAK_START;
-    
     event = eventmouse_check(L, 1);
-    if (event == NULL)
-        break;
-    
-    x = event->x;
-    
-    BREAK_END;
+    if (event != NULL)
+        x = event->x;
     
     lua_pushinteger(L, x);
     
@@ -90,15 +78,9 @@ static int eventmouse_y(lua_State* L)
     EventMouse* event = NULL;
     int y = 0;
     
-    BREAK_START;
-    
     event = eventmouse_check(L, 1);
-    if (event == NULL)
-        break;
-    
-    y = event->y;
-    
-    BREAK_END;
+    if (event != NULL)
+        y = event->y;
     
     lua_pushinteger(L, y);
     
@@ -110,15 +92,9 @@ static int eventmouse_action(lua_State* L)
     EventMouse* event = NULL;
     int action = 0;
     
-    BREAK_START;
-    
     event = eventmouse_check(L, 1);
-    if (event == NULL)
-        break;
-    
-    action = event->action;
-    
-    BREAK_END;
+    if (event != NULL)
+        action = event->action;
     
     lua_pushinteger(L, action);
     

@@ -31,14 +31,8 @@ TranslateAnimation* translateanimation_check(lua_State* L, int idx)
 {
     TranslateAnimation* anim = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    anim = *static_cast<TranslateAnimation **>(luaL_checkudata(L, idx, TRANSLATEANIMATION_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        anim = *static_cast<TranslateAnimation **>(luaL_checkudata(L, idx, TRANSLATEANIMATION_METATABLE));
     
     return anim;
 }
@@ -48,19 +42,15 @@ int translateanimation_push(lua_State* L, TranslateAnimation* anim)
 {
     int ret = 0;
     
-    BREAK_START;
-    
-    if (anim == NULL)
-        break;
-    
-    TranslateAnimation** udata = static_cast<TranslateAnimation **>(lua_newuserdata(L, sizeof(TranslateAnimation *)));
-    *udata = anim;
-    luaL_getmetatable(L, TRANSLATEANIMATION_METATABLE);
-    lua_setmetatable(L, -2);
-    
-    ret = 1;
-    
-    BREAK_END;
+    if (anim != NULL)
+    {
+        TranslateAnimation** udata = static_cast<TranslateAnimation **>(lua_newuserdata(L, sizeof(TranslateAnimation *)));
+        *udata = anim;
+        luaL_getmetatable(L, TRANSLATEANIMATION_METATABLE);
+        lua_setmetatable(L, -2);
+        
+        ret = 1;
+    }
     
     return ret;
 }
@@ -68,33 +58,25 @@ int translateanimation_push(lua_State* L, TranslateAnimation* anim)
 // TranslateAnimation methods
 static int translateanimation_set_translate(lua_State* L)
 {
-    BREAK_START;
-    
     TranslateAnimation* anim = translateanimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    float x = (float)luaL_checknumber(L, 2);
-    float y = (float)luaL_checknumber(L, 3);
-    anim->setTranslate(x, y);
-    
-    BREAK_END;
+    if (anim != NULL)
+    {
+        float x = (float)luaL_checknumber(L, 2);
+        float y = (float)luaL_checknumber(L, 3);
+        anim->setTranslate(x, y);
+    }
     
     return 0;
 }
     
 static int translateanimation_set_duration(lua_State* L)
 {
-    BREAK_START;
-    
     TranslateAnimation* anim = translateanimation_check(L, 1);
-    if (anim == NULL)
-        break;
-    
-    float duration = (float)luaL_checknumber(L, 2);
-    anim->setDuration(duration);
-    
-    BREAK_END;
+    if (anim != NULL)
+    {
+        float duration = (float)luaL_checknumber(L, 2);
+        anim->setDuration(duration);
+    }
     
     return 0;
 }
@@ -103,8 +85,6 @@ static int translateanimation_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     float x = (float)luaL_checknumber(L, 1);
     float y = (float)luaL_checknumber(L, 2);
     float d = (float)luaL_checknumber(L, 3);
@@ -112,19 +92,13 @@ static int translateanimation_new(lua_State* L)
     TranslateAnimation* anim = new TranslateAnimation(x, y, d);
     ret = translateanimation_push(L, anim);
     
-    BREAK_END;
-    
     return ret;
 }
     
 static int translateanimation_delete(lua_State* L)
 {
-    BREAK_START;
-    
     TranslateAnimation* anim = translateanimation_check(L, 1);
     delete anim;
-    
-    BREAK_END;
     
     return 0;
 }

@@ -31,8 +31,6 @@ static int objectmanager_is_object_exists(lua_State* L)
     uint32_t objectNameHash = 0;
     bool exist = false;
     
-    BREAK_START;
-    
     if (lua_isnumber(L, 1))
     {
         objectNameHash = luaL_checkunsigned(L, 1);
@@ -44,8 +42,6 @@ static int objectmanager_is_object_exists(lua_State* L)
     }
     
     exist = OBJECTMANAGER.isObjectExists(objectNameHash);
-
-    BREAK_END;
     
     lua_pushboolean(L, exist?1:0);
 
@@ -124,8 +120,6 @@ static int objectmanager_query_component(lua_State* L)
     int ret = 0;
     uint32_t name = 0;
     ComponentTypeID tid = COMP_NONE;
-    
-    BREAK_START;
 
     if (lua_isnumber(L, 1))
     {
@@ -142,8 +136,6 @@ static int objectmanager_query_component(lua_State* L)
     IComponent* comp = OBJECTMANAGER.queryComponent(name, tid);
     
     ret = icomponent_push(L, comp);
-    
-    BREAK_END;
     
     return ret;
 }

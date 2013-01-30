@@ -34,14 +34,8 @@ QuadEntity* quadentity_check(lua_State* L, int idx)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
-    if (!lua_isuserdata(L, idx))
-        break;
-    
-    entity = *static_cast<QuadEntity **>(luaL_checkudata(L, idx, QUADENTITY_METATABLE));
-    
-    BREAK_END;
+    if (lua_isuserdata(L, idx))
+        entity = *static_cast<QuadEntity **>(luaL_checkudata(L, idx, QUADENTITY_METATABLE));
     
     return entity;
 }
@@ -51,19 +45,15 @@ int quadentity_push(lua_State* L, QuadEntity* entity)
 {
     int ret = 0;
     
-    BREAK_START;
-    
-    if (entity == NULL)
-        break;
-    
-    QuadEntity** udata = static_cast<QuadEntity **>(lua_newuserdata(L, sizeof(QuadEntity*)));
-    *udata = entity;
-    luaL_getmetatable(L, QUADENTITY_METATABLE);
-    lua_setmetatable(L, -2);
-    
-    ret = 1;
-    
-    BREAK_END;
+    if (entity != NULL)
+    {
+        QuadEntity** udata = static_cast<QuadEntity **>(lua_newuserdata(L, sizeof(QuadEntity*)));
+        *udata = entity;
+        luaL_getmetatable(L, QUADENTITY_METATABLE);
+        lua_setmetatable(L, -2);
+        
+        ret = 1;
+    }
     
     return ret;
 }
@@ -255,40 +245,29 @@ static int quadentity_get_quad(lua_State* L)
     int ret = 0;
     QuadEntity* entity = NULL;
 
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    Quad* q = entity->getQuad();
-    quad_push2lua(L, q);
-    ret = 1;
-    
-    BREAK_END;
+    if (entity != NULL)
+    {
+        Quad* q = entity->getQuad();
+        quad_push2lua(L, q);
+        ret = 1;
+    }
     
     return ret;
 }
     
 static int quadentity_get_texture(lua_State* L)
 {
-    int ret = 1;
     GLuint texID = 0;
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    texID = entity->getTexture();
-    
-    BREAK_END;
+    if (entity != NULL)
+        texID = entity->getTexture();
     
     lua_pushunsigned(L, texID);
     
-    return ret;
+    return 1;
 }
     
 static int quadentity_get_texture_rect(lua_State* L)
@@ -300,15 +279,9 @@ static int quadentity_get_texture_rect(lua_State* L)
     float h = 0.0f;
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->getTextureRect(&x, &y, &w, &h);
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->getTextureRect(&x, &y, &w, &h);
     
     lua_pushnumber(L, x);
     lua_pushnumber(L, y);
@@ -320,103 +293,79 @@ static int quadentity_get_texture_rect(lua_State* L)
 
 static int quadentity_get_color(lua_State* L)
 {
-    int ret = 0;
     int vidx = 0;
+    uint32_t color;
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
+    if (entity != NULL)
+    {
+        if (lua_isnumber(L, 2))
+            vidx = (int)luaL_checkinteger(L, 2);
+        
+        color = entity->getColor(vidx);
+
+    }
     
-    if (lua_isnumber(L, 2))
-        vidx = (int)luaL_checkinteger(L, 2);
-    
-    uint32_t color = entity->getColor(vidx);
     lua_pushunsigned(L, color);
-    ret = 1;
     
-    BREAK_END;
-    
-    return ret;
+    return 1;
 }
 
 static int quadentity_get_vertex_alpha(lua_State* L)
 {
-    int ret = 0;
     int vidx = 0;
+    uint8_t alpha = 0;
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
+    if (entity != NULL)
+    {
+        if (lua_isnumber(L, 2))
+            vidx = (int)luaL_checkinteger(L, 2);
+        
+        alpha = entity->getVertexAlpha(vidx);
+    }
     
-    if (lua_isnumber(L, 2))
-        vidx = (int)luaL_checkinteger(L, 2);
-    
-    uint8_t alpha = entity->getVertexAlpha(vidx);
     lua_pushunsigned(L, alpha);
-    ret = 1;
     
-    BREAK_END;
-    
-    return ret;
+    return 1;
 }
 
 static int quadentity_get_blend_mode(lua_State* L)
 {
-    int ret = 0;
+    int blend = BLEND_DEFAULT;
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    int blend = (int)entity->getBlendMode();
+    if (entity != NULL)
+        blend = (int)entity->getBlendMode();
+
     lua_pushinteger(L, blend);
-    ret = 1;
     
-    BREAK_END;
-    
-    return ret;
+    return 1;
 }
 
 static int quadentity_get_center_point(lua_State* L)
 {
-    int ret = 0;
-    QuadEntity* entity = NULL;
-    
-    BREAK_START;
-    
-    entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
     float x = 0.0f;
     float y = 0.0f;
-    entity->getCenterPoint(&x, &y);
     
+    QuadEntity* entity = NULL;
+    
+    entity = quadentity_check(L, 1);
+    if (entity != NULL)
+        entity->getCenterPoint(&x, &y);
+        
     lua_pushnumber(L, x);
     lua_pushnumber(L, y);
-    ret = 2;
     
-    BREAK_END;
-    
-    return ret;
+    return 2;
 }
 
 static int quadentity_init_sprite_animation(lua_State* L)
 {
     int ret = 0;
-    
-    BREAK_START;
-    
-    BREAK_END;
     
     return ret;
 }
@@ -425,15 +374,9 @@ static int quadentity_deinit_sprite_animation(lua_State* L)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->deInitSpriteAnimation();
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->deInitSpriteAnimation();
     
     return 0;
 }
@@ -467,10 +410,6 @@ static int quadentity_set_frame(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
-    BREAK_END;
-    
     return ret;
 }
 
@@ -478,15 +417,9 @@ static int quadentity_next_frame(lua_State* L)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->nextFrame();
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->nextFrame();
     
     return 0;
 }
@@ -495,15 +428,9 @@ static int quadentity_prev_frame(lua_State* L)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->prevFrame();
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->prevFrame();
     
     return 0;
 }
@@ -512,15 +439,9 @@ static int quadentity_stop_sprite_animation(lua_State* L)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->stopSpriteAnimation();
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->stopSpriteAnimation();
     
     return 0;
 }
@@ -529,15 +450,9 @@ static int quadentity_pause_sprite_animation(lua_State* L)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->pauseSpriteAnimation();
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->pauseSpriteAnimation();
     
     return 0;
 }
@@ -546,15 +461,9 @@ static int quadentity_resume_sprite_animation(lua_State* L)
 {
     QuadEntity* entity = NULL;
     
-    BREAK_START;
-    
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    entity->resumeSpriteAnimation();
-    
-    BREAK_END;
+    if (entity != NULL)
+        entity->resumeSpriteAnimation();
     
     return 0;
 }
@@ -563,16 +472,10 @@ static int quadentity_is_sprite_animating(lua_State* L)
 {
     bool isAnimating = false;
     QuadEntity* entity = NULL;
-    
-    BREAK_START;
-    
+
     entity = quadentity_check(L, 1);
-    if (entity == NULL)
-        break;
-    
-    isAnimating = entity->isSpriteAnimating();
-    
-    BREAK_END;
+    if (entity != NULL)
+        isAnimating = entity->isSpriteAnimating();
     
     lua_pushboolean(L, isAnimating?1:0);
     
@@ -583,15 +486,9 @@ static int quadentity_new(lua_State* L)
 {
     int ret = 0;
     
-    BREAK_START;
-    
     QuadEntity* entity = new QuadEntity();
-    if (entity == NULL)
-        break;
-
-    ret = quadentity_push(L, entity);
-    
-    BREAK_END;
+    if (entity != NULL)
+        ret = quadentity_push(L, entity);
     
     return ret;
 }
