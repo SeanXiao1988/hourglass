@@ -50,6 +50,13 @@ int particleemitter_push(lua_State* L, ParticleEmitter* emitter)
     return ret;
 }
 
+// emitter mode
+static emitter_mode_gravity_t emitter_mode_gravity_check(lua_State* L, int idx)
+{
+    emitter_mode_gravity_t mode;
+    return mode;
+}
+
 // member methods
 
 HGNAMESPACE_END

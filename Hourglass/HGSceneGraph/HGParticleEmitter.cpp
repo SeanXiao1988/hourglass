@@ -294,6 +294,16 @@ void ParticleEmitter::setDuration(float duration)
     }
 }
 
+void ParticleEmitter::setEmitterModeGravity(const emitter_mode_gravity_t &mode)
+{
+    memcpy(&mModeGravity, &mode, sizeof(emitter_mode_gravity_t));
+}
+
+void ParticleEmitter::setEmitterModeRadius(const emitter_mode_radius_t &mode)
+{
+    memcpy(&mModeRadius, &mode, sizeof(emitter_mode_radius_t));
+}
+
 // private methods
 void ParticleEmitter::_initParticle(particle_t *p)
 {

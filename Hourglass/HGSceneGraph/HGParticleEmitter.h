@@ -30,9 +30,9 @@ HGNAMESPACE_START
 // https://github.com/cocos2d/cocos2d-x/blob/master/cocos2dx/particle_nodes/CCParticleSystem.h
 
 // Particle
-#define PARTICLE_DURATION_INFINITY          -1
-#define PARTICLE_SIZE_START_EQUALS_END      -1
-#define PARTICLE_RADIUS_START_EQUALS_END    -1
+#define PARTICLE_DURATION_INFINITY          -1.0f
+#define PARTICLE_SIZE_START_EQUALS_END      -1.0f
+#define PARTICLE_RADIUS_START_EQUALS_END    -1.0f
 
 // particle mode
 typedef struct _particle_mode_gravity_t_
@@ -198,6 +198,7 @@ public:
     void            setRadialAccelVar(float var) { mRadialAccelVar = var; }
     const float&    getRadialAccelVar() const { return mRadialAccelVar; }
     
+    void            setEmitterModeGravity(const emitter_mode_gravity_t& mode);
     emitter_mode_gravity_t* getEmitterModeGravity() { return &mModeGravity; }
     
     // mode radius
@@ -219,6 +220,7 @@ public:
     void            setAngularSpeedVar(float var) { mAngularSpeedVar = var; }
     const float&    getAngularSpeedVar() const { return mAngularSpeedVar; }
     
+    void            setEmitterModeRadius(const emitter_mode_radius_t& mode);
     emitter_mode_radius_t* getEmitterModeRadius() { return &mModeRadius; }
     
     // mode both
