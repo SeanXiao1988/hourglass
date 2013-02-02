@@ -276,4 +276,117 @@ static int particleemitter_set_texture(lua_State* L)
     return 0;
 }
 
+static int particleemitter_get_texture(lua_State* L)
+{
+    GLuint tex = 0;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        tex = emitter->getTexture();
+    
+    lua_pushunsigned(L, tex);
+    
+    return 1;
+}
+
+static int particleemitter_set_texture_rect(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        float x = 0.0f;
+        float y = 0.0f;
+        float w = 0.0f;
+        float h = 0.0f;
+        
+        x = (float)luaL_checknumber(L, 2);
+        y = (float)luaL_checknumber(L, 3);
+        w = (float)luaL_checknumber(L, 4);
+        h = (float)luaL_checknumber(L, 5);
+        
+        emitter->setTextureRect(x, y, w, h);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_set_total_particles(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        int32_t totoalParticles = (int32_t)luaL_checkunsigned(L, 2);
+        emitter->setTotalParticles(totoalParticles);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_total_particles(lua_State* L)
+{
+    int32_t totalParticles = 0;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        totalParticles = emitter->getTotalParticles();
+    
+    lua_pushunsigned(L, totalParticles);
+    
+    return 1;
+}
+
+static int particleemitter_get_particle_count(lua_State* L)
+{
+    int32_t particleCount = 0;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        particleCount = emitter->getParticleCount();
+    
+    lua_pushinteger(L, particleCount);
+    
+    return 1;
+}
+
+static int particleemitter_set_emission_rate(lua_State* L)
+{
+    float rate = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        rate = luaL_checknumber(L, 2);
+        emitter->setEmissionRate(rate);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_emission_rate(lua_State* L)
+{
+    float rate = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        rate = emitter->getEmissionRate();
+    
+    lua_pushnumber(L, rate);
+    
+    return 1;
+}
+
+static int particleemitter_set_remove_when_finish(lua_State* L)
+{
+    bool remove = false;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        remove = luaH_checkboolean(L, 2);
+        emitter->setRemoveWhenFinish(remove);
+    }
+    
+    return 0;
+}
+
 HGNAMESPACE_END

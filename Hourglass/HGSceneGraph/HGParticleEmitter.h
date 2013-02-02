@@ -143,6 +143,7 @@ public:
     void            setTextureRect(float x, float y, float w, float h);
     
     void            setTotalParticles(int32_t total);
+    const int32_t&  getTotalParticles() const { return mTotalParticles; }
     
     const int32_t&  getParticleCount() const { return mParticleCount; }
     
