@@ -23,6 +23,7 @@
 
 #include "HGScriptDef.h"
 #include "HGGraphicsDef.h"
+#include "HGGeometry.hpp"
 
 HGNAMESPACE_START
     
@@ -31,6 +32,9 @@ extern int quad_push2lua(lua_State* L, const Quad* q);
 
 extern color4f_t color4_check(lua_State* L, int idx);
 extern int color4f_push(lua_State* L, color4f_t* color);
+
+extern Point2f point2f_check(lua_State* L, int idx);
+extern int point2f_push(lua_State* L, Point2f* point);
     
 extern void ScriptRegisterGraphic(lua_State* L);
     

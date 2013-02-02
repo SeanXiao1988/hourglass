@@ -51,6 +51,8 @@ function create_1st_obj()
     local sid = SOUNDMANAGER.loadOggFile("audio.ogg", true)
     SOUNDMANAGER.soundPlay(sid)
     --]]
+    
+    RENDER.drawText({gravity = {x = 1, y = 2}, a = 1, b = 2, c = 3})
 end
 
 function input_callback(listener, event)

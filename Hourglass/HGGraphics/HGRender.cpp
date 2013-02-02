@@ -778,7 +778,7 @@ GLuint Render::shaderLoad(const char* filename, bool activate)
 	delete vs;
 	delete fs;
 
-	return newShader->program;
+	return (newShader == NULL) ? 0 : newShader->program;
 }
 
 void Render::shaderFree(GLuint shader)

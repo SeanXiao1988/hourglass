@@ -358,6 +358,16 @@ static int render_draw_vertex_list(lua_State* L)
 
 static int render_draw_text(lua_State* L)
 {
+    if (lua_istable(L, 1))
+    {
+        lua_pushstring(L, "gravity");
+        lua_gettable(L, 1);
+        lua_pushstring(L, "x");
+        lua_gettable(L, 2);
+        lua_stack_dump(L);
+        float x = luaL_checknumber(L, -1);
+        printf("%.3f\n", x);
+    }
     return 0;
 }
 

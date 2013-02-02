@@ -78,7 +78,6 @@ static ov_callbacks OV_CALLBACKS_DEFAULT = {
   (int (*)(void *))                             fclose,
   (long (*)(void *))                            ftell
 };
- */
 
 static ov_callbacks OV_CALLBACKS_NOCLOSE = {
   (size_t (*)(void *, size_t, size_t, void *))  fread,
@@ -100,6 +99,7 @@ static ov_callbacks OV_CALLBACKS_STREAMONLY_NOCLOSE = {
   (int (*)(void *))                             NULL,
   (long (*)(void *))                            NULL
 };
+*/
 
 #endif
 

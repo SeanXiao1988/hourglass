@@ -294,7 +294,7 @@ static int quadentity_get_texture_rect(lua_State* L)
 static int quadentity_get_color(lua_State* L)
 {
     int vidx = 0;
-    uint32_t color;
+    uint32_t color = 0;
     QuadEntity* entity = NULL;
     
     entity = quadentity_check(L, 1);

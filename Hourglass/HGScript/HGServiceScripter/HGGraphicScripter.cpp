@@ -159,6 +159,44 @@ color4f_t color4_check(lua_State* L, int idx)
     return color4f(r, g, b, a);
 }
 
+Point2f point2f_check(lua_State* L, int idx)
+{
+    float x = 0.0f;
+    float y = 0.0f;
+    
+    if (lua_istable(L, idx))
+    {
+        lua_pushstring(L, "x");
+        lua_gettable(L, idx);
+        x = luaL_checknumber(L, -1);
+        
+        lua_pushstring(L, "y");
+        lua_gettable(L, idx);
+        y = luaL_checknumber(L, -1);
+    }
+    
+    Point2f point(x, y);
+    return point;
+}
+
+int point2f_push(lua_State* L, Point2f* point)
+{
+    if (point == NULL)
+        return 0;
+    
+    lua_newtable(L);
+    
+    lua_pushstring(L, "x");
+    lua_pushnumber(L, point->x);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "y");
+    lua_pushnumber(L, point->y);
+    lua_settable(L, -3);
+    
+    return 1;
+}
+
 void ScriptRegisterGraphic(lua_State* L)
 {
     lua_pushinteger(L, BLEND_COLORADD);

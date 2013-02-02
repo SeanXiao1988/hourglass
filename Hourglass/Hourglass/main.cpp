@@ -69,7 +69,7 @@ void mainloop()
         if (fpstimer > 1.0f)
         {
             fpstimer = 0.0f;
-            printf("%.1f\n", RENDER.getFPS());
+            //printf("%.1f\n", RENDER.getFPS());
         }
         
         int mx = 0;
