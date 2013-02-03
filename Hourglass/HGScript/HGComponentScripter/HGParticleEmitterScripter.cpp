@@ -22,6 +22,7 @@
 #include "HGParticleEmitter.h"
 #include "HGCompositeScripter.h"
 #include "HGGraphicScripter.h"
+#include "HGISceneEntityScripter.h"
 
 #define PARTICLEEMITTER_METATABLE   "ParticleEmitterMetatable"
 #define PARTICLEEMITTER_LUA_NAME    "ParticleEmitter"
@@ -387,6 +388,1088 @@ static int particleemitter_set_remove_when_finish(lua_State* L)
     }
     
     return 0;
+}
+
+static int particleemitter_is_remove_when_finish(lua_State* L)
+{
+    bool remove = false;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        remove = emitter->isRemoveWhenFinish();
+    
+    luaH_pushboolean(L, remove);
+    
+    return 1;
+}
+
+static int particleemitter_set_duration(lua_State* L)
+{
+    float duration = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        duration = (float)luaL_checknumber(L, 2);
+        emitter->setDuration(duration);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_duration(lua_State* L)
+{
+    float duration = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        duration = emitter->getDuration();
+    
+    lua_pushnumber(L, duration);
+    
+    return 1;
+}
+
+static int particleemitter_set_lifetime(lua_State* L)
+{
+    float lifeTime = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        lifeTime = (float)luaL_checknumber(L, 2);
+        emitter->setLifeTime(lifeTime);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_lifetime(lua_State* L)
+{
+    float lifeTime = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        lifeTime = emitter->getLifeTime();
+    
+    lua_pushnumber(L, lifeTime);
+    
+    return 1;
+}
+
+static int particleemitter_set_lifetime_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setLifeTimeVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_lifetime_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getLifeTimeVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_duration_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setDurationVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_duration_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getDurationVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_angle(lua_State* L)
+{
+    float angle = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        angle = luaL_checknumber(L, 2);
+        emitter->setAngle(angle);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_angle(lua_State* L)
+{
+    float angle = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        angle = emitter->getAngle();
+    
+    lua_pushnumber(L, angle);
+    
+    return 1;
+}
+
+static int particleemitter_set_angle_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = luaL_checknumber(L, 2);
+        emitter->setAngleVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_angle_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getAngleVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_position_var(lua_State* L)
+{
+    Point2f var(0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = point2f_check(L, 2);
+        emitter->setPositionVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_position_var(lua_State* L)
+{
+    Point2f var(0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getPositionVar();
+
+    point2f_push(L, &var);
+    
+    return 1;
+}
+
+static int particleemitter_set_active(lua_State* L)
+{
+    bool active = false;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        active = luaH_checkboolean(L, 2);
+        emitter->setActive(active);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_is_active(lua_State* L)
+{
+    bool active = false;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        active = emitter->isActive();
+    
+    luaH_pushboolean(L, active);
+    
+    return 1;
+}
+
+static int particleemitter_set_gravity(lua_State* L)
+{
+    Point2f gravity(0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        gravity = point2f_check(L, 2);
+        emitter->setGravity(gravity);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_gravity(lua_State* L)
+{
+    Point2f gravity(0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        gravity = emitter->getGravity();
+    
+    point2f_push(L, &gravity);
+    
+    return 0;
+}
+
+static int particleemitter_set_speed(lua_State* L)
+{
+    float speed = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        speed = (float)luaL_checknumber(L, 2);
+        emitter->setSpeed(speed);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_speed(lua_State* L)
+{
+    float speed = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        speed = emitter->getSpeed();
+    
+    lua_pushnumber(L, speed);
+    
+    return 1;
+}
+
+static int particleemitter_set_speed_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setSpeedVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_speed_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getSpeedVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_tangential_accel(lua_State* L)
+{
+    float accel = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        accel = (float)luaL_checknumber(L, 2);
+        emitter->setTangentialAccel(accel);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_tangential_accel(lua_State* L)
+{
+    float accel = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        accel = emitter->getTangentialAccel();
+    
+    lua_pushnumber(L, accel);
+    
+    return 1;
+}
+
+static int particleemitter_set_tangential_accel_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setTangentialAccelVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_tangential_accel_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getTangentialAccelVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_radial_accel(lua_State* L)
+{
+    float accel = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        accel = (float)luaL_checknumber(L, 2);
+        emitter->setRadialAccel(accel);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_radial_accel(lua_State* L)
+{
+    float accel = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        accel = emitter->getRadialAccel();
+    
+    lua_pushnumber(L, accel);
+    
+    return 1;
+}
+
+static int particleemitter_set_radial_accel_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setRadialAccelVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_radial_accel_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getRadialAccelVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_emitter_mode_gravity(lua_State* L)
+{
+    emitter_mode_gravity_t mode;
+    memset(&mode, 0, sizeof(emitter_mode_gravity_t));
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        mode = emitter_mode_gravity_check(L, 2);
+        emitter->setEmitterModeGravity(mode);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_emitter_mode_gravity(lua_State* L)
+{
+    emitter_mode_gravity_t* mode = NULL;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        mode = emitter->getEmitterModeGravity();
+    
+    emitter_mode_gravity_push(L, mode);
+    
+    return 1;
+}
+
+static int particleemitter_set_emitter_mode_radius(lua_State* L)
+{
+    emitter_mode_radius_t mode;
+    memset(&mode, 0, sizeof(emitter_mode_radius_t));
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        mode = emitter_mode_radius_check(L, 2);
+        emitter->setEmitterModeRadius(mode);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_emitter_mode_radius(lua_State* L)
+{
+    emitter_mode_radius_t* mode = NULL;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        mode = emitter->getEmitterModeRadius();
+    
+    emitter_mode_radius_push(L, mode);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_radius(lua_State* L)
+{
+    float radius = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        radius = (float)luaL_checknumber(L, 2);
+        emitter->setStartRadius(radius);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_radius(lua_State* L)
+{
+    float radius = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        radius = emitter->getStartRadius();
+    
+    lua_pushnumber(L, radius);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_radius_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setStartRadiusVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_radius_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getStartRadiusVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_radius(lua_State* L)
+{
+    float radius = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        radius = (float)luaL_checknumber(L, 2);
+        emitter->setEndRadius(radius);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_radius(lua_State* L)
+{
+    float radius = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        radius = emitter->getEndRadius();
+    
+    lua_pushnumber(L, radius);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_radius_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setEndRadiusVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_radius_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getEndRadiusVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_angular_speed(lua_State* L)
+{
+    float speed = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        speed = (float)luaL_checknumber(L, 2);
+        emitter->setAngularSpeed(speed);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_angular_speed(lua_State* L)
+{
+    float speed = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        speed = emitter->getAngularSpeed();
+    
+    lua_pushnumber(L, speed);
+    
+    return 1;
+}
+
+static int particleemitter_set_angular_speed_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setAngularSpeedVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_angular_speed_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getAngularSpeedVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_size(lua_State* L)
+{
+    float size = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        size = (float)luaL_checknumber(L, 2);
+        emitter->setStartSize(size);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_size(lua_State* L)
+{
+    float size = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        size = emitter->getStartSize();
+    
+    lua_pushnumber(L, size);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_size_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setStartSizeVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_size_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getStartSizeVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_size(lua_State* L)
+{
+    float size = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        size = (float)luaL_checknumber(L, 2);
+        emitter->setEndSize(size);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_size(lua_State* L)
+{
+    float size = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        size = emitter->getEndSize();
+    
+    lua_pushnumber(L, size);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_size_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setEndSizeVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_size_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getEndSizeVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_color(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        color4f_t color = color4_check(L, 2);
+        emitter->setStartColor(color);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_color(lua_State* L)
+{
+    color4f_t color = color4f(0.0f, 0.0f, 0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        color = emitter->getStartColor();
+    
+    color4f_push(L, &color);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_color_var(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        color4f_t var = color4_check(L, 2);
+        emitter->setStartColorVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_color_var(lua_State* L)
+{
+    color4f_t var = color4f(0.0f, 0.0f, 0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getStartColorVar();
+    
+    color4f_push(L, &var);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_color(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        color4f_t color = color4_check(L, 2);
+        emitter->setEndColor(color);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_color(lua_State* L)
+{
+    color4f_t color = color4f(0.0f, 0.0f, 0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        color = emitter->getEndColor();
+    
+    color4f_push(L, &color);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_color_var(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        color4f_t var = color4_check(L, 2);
+        emitter->setEndColorVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_color_var(lua_State* L)
+{
+    color4f_t var = color4f(0.0f, 0.0f, 0.0f, 0.0f);
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getEndColorVar();
+    
+    color4f_push(L, &var);
+
+    return 1;
+}
+
+static int particleemitter_set_start_spin(lua_State* L)
+{
+    float spin = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        spin = (float)luaL_checknumber(L, 2);
+        emitter->setStartSpin(spin);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_spin(lua_State* L)
+{
+    float spin = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        spin = emitter->getStartSpin();
+    
+    lua_pushnumber(L, spin);
+    
+    return 1;
+}
+
+static int particleemitter_set_start_spin_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setStartSpinVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_start_spin_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getStartSpinVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_spin(lua_State* L)
+{
+    float spin = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        spin = (float)luaL_checknumber(L, 2);
+        emitter->setEndSpin(spin);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_spin(lua_State* L)
+{
+    float spin = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        spin = emitter->getEndSpin();
+    
+    lua_pushnumber(L, spin);
+    
+    return 1;
+}
+
+static int particleemitter_set_end_spin_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+    {
+        var = (float)luaL_checknumber(L, 2);
+        emitter->setEndSpinVar(var);
+    }
+    
+    return 0;
+}
+
+static int particleemitter_get_end_spin_var(lua_State* L)
+{
+    float var = 0.0f;
+    
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    if (emitter != NULL)
+        var = emitter->getEndSpinVar();
+    
+    lua_pushnumber(L, var);
+    
+    return 1;
+}
+
+// new, delete
+static int particleemitter_new(lua_State* L)
+{
+    int ret = 0;
+    ParticleEmitter* emitter = new ParticleEmitter();
+    if (emitter != NULL)
+        ret = particleemitter_push(L, emitter);
+    
+    return ret;
+}
+
+static int particleemitter_delete(lua_State* L)
+{
+    ParticleEmitter* emitter = particleemitter_check(L, 1);
+    delete emitter;
+    
+    return 0;
+}
+
+luaL_Reg sParticleEmitterRegs[] =
+{
+    { "fireEmitter",                particleemitter_fire_emitter },
+    { "stopEmitter",                particleemitter_stop_emitter },
+    { "setEmitterMode",             particleemitter_set_emitter_mode },
+    { "getEmitterMode",             particleemitter_get_emitter_mode },
+    { "setParticlePositionType",    particleemitter_set_particle_position_type },
+    { "getParticlePositionType",    particleemitter_get_particle_position_type },
+    { "setTexture",                 particleemitter_set_texture },
+    { "getTexture",                 particleemitter_get_texture },
+    { "setTextureRect",             particleemitter_set_texture_rect },
+    { "setTotalParticles",          particleemitter_set_total_particles },
+    { "getTotalParticles",          particleemitter_get_total_particles },
+    { "getParticleCount",           particleemitter_get_particle_count },
+    { "setEmissionRate",            particleemitter_set_emission_rate },
+    { "getEmissionRate",            particleemitter_get_emission_rate },
+    { "setRemoveWhen_finish",       particleemitter_set_remove_when_finish },
+    { "isRemoveWhen_finish",        particleemitter_is_remove_when_finish },
+    { "setDuration",                particleemitter_set_duration },
+    { "getDuration",                particleemitter_get_duration },
+    { "setLifetime",                particleemitter_set_lifetime },
+    { "getLifetime",                particleemitter_get_lifetime },
+    { "setLifetimeVar",             particleemitter_set_lifetime_var },
+    { "getLifetimeVar",             particleemitter_get_lifetime_var },
+    { "setDurationVar",             particleemitter_set_duration_var },
+    { "getDurationVar",             particleemitter_get_duration_var },
+    { "setAngle",                   particleemitter_set_angle },
+    { "getAngle",                   particleemitter_get_angle },
+    { "setAngleVar",                particleemitter_set_angle_var },
+    { "getAngleVar",                particleemitter_get_angle_var },
+    { "setPositionVar",             particleemitter_set_position_var },
+    { "getPositionVar",             particleemitter_get_position_var },
+    { "setActive",                  particleemitter_set_active },
+    { "isActive",                   particleemitter_is_active },
+    { "setGravity",                 particleemitter_set_gravity },
+    { "getGravity",                 particleemitter_set_gravity },
+    { "setSpeed",                   particleemitter_set_speed },
+    { "getSpeed",                   particleemitter_get_speed },
+    { "setSpeedVar",                particleemitter_set_speed_var },
+    { "getSpeedVar",                particleemitter_get_speed_var },
+    { "setTangentialAccel",         particleemitter_set_tangential_accel },
+    { "getTangentialAccel",         particleemitter_get_tangential_accel },
+    { "setTangentialAccelVar",      particleemitter_set_tangential_accel_var },
+    { "getTangentialAccelVar",      particleemitter_get_tangential_accel_var },
+    { "setRadialAccel",             particleemitter_set_radial_accel },
+    { "getRadialAccel",             particleemitter_get_radial_accel },
+    { "setRadialAccel_var",         particleemitter_set_radial_accel_var },
+    { "getRadialAccel_var",         particleemitter_get_radial_accel_var },
+    { "setEmitterModeGravity",      particleemitter_set_emitter_mode_gravity },
+    { "getEmitterModeGravity",      particleemitter_get_emitter_mode_gravity },
+    { "setEmitterModeRadius",       particleemitter_set_emitter_mode_radius },
+    { "getEmitterModeRadius",       particleemitter_get_emitter_mode_radius },
+    { "setStartRadius",             particleemitter_set_start_radius },
+    { "getStartRadius",             particleemitter_get_start_radius },
+    { "setStartRadiusVar",          particleemitter_set_start_radius_var },
+    { "getStartRadiusVar",          particleemitter_get_start_radius_var },
+    { "setEndRadius",               particleemitter_set_end_radius },
+    { "getEndRadius",               particleemitter_get_end_radius },
+    { "setEndRadiusVar",            particleemitter_set_end_radius_var },
+    { "getEndRadiusVar",            particleemitter_get_end_radius_var },
+    { "setAngularSpeed",            particleemitter_set_angular_speed },
+    { "getAngularSpeed",            particleemitter_get_angular_speed },
+    { "setAngularSpeedVar",         particleemitter_set_angular_speed_var },
+    { "getAngularSpeedVar",         particleemitter_get_angular_speed_var },
+    { "setStartSize",               particleemitter_set_start_size },
+    { "getStartSize",               particleemitter_get_start_size },
+    { "setStartSizeVar",            particleemitter_set_start_size_var },
+    { "getStartSizeVar",            particleemitter_get_start_size_var },
+    { "setEndSize",                 particleemitter_set_end_size },
+    { "getEndSize",                 particleemitter_get_end_size },
+    { "setEndSizeVar",              particleemitter_set_end_size_var },
+    { "getEndSizeVar",              particleemitter_get_end_size_var },
+    { "setStartColor",              particleemitter_set_start_color },
+    { "getStartColor",              particleemitter_get_start_color },
+    { "setStartColorVar",           particleemitter_set_start_color_var },
+    { "getStartColorVar",           particleemitter_get_start_color_var },
+    { "setEndColor",                particleemitter_set_end_color },
+    { "getEndColor",                particleemitter_get_end_color },
+    { "setEndColorVar",             particleemitter_set_end_color_var },
+    { "getEndColorVar",             particleemitter_get_end_color_var },
+    { "setStartSpin",               particleemitter_set_start_spin },
+    { "getStartSpin",               particleemitter_get_start_spin },
+    { "setStartSpinVar",            particleemitter_set_start_spin_var },
+    { "getStartSpinVar",            particleemitter_get_start_spin_var },
+    { "setEndSpin",                 particleemitter_set_end_spin },
+    { "getEndSpin",                 particleemitter_get_end_spin },
+    { "setEndSpinVar",              particleemitter_set_end_spin_var },
+    { "getEndSpinVar",              particleemitter_get_end_spin_var },
+    { NULL, NULL }
+};
+
+void ScriptRegisterParticleEmitter(lua_State* L)
+{
+    luaL_newmetatable(L, PARTICLEEMITTER_METATABLE);
+    lua_pushstring(L, "__index");
+    lua_pushvalue(L, -2);
+    luaL_setfuncs(L, sIComponentRegs, 0);
+    luaL_setfuncs(L, sISceneEntityRegs, 0);
+    luaL_setfuncs(L, sParticleEmitterRegs, 0);
+    
+    lua_pop(L, 1);
+    
+    // register ParticleEmitter
+    lua_newtable(L);
+    
+    luaH_setfunc2table(L, "new", particleemitter_new);
+    luaH_setfunc2table(L, "delete", particleemitter_delete);
+    
+    lua_setglobal(L, PARTICLEEMITTER_LUA_NAME);
 }
 
 HGNAMESPACE_END

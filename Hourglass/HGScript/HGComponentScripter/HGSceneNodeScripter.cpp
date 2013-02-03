@@ -450,7 +450,7 @@ static int scenenode_get_visibility(lua_State* L)
     if (node != NULL)
         visibility = node->getVisibility();
     
-    lua_pushboolean(L, (visibility?1:0));
+    luaH_pushboolean(L, visibility);
     
     return 1;
 }

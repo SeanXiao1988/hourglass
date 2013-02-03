@@ -29,6 +29,8 @@
 // http://cfc.kizzx2.com/index.php/binding-c-classes-to-lua-a-step-by-step-example-for-beginners/
 
 HGNAMESPACE_START
+
+#define luaH_pushboolean(L, b) lua_pushboolean(L, (b)?1:0)
     
 static void lua_stack_dump(lua_State *L)
 {

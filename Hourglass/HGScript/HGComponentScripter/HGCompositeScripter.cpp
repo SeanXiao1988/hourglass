@@ -23,8 +23,10 @@
 #include "HGIComponent.h"
 
 #include "HGInputListenerScripter.h"
+#include "HGISceneEntityScripter.h"
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
+#include "HGParticleEmitterScripter.h"
 
 HGNAMESPACE_START
     
@@ -148,6 +150,7 @@ void ScriptRegisterComposite(lua_State* L)
     // register IComponents
     ScriptRegisterInputListener(L);
     ScriptRegisterSceneNode(L);
+    ScriptRegisterISceneEntity(L);
     ScriptRegisterQuadEntity(L);
 }
 

@@ -73,7 +73,7 @@ static int mapdata_load_from_file(lua_State* L)
     
     BREAK_END;
     
-    lua_pushboolean(L, loaded?1:0);
+    luaH_pushboolean(L, loaded);
     
     return 1;
 }
@@ -108,7 +108,7 @@ static int mapdata_save_to_file(lua_State* L)
     
     BREAK_END;
     
-    lua_pushboolean(L, saved?1:0);
+    luaH_pushboolean(L, saved);
     
     return 1;
 }
@@ -176,7 +176,7 @@ static int mapdata_is_solid(lua_State* L)
         solid = data->isSolid(x, y, special);
     }
     
-    lua_pushboolean(L, solid?1:0);
+    luaH_pushboolean(L, solid);
     
     return 1;
 }

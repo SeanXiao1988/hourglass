@@ -401,7 +401,7 @@ static int quadentity_play_sprite_animation(lua_State* L)
     
     BREAK_END;
     
-    lua_pushboolean(L, success?1:0);
+    luaH_pushboolean(L, success);
     
     return 1;
 }
@@ -477,7 +477,7 @@ static int quadentity_is_sprite_animating(lua_State* L)
     if (entity != NULL)
         isAnimating = entity->isSpriteAnimating();
     
-    lua_pushboolean(L, isAnimating?1:0);
+    luaH_pushboolean(L, isAnimating);
     
     return 1;
 }

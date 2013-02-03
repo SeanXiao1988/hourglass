@@ -89,7 +89,7 @@ static int ianimation_is_finished(lua_State* L)
     if (anim != NULL)
         isFinished = anim->isFinished;
     
-    lua_pushboolean(L, isFinished?1:0);
+    luaH_pushboolean(L, isFinished);
     
     return ret;
 }
@@ -104,7 +104,7 @@ static int ianimation_is_animating(lua_State* L)
     if (anim != NULL)
         isAnimating = anim->isAnimating;
     
-    lua_pushboolean(L, isAnimating?1:0);
+    luaH_pushboolean(L, isAnimating);
     
     return ret;
 }

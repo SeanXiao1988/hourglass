@@ -43,7 +43,7 @@ static int objectmanager_is_object_exists(lua_State* L)
     
     exist = OBJECTMANAGER.isObjectExists(objectNameHash);
     
-    lua_pushboolean(L, exist?1:0);
+    luaH_pushboolean(L, exist);
 
     return ret;
 }
@@ -166,7 +166,7 @@ static int objectmanager_add_component_to_object(lua_State* L)
     
     BREAK_END;
     
-    lua_pushboolean(L, added?1:0);
+    luaH_pushboolean(L, added);
     
     return 1;
 }
