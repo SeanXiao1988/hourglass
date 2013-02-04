@@ -363,7 +363,7 @@ static int particleemitter_set_emission_rate(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        rate = luaL_checknumber(L, 2);
+        rate = (float)luaL_checknumber(L, 2);
         emitter->setEmissionRate(rate);
     }
     
@@ -525,7 +525,7 @@ static int particleemitter_set_angle(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        angle = luaL_checknumber(L, 2);
+        angle = (float)luaL_checknumber(L, 2);
         emitter->setAngle(angle);
     }
     
@@ -552,7 +552,7 @@ static int particleemitter_set_angle_var(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        var = luaL_checknumber(L, 2);
+        var = (float)luaL_checknumber(L, 2);
         emitter->setAngleVar(var);
     }
     
