@@ -25,6 +25,7 @@
 #include "HGInputListener.h"
 #include "HGSceneNode.h"
 #include "HGQuadEntity.h"
+#include "HGParticleEmitter.h"
 #include "HGMapData.h"
 
 #include "HGHash.h"
@@ -184,8 +185,9 @@ void ObjectManager::registerBuiltinComponents()
     SceneNode::RegisterComponentType();
     QuadEntity::RegisterComponentType();
     MapData::RegisterComponentType();
+    ParticleEmitter::RegisterComponentType();
 }
-    
+
 ComponentTypeID ObjectManager::getComponentTypeByName(uint32_t name)
 {
     ComponentTypeID ret = COMP_NONE;

@@ -516,6 +516,8 @@ void SceneNode::attachEntity(ISceneEntity* entity)
 
 void SceneNode::detachEntity()
 {
+    // FIXME: if entity delete first by OBJMGR
+    // these code will cause BAD_ACCESS_ERROR
 	if (mEntity != NULL)
 	{
 		mEntity->mSceneNode = NULL;

@@ -83,6 +83,13 @@ ParticleEmitter::~ParticleEmitter()
         delete[] mParticles;
     
     mParticles = NULL;
+    
+    if (mQuad.tex != 0)
+    {
+        RENDER.textureFree(mQuad.tex);
+    }
+    
+    detachFromSceneNode();
 }
 
 // composite

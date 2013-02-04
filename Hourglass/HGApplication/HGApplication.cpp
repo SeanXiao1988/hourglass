@@ -31,7 +31,6 @@ void Application::initialize()
     SCENEMANAGER.initialize();
     INPUTMANAGER.initialize();
     CONSOLE.initialize();
-    //AUDIOMANAGER.initialize();
     SOUNDMANAGER.initialize();
 
     
@@ -47,7 +46,6 @@ void Application::deInitialize()
     SCRIPTMANAGER.engineInvocation(HG_SCRIPT_DEINIT);
     
     SOUNDMANAGER.deInitialize();
-    //AUDIOMANAGER.deInitialize();
     CONSOLE.deInitialze();
     INPUTMANAGER.deInitialize();
     SCENEMANAGER.deInitialize();

@@ -1,5 +1,5 @@
 function hg_init()
-
+    print("hg_init")
     APPLICATION.setTitle("hourglass v0.1")
 
     RENDER.setClearColor(0x808080FF)
@@ -8,51 +8,60 @@ function hg_init()
 
 end
 
+function create_pe()
+    print("create_pe")
+    emitter = ParticleEmitter.new()
+    emitter:setTotalParticles(100)
+    emitter:setTexture(RENDER.textureLoad("test.png"))
+    emitter:setTextureRect(0, 0, 32, 32)
+    emitter:setEmitterMode(EMITTER_GRAVITY)
+
+    local mode = emitter:getEmitterModeGravity()
+    mode.gravity = {x = 0.0, y = 0.0}
+    mode.speed = 60
+    mode.speedVar = 20
+    emitter:setEmitterModeGravity(mode)
+    
+    emitter:setAngle(90)
+    emitter:setAngleVar(10)
+    emitter:setPositionVar({x=20.0, y=20.0})
+    emitter:setLifeTime(3)
+    emitter:setLifeTimeVar(0.25)
+    emitter:setStartSize(64)
+    emitter:setStartSizeVar(10)
+
+    emitter:setStartColor({r = 0.76, g = 0.25, b = 0.12, a = 1.0})
+    emitter:setEndColor({r = 1.0, g = 1.0, b = 1.0, a = 0.7})
+
+    emitter:setDuration(-1.0)
+    emitter:setEmissionRate(20)
+    
+    return emitter
+end
+
 function create_1st_obj()
+    print("create_1st_obj")
 
     local objName = "1stObject"
     sceneNode = SCENEMANAGER.createNode("1stObject")
     sceneNode:setXY(100, 100)
     SCENEMANAGER.getRoot():addChild(sceneNode)
     OBJECTMANAGER.addComponentToObject(objName, sceneNode);
-
-    entity = QuadEntity.new()
-    entity:setTexture(RENDER.textureLoad("test2.png"))
-    entity:setTextureRect(0, 0, 512, 512)
-    entity:setWidth(256)
-    entity:setHeight(256)
-    sceneNode:attachEntity(entity)
     
-    sceneNode:setVisibility(false)
+    pe = create_pe()
+    sceneNode:attachEntity(pe)
+    pe:fireEmitter()
+    OBJECTMANAGER.addComponentToObject(objName, pe)
     
     sceneNode:setXY(128, 128)
-    
+    --[[
     local rotAnim = RotationAnimation.new(360, 3)
     rotAnim:setType(ANIMATION_TYPE_RESET);
     sceneNode:addAnimation(rotAnim)
-
+    --]]
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
-
-    --[[
-    backgroundNode = SCENEMANAGER.createNode("background")
-    SCENEMANAGER.getRoot():addChild(backgroundNode)
-    backgroundNode:setXY(400, 300)
-
-    backgroundEntity = QuadEntity.new()
-    backgroundEntity:setTexture(RENDER.textureLoad("nebula.png"))
-    backgroundEntity:setTextureRect(0, 0, 800, 600)
-    backgroundNode:attachEntity(backgroundEntity)
-    
-    OBJECTMANAGER.addComponentToObject("background", backgroundNode);
-    --]]
-    --[[
-    local sid = SOUNDMANAGER.loadOggFile("audio.ogg", true)
-    SOUNDMANAGER.soundPlay(sid)
-    --]]
-    
-    RENDER.drawText({gravity = {x = 1, y = 2}, a = 1, b = 2, c = 3})
 end
 
 function input_callback(listener, event)
@@ -80,8 +89,7 @@ end
 
 
 function hg_deinit()
-    QuadEntity.delete(entity)
-    QuadEntity.delete(backgroundEntity)
+    print("hg_deinit")
 end
 
 function print_t(t)

@@ -62,30 +62,37 @@ static emitter_mode_gravity_t emitter_mode_gravity_check(lua_State* L, int idx)
         lua_pushstring(L, "gravity");
         lua_gettable(L, idx);
         mode.gravity = point2f_check(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "speed");
         lua_gettable(L, idx);
         mode.speed = (float)luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "speedVar");
         lua_gettable(L, idx);
         mode.speedVar = (float)luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "tangentialAccel");
         lua_gettable(L, idx);
         mode.tangentialAccel = (float)luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "tangentialAccelVar");
         lua_gettable(L, idx);
         mode.tangentialAccelVar = (float)luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "radialAccel");
         lua_gettable(L, idx);
         mode.radialAccel = (float)luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "radialAccelVar");
         lua_gettable(L, idx);
         mode.radialAccelVar = (float)luaL_checknumber(L, -1);
+        lua_pop(L, 1);
     }
     
     return mode;
@@ -572,7 +579,7 @@ static int particleemitter_set_position_var(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        var = point2f_check(L, 2);
+        var = point2f_check(L, -1);
         emitter->setPositionVar(var);
     }
     
@@ -626,7 +633,7 @@ static int particleemitter_set_gravity(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        gravity = point2f_check(L, 2);
+        gravity = point2f_check(L, -1);
         emitter->setGravity(gravity);
     }
     
@@ -1139,7 +1146,7 @@ static int particleemitter_set_start_color(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        color4f_t color = color4_check(L, 2);
+        color4f_t color = color4_check(L, -1);
         emitter->setStartColor(color);
     }
     
@@ -1164,7 +1171,7 @@ static int particleemitter_set_start_color_var(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        color4f_t var = color4_check(L, 2);
+        color4f_t var = color4_check(L, -1);
         emitter->setStartColorVar(var);
     }
     
@@ -1189,7 +1196,7 @@ static int particleemitter_set_end_color(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        color4f_t color = color4_check(L, 2);
+        color4f_t color = color4_check(L, -1);
         emitter->setEndColor(color);
     }
     
@@ -1214,7 +1221,7 @@ static int particleemitter_set_end_color_var(lua_State* L)
     ParticleEmitter* emitter = particleemitter_check(L, 1);
     if (emitter != NULL)
     {
-        color4f_t var = color4_check(L, 2);
+        color4f_t var = color4_check(L, -1);
         emitter->setEndColorVar(var);
     }
     
@@ -1381,10 +1388,10 @@ luaL_Reg sParticleEmitterRegs[] =
     { "isRemoveWhen_finish",        particleemitter_is_remove_when_finish },
     { "setDuration",                particleemitter_set_duration },
     { "getDuration",                particleemitter_get_duration },
-    { "setLifetime",                particleemitter_set_lifetime },
-    { "getLifetime",                particleemitter_get_lifetime },
-    { "setLifetimeVar",             particleemitter_set_lifetime_var },
-    { "getLifetimeVar",             particleemitter_get_lifetime_var },
+    { "setLifeTime",                particleemitter_set_lifetime },
+    { "getLifeTime",                particleemitter_get_lifetime },
+    { "setLifeTimeVar",             particleemitter_set_lifetime_var },
+    { "getLifeTimeVar",             particleemitter_get_lifetime_var },
     { "setDurationVar",             particleemitter_set_duration_var },
     { "getDurationVar",             particleemitter_get_duration_var },
     { "setAngle",                   particleemitter_set_angle },
@@ -1457,6 +1464,7 @@ void ScriptRegisterParticleEmitter(lua_State* L)
     luaL_newmetatable(L, PARTICLEEMITTER_METATABLE);
     lua_pushstring(L, "__index");
     lua_pushvalue(L, -2);
+    lua_settable(L, -3);
     luaL_setfuncs(L, sIComponentRegs, 0);
     luaL_setfuncs(L, sISceneEntityRegs, 0);
     luaL_setfuncs(L, sParticleEmitterRegs, 0);
@@ -1470,6 +1478,22 @@ void ScriptRegisterParticleEmitter(lua_State* L)
     luaH_setfunc2table(L, "delete", particleemitter_delete);
     
     lua_setglobal(L, PARTICLEEMITTER_LUA_NAME);
+    
+    // constants
+    lua_pushinteger(L, EMITTER_GRAVITY);
+    lua_setglobal(L, "EMITTER_GRAVITY");
+    
+    lua_pushinteger(L, EMITTER_RADIUS);
+    lua_setglobal(L, "EMITTER_RADIUS");
+    
+    lua_pushinteger(L, PPositionTypeFree);
+    lua_setglobal(L, "PPositionTypeFree");
+    
+    lua_pushinteger(L, PPositionTypeGroup);
+    lua_setglobal(L, "PPositionTypeGroup");
+    
+    lua_pushinteger(L, PPositionTypeRelative);
+    lua_setglobal(L, "PPositionTypeRelative");
 }
 
 HGNAMESPACE_END

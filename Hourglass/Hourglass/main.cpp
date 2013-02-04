@@ -25,34 +25,6 @@ void mainloop()
     quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
     quad_set_coord(&q, 0, 0, 800, 600);
     
-    SceneNode* node = SCENEMANAGER.createNode("2ndNode");//("test");
-    SCENEMANAGER.getRoot()->addChild(node);
-    node->setXY(400, 300);
-    
-    ParticleEmitter* emitter = new ParticleEmitter();
-    emitter->setTotalParticles(100);
-    emitter->setTexture(RENDER.textureLoad("test.png"));
-    emitter->setTextureRect(0, 0, 32, 32);
-    
-    emitter->setEmitterMode(EMITTER_GRAVITY);
-    emitter->getEmitterModeGravity()->gravity = Point2f(0.0f, 0.0f);
-    emitter->getEmitterModeGravity()->speed = 60;
-    emitter->getEmitterModeGravity()->speedVar = 20;
-    emitter->setAngle(90);
-    emitter->setAngleVar(10);
-    emitter->setPositionVar(Point2f(20.0f, 20.0f));
-    emitter->setLifeTime(3.0f);
-    emitter->setLifeTimeVar(0.25f);
-    emitter->setStartSize(64);
-    emitter->setStartSizeVar(10);
-    emitter->setStartColor(color4f(0.76f, 0.25f, 0.12f, 1.0f));
-    emitter->setEndColor(color4f(1.0f, 1.0f, 1.0f, 0.7f));
-    
-    emitter->setDuration(-1.0f);
-    emitter->setEmissionRate(20.0f);
-    node->attachEntity(emitter);
-    emitter->fireEmitter();
-    
     while (running)
     {
         realTime = glfwGetTime();
@@ -71,12 +43,6 @@ void mainloop()
             fpstimer = 0.0f;
             //printf("%.1f\n", RENDER.getFPS());
         }
-        
-        int mx = 0;
-        int my = 0;
-        glfwGetMousePos(&mx, &my);
-        emitter->getEmitterModeGravity()->gravity.x = (float)mx - 400;
-        emitter->getEmitterModeGravity()->gravity.y = (float)my - 300;
         
         //*/ render normal stuff
         RENDER.beginScene(0);
@@ -101,9 +67,6 @@ void mainloop()
         //*/
         running = !glfwGetKey(GLFW_KEY_ESC) && glfwGetWindowParam(GLFW_OPENED);
     }
-    
-    delete emitter;
-    delete node;
 }
 
 #if PLATFORM == PLATFORM_WINDOWS

@@ -144,6 +144,9 @@ void ScriptRegisterComposite(lua_State* L)
     lua_pushinteger(L, COMP_INPUT_LISTENER);
     lua_setglobal(L, "COMP_INPUT_LISTENER");
     
+    lua_pushinteger(L, COMP_PARTICLE_EMITTER);
+    lua_setglobal(L, "COMP_PARTICLE_EMITTER");
+    
     lua_pushinteger(L, COMP_COUNT);
     lua_setglobal(L, "COMP_COUNT");
     
@@ -152,6 +155,7 @@ void ScriptRegisterComposite(lua_State* L)
     ScriptRegisterSceneNode(L);
     ScriptRegisterISceneEntity(L);
     ScriptRegisterQuadEntity(L);
+    ScriptRegisterParticleEmitter(L);
 }
 
 HGNAMESPACE_END

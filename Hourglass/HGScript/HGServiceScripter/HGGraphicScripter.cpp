@@ -141,20 +141,24 @@ color4f_t color4_check(lua_State* L, int idx)
     if (lua_istable(L, idx))
     {
         lua_pushstring(L, "r");
-        lua_gettable(L, idx);
+        lua_gettable(L, idx-1);
         r = luaL_checknumber(L, -1);
+        lua_pop(L, 1);
 
         lua_pushstring(L, "g");
-        lua_gettable(L, idx);
+        lua_gettable(L, idx-1);
         g = luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "b");
-        lua_gettable(L, idx);
+        lua_gettable(L, idx-1);
         b = luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "a");
-        lua_gettable(L, idx);
+        lua_gettable(L, idx-1);
         a = luaL_checknumber(L, -1);
+        lua_pop(L, 1);
     }
     return color4f(r, g, b, a);
 }
@@ -167,12 +171,14 @@ Point2f point2f_check(lua_State* L, int idx)
     if (lua_istable(L, idx))
     {
         lua_pushstring(L, "x");
-        lua_gettable(L, idx);
+        lua_gettable(L, idx-1);
         x = luaL_checknumber(L, -1);
+        lua_pop(L, 1);
         
         lua_pushstring(L, "y");
-        lua_gettable(L, idx);
+        lua_gettable(L, idx-1);
         y = luaL_checknumber(L, -1);
+        lua_pop(L, 1);
     }
     
     Point2f point(x, y);

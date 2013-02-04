@@ -120,7 +120,7 @@ public:
 	virtual void    render();
     
     // Composite
-    static void             RegisterComponentType(void);
+    static void             RegisterComponentType(void) {}
     virtual void            deInitialize();
     virtual EventResult     handleEvent(const Event& event);
     virtual ComponentTypeID getComponentTypeID() { return COMP_PARTICLE_EMITTER; };
