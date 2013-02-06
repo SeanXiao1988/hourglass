@@ -208,6 +208,12 @@ void ScriptRegisterIAnimation(lua_State* L)
     lua_pushinteger(L, ANIMATION_TYPE_RESET);
     lua_setglobal(L, "ANIMATION_TYPE_RESET");
     
+    lua_pushinteger(L, ANIMATION_STAGE_FORWARD);
+    lua_setglobal(L, "ANIMATION_STAGE_FORWARD");
+    
+    lua_pushinteger(L, ANIMATION_STAGE_REVERSE);
+    lua_setglobal(L, "ANIMATION_STAGE_REVERSE");
+    
     // register animations
     ScriptRegisterAlphaAnimation(L);
     ScriptRegisterRotationAnimation(L);
