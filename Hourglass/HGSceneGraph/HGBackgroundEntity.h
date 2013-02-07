@@ -33,7 +33,7 @@ typedef enum
     BACKGROUND_DEFAULT = 0,
     BACKGROUND_STATIC,
     BACKGROUND_REPEAT
-}BACKGROUND_TYPE;
+}BackgroundType;
 
 class BackgroundEntity : public ISceneEntity
 {
@@ -45,7 +45,7 @@ public:
     virtual void    render();
     
     // methods
-    void            setType(BACKGROUND_TYPE type);
+    void            setType(BackgroundType type);
     void            setTexture(GLuint tex);
     void            setTextureRect(float x, float y, float w, float h);
     void            setVertexAlpha(uint8_t alpha, int i=-1);
