@@ -70,6 +70,7 @@
 #include "HGPhysicsManager.h"
 
 // Scene Graph
+#include "HGBackgroundEntity.h"
 #include "HGISceneEntity.h"
 #include "HGQuadEntity.h"
 #include "HGParticleEmitter.h"

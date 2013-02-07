@@ -25,6 +25,13 @@ void mainloop()
     quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
     quad_set_coord(&q, 0, 0, 800, 600);
     
+    q.tex = RENDER.textureLoad("test2.png");
+    quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
+    q.v[1].u = 3.0f;
+    q.v[2].u = 3.0f;
+    q.v[2].v = 3.0f;
+    q.v[3].v = 3.0f;
+    
     while (running)
     {
         realTime = glfwGetTime();
@@ -51,6 +58,8 @@ void mainloop()
         SCENEMANAGER.render();
         
         CONSOLE.render(0.016f);
+        
+        RENDER.renderQuad(&q);
         
         RENDER.endScene();
         //*/
