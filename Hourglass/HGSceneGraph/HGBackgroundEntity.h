@@ -46,6 +46,10 @@ public:
     
     // methods
     void            setType(BackgroundType type);
+    void            setWidth(float w) { mWidth = w; }
+    void            setHeight(float h) { mHeight = h; }
+    const float&    getWidth() const { return mWidth; }
+    const float&    getHeight() const { return mHeight; }
     void            setTexture(GLuint tex);
     void            setTextureRect(float x, float y, float w, float h);
     void            setVertexAlpha(uint8_t alpha, int i=-1);
@@ -58,9 +62,12 @@ public:
     virtual uint32_t        getComponentName();
     
 private:
-    Quad    mQuad;
-    float   mWidth;
-    float   mHeight;
+    BackgroundType  mType;
+    Quad            mQuad;
+    float           mWidth;
+    float           mHeight;
+    float           mTexWidth;
+    float           mTexHeight;
 };
 
 HGNAMESPACE_END

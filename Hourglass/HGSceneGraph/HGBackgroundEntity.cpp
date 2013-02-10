@@ -28,15 +28,19 @@
 HGNAMESPACE_START
 
 BackgroundEntity::BackgroundEntity()
-    : mWidth(0.0f)
+    : mType(BACKGROUND_DEFAULT)
+    , mWidth(0.0f)
     , mHeight(0.0f)
+    , mTexWidth(0.0f)
+    , mTexHeight(0.0f)
 {
     quad_set_default(&mQuad);
+    quad_set_coord(&mQuad, 0.0f, 0.0f, (float)RENDER.getWidth(), (float)RENDER.getHeight());
 }
 
 BackgroundEntity::~BackgroundEntity()
 {
-    
+    RENDER.textureFree(mQuad.tex);
 }
 
 void BackgroundEntity::update(const float dt)
@@ -47,42 +51,27 @@ void BackgroundEntity::update(const float dt)
 void BackgroundEntity::render()
 {
     if (mSceneNode == NULL)
-		return;
-    
-    setVertexAlpha((uint8_t)mSceneNode->getRenderAlpha());
-    
-    glm::mat4& mat = mSceneNode->getMatrix();
-    glm::vec4 result = mat * glm::vec4(-mWidth/2.0f, -mHeight/2.0f, 1.0f, 1.0f);
-    mQuad.v[0].x = result[0];
-    mQuad.v[0].y = result[1];
-    //mQuad.v[0].z = result[2];
-    
-    result =  mat * glm::vec4(mWidth/2.0f, -mHeight/2.0f, 1.0f, 1.0f);
-    mQuad.v[1].x = result[0];
-    mQuad.v[1].y = result[1];
-    //mQuad.v[1].z = result[2];
-    
-    result = mat * glm::vec4(mWidth/2.0f, mHeight/2.0f, 1.0f, 1.0f);
-    mQuad.v[2].x = result[0];
-    mQuad.v[2].y = result[1];
-    //mQuad.v[2].z = result[2];
-    
-    result = mat * glm::vec4(-mWidth/2.0f, mHeight/2.0f, 1.0f, 1.0f);
-    mQuad.v[3].x = result[0];
-    mQuad.v[3].y = result[1];
-    //mQuad.v[3].z = result[2];
     
     RENDER.renderQuad(&mQuad);
+}
+
+void BackgroundEntity::setType(BackgroundType type)
+{
 }
 
 void BackgroundEntity::setTexture(GLuint tex)
 {
     mQuad.tex = tex;
+    if (tex != 0)
+    {
+        mTexWidth = RENDER.textureGetWidth(tex);
+        mTexHeight = RENDER.textureGetHeight(tex);
+    }
 }
 
 void BackgroundEntity::setTextureRect(float x, float y, float w, float h)
 {
-    
+    quad_set_texture_rect(&mQuad, x, y, w, h, mTexWidth, mTexHeight);
 }
 
 void BackgroundEntity::setVertexAlpha(uint8_t alpha, int i)
