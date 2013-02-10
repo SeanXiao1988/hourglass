@@ -76,14 +76,16 @@ function input_callback(listener, event)
             end
         end
     elseif event:eventID() == EVENT_MOUSE then
-        --if event:action() == INPUT_MOUSE_LEFT_RELEASE then
-            local node = OBJECTMANAGER.queryComponent(listener:getObjectName(), COMP_SCENE_NODE)
-            local x = event:x()
-            local y = event:y()
-            if node ~= nil then
-                node:setXY(x, y)
-            end
-        --end
+        local x = event:x()
+        local y = event:y()
+        --[[
+        local node = OBJECTMANAGER.queryComponent(listener:getObjectName(), COMP_SCENE_NODE)
+        if node ~= nil then
+            node:setXY(x, y)
+        end
+        --]]
+        local node = SCENEMANAGER.getRoot()
+        node:setXY(-x, -y)
     end
 end
 

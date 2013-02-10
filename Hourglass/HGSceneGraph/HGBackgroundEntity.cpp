@@ -27,6 +27,8 @@
 
 HGNAMESPACE_START
 
+// TODO: add background animation, parallel scroll etc.
+
 BackgroundEntity::BackgroundEntity()
     : mType(BACKGROUND_DEFAULT)
     , mWidth(0.0f)
@@ -45,18 +47,70 @@ BackgroundEntity::~BackgroundEntity()
 
 void BackgroundEntity::update(const float dt)
 {
+    float parentX = -mSceneNode->getX();
+    float parentY = -mSceneNode->getY();
+    float screenW = (float)RENDER.getWidth();
+    float screenH = (float)RENDER.getHeight();
+    float u0 = 0.0f;
+    float v0 = 0.0f;
+    float u1 = 0.0f;
+    float v1 = 0.0f;
+
+    u0 = parentX / mWidth;
+    v0 = parentY / mHeight;
+    u1 = (parentX+screenW)/mWidth;
+    v1 = (parentY + screenH)/mHeight;
     
+    switch (mType)
+    {
+        case BACKGROUND_DEFAULT:
+        {
+            if (u1 > 1.0f)
+            {
+                u0 = (mWidth - screenW)/mWidth;
+                u1 = 1.0f;
+            }
+            if (v1 > 1.0f)
+            {
+                v0 = (mHeight - screenH)/mHeight;
+                v1 = 1.0f;
+            }
+            break;
+        }
+            
+        case BACKGROUND_REPEAT:
+            break;
+            
+        case BACKGROUND_STATIC:
+        {
+            u0 = 0.0f;
+            v0 = 0.0f;
+            u1 = 1.0f;
+            v1 = 1.0f;
+            break;
+        }
+        default:
+            break;
+    }
+    
+    mQuad.v[0].u = u0;
+    mQuad.v[0].v = v0;
+    mQuad.v[1].u = u1;
+    mQuad.v[1].v = v0;
+    mQuad.v[2].u = u1;
+    mQuad.v[2].v = v1;
+    mQuad.v[3].u = u0;
+    mQuad.v[3].v = v1;
 }
 
 void BackgroundEntity::render()
 {
-    if (mSceneNode == NULL)
-    
     RENDER.renderQuad(&mQuad);
 }
 
 void BackgroundEntity::setType(BackgroundType type)
 {
+    mType = type;
 }
 
 void BackgroundEntity::setTexture(GLuint tex)

@@ -25,12 +25,15 @@ void mainloop()
     quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
     quad_set_coord(&q, 0, 0, 800, 600);
     
-    q.tex = RENDER.textureLoad("test2.png");
-    quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
-    q.v[1].u = 3.0f;
-    q.v[2].u = 3.0f;
-    q.v[2].v = 3.0f;
-    q.v[3].v = 3.0f;
+
+    BackgroundEntity *entity = new BackgroundEntity();
+    entity->setTexture(RENDER.textureLoad("test2.png"));
+    entity->setTextureRect(0, 0, 512, 512);
+    entity->setWidth(1024);
+    entity->setHeight(1024);
+    entity->setType(BACKGROUND_REPEAT);
+    
+    SCENEMANAGER.getRoot()->attachEntity(entity);
     
     while (running)
     {
@@ -58,8 +61,6 @@ void mainloop()
         SCENEMANAGER.render();
         
         CONSOLE.render(0.016f);
-        
-        RENDER.renderQuad(&q);
         
         RENDER.endScene();
         //*/
