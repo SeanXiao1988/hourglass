@@ -31,6 +31,10 @@ HGNAMESPACE_START
 
 BackgroundEntity::BackgroundEntity()
     : mType(BACKGROUND_DEFAULT)
+    , mScrollSpeedX(0.0f)
+    , mScrollSpeedY(0.0f)
+    , mCurrentScrollX(0.0f)
+    , mCurrentScrollY(0.0f)
     , mWidth(0.0f)
     , mHeight(0.0f)
     , mTexWidth(0.0f)
@@ -87,6 +91,17 @@ void BackgroundEntity::update(const float dt)
             v0 = 0.0f;
             u1 = 1.0f;
             v1 = 1.0f;
+            break;
+        }
+            
+        case BACKGROUND_SCROLL:
+        {
+            mCurrentScrollX += mScrollSpeedX * dt;
+            mCurrentScrollY += mScrollSpeedY * dt;
+            u0 = mCurrentScrollX / mWidth;
+            v0 = mCurrentScrollY / mHeight;
+            u1 = (mCurrentScrollX + screenW)/mWidth;
+            v1 = (mCurrentScrollY + screenH)/mHeight;
             break;
         }
         default:

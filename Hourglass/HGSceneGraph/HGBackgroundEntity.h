@@ -32,7 +32,8 @@ typedef enum
 {
     BACKGROUND_DEFAULT = 0,
     BACKGROUND_STATIC,
-    BACKGROUND_REPEAT
+    BACKGROUND_REPEAT,
+    BACKGROUND_SCROLL
 }BackgroundType;
 
 class BackgroundEntity : public ISceneEntity
@@ -48,11 +49,16 @@ public:
     void            setType(BackgroundType type);
     void            setWidth(float w) { mWidth = w; }
     void            setHeight(float h) { mHeight = h; }
-    const float&    getWidth() const { return mWidth; }
-    const float&    getHeight() const { return mHeight; }
     void            setTexture(GLuint tex);
     void            setTextureRect(float x, float y, float w, float h);
     void            setVertexAlpha(uint8_t alpha, int i=-1);
+    void            setScrollSpeedX(float sx) { mScrollSpeedX = sx; }
+    void            setScrollSpeedY(float sy) { mScrollSpeedY = sy; }
+    
+    const float&    getWidth() const { return mWidth; }
+    const float&    getHeight() const { return mHeight; }
+    const float&    getScrollSpeedX() const { return mScrollSpeedX; }
+    const float&    getScrollSpeedY() const { return mScrollSpeedY; }
     
     // Composite
     static void             RegisterComponentType(void);
@@ -64,6 +70,10 @@ public:
 private:
     BackgroundType  mType;
     Quad            mQuad;
+    float           mScrollSpeedX;
+    float           mScrollSpeedY;
+    float           mCurrentScrollX;
+    float           mCurrentScrollY;
     float           mWidth;
     float           mHeight;
     float           mTexWidth;

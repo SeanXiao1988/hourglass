@@ -31,7 +31,8 @@ void mainloop()
     entity->setTextureRect(0, 0, 512, 512);
     entity->setWidth(1024);
     entity->setHeight(1024);
-    entity->setType(BACKGROUND_REPEAT);
+    entity->setType(BACKGROUND_SCROLL);
+    entity->setScrollSpeedX(500.0f);
     
     SCENEMANAGER.getRoot()->attachEntity(entity);
     
