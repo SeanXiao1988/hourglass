@@ -24,6 +24,7 @@
 
 #include "HGInputListenerScripter.h"
 #include "HGISceneEntityScripter.h"
+#include "HGBackgroundEntityScripter.h"
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 #include "HGParticleEmitterScripter.h"
@@ -57,6 +58,15 @@ int icomponent_push(lua_State* L, IComponent* comp)
         
         case COMP_SCENE_NODE:
             ret = scenenode_push(L, (SceneNode *)comp);
+            break;
+        
+        case COMP_PARTICLE_EMITTER:
+            ret = particleemitter_push(L, (ParticleEmitter *)comp);
+            break;
+        
+        case COMP_INPUT_LISTENER:
+            ret = inputlistener_push(L, (InputListener *)comp);
+            break;
             
         default:
             break;
@@ -147,6 +157,9 @@ void ScriptRegisterComposite(lua_State* L)
     lua_pushinteger(L, COMP_PARTICLE_EMITTER);
     lua_setglobal(L, "COMP_PARTICLE_EMITTER");
     
+    lua_pushinteger(L, COMP_BACKGROUND_ENTITY);
+    lua_setglobal(L, "COMP_BACKGROUND_ENTITY");
+    
     lua_pushinteger(L, COMP_COUNT);
     lua_setglobal(L, "COMP_COUNT");
     
@@ -154,6 +167,7 @@ void ScriptRegisterComposite(lua_State* L)
     ScriptRegisterInputListener(L);
     ScriptRegisterSceneNode(L);
     ScriptRegisterISceneEntity(L);
+    ScriptRegisterBackgroundEntity(L);
     ScriptRegisterQuadEntity(L);
     ScriptRegisterParticleEmitter(L);
 }

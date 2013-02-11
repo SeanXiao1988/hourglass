@@ -62,6 +62,17 @@ function create_1st_obj()
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
+    
+    backg = BackgroundEntity.new()
+    backg:setTexture(RENDER.textureLoad("test2.png"))
+    backg:setTextureRect(0, 0, 512, 512)
+    backg:setWidth(1024)
+    backg:setHeight(1024)
+    backg:setType(BACKGROUND_SCROLL)
+    backg:setScrollSpeedX(500)
+    backg:setScrollSpeedY(300)
+    SCENEMANAGER.getRoot():attachEntity(backg)
+
 end
 
 function input_callback(listener, event)
@@ -91,6 +102,7 @@ end
 
 
 function hg_deinit()
+    BackgroundEntity.delete(backg)
     print("hg_deinit")
 end
 

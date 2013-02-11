@@ -19,6 +19,7 @@
 		2E83B3F8167F7C2200F860F6 /* libftgl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E83B3F7167F7C2200F860F6 /* libftgl.a */; };
 		2E87B97916A43AB100F44F81 /* HGRotationAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97716A43AB100F44F81 /* HGRotationAnimation.cpp */; };
 		2E87B98016A4429E00F44F81 /* HGRotationAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */; };
+		2EA6D12F16C9443000115005 /* HGBackgroundEntityScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EA6D12D16C9443000115005 /* HGBackgroundEntityScripter.cpp */; };
 		2EE2A14216A821B9005AF2A8 /* HGInputListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2A14016A821B9005AF2A8 /* HGInputListener.cpp */; };
 		2EE2A14516A826EB005AF2A8 /* HGInputListenerScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE2A14316A826EB005AF2A8 /* HGInputListenerScripter.cpp */; };
 		2EE40C9716A2AEE40033DFE2 /* HGIAnimationScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE40C7916A2AEE40033DFE2 /* HGIAnimationScripter.cpp */; };
@@ -196,6 +197,8 @@
 		2E87B97816A43AB100F44F81 /* HGRotationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGRotationAnimation.h; sourceTree = "<group>"; };
 		2E87B97E16A4429E00F44F81 /* HGRotationAnimationScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGRotationAnimationScripter.cpp; sourceTree = "<group>"; };
 		2E87B97F16A4429E00F44F81 /* HGRotationAnimationScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGRotationAnimationScripter.h; sourceTree = "<group>"; };
+		2EA6D12D16C9443000115005 /* HGBackgroundEntityScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGBackgroundEntityScripter.cpp; sourceTree = "<group>"; };
+		2EA6D12E16C9443000115005 /* HGBackgroundEntityScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGBackgroundEntityScripter.h; sourceTree = "<group>"; };
 		2EAAA423161E907F0079ECAC /* HGMapDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGMapDef.h; sourceTree = "<group>"; };
 		2ECF1D57166276C600073108 /* HGRectangle.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HGRectangle.hpp; sourceTree = "<group>"; };
 		2EE2A14016A821B9005AF2A8 /* HGInputListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGInputListener.cpp; sourceTree = "<group>"; };
@@ -850,6 +853,8 @@
 		2EE40C7B16A2AEE40033DFE2 /* HGComponentScripter */ = {
 			isa = PBXGroup;
 			children = (
+				2EA6D12E16C9443000115005 /* HGBackgroundEntityScripter.h */,
+				2EA6D12D16C9443000115005 /* HGBackgroundEntityScripter.cpp */,
 				2EE40C7D16A2AEE40033DFE2 /* HGCompositeScripter.h */,
 				2EE40C7C16A2AEE40033DFE2 /* HGCompositeScripter.cpp */,
 				2EE2A14416A826EB005AF2A8 /* HGInputListenerScripter.h */,
@@ -1809,6 +1814,7 @@
 				D4B8246016B6564A00618E27 /* HGParticleEmitter.cpp in Sources */,
 				D4CF8D8D16B9038E00113E70 /* HGParticleEmitterScripter.cpp in Sources */,
 				2E417C1D16C3F35D0024E6BA /* HGBackgroundEntity.cpp in Sources */,
+				2EA6D12F16C9443000115005 /* HGBackgroundEntityScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

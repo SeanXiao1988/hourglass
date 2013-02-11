@@ -25,17 +25,6 @@ void mainloop()
     quad_set_texture_rect(&q, 0, 0, 800, 600, 800, 600);
     quad_set_coord(&q, 0, 0, 800, 600);
     
-
-    BackgroundEntity *entity = new BackgroundEntity();
-    entity->setTexture(RENDER.textureLoad("test2.png"));
-    entity->setTextureRect(0, 0, 512, 512);
-    entity->setWidth(1024);
-    entity->setHeight(1024);
-    entity->setType(BACKGROUND_SCROLL);
-    entity->setScrollSpeedX(500.0f);
-    
-    SCENEMANAGER.getRoot()->attachEntity(entity);
-    
     while (running)
     {
         realTime = glfwGetTime();
