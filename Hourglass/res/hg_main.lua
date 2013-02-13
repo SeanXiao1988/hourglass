@@ -5,7 +5,6 @@ function hg_init()
     RENDER.setClearColor(0x808080FF)
     
     create_1st_obj()
-
 end
 
 function create_pe()
@@ -72,6 +71,7 @@ function create_1st_obj()
     backg:setScrollSpeedX(500)
     backg:setScrollSpeedY(300)
     SCENEMANAGER.getRoot():attachEntity(backg)
+    OBJECTMANAGER.addComponentToObject(objName, backg)
 
 end
 
@@ -102,7 +102,6 @@ end
 
 
 function hg_deinit()
-    BackgroundEntity.delete(backg)
     print("hg_deinit")
 end
 

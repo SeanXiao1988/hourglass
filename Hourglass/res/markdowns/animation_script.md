@@ -7,6 +7,8 @@ Hourglass
 
 
 ##IAnimation  
+**描述**  
+IAnimation为余下动画类的接口类  
 
 ###类方法
 ####无
