@@ -47,7 +47,7 @@ public:
 	void                    debug_draw();
     void                    update(double dt);
     
-    const PHYSICAL_OBJ_ID&  getPhsyicalObjID() const { return mPhyObjID; }
+    const PhysicalMode&     getPhsyicalObjID() const { return mPhyObjID; }
     
     // Composite
     static void             RegisterComponentType(void);
@@ -70,7 +70,7 @@ private:
     void _applyOffset(int x, int y);
     
     // object to object collision
-    PHYSICAL_OBJ_ID mPhyObjID;
+    PhysicalMode    mPhyObjID;
     CollisionRects  mCollisionRects;
     
     

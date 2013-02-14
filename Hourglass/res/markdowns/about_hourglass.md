@@ -73,4 +73,22 @@ Human.delete(ming)
 
 ####方法
 **方法(method)**和**函数(function)**的区别在于方法要与类关联在一起  
-我们前面已经见过lua的一个函数print
+我们前面已经见过lua的一个函数print，其调用方法也十分简单
+<pre>
+print("hello world")
+</pre>
+但是方法却有一些区别，举个例子
+<pre>
+--将窗口名称设置为"我的第一个游戏"
+APPLICATION.setTitle("我的第一个游戏")
+</pre>
+在这里APPLICATION是一个类，setTitle是这个类的一个方法，称为**类方法**  
+整个过程可以理解为“调用APPLICATION”的“setTitle”方法，参数为字符串：“我的第一个游戏”  
+如果这有点令人困惑，那么还是使用之前的例子  
+<pre>
+--小明诞生了
+ming = Human.new()
+--小明的宠物猫，汤姆诞生了
+tom = Cat.new()
+</pre>
+可以看到，Human和Cat都有一个方法叫new，功能是创建该类的一个实例

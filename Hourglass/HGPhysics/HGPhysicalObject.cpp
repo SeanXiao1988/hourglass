@@ -62,7 +62,7 @@ PhysicalObject::PhysicalObject()
     , mIsDoubleJumpEnable(true)
     , mDoubleJumpCount(1)
     , mJumpEnergy(8)
-    , mPhyObjID(PHYSICAL_UNKNOWN)
+    , mPhyObjID(PHYSICAL_MODE_DEFAULT)
 {
     mPosition.setValue(0, 0);
     mColliderLower.setValue(0, 0);

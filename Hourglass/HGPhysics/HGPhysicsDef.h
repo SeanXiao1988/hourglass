@@ -58,12 +58,10 @@ typedef struct
 
 typedef enum
 {
-    PHYSICAL_UNKNOWN = 0,
-    PHYSICAL_PLAYER,
-    PHYSICAL_ENEMY,
-    
-    PHYSICAL_COUNT
-}PHYSICAL_OBJ_ID;
+    PHYSICAL_MODE_DEFAULT = 0,
+    PHYSICAL_MODE_,
+    PHYSICAL_MODE_COUNT
+}PhysicalMode;
     
 typedef std::vector<Recti> CollisionRects;
 
