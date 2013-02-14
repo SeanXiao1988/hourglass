@@ -58,8 +58,8 @@ typedef struct
 
 typedef enum
 {
-    PHYSICAL_MODE_DEFAULT = 0,
-    PHYSICAL_MODE_,
+    PHYSICAL_MODE_DEFAULT = 0,  // test ground and obj-obj
+    PHYSICAL_MODE_FLOAT,        // test obj-obj only
     PHYSICAL_MODE_COUNT
 }PhysicalMode;
     
