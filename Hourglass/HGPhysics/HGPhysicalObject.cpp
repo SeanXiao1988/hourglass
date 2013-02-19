@@ -741,7 +741,11 @@ void PhysicalObject::update(double dt)
 	// Apply velocity.
     Vector2Di disp;
     disp.setValue((int)mVelocity.x, (int)mVelocity.y);
-    applyDisplacement(disp);
+    
+    if (mPhysicalMode == PHYSICAL_MODE_DEFAULT)
+    {
+        applyDisplacement(disp);
+    }
     
 	// If the collision stopped us from moving, reset the velocity to zero.
     
