@@ -276,6 +276,14 @@
 				Name="SceneGraph"
 				>
 				<File
+					RelativePath="..\HGSceneGraph\HGBackgroundEntity.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\HGSceneGraph\HGBackgroundEntity.h"
+					>
+				</File>
+				<File
 					RelativePath="..\HGSceneGraph\HGISceneEntity.cpp"
 					>
 				</File>
@@ -542,6 +550,14 @@
 				<Filter
 					Name="Components"
 					>
+					<File
+						RelativePath="..\HGScript\HGComponentScripter\HGBackgroundEntityScripter.cpp"
+						>
+					</File>
+					<File
+						RelativePath="..\HGScript\HGComponentScripter\HGBackgroundEntityScripter.h"
+						>
+					</File>
 					<File
 						RelativePath="..\HGScript\HGComponentScripter\HGCompositeScripter.cpp"
 						>
@@ -1248,11 +1264,11 @@
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtc\noise.hpp"
+					RelativePath="..\ThirdParty\glm\gtx\noise.hpp"
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtx\noise.hpp"
+					RelativePath="..\ThirdParty\glm\gtc\noise.hpp"
 					>
 				</File>
 				<File
@@ -1352,19 +1368,19 @@
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtx\quaternion.inl"
-					>
-				</File>
-				<File
 					RelativePath="..\ThirdParty\glm\gtc\quaternion.inl"
 					>
 				</File>
 				<File
-					RelativePath="..\ThirdParty\glm\gtc\random.hpp"
+					RelativePath="..\ThirdParty\glm\gtx\quaternion.inl"
 					>
 				</File>
 				<File
 					RelativePath="..\ThirdParty\glm\gtx\random.hpp"
+					>
+				</File>
+				<File
+					RelativePath="..\ThirdParty\glm\gtc\random.hpp"
 					>
 				</File>
 				<File

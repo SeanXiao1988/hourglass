@@ -133,8 +133,8 @@ void BackgroundEntity::setTexture(GLuint tex)
     mQuad.tex = tex;
     if (tex != 0)
     {
-        mTexWidth = RENDER.textureGetWidth(tex);
-        mTexHeight = RENDER.textureGetHeight(tex);
+        mTexWidth = (float)RENDER.textureGetWidth(tex);
+        mTexHeight = (float)RENDER.textureGetHeight(tex);
     }
 }
 
