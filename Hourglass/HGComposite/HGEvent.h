@@ -56,6 +56,14 @@ public:
     int y;
     int action;
 };
+
+// physical event
+class EventPhysics : public Event
+{
+public:
+    explicit EventPhysics();
+    ~EventPhysics();
+};
     
 HGNAMESPACE_END
 

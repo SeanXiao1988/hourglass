@@ -32,6 +32,7 @@ typedef enum
     EVENT_UPDATE,           /* frame update */
     EVENT_MOUSE,            /* mouse event */
     EVENT_KEYBOARD,         /* keyboard event */
+    EVENT_COLLISION,        /* collision event */
     
     EVENT_COUNT
 }EventID;

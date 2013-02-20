@@ -50,6 +50,11 @@ public:
     void                    setPhyscialMode(PhysicalMode mode) { mPhysicalMode = mode; }
     const PhysicalMode&     getPhsyicalMode() const { return mPhysicalMode; }
     
+    // Collision rects
+    void                    addCollisionRect(Recti& rect) { mCollisionRects.push_back(rect); }
+    void                    removeCollisionRects() { mCollisionRects.clear(); }
+    const CollisionRects&   getCollisionRects() { return mCollisionRects; }
+    
     // Composite
     static void             RegisterComponentType(void);
     virtual void            deInitialize();

@@ -35,6 +35,7 @@ HGNAMESPACE_START
         
 void PhysicalObject::RegisterComponentType()
 {
+    OBJECTMANAGER.subscribeToEvent(COMP_PHYSICAL_OBJECT, EVENT_COLLISION);
 }
     
 void PhysicalObject::deInitialize()
