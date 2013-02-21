@@ -1,11 +1,11 @@
 /**
- *  @file    HGEvent.cpp
- *  @brief   Event implementation
+ *  @file    HGPhysicalObjectScripter.cpp
+ *  @brief   PhysicalObject script adapter implementation
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2013/01/17
+ *  Created:  2013/02/21
  *  Company:  SNSTEAM.inc
  *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
@@ -18,32 +18,4 @@
  * =====================================================================================
  */
 
-#include "HGEvent.h"
-
-HGNAMESPACE_START
-
-EventKeyboard::EventKeyboard(int key, int action)
-    : key(key)
-    , action(action)
-{
-    eventID = EVENT_KEYBOARD;
-}
-
-// Mouse
-EventMouse::EventMouse(int x, int y, int action)
-    : x(x)
-    , y(y)
-    , action(action)
-{
-    eventID = EVENT_MOUSE;
-}
-
-// Collision
-EventCollision::EventCollision(void* obj, int collisionType)
-    : obj(obj)
-    , collisionType(collisionType)
-{
-    eventID = EVENT_COLLISION;
-}
-    
-HGNAMESPACE_END
+#include "HGPhysicalObjectScripter.h"

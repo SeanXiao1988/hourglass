@@ -1,11 +1,11 @@
 /**
- *  @file    HGEvent.cpp
- *  @brief   Event implementation
+ *  @file    HGEventCollisionScripter.h
+ *  @brief   EventCollision script adapter header
  *
  *  @author  Master.G (MG), mg@snsteam.com
  *
  *  @internal
- *  Created:  2013/01/17
+ *  Created:  2013/02/21
  *  Company:  SNSTEAM.inc
  *  (C) Copyright 2013 SNSTEAM.inc All rights reserved.
  * 
@@ -18,32 +18,22 @@
  * =====================================================================================
  */
 
-#include "HGEvent.h"
+#ifndef HGEVENTCOLLISIONSCRIPTER_H_
+#define HGEVENTCOLLISIONSCRIPTER_H_
+
+#include "HGScriptDef.h"
 
 HGNAMESPACE_START
 
-EventKeyboard::EventKeyboard(int key, int action)
-    : key(key)
-    , action(action)
-{
-    eventID = EVENT_KEYBOARD;
-}
+class EventCollision;
 
-// Mouse
-EventMouse::EventMouse(int x, int y, int action)
-    : x(x)
-    , y(y)
-    , action(action)
-{
-    eventID = EVENT_MOUSE;
-}
+extern luaL_Reg sEventCollisionRegs[];
 
-// Collision
-EventCollision::EventCollision(void* obj, int collisionType)
-    : obj(obj)
-    , collisionType(collisionType)
-{
-    eventID = EVENT_COLLISION;
-}
-    
+extern EventCollision* eventcollision_check(lua_State* L, int idx);
+extern int eventcollision_push(lua_State* L, EventCollision* event);
+
+extern void ScriptRegisterEventCollision(lua_State* L);
+
 HGNAMESPACE_END
+
+#endif // HGEVENTCOLLISIONSCRIPTER_H_

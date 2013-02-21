@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2E0F52D91619D7D200E4C3FD /* HGMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E0F52D71619D7D200E4C3FD /* HGMutex.cpp */; };
 		2E2C872B161F0CB200308F93 /* HGMapEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E2C872A161F0CB200308F93 /* HGMapEntity.cpp */; };
+		2E322BF916D67234001C7ED4 /* HGEventCollisionScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E322BF716D67234001C7ED4 /* HGEventCollisionScripter.cpp */; };
+		2E322BFC16D6749A001C7ED4 /* HGPhysicalObjectScripter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E322BFA16D6749A001C7ED4 /* HGPhysicalObjectScripter.cpp */; };
 		2E3F2F7816A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */; };
 		2E3F2F7D16A1D7FB00A801D8 /* HGIAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */; };
 		2E417C1D16C3F35D0024E6BA /* HGBackgroundEntity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2E417C1B16C3F35C0024E6BA /* HGBackgroundEntity.cpp */; };
@@ -158,6 +160,10 @@
 		2E2668CE164FCB9E00E8E6EB /* HGComponentDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGComponentDef.h; sourceTree = "<group>"; };
 		2E2C8728161EF12F00308F93 /* HGMapEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HGMapEntity.h; sourceTree = "<group>"; };
 		2E2C872A161F0CB200308F93 /* HGMapEntity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGMapEntity.cpp; sourceTree = "<group>"; };
+		2E322BF716D67234001C7ED4 /* HGEventCollisionScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGEventCollisionScripter.cpp; sourceTree = "<group>"; };
+		2E322BF816D67234001C7ED4 /* HGEventCollisionScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGEventCollisionScripter.h; sourceTree = "<group>"; };
+		2E322BFA16D6749A001C7ED4 /* HGPhysicalObjectScripter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGPhysicalObjectScripter.cpp; sourceTree = "<group>"; };
+		2E322BFB16D6749A001C7ED4 /* HGPhysicalObjectScripter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGPhysicalObjectScripter.h; sourceTree = "<group>"; };
 		2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGSpriteAnimationCompiler.cpp; sourceTree = "<group>"; };
 		2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGSpriteAnimationCompiler.h; sourceTree = "<group>"; };
 		2E3F2F7C16A1D7FB00A801D8 /* HGIAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGIAnimation.cpp; sourceTree = "<group>"; };
@@ -865,6 +871,8 @@
 				2EE40C8216A2AEE40033DFE2 /* HGQuadEntityScripter.cpp */,
 				D4CF8D8B16B9038D00113E70 /* HGParticleEmitterScripter.h */,
 				D4CF8D8C16B9038E00113E70 /* HGParticleEmitterScripter.cpp */,
+				2E322BFB16D6749A001C7ED4 /* HGPhysicalObjectScripter.h */,
+				2E322BFA16D6749A001C7ED4 /* HGPhysicalObjectScripter.cpp */,
 				2EE40C8516A2AEE40033DFE2 /* HGSceneNodeScripter.h */,
 				2EE40C8416A2AEE40033DFE2 /* HGSceneNodeScripter.cpp */,
 			);
@@ -1482,6 +1490,8 @@
 			children = (
 				D49D9AF216A7E13B0007D971 /* HGEventScripter.h */,
 				D49D9AF116A7E13B0007D971 /* HGEventScripter.cpp */,
+				2E322BF816D67234001C7ED4 /* HGEventCollisionScripter.h */,
+				2E322BF716D67234001C7ED4 /* HGEventCollisionScripter.cpp */,
 				D49D9AF416A7E2580007D971 /* HGEventKeyboardScripter.h */,
 				D49D9AF516A7E2580007D971 /* HGEventKeyboardScripter.cpp */,
 				D4FE009A16AA82AE002A4146 /* HGEventMouseScripter.h */,
@@ -1815,6 +1825,8 @@
 				D4CF8D8D16B9038E00113E70 /* HGParticleEmitterScripter.cpp in Sources */,
 				2E417C1D16C3F35D0024E6BA /* HGBackgroundEntity.cpp in Sources */,
 				2EA6D12F16C9443000115005 /* HGBackgroundEntityScripter.cpp in Sources */,
+				2E322BF916D67234001C7ED4 /* HGEventCollisionScripter.cpp in Sources */,
+				2E322BFC16D6749A001C7ED4 /* HGPhysicalObjectScripter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

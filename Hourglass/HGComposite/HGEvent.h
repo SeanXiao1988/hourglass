@@ -57,12 +57,15 @@ public:
     int action;
 };
 
-// physical event
-class EventPhysics : public Event
+// collision event
+class EventCollision : public Event
 {
 public:
-    explicit EventPhysics();
-    ~EventPhysics();
+    explicit EventCollision(void* obj, int collisionType);
+    EventCollision();
+    
+    int     collisionType;
+    void*   obj;
 };
     
 HGNAMESPACE_END
