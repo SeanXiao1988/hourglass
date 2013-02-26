@@ -142,7 +142,6 @@ static emitter_mode_radius_t emitter_mode_radius_check(lua_State* L, int idx)
     
     if (lua_istable(L, idx))
     {
-        
         lua_pushstring(L, "startRadius");
         lua_gettable(L, idx);
         mode.startRadius = (float)luaL_checknumber(L, -1);

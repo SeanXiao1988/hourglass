@@ -21,6 +21,8 @@
 #include "HGPhysicalObjectScripter.h"
 #include "HGPhysicalObject.h"
 #include "HGCompositeScripter.h"
+#include "HGMapData.h"
+#include "HGMapDataScripter.h"
 
 #define PHYSICALOBJECT_METATABLE    "PhysicalObjectMetatable"
 #define PHYSICALOBJECT_LUA_NAME     "PhysicalObject"
@@ -50,6 +52,42 @@ int physicalobject_push(lua_State* L, PhysicalObject* object)
     return ret;
 }
 
-//
+// methods
+int physicalobject_set_map(lua_State* L)
+{
+    PhysicalObject* object = physicalobject_check(L, 1);
+    
+    if (object != NULL)
+    {
+        MapData* data = mapdata_check(L, 2);
+        object->setMap(data);
+    }
+    
+    return 0;
+}
+
+int physicalobject_apply_displacement(lua_State* L)
+{
+    PhysicalObject* object = physicalobject_check(L, 1);
+    
+    if (object != NULL)
+    {
+        int x = (int)luaL_checkinteger(L, 2);
+        int y = (int)luaL_checkinteger(L, 3);
+        object->applyDisplacement(Vector2Di(x, y));
+    }
+    
+    return 0;
+}
+
+int physicalobject_perform_duckjump(lua_State* L)
+{
+    PhysicalObject* object = physicalobject_check(L, 1);
+    
+    if (object != NULL)
+        object->performDuckJump();
+
+    return 0;
+}
 
 HGNAMESPACE_END
