@@ -203,6 +203,105 @@ int point2f_push(lua_State* L, Point2f* point)
     return 1;
 }
 
+Point2i point2i_check(lua_State* L, int idx)
+{
+    int x = 0.0f;
+    int y = 0.0f;
+    
+    if (lua_istable(L, idx))
+    {
+        lua_pushstring(L, "x");
+        lua_gettable(L, idx-1);
+        x = (int)luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+        
+        lua_pushstring(L, "y");
+        lua_gettable(L, idx-1);
+        y = (int)luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+    }
+    
+    Point2i point(x, y);
+    return point;
+}
+
+int point2i_push(lua_State* L, Point2i* point)
+{
+    if (point == NULL)
+        return 0;
+    
+    lua_newtable(L);
+    
+    lua_pushstring(L, "x");
+    lua_pushnumber(L, point->x);
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "y");
+    lua_pushnumber(L, point->y);
+    lua_settable(L, -3);
+    
+    return 1;
+}
+
+Recti recti_check(lua_State* L, int idx)
+{
+    int left = 0;
+    int right = 0;
+    int top = 0;
+    int bottom = 0;
+    
+    if (lua_istable(L, idx))
+    {
+        lua_pushstring(L, "left");
+        lua_gettable(L, idx-1);
+        left = (int)luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+        
+        lua_pushstring(L, "right");
+        lua_gettable(L, idx-1);
+        right = (int)luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+        
+        lua_pushstring(L, "top");
+        lua_gettable(L, idx-1);
+        top = (int)luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+        
+        lua_pushstring(L, "bottom");
+        lua_gettable(L, idx-1);
+        bottom = (int)luaL_checkinteger(L, -1);
+        lua_pop(L, 1);
+    }
+    
+    return Recti(Vector2Di(left, top), Vector2Di(right, bottom));
+}
+
+int recti_push(lua_State* L, Recti* rect)
+{
+    if (rect == NULL)
+        return 0;
+    
+    lua_newtable(L);
+    
+    lua_pushstring(L, "left");
+    lua_pushinteger(L, rect->getLeft());
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "right");
+    lua_pushinteger(L, rect->getRight());
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "top");
+    lua_pushinteger(L, rect->getTop());
+    lua_settable(L, -3);
+    
+    lua_pushstring(L, "bottom");
+    lua_pushinteger(L, rect->getBottom());
+    lua_settable(L, -3);
+    
+    return 1;
+}
+
 void ScriptRegisterGraphic(lua_State* L)
 {
     lua_pushinteger(L, BLEND_COLORADD);

@@ -28,6 +28,7 @@
 #include "HGQuadEntityScripter.h"
 #include "HGSceneNodeScripter.h"
 #include "HGParticleEmitterScripter.h"
+#include "HGPhysicalObjectScripter.h"
 
 HGNAMESPACE_START
     
@@ -170,6 +171,7 @@ void ScriptRegisterComposite(lua_State* L)
     ScriptRegisterBackgroundEntity(L);
     ScriptRegisterQuadEntity(L);
     ScriptRegisterParticleEmitter(L);
+    ScriptRegisterPhysicalObject(L);
 }
 
 HGNAMESPACE_END

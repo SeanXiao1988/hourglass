@@ -35,6 +35,12 @@ extern int color4f_push(lua_State* L, color4f_t* color);
 
 extern Point2f point2f_check(lua_State* L, int idx);
 extern int point2f_push(lua_State* L, Point2f* point);
+
+extern Point2i point2i_check(lua_State* L, int idx);
+extern int point2i_push(lua_State* L, Point2i* point);
+
+extern Recti recti_check(lua_State* L, int idx);
+extern int recti_push(lua_State* L, Recti* rect);
     
 extern void ScriptRegisterGraphic(lua_State* L);
     
