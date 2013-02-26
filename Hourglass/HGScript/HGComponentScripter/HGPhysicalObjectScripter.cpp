@@ -19,3 +19,37 @@
  */
 
 #include "HGPhysicalObjectScripter.h"
+#include "HGPhysicalObject.h"
+#include "HGCompositeScripter.h"
+
+#define PHYSICALOBJECT_METATABLE    "PhysicalObjectMetatable"
+#define PHYSICALOBJECT_LUA_NAME     "PhysicalObject"
+
+HGNAMESPACE_START
+
+PhysicalObject* physicalobject_check(lua_State* L, int idx)
+{
+    return *static_cast<PhysicalObject **>(luaL_checkudata(L, idx, PHYSICALOBJECT_METATABLE));
+}
+
+// push a PhysicalObject to Lua
+int physicalobject_push(lua_State* L, PhysicalObject* object)
+{
+    int ret = 0;
+    
+    if (object != NULL)
+    {
+        PhysicalObject** udata = static_cast<PhysicalObject **>(lua_newuserdata(L, sizeof(PhysicalObject *)));
+        *udata = object;
+        luaL_getmetatable(L, PHYSICALOBJECT_METATABLE);
+        lua_setmetatable(L, -2);
+        
+        ret = 1;
+    }
+    
+    return ret;
+}
+
+//
+
+HGNAMESPACE_END

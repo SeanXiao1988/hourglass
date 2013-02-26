@@ -61,10 +61,11 @@ public:
 class EventCollision : public Event
 {
 public:
-    explicit EventCollision(void* obj, int collisionType);
+    explicit EventCollision(void* obj, void* rects, int collisionType);
     EventCollision();
     
     int     collisionType;
+    void*   collisionRects;
     void*   obj;
 };
     

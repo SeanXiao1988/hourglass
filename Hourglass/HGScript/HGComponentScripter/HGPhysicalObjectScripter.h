@@ -21,5 +21,18 @@
 #ifndef HGPHYSICALOBJECTSCRIPTER_H_
 #define HGPHYSICALOBJECTSCRIPTER_H_
 
+#include "HGScriptDef.h"
+
+HGNAMESPACE_START
+
+class PhysicalObject;
+
+extern luaL_Reg sPhysicalObjectRegs[];
+
+extern PhysicalObject* physicalobject_check(lua_State* L, int idx);
+extern int physicalobject_push(lua_State* L, PhysicalObject* object);
+extern void ScriptRegisterPhysicalObject(lua_State* L);
+
+HGNAMESPACE_END
 
 #endif // HGPHYSICALOBJECTSCRIPTER_H_

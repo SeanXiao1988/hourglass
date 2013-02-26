@@ -39,8 +39,9 @@ EventMouse::EventMouse(int x, int y, int action)
 }
 
 // Collision
-EventCollision::EventCollision(void* obj, int collisionType)
+EventCollision::EventCollision(void* obj, void* rects, int collisionType)
     : obj(obj)
+    , collisionRects(rects)
     , collisionType(collisionType)
 {
     eventID = EVENT_COLLISION;
