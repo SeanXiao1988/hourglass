@@ -331,6 +331,7 @@ void SceneNode::addAnimation(IAnimation* anim, uint32_t name)
         break;
     
     name = (name == 0) ? anim->name : name;
+    anim->name = name;
     
     if (mAnimationSet.find(name) != mAnimationSet.end())
         break;

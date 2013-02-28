@@ -27,8 +27,6 @@
 
 HGNAMESPACE_START
 
-// TODO: add background animation, parallel scroll etc.
-
 BackgroundEntity::BackgroundEntity()
     : mType(BACKGROUND_DEFAULT)
     , mScrollSpeedX(0.0f)

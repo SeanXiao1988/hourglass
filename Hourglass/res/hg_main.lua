@@ -5,6 +5,8 @@ function hg_init()
     RENDER.setClearColor(0x808080FF)
     
     create_1st_obj()
+    --create_background()
+    create_animation_tester()
 end
 
 function create_pe()
@@ -38,6 +40,19 @@ function create_pe()
     return emitter
 end
 
+function create_background()
+    backg = BackgroundEntity.new()
+    backg:setTexture(RENDER.textureLoad("test2.png"))
+    backg:setTextureRect(0, 0, 512, 512)
+    backg:setWidth(1024)
+    backg:setHeight(1024)
+    backg:setType(BACKGROUND_SCROLL)
+    backg:setScrollSpeedX(500)
+    backg:setScrollSpeedY(300)
+    SCENEMANAGER.getRoot():attachEntity(backg)
+    OBJECTMANAGER.addComponentToObject(objName, backg)
+end
+
 function create_1st_obj()
     print("create_1st_obj")
 
@@ -53,26 +68,40 @@ function create_1st_obj()
     OBJECTMANAGER.addComponentToObject(objName, pe)
     
     sceneNode:setXY(128, 128)
-    --[[
-    local rotAnim = RotationAnimation.new(360, 3)
-    rotAnim:setType(ANIMATION_TYPE_RESET);
-    sceneNode:addAnimation(rotAnim)
-    --]]
+
     local inputer = InputListener.new()
     OBJECTMANAGER.addComponentToObject(objName, inputer)
     inputer:setScriptCallback(input_callback)
-    
-    backg = BackgroundEntity.new()
-    backg:setTexture(RENDER.textureLoad("test2.png"))
-    backg:setTextureRect(0, 0, 512, 512)
-    backg:setWidth(1024)
-    backg:setHeight(1024)
-    backg:setType(BACKGROUND_SCROLL)
-    backg:setScrollSpeedX(500)
-    backg:setScrollSpeedY(300)
-    SCENEMANAGER.getRoot():attachEntity(backg)
-    OBJECTMANAGER.addComponentToObject(objName, backg)
+end
 
+function create_animation_tester()
+    -- 创建场景节点
+    animTester = SCENEMANAGER.createNode("animTester")
+    -- 设置节点坐标
+    animTester:setXY(400, 300)
+    -- 将节点添加至场景根节点
+    SCENEMANAGER.getRoot():addChild(animTester)
+    
+    -- 创建实体
+    testEntity = QuadEntity.new()
+    -- 设置贴图
+    testEntity:setTexture(RENDER.textureLoad("test.png"))
+    -- 设置贴图参数
+    testEntity:setTextureRect(0, 0, 128, 128)
+    -- 将实体添加到场景节点
+    animTester:attachEntity(testEntity)
+
+    -- 创建旋转动画，360度，3秒
+    local rotAnim = RotationAnimation.new(360, 3)
+    -- 动画属性，重置
+    rotAnim:setType(ANIMATION_TYPE_RESET);
+    -- 将动画添加到节点
+    animTester:addAnimation(rotAnim, "rot")
+    
+    local tranAnim = TranslateAnimation.new(100, 0, 1)
+    tranAnim:setType(ANIMATION_TYPE_PINGPONG)
+    animTester:addAnimation(tranAnim, "tran")
+    animTester:removeAnimation("tran")
 end
 
 function input_callback(listener, event)
