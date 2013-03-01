@@ -22,6 +22,9 @@
 #ifndef HG_H_
 #define HG_H_
 
+// Animation
+#include "HGAnimationManager.h"
+
 // Application
 #include "HGApplication.h"
 

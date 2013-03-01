@@ -40,6 +40,7 @@
 		2EF4D3CA1674DEBD00C616D3 /* HGApplication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EF4D3C81674DEBD00C616D3 /* HGApplication.cpp */; };
 		2EFD9BC1162DB4D70004DAA1 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD9BBF162DB4D70004DAA1 /* test.png */; };
 		2EFD9BC2162DB4D70004DAA1 /* test2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EFD9BC0162DB4D70004DAA1 /* test2.png */; };
+		2EFD9D7916E1105D00135FAA /* HGAnimationManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EFD9D7716E1105D00135FAA /* HGAnimationManager.cpp */; };
 		D4197818167ECE5C006A65ED /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4197817167ECE5C006A65ED /* libz.dylib */; };
 		D419781A167ECED6006A65ED /* libbz2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4197819167ECED6006A65ED /* libbz2.dylib */; };
 		D4197823167EFECF006A65ED /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4197811167ECAF3006A65ED /* libfreetype.a */; };
@@ -243,6 +244,8 @@
 		2EF4D3C91674DEBD00C616D3 /* HGApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGApplication.h; sourceTree = "<group>"; };
 		2EFD9BBF162DB4D70004DAA1 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test.png; path = ../res/test.png; sourceTree = "<group>"; };
 		2EFD9BC0162DB4D70004DAA1 /* test2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = test2.png; path = ../res/test2.png; sourceTree = "<group>"; };
+		2EFD9D7716E1105D00135FAA /* HGAnimationManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HGAnimationManager.cpp; sourceTree = "<group>"; };
+		2EFD9D7816E1105D00135FAA /* HGAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGAnimationManager.h; sourceTree = "<group>"; };
 		D4139DDD169FF23F000936CD /* HGIAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HGIAnimation.h; sourceTree = "<group>"; };
 		D41977BB167ECAF3006A65ED /* ftconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftconfig.h; sourceTree = "<group>"; };
 		D41977BC167ECAF3006A65ED /* ftheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftheader.h; sourceTree = "<group>"; };
@@ -1024,6 +1027,8 @@
 				D42B812C166C3AB2000EE2AA /* HGAnimationDef.h */,
 				2E3F2F7716A1D3F500A801D8 /* HGSpriteAnimationCompiler.h */,
 				2E3F2F7616A1D3F500A801D8 /* HGSpriteAnimationCompiler.cpp */,
+				2EFD9D7816E1105D00135FAA /* HGAnimationManager.h */,
+				2EFD9D7716E1105D00135FAA /* HGAnimationManager.cpp */,
 				D4139DDC169FF23F000936CD /* HGAnimations */,
 			);
 			name = HGAnimation;
@@ -1827,6 +1832,7 @@
 				2EA6D12F16C9443000115005 /* HGBackgroundEntityScripter.cpp in Sources */,
 				2E322BF916D67234001C7ED4 /* HGEventCollisionScripter.cpp in Sources */,
 				2E322BFC16D6749A001C7ED4 /* HGPhysicalObjectScripter.cpp in Sources */,
+				2EFD9D7916E1105D00135FAA /* HGAnimationManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

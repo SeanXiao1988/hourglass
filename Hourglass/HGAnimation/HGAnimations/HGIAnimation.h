@@ -32,7 +32,7 @@ class IAnimation
 {
 public:
     IAnimation();
-    virtual ~IAnimation() {};
+    virtual ~IAnimation();
     virtual void update(SceneNode* node, float dt) = 0;
     
     bool            isFinished;

@@ -29,6 +29,7 @@ void Application::initialize()
     OBJECTMANAGER.initialize();
     SPRITEANIMATIONCOMPILER.initialize();
     SCENEMANAGER.initialize();
+    ANIMATIONMANAGER.initialize();
     INPUTMANAGER.initialize();
     CONSOLE.initialize();
     SOUNDMANAGER.initialize();
@@ -48,6 +49,7 @@ void Application::deInitialize()
     SOUNDMANAGER.deInitialize();
     CONSOLE.deInitialze();
     INPUTMANAGER.deInitialize();
+    ANIMATIONMANAGER.deInitialize();
     SCENEMANAGER.deInitialize();
     SPRITEANIMATIONCOMPILER.deInitialize();
     OBJECTMANAGER.deInitialize();

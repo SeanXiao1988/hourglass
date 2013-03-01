@@ -19,6 +19,7 @@
  */
 
 #include "HGIAnimation.h"
+#include "HGAnimationManager.h"
 
 HGNAMESPACE_START
 
@@ -30,6 +31,12 @@ IAnimation::IAnimation()
     , typeID(ANIMATION_ID_INVALID)
     , type(ANIMATION_TYPE_DEFAULT)
 {
+    ANIMATIONMANAGER.addAnimation(this);
+}
+
+IAnimation::~IAnimation()
+{
+    ANIMATIONMANAGER.removeAnimation(this);
 }
     
 HGNAMESPACE_END

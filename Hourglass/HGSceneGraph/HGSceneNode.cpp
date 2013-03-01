@@ -385,7 +385,6 @@ void SceneNode::removeAnimation(uint32_t name)
     {
         if ((*listIter)->name == name)
         {
-            delete *listIter;
             mAnimations.erase(listIter);
             break;
         }
@@ -400,12 +399,6 @@ void SceneNode::removeAllAnimations()
     
     if (mAnimations.empty())
         break;
-    
-    AnimationList::iterator iter = mAnimations.begin();
-    for (; iter != mAnimations.end(); ++iter)
-    {
-        delete *iter;
-    }
     
     mAnimations.clear();
     mAnimationSet.clear();
